@@ -2,6 +2,7 @@
 #import "ViewController.h"
 #import "SocketIOJSONSerialization.h"
 #import "LinedTextView.h"
+#import "GuessViewController.h"
 
 #define kTimerInterval 0.05f
 
@@ -44,7 +45,6 @@
     self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 300);
 
 }
-
 
 #pragma mark - Connection Manager Delegate Methods
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didConnectWithSuccess:(BOOL)success
@@ -103,32 +103,33 @@
     if(progress >= 1.0)
     {
         // Done with the question
+        [self.manager expireTime];
         [self.timer invalidate];
     }
+}
+
+- (IBAction)buzzPressed:(id)sender
+{
+    [self.timer invalidate];
+    [self.manager buzz];
+    
+    [self presentGuessViewController];
+}
+
+- (void) presentGuessViewController
+{
+    GuessViewController *toVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GuessViewController"];
+    toVC.questionDisplayText = self.questionTextView.text;
+    toVC.manager = self.manager;
+    [self presentViewController:toVC animated:YES completion:^{
+//        [toVC resizeFont];
+    }];
 }
 
 #pragma mark - Interface Helper Methods
 - (void) logToTextView:(NSString *)message
 {
     [self.textViewLog addLine:message];
-}
-
-#pragma mark - Other Helper Methods
-// This is all just a bunch of sort of complicated code to pretty print the JSON to the console.
-- (NSString *) prettyPrintPacketData:(SocketIOPacket *)packet
-{
-    NSMutableDictionary *data = packet.dataAsJSON[@"args"][0];
-    if([data isKindOfClass:[NSString class]])
-    {
-        return [data description];
-    }
-    
-    NSOutputStream *outStream = [NSOutputStream outputStreamToMemory];
-    [outStream open];
-    [NSJSONSerialization writeJSONObject:data toStream:outStream options:NSJSONWritingPrettyPrinted error:nil];
-    NSData *formattedJSONData = [outStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
-    
-    return [[NSString alloc] initWithData:formattedJSONData encoding:NSUTF8StringEncoding];
 }
 
 @end

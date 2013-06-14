@@ -28,4 +28,6 @@
 @property (nonatomic) int endTime;
 @property (nonatomic) int questionDuration; // In milliseconds
 
+@property (nonatomic) BOOL isExpired;
+
 @end

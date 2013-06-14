@@ -24,7 +24,12 @@
 
 @interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
 
+typedef void (^GuessCallback)(BOOL correct);
+
 - (void) connect;
+- (void) expireTime;
+- (BOOL) buzz; // Returns if the user successfully buzzed
+- (void) submitGuess:(NSString *)guess withCallback:(GuessCallback) callback;
 
 @property (nonatomic, weak) id<ProtobowlConnectionDelegate> delegate;
 

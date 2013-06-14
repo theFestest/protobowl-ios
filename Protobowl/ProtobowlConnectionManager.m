@@ -17,6 +17,8 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) NSString *questionDisplayText;
 @property (nonatomic) BOOL isQuestionNew;
 @property (nonatomic) int questionWordIndex;
+
+@property (nonatomic) NSString *buzzSessionId;
 @end
 
 @implementation ProtobowlConnectionManager
@@ -123,6 +125,7 @@ NSLog(@"%@", string); \
                 
                 self.currentQuestion.rate = [packetData[@"rate"] floatValue];
                 self.currentQuestion.timing = packetData[@"timing"];
+                self.currentQuestion.isExpired = NO;
                 
                 self.currentQuestion.beginTime = [packetData[@"begin_time"] intValue];
                 self.currentQuestion.endTime = [packetData[@"end_time"] intValue];
@@ -149,9 +152,6 @@ NSLog(@"%@", string); \
                 self.isQuestionNew = NO;
             }
         }
-        
-        
-//        LOG(@"Sync data: %@", packetData);
     }
     else if([packet.name isEqualToString:@"chat"])
     {
@@ -215,22 +215,27 @@ NSLog(@"%@", string); \
     [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:delay inModes:@[NSRunLoopCommonModes]];
 }
 
-
-// This is all just a bunch of sort of complicated code to pretty print the JSON to the console.
-- (NSString *) prettyPrintPacketData:(SocketIOPacket *)packet
+- (void) expireTime
 {
-    NSMutableDictionary *data = packet.dataAsJSON[@"args"][0];
-    if([data isKindOfClass:[NSString class]])
+    self.currentQuestion.isExpired = YES;
+}
+
+- (BOOL) buzz
+{
+    if(!self.currentQuestion || self.currentQuestion.isExpired || !self.currentQuestion.qid || [self.currentQuestion.qid isEqualToString:@""])
     {
-        return [data description];
+        return NO;
     }
     
-    NSOutputStream *outStream = [NSOutputStream outputStreamToMemory];
-    [outStream open];
-    [NSJSONSerialization writeJSONObject:data toStream:outStream options:NSJSONWritingPrettyPrinted error:nil];
-    NSData *formattedJSONData = [outStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+    [self.socket sendEvent:@"buzz" withData:self.currentQuestion.qid];
     
-    return [[NSString alloc] initWithData:formattedJSONData encoding:NSUTF8StringEncoding];
+    return YES;
+}
+
+
+- (void) submitGuess:(NSString *)guess withCallback:(GuessCallback) callback
+{
+    
 }
 
 @end

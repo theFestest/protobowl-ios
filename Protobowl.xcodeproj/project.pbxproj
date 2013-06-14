@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B50652FD176A886300DA299D /* ProtobowlQuestion.m */; };
-		B569AF99176A6C8300487C4F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF98176A6C8300487C4F /* TestingViewController.m */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
+		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
+		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24691767CE9900B9870D /* UIKit.framework */; };
 		B5FD246C1767CE9900B9870D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246B1767CE9900B9870D /* Foundation.framework */; };
 		B5FD246E1767CE9900B9870D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246D1767CE9900B9870D /* CoreGraphics.framework */; };
@@ -46,7 +47,6 @@
 		B5FD24E71767CF7200B9870D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E31767CF7200B9870D /* ViewController.m */; };
 		B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E51767CF7200B9870D /* LinedTextView.m */; };
 		B5FD24E91767CF7200B9870D /* LinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E51767CF7200B9870D /* LinedTextView.m */; };
-		B5FD24EB1767CF9300B9870D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B5FD24ED1767CF9700B9870D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
 		B5FD24EF1767CFA000B9870D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EE1767CFA000B9870D /* libicucore.dylib */; };
 /* End PBXBuildFile section */
@@ -64,10 +64,12 @@
 /* Begin PBXFileReference section */
 		B50652FC176A886300DA299D /* ProtobowlQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlQuestion.h; sourceTree = "<group>"; };
 		B50652FD176A886300DA299D /* ProtobowlQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlQuestion.m; sourceTree = "<group>"; };
-		B569AF97176A6C8300487C4F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
-		B569AF98176A6C8300487C4F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; };
 		B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlConnectionManager.m; sourceTree = "<group>"; };
+		B5929579176B98F5008E0EB3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B592957B176BC5E8008E0EB3 /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
+		B592957C176BC5E8008E0EB3 /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessViewController.m; sourceTree = "<group>"; };
+		B592957E176BDCC7008E0EB3 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "../../../../../../Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework"; sourceTree = "<group>"; };
 		B5FD24661767CE9900B9870D /* Protobowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Protobowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5FD24691767CE9900B9870D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5FD246B1767CE9900B9870D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -121,9 +123,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */,
 				B5FD24EF1767CFA000B9870D /* libicucore.dylib in Frameworks */,
 				B5FD24ED1767CF9700B9870D /* Security.framework in Frameworks */,
-				B5FD24EB1767CF9300B9870D /* CFNetwork.framework in Frameworks */,
 				B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */,
 				B5FD246C1767CE9900B9870D /* Foundation.framework in Frameworks */,
 				B5FD246E1767CE9900B9870D /* CoreGraphics.framework in Frameworks */,
@@ -165,6 +167,8 @@
 		B5FD24681767CE9900B9870D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B592957E176BDCC7008E0EB3 /* Reveal.framework */,
+				B5929579176B98F5008E0EB3 /* QuartzCore.framework */,
 				B5FD24E11767CF4600B9870D /* SocketRocket */,
 				B5FD24D21767CF2D00B9870D /* SocketIO */,
 				B5FD24EE1767CFA000B9870D /* libicucore.dylib */,
@@ -190,12 +194,12 @@
 				B5FD24811767CE9900B9870D /* MainStoryboard_iPhone.storyboard */,
 				B5FD24841767CE9900B9870D /* MainStoryboard_iPad.storyboard */,
 				B5FD24701767CE9900B9870D /* Supporting Files */,
-				B569AF97176A6C8300487C4F /* TestingViewController.h */,
-				B569AF98176A6C8300487C4F /* TestingViewController.m */,
 				B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */,
 				B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */,
 				B50652FC176A886300DA299D /* ProtobowlQuestion.h */,
 				B50652FD176A886300DA299D /* ProtobowlQuestion.m */,
+				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
+				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 			);
 			path = Protobowl;
 			sourceTree = "<group>";
@@ -390,9 +394,9 @@
 				B5FD24DE1767CF3D00B9870D /* SRWebSocket.m in Sources */,
 				B5FD24E61767CF7200B9870D /* ViewController.m in Sources */,
 				B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */,
-				B569AF99176A6C8300487C4F /* TestingViewController.m in Sources */,
 				B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */,
 				B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */,
+				B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,9 +525,15 @@
 		B5FD24A21767CE9900B9870D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -532,9 +542,15 @@
 		B5FD24A31767CE9900B9870D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
