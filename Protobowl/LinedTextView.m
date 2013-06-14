@@ -72,4 +72,10 @@
     [self regenTextField];
 }
 
+- (CGSize) intrinsicContentSize
+{
+    CGSize calcSize = [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(self.frame.size.width, 10000)];
+    return CGSizeMake(self.frame.size.width, calcSize.height);
+}
+
 @end

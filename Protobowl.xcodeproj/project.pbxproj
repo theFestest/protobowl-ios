@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B50652FD176A886300DA299D /* ProtobowlQuestion.m */; };
 		B569AF99176A6C8300487C4F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF98176A6C8300487C4F /* TestingViewController.m */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
 		B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24691767CE9900B9870D /* UIKit.framework */; };
@@ -61,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B50652FC176A886300DA299D /* ProtobowlQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlQuestion.h; sourceTree = "<group>"; };
+		B50652FD176A886300DA299D /* ProtobowlQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlQuestion.m; sourceTree = "<group>"; };
 		B569AF97176A6C8300487C4F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
 		B569AF98176A6C8300487C4F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				B569AF98176A6C8300487C4F /* TestingViewController.m */,
 				B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */,
 				B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */,
+				B50652FC176A886300DA299D /* ProtobowlQuestion.h */,
+				B50652FD176A886300DA299D /* ProtobowlQuestion.m */,
 			);
 			path = Protobowl;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */,
 				B569AF99176A6C8300487C4F /* TestingViewController.m in Sources */,
 				B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */,
+				B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

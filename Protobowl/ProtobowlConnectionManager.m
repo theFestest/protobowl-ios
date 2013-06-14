@@ -1,5 +1,6 @@
 
 #import "ProtobowlConnectionManager.h"
+#import "ProtobowlQuestion.h"
 
 #define LOG(s, ...) do { \
 NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -8,20 +9,50 @@ NSLog(@"%@", string); \
 
 @interface ProtobowlConnectionManager ()
 @property (nonatomic, strong) SocketIO *socket;
+
 @property (nonatomic, strong) NSMutableDictionary *userData;
 @property (nonatomic, strong) NSMutableArray *chatLines;
+
+@property (nonatomic, strong) ProtobowlQuestion *currentQuestion;
+@property (nonatomic, strong) NSString *questionDisplayText;
+@property (nonatomic) BOOL isQuestionNew;
+@property (nonatomic) int questionWordIndex;
 @end
 
 @implementation ProtobowlConnectionManager
 
-- (id) init
+#pragma mark - Custom Getters and Setters
+- (NSMutableDictionary *) userData
 {
-    if(self = [super init])
+    if (!_userData)
     {
-        self.userData = [NSMutableDictionary dictionary];
-        self.chatLines = [NSMutableArray array];
+        _userData = [NSMutableDictionary dictionary];
     }
-    return self;
+    return _userData;
+}
+- (NSMutableArray *) chatLines
+{
+    if (!_chatLines)
+    {
+        _chatLines = [NSMutableArray array];
+    }
+    return _chatLines;
+}
+- (ProtobowlQuestion *) currentQuestion
+{
+    if(!_currentQuestion)
+    {
+        _currentQuestion = [[ProtobowlQuestion alloc] init];
+    }
+    return _currentQuestion;
+}
+- (NSString *) questionDisplayText
+{
+    if(!_questionDisplayText)
+    {
+        _questionDisplayText = [NSString string];
+    }
+    return _questionDisplayText;
 }
 
 - (void) connect
@@ -65,9 +96,9 @@ NSLog(@"%@", string); \
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
     NSDictionary *packetData = packet.dataAsJSON[@"args"][0];
-    if([packet.name isEqualToString:@"sync"])
+    if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
-        if(packetData[@"users"])
+        if(packetData[@"users"]) // If it contains user data, update the users
         {
             NSArray *users = packetData[@"users"];
             for (NSDictionary *user in users)
@@ -78,7 +109,49 @@ NSLog(@"%@", string); \
                 self.userData[userID] = userWithLineNumber;
             }
         }
-        LOG(@"Sync data: %@", packetData);
+        
+        if(packetData[@"qid"])
+        {
+            NSString *newQid = packetData[@"qid"];
+            if(![newQid isEqualToString:self.currentQuestion.qid])
+            {
+                self.isQuestionNew = YES;
+                
+                self.currentQuestion.qid = newQid;
+                self.currentQuestion.answerText = packetData[@"answer"];
+                self.currentQuestion.questionText = packetData[@"question"];
+                
+                self.currentQuestion.rate = [packetData[@"rate"] floatValue];
+                self.currentQuestion.timing = packetData[@"timing"];
+                
+                self.currentQuestion.beginTime = [packetData[@"begin_time"] intValue];
+                self.currentQuestion.endTime = [packetData[@"end_time"] intValue];
+                self.currentQuestion.questionDuration = self.currentQuestion.endTime - self.currentQuestion.beginTime;
+                printf("%d\n", self.currentQuestion.questionDuration);
+                
+                NSDictionary *infoDict = packetData[@"info"];
+                self.currentQuestion.tournament = infoDict[@"tournament"];
+                self.currentQuestion.year = infoDict[@"year"];
+                self.currentQuestion.category = infoDict[@"category"];
+                self.currentQuestion.difficulty = infoDict[@"difficulty"];
+                
+                [self.delegate connectionManager:self didUpdateQuestion:self.currentQuestion];
+                
+                self.currentQuestion.questionDisplayText = [@"" mutableCopy];
+                self.currentQuestion.questionDisplayWordIndex = 0;
+                self.currentQuestion.questionTextAsWordArray = [self.currentQuestion.questionText componentsSeparatedByString:@" "];
+                
+                [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:0 inModes:@[NSRunLoopCommonModes]];
+                
+            }
+            else
+            {
+                self.isQuestionNew = NO;
+            }
+        }
+        
+        
+//        LOG(@"Sync data: %@", packetData);
     }
     else if([packet.name isEqualToString:@"chat"])
     {
@@ -100,12 +173,14 @@ NSLog(@"%@", string); \
         else if(isDone)
         {
             int index = [user[@"lineNumber"] intValue];
+            if(index == -1) return;
             self.chatLines[index] = text;
             user[@"lineNumber"] = @(-1);
         }
         else
         {
             int index = [user[@"lineNumber"] intValue];
+            if(index == -1) return;
             self.chatLines[index] = text;
         }
         
@@ -119,9 +194,25 @@ NSLog(@"%@", string); \
     }
     else
     {
-        NSString *json = [self prettyPrintPacketData:packet];
-        LOG(@"Received event: \"%@\"\nData: %@\n\n", packet.name, json);
+        NSLog(@"Received event: \"%@\"", packet.name);
     }
+}
+
+- (void) incrementQuestionDisplayText
+{
+    int index = self.currentQuestion.questionDisplayWordIndex;
+    if(index >= self.currentQuestion.questionTextAsWordArray.count)
+    {
+        return;
+    }
+    
+    [self.currentQuestion.questionDisplayText appendFormat:@"%@ ", self.currentQuestion.questionTextAsWordArray[index]];
+    
+    [self.delegate connectionManager:self didUpdateQuestionDisplayText:[self.currentQuestion.questionDisplayText copy]];
+    
+    self.currentQuestion.questionDisplayWordIndex++;
+    float delay = ([self.currentQuestion.timing[index] floatValue] * self.currentQuestion.rate) / 1000.0f;
+    [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:delay inModes:@[NSRunLoopCommonModes]];
 }
 
 
