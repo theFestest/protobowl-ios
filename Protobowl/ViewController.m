@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
+@property (nonatomic, strong) UISwipeGestureRecognizer *nextGesture;
 @end
 
 @implementation ViewController
@@ -60,6 +61,13 @@
     
     self.timeBar.progressColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
     self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
+    
+    
+    self.nextGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
+//    self.nextGesture.minimumNumberOfTouches = 1;
+    self.nextGesture.direction = UISwipeGestureRecognizerDirectionUp;
+    self.nextGesture.delegate = self;
+    [self.view addGestureRecognizer:self.nextGesture];
     
     // Question BG color = #f5f5f5
     // Question Border: 1px solid #e3e3e3
@@ -158,6 +166,29 @@
     [self presentViewController:toVC animated:YES completion:^{
 //        [toVC resizeFont];
     }];
+}
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if(gestureRecognizer == self.nextGesture || otherGestureRecognizer == self.nextGesture)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+- (void) panGesture:(UISwipeGestureRecognizer *)pan
+{
+    if(pan.state == UIGestureRecognizerStateEnded)
+    {
+        [self gotoNextQuestion];
+    }
+}
+
+- (void) gotoNextQuestion
+{
+    NSLog(@"Next");
+    BOOL shouldTransition = [self.manager next];
 }
 
 #pragma mark - Interface Helper Methods

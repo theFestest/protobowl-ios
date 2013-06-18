@@ -43,6 +43,7 @@ typedef void (^GuessCallback)(BOOL correct);
 - (void) pauseQuestion;
 - (void) unpauseQuestion;
 
+- (BOOL) next; // Returns whether or not the next command was actually executed
 @property (nonatomic, weak) id<ProtobowlConnectionDelegate> delegate;
 
 @end

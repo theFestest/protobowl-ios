@@ -166,6 +166,7 @@ NSLog(@"%@", string); \
                 self.currentQuestion.qid = newQid;
                 self.currentQuestion.answerText = packetData[@"answer"];
                 self.currentQuestion.questionText = packetData[@"question"];
+//                self.currentQuestion.questionText = @"One incident in this book ends with a character kneeling on a pitcher's mound and proclaiming “Oh God,” after following a man on a train whom he believes to be both God and his missing father because the man is missing one earlobe. In another part of this book, a child who believes that she is about to be put into a small box by a malevolent figure is calmed down by hearing a story about two bears in a bullying relationship, who become friends after a trade involving salmon. One character in this book speculates that the protagonist of Jack London's “To Build a Fire” wanted to die and talks about the meaning of bonfires with Miyake. The limousine driver Nimit takes one character in this book to a fortune teller, who instructs Satsuki to dream of a snake in order to get a stone out of her body. A predicted underground battle with a hate-absorbing worm in this book never comes to pass, and Katagiri is covered with insects after confronting the amphibian which foretold such a fight. The first character described in this book is given a free one-week vacation in exchange for a delivering a package to the sister of one of his coworkers at the electronics store, after his wife leaves him a note accusing him of being a “chunk of air” as the reason for leaving him, but traumatic memories of the (*) title phenomenon causes that character to become impotent with Shimao. Including “Landscape with Flatiron,” “All God's Children Can Dance,” “Thailand,” “Honey Pie,” “UFO in Kushiro,” and “Super-Frog Saves Tokyo,” this book takes place in the weeks after a January 1995 event in Kobe. For 10 points, name this short story cycle by Haruki Murakami about a natural disaster.";
                 
                 self.currentQuestion.rate = [packetData[@"rate"] floatValue];
                 self.currentQuestion.timing = packetData[@"timing"];
@@ -305,7 +306,12 @@ NSLog(@"%@", string); \
     [self.delegate connectionManager:self didUpdateQuestionDisplayText:[self.currentQuestion.questionDisplayText copy]];
     
     self.currentQuestion.questionDisplayWordIndex++;
-    float delay = ([self.currentQuestion.timing[index] floatValue] * self.currentQuestion.rate) / 1000.0f;
+    float timeValue = 0;
+    if(index < self.currentQuestion.timing.count)
+    {
+        timeValue = [self.currentQuestion.timing[index] floatValue];
+    }
+    float delay = (timeValue * self.currentQuestion.rate) / 1000.0f;
     [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:delay inModes:@[NSRunLoopCommonModes]];
 }
 
@@ -393,6 +399,16 @@ NSLog(@"%@", string); \
         // TODO: don't call the callback until we receive a sync message with correct or not in it
         callback(YES);
     }
+}
+
+- (BOOL) next
+{
+    if(self.currentQuestion.isExpired)
+    {
+        [self.socket sendEvent:@"next" withData:nil];
+        return YES;
+    }
+    return NO;
 }
 
 @end
