@@ -44,8 +44,6 @@
     }
 }
 
-
-
 - (void) setQuestionDisplayText:(NSString *)text
 {
     _questionDisplayText = text;
@@ -60,6 +58,7 @@
 {
     [self.manager submitGuess:guess withCallback:^(BOOL correct) {
         NSLog(@"%@", correct ? @"Correct" : @"Incorrect");
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 
@@ -69,5 +68,9 @@
     return YES;
 }
 
+- (IBAction)guessChanged:(id)sender
+{
+    [self.manager updateGuess:self.guessTextField.text];
+}
 
 @end

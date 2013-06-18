@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="P0k-61-TXZ">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
@@ -23,23 +25,27 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-HB-04s">
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Buzz">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-HB-04s">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" type="user" id="DUs-U3-JAP"/>
+                                            <constraint firstAttribute="width" constant="278" type="user" id="ssD-mk-9UB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
+                                        <state key="normal" backgroundImage="buzz_enabled.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="disabled" backgroundImage="buzz_disabled.png"/>
+                                        <state key="selected" backgroundImage="buzz_pressed.png"/>
+                                        <state key="highlighted" backgroundImage="buzz_pressed.png"/>
                                         <connections>
                                             <action selector="buzzPressed:" destination="P0k-61-TXZ" eventType="touchUpInside" id="XYK-Bg-Q9M"/>
                                         </connections>
                                     </button>
-                                    <progressView opaque="NO" contentMode="scaleToFill" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="jJm-vB-mX8"/>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzc-jo-jdl">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2.4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzc-jo-jdl">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="36" id="bta-lS-POp"/>
+                                            <constraint firstAttribute="width" constant="36" type="user" id="bta-lS-POp"/>
+                                            <constraint firstAttribute="height" constant="18" type="user" id="dGM-wb-6l1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -47,47 +53,52 @@
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="(chat) Donald: wow, stupid question lol (BUZZ) Doanld: Qing" translatesAutoresizingMaskIntoConstraints="NO" id="kvN-TT-yuX" customClass="LinedTextView">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="157" type="user" id="Uw8-VA-9ax"/>
+                                            <constraint firstAttribute="height" constant="180" type="user" id="C4X-3Z-Tah"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSg-WS-VJS" customClass="iOS7ProgressView">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" type="user" id="Yfv-fJ-m9r"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="jJm-vB-mX8" firstAttribute="top" secondItem="Mzp-HB-04s" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0tJ-Tw-UdD"/>
-                                    <constraint firstItem="jJm-vB-mX8" firstAttribute="centerY" secondItem="fzc-jo-jdl" secondAttribute="centerY" type="default" id="3gE-o6-DH6"/>
-                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="top" secondItem="Khn-3O-EB6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5Sq-ik-9HJ"/>
-                                    <constraint firstItem="Khn-3O-EB6" firstAttribute="trailing" secondItem="fBJ-qT-ZZH" secondAttribute="trailing" type="default" id="6Nk-6I-zXV"/>
-                                    <constraint firstAttribute="bottom" secondItem="kvN-TT-yuX" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="A9C-dN-rau"/>
-                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="leading" secondItem="fBJ-qT-ZZH" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="AO4-VF-rND"/>
-                                    <constraint firstItem="Khn-3O-EB6" firstAttribute="top" secondItem="fBJ-qT-ZZH" secondAttribute="top" type="default" id="Aeg-wv-FWV"/>
-                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="centerX" secondItem="fBJ-qT-ZZH" secondAttribute="centerX" type="default" id="Fkp-Zv-cFn"/>
-                                    <constraint firstItem="Khn-3O-EB6" firstAttribute="leading" secondItem="fBJ-qT-ZZH" secondAttribute="leading" type="default" id="IZN-UA-ZiT"/>
-                                    <constraint firstItem="fzc-jo-jdl" firstAttribute="leading" secondItem="jJm-vB-mX8" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="LbK-Fw-F2j"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mzp-HB-04s" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="NxC-lw-o5y"/>
-                                    <constraint firstAttribute="trailing" secondItem="fzc-jo-jdl" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="PX0-6S-Bkc"/>
-                                    <constraint firstItem="jJm-vB-mX8" firstAttribute="leading" secondItem="fBJ-qT-ZZH" secondAttribute="leading" constant="20" type="user" id="a5B-7P-DmI"/>
-                                    <constraint firstItem="kvN-TT-yuX" firstAttribute="top" secondItem="fzc-jo-jdl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="cho-1G-X5c"/>
+                                    <constraint firstItem="Khn-3O-EB6" firstAttribute="leading" secondItem="fBJ-qT-ZZH" secondAttribute="leading" type="user" id="0Lp-Je-cDk"/>
+                                    <constraint firstAttribute="trailing" secondItem="kvN-TT-yuX" secondAttribute="trailing" type="user" id="3Ij-25-Wwn"/>
+                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="leading" secondItem="fBJ-qT-ZZH" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="AO4-VF-rND"/>
+                                    <constraint firstItem="Khn-3O-EB6" firstAttribute="top" secondItem="fBJ-qT-ZZH" secondAttribute="top" type="user" id="Aeg-wv-FWV"/>
+                                    <constraint firstItem="XSg-WS-VJS" firstAttribute="centerY" secondItem="fzc-jo-jdl" secondAttribute="centerY" type="user" id="FEY-Hm-mUd"/>
+                                    <constraint firstAttribute="bottom" secondItem="kvN-TT-yuX" secondAttribute="bottom" constant="-5" type="user" id="FZ5-MQ-lbD"/>
+                                    <constraint firstAttribute="trailing" secondItem="Khn-3O-EB6" secondAttribute="trailing" type="user" id="FlO-MA-RNr"/>
+                                    <constraint firstItem="fzc-jo-jdl" firstAttribute="top" secondItem="Khn-3O-EB6" secondAttribute="bottom" constant="7" type="user" id="GvL-dD-V1q"/>
+                                    <constraint firstItem="XSg-WS-VJS" firstAttribute="leading" secondItem="fBJ-qT-ZZH" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="Sf5-Sm-MaN"/>
+                                    <constraint firstItem="kvN-TT-yuX" firstAttribute="top" secondItem="Mzp-HB-04s" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="XAu-ed-b2Q"/>
                                     <constraint firstItem="kvN-TT-yuX" firstAttribute="leading" secondItem="fBJ-qT-ZZH" secondAttribute="leading" type="user" id="mQs-VC-har"/>
-                                    <constraint firstAttribute="trailing" secondItem="kvN-TT-yuX" secondAttribute="trailing" type="user" id="xk6-me-too"/>
+                                    <constraint firstItem="fzc-jo-jdl" firstAttribute="leading" secondItem="XSg-WS-VJS" secondAttribute="trailing" constant="4" type="user" id="pd8-pc-X9G"/>
+                                    <constraint firstItem="Khn-3O-EB6" firstAttribute="centerX" secondItem="fBJ-qT-ZZH" secondAttribute="centerX" type="default" id="s6a-mk-X1a"/>
+                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="top" secondItem="fzc-jo-jdl" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="xHK-Gj-9G0"/>
+                                    <constraint firstItem="fzc-jo-jdl" firstAttribute="trailing" secondItem="Mzp-HB-04s" secondAttribute="trailing" type="user" id="yWm-EF-QIY"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fBJ-qT-ZZH" firstAttribute="bottom" secondItem="Pwe-AU-FvS" secondAttribute="bottom" type="default" id="Jgn-zQ-GFk"/>
+                            <constraint firstItem="fBJ-qT-ZZH" firstAttribute="bottom" secondItem="Pwe-AU-FvS" secondAttribute="bottom" type="user" id="Jgn-zQ-GFk"/>
                             <constraint firstItem="fBJ-qT-ZZH" firstAttribute="leading" secondItem="Pwe-AU-FvS" secondAttribute="leading" type="user" id="bwt-om-GnQ"/>
-                            <constraint firstItem="fBJ-qT-ZZH" firstAttribute="top" secondItem="Pwe-AU-FvS" secondAttribute="top" type="default" id="gCH-mJ-5nL"/>
+                            <constraint firstItem="fBJ-qT-ZZH" firstAttribute="top" secondItem="Pwe-AU-FvS" secondAttribute="top" type="user" id="gCH-mJ-5nL"/>
                             <constraint firstItem="fBJ-qT-ZZH" firstAttribute="trailing" secondItem="Pwe-AU-FvS" secondAttribute="trailing" type="user" id="h3g-py-Hw3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buzzButton" destination="Mzp-HB-04s" id="OR1-NA-10Q"/>
                         <outlet property="questionHeightConstraint" destination="8SR-k5-tne" id="afc-pe-NNg"/>
                         <outlet property="questionTextView" destination="Khn-3O-EB6" id="5ZU-fB-L39"/>
                         <outlet property="scrollView" destination="fBJ-qT-ZZH" id="LVl-EX-teP"/>
                         <outlet property="textViewLog" destination="kvN-TT-yuX" id="fB4-hU-7sc"/>
-                        <outlet property="textViewLogHeightConstraint" destination="Uw8-VA-9ax" id="2ND-25-9OP"/>
-                        <outlet property="timeBar" destination="jJm-vB-mX8" id="zfT-mu-khc"/>
+                        <outlet property="textViewLogHeightConstraint" destination="C4X-3Z-Tah" id="uDG-eS-J5j"/>
+                        <outlet property="timeBar" destination="XSg-WS-VJS" id="xJJ-tH-mww"/>
                         <outlet property="timeLabel" destination="fzc-jo-jdl" id="dGt-wJ-oRY"/>
                     </connections>
                 </viewController>
@@ -106,6 +117,9 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QxX-8M-f5R">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="guessChanged:" destination="svp-JY-pNP" eventType="editingChanged" id="dvZ-LB-Xb5"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNy-Dc-MXb">
                                 <color key="backgroundColor" white="0.88180443549999998" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,10 +151,16 @@
             <point key="canvasLocation" x="707" y="52"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="buzz_disabled.png" width="280" height="44"/>
+        <image name="buzz_enabled.png" width="280" height="44"/>
+        <image name="buzz_pressed.png" width="280" height="44"/>
+    </resources>
     <classes>
         <class className="GuessViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
             <relationships>
+                <relationship kind="action" name="guessChanged:"/>
                 <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
             </relationships>
@@ -155,14 +175,18 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
                 <relationship kind="action" name="buzzPressed:"/>
+                <relationship kind="outlet" name="buzzButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="questionHeightConstraint" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="textViewLog" candidateClass="LinedTextView"/>
                 <relationship kind="outlet" name="textViewLogHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="timeBar" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="iOS7ProgressView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/iOS7ProgressView.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

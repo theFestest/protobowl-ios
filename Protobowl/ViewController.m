@@ -3,14 +3,15 @@
 #import "SocketIOJSONSerialization.h"
 #import "LinedTextView.h"
 #import "GuessViewController.h"
+#import "UIFont+FontAwesome.h"
+#import "NSString+FontAwesome.h"
+#import "iOS7ProgressView.h"
 
-#define kTimerInterval 0.05f
-
-#define LOG(s, ...) do { \
+/*#define LOG(s, ...) do { \
     NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
     NSLog(@"%@", string); \
     [self logToTextView:string]; \
-} while(0)
+} while(0)*/
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -19,11 +20,9 @@
 @property (nonatomic, strong) ProtobowlConnectionManager *manager;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewLogHeightConstraint;
-@property (weak, nonatomic) IBOutlet UIProgressView *timeBar;
+@property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic) float elapsedTime;
-@property (nonatomic) float duration;
+@property (weak, nonatomic) IBOutlet UIButton *buzzButton;
 @end
 
 @implementation ViewController
@@ -42,8 +41,28 @@
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 10000);
     
-    self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 300);
-
+    self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 300);    
+    
+    // Setup attributed string with bell glyph on buzz button
+    NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
+    NSString *buzzText = [NSString stringWithFormat:@"   %@ Buzz", bell];
+    NSMutableAttributedString *attributedBuzzText = [[NSMutableAttributedString alloc] initWithString:buzzText];
+    
+    UIFont *mainTextFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    
+    [attributedBuzzText setAttributes:@{NSFontAttributeName : mainTextFont,
+                                        NSForegroundColorAttributeName : [UIColor whiteColor]} range:NSMakeRange(0, buzzText.length)];
+    [attributedBuzzText setAttributes:@{NSFontAttributeName: [UIFont iconicFontOfSize:20],
+                                        NSForegroundColorAttributeName : [UIColor whiteColor]} range:[buzzText rangeOfString:bell]];
+    
+    [self.buzzButton setAttributedTitle:attributedBuzzText forState:UIControlStateNormal];
+    
+    
+    self.timeBar.progressColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
+    self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
+    
+    // Question BG color = #f5f5f5
+    // Question Border: 1px solid #e3e3e3
 }
 
 #pragma mark - Connection Manager Delegate Methods
@@ -51,25 +70,33 @@
 {
     if(success)
     {
-        LOG(@"Connected to server");
+//        LOG(@"Connected to server");
     }
     else
     {
-        LOG(@"Failed to connect to server");
+//        LOG(@"Failed to connect to server");
     }
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines;
 {   
-    [self.textViewLog setLineArray:lines];
+    /*[self.textViewLog setLineArray:lines];
     
     CGSize textViewLogSize = [self.textViewLog.text sizeWithFont:self.textViewLog.font constrainedToSize:CGSizeMake(self.textViewLog.frame.size.width, 10000)];
-    self.textViewLogHeightConstraint.constant = textViewLogSize.height + 30;
+    self.textViewLogHeightConstraint.constant = textViewLogSize.height + 30;*/
+}
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateBuzzLines:(NSArray *)lines
+{
+    [self.textViewLog setLineArray:lines];
+     
+     CGSize textViewLogSize = [self.textViewLog.text sizeWithFont:self.textViewLog.font constrainedToSize:CGSizeMake(self.textViewLog.frame.size.width, 10000)];
+     self.textViewLogHeightConstraint.constant = textViewLogSize.height + 30;
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestion:(ProtobowlQuestion *)question
 {
-    LOG(@"current height:%f", self.questionHeightConstraint.constant);
+//    LOG(@"current height:%f", self.questionHeightConstraint.constant);
     CGSize questionSize = [question.questionText sizeWithFont:self.questionTextView.font constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)];
     self.questionHeightConstraint.constant = questionSize.height + 30;
     
@@ -77,12 +104,6 @@
         [self.scrollView layoutSubviews];
     } completion:nil];
     
-    // Super sketch method to animate the progress bar with a custom time interval
-    self.timeBar.progress = 0;
-    self.elapsedTime = 0;
-    self.duration = question.questionDuration / 1000.0f;
-    self.timer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestionDisplayText:(NSString *)text
@@ -90,7 +111,20 @@
     self.questionTextView.text = text;
 }
 
-- (void) updateTimer
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateTime:(float)remainingTime progress:(float)progress
+{
+    NSString *timeText = [NSString stringWithFormat:@"%.1f", remainingTime];
+    self.timeLabel.text = timeText;
+    
+    [self.timeBar setProgress:progress animated:NO];
+}
+
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didSetBuzzEnabled:(BOOL)isBuzzEnabled
+{
+    self.buzzButton.enabled = isBuzzEnabled;
+}
+/*- (void) updateTimer
 {
     self.elapsedTime += kTimerInterval;
     
@@ -106,11 +140,11 @@
         [self.manager expireTime];
         [self.timer invalidate];
     }
-}
+}*/
 
 - (IBAction)buzzPressed:(id)sender
 {
-    [self.timer invalidate];
+    //[self.timer invalidate];
     [self.manager buzz];
     
     [self presentGuessViewController];
