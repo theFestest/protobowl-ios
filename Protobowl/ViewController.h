@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ProtobowlConnectionManager.h"
 
-@interface ViewController : UIViewController <ProtobowlConnectionDelegate, UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController <ProtobowlConnectionDelegate, UIScrollViewDelegate>
 
 @end

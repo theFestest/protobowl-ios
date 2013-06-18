@@ -16,6 +16,7 @@
 		B50BFB9C176D548C0052700D /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = B50BFB96176D548C0052700D /* NSString+FontAwesome.m */; };
 		B50BFB9D176D548C0052700D /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */; };
 		B50BFB9E176D548C0052700D /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */; };
+		B5438496177025F50041ED8A /* temp.png in Resources */ = {isa = PBXBuildFile; fileRef = B5438495177025F50041ED8A /* temp.png */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
 		B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACD176EBC9E00D1369E /* buzz_disabled.png */; };
 		B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */; };
@@ -86,6 +87,7 @@
 		B50BFB96176D548C0052700D /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		B50BFB97176D548C0052700D /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
 		B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		B5438495177025F50041ED8A /* temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp.png; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; };
 		B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlConnectionManager.m; sourceTree = "<group>"; };
 		B5811ACD176EBC9E00D1369E /* buzz_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_disabled.png; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		B5FD246F1767CE9900B9870D /* Protobowl */ = {
 			isa = PBXGroup;
 			children = (
+				B5438495177025F50041ED8A /* temp.png */,
 				B5FD24E21767CF7200B9870D /* ViewController.h */,
 				B5FD24E31767CF7200B9870D /* ViewController.m */,
 				B5FD24E41767CF7200B9870D /* LinedTextView.h */,
@@ -400,6 +403,7 @@
 				B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */,
 				B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */,
 				B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */,
+				B5438496177025F50041ED8A /* temp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,13 @@
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
-@property (nonatomic, strong) UISwipeGestureRecognizer *nextGesture;
+
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (nonatomic) float lastTransitionOffset;
+@property (nonatomic) BOOL isAnimating;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundVerticalSpace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundHorizontalSpace;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @end
 
 @implementation ViewController
@@ -63,11 +69,7 @@
     self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
     
     
-    self.nextGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
-//    self.nextGesture.minimumNumberOfTouches = 1;
-    self.nextGesture.direction = UISwipeGestureRecognizerDirectionUp;
-    self.nextGesture.delegate = self;
-    [self.view addGestureRecognizer:self.nextGesture];
+    self.scrollView.delegate = self;
     
     // Question BG color = #f5f5f5
     // Question Border: 1px solid #e3e3e3
@@ -168,27 +170,66 @@
     }];
 }
 
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    if(gestureRecognizer == self.nextGesture || otherGestureRecognizer == self.nextGesture)
-    {
-        return YES;
-    }
-    return NO;
-}
 
-- (void) panGesture:(UISwipeGestureRecognizer *)pan
+#define kScrollTransitionInteractionThreshold 50
+#define kScrollTransitionCompletionThreshold 70
+#define kScrollTransitionBackgroundImageInset 20
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(pan.state == UIGestureRecognizerStateEnded)
+    if(self.isAnimating) return;
+    
+    // Calculate the maximum scroll offset for looking at normal content: only after this value do we consider transitioning
+    CGPoint originalOffset = scrollView.contentOffset;
+    float offsetY = originalOffset.y;
+    float bottomScroll = scrollView.contentSize.height - scrollView.frame.size.height;
+    if(offsetY <= bottomScroll) return;
+    offsetY -= bottomScroll; // Shift offset to start at 0 from the bottom of the scroll view
+    
+    if(offsetY >= kScrollTransitionInteractionThreshold)
     {
-        [self gotoNextQuestion];
+        float transitionOffset = offsetY - kScrollTransitionInteractionThreshold;
+        float diff = transitionOffset - self.lastTransitionOffset;
+        CGRect frame = self.contentView.frame;
+        frame.origin.y -= diff;
+        self.contentView.frame = frame;
+        
+        self.lastTransitionOffset = transitionOffset;
+        
+        if(transitionOffset >= kScrollTransitionCompletionThreshold)
+        {
+            float completionOffset = transitionOffset - kScrollTransitionCompletionThreshold;
+            if(diff > 1)
+            {
+                self.lastTransitionOffset = 0;
+                self.isAnimating = YES;
+                [UIView animateWithDuration:0.4 animations:^{
+                    CGRect animatedFrame = frame;
+                    animatedFrame.origin.y = -600;
+                    self.contentView.frame = animatedFrame;
+                    
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.backgroundImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                    } completion:^(BOOL finished) {
+                        self.isAnimating = NO;
+                        self.contentView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                        self.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, self.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, self.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
+                        [self.view layoutSubviews];
+                    }];
+                }];
+            }
+        }
     }
+    
+    
+    
+//    NSLog(@"%f", offsetY);
 }
 
 - (void) gotoNextQuestion
 {
     NSLog(@"Next");
-    BOOL shouldTransition = [self.manager next];
+    [self.manager next];
 }
 
 #pragma mark - Interface Helper Methods
