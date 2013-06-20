@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundVerticalSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundHorizontalSpace;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic) BOOL isNextAnimationEnabled;
 @end
 
 @implementation ViewController
@@ -46,9 +47,9 @@
     
     [self.manager connect];
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 10000);
+    [self resizeContentSize];
     
-    self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 300);    
+    self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 200);
     
     // Setup attributed string with bell glyph on buzz button
     NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
@@ -113,12 +114,18 @@
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [self.scrollView layoutSubviews];
     } completion:nil];
+    self.isNextAnimationEnabled = NO;
     
+//    [self resizeContentSize];
+    
+    self.scrollView.contentOffset = CGPointMake(0, 0);
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestionDisplayText:(NSString *)text
 {
     self.questionTextView.text = text;
+    
+//    [self resizeContentSize];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateTime:(float)remainingTime progress:(float)progress
@@ -133,6 +140,13 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didSetBuzzEnabled:(BOOL)isBuzzEnabled
 {
     self.buzzButton.enabled = isBuzzEnabled;
+}
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didEndQuestion:(ProtobowlQuestion *)question
+{
+    self.isNextAnimationEnabled = YES;
+    
+    [self resizeContentSize];
 }
 /*- (void) updateTimer
 {
@@ -172,11 +186,11 @@
 
 
 #define kScrollTransitionInteractionThreshold 50
-#define kScrollTransitionCompletionThreshold 70
-#define kScrollTransitionBackgroundImageInset 20
+#define kScrollTransitionCompletionThreshold 60
+#define kScrollTransitionBackgroundImageInset 30
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(self.isAnimating) return;
+    if(self.isAnimating || !self.isNextAnimationEnabled) return;
     
     // Calculate the maximum scroll offset for looking at normal content: only after this value do we consider transitioning
     CGPoint originalOffset = scrollView.contentOffset;
@@ -197,24 +211,29 @@
         
         if(transitionOffset >= kScrollTransitionCompletionThreshold)
         {
-            float completionOffset = transitionOffset - kScrollTransitionCompletionThreshold;
             if(diff > 1)
             {
+                __weak ViewController *weakSelf = self;
                 self.lastTransitionOffset = 0;
                 self.isAnimating = YES;
-                [UIView animateWithDuration:0.4 animations:^{
+                [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                     CGRect animatedFrame = frame;
                     animatedFrame.origin.y = -600;
-                    self.contentView.frame = animatedFrame;
-                    
+                    weakSelf.contentView.frame = animatedFrame;
                 } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.3 animations:^{
-                        self.backgroundImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                    weakSelf.questionTextView.text = @"";
+                    weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
+                    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                        weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                     } completion:^(BOOL finished) {
-                        self.isAnimating = NO;
-                        self.contentView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-                        self.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, self.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, self.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
-                        [self.view layoutSubviews];
+                        weakSelf.isAnimating = NO;
+                        weakSelf.contentView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+                        weakSelf.questionHeightConstraint.constant = 200;
+                        weakSelf.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, weakSelf.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, weakSelf.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
+                        [weakSelf.view layoutSubviews];
+                        
+                        // Trigger next question
+                        [weakSelf gotoNextQuestion];
                     }];
                 }];
             }
@@ -230,6 +249,14 @@
 {
     NSLog(@"Next");
     [self.manager next];
+}
+
+- (void) resizeContentSize
+{
+    if(self.scrollView.contentSize.height < self.scrollView.frame.size.height)
+    {
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 60);
+    }
 }
 
 #pragma mark - Interface Helper Methods

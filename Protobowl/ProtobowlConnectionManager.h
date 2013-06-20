@@ -24,6 +24,8 @@
 // Called to update the remaining time for the question, and the progress for the progress bar
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateTime:(float)remainingTime progress:(float)progress;
 
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didEndQuestion:(ProtobowlQuestion *)question;
+
 // Called when buzz input should be disabled or enabled
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didSetBuzzEnabled:(BOOL)isBuzzEnabled;
 

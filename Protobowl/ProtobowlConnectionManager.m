@@ -356,6 +356,7 @@ NSLog(@"%@", string); \
     self.questionTimer = nil;
     self.currentQuestion.isExpired = YES;
     [self.delegate connectionManager:self didSetBuzzEnabled:NO];
+    [self.delegate connectionManager:self didEndQuestion:self.currentQuestion];
 }
 
 - (BOOL) buzz

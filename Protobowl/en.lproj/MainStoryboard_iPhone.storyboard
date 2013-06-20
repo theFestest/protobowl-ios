@@ -98,12 +98,12 @@
                         <constraints>
                             <constraint firstItem="aJi-li-2ut" firstAttribute="trailing" secondItem="Pwe-AU-FvS" secondAttribute="trailing" type="user" id="BTC-jV-4ff"/>
                             <constraint firstItem="aJi-li-2ut" firstAttribute="bottom" secondItem="Pwe-AU-FvS" secondAttribute="bottom" type="user" id="BlM-Ts-egg"/>
-                            <constraint firstItem="vLb-1g-arJ" firstAttribute="leading" secondItem="Pwe-AU-FvS" secondAttribute="leading" constant="20" type="user" id="CdB-xk-Hkd"/>
+                            <constraint firstItem="vLb-1g-arJ" firstAttribute="leading" secondItem="Pwe-AU-FvS" secondAttribute="leading" constant="30" type="user" id="CdB-xk-Hkd"/>
                             <constraint firstItem="vLb-1g-arJ" firstAttribute="centerX" secondItem="aJi-li-2ut" secondAttribute="centerX" type="user" id="Dq7-JQ-vQw"/>
                             <constraint firstItem="vLb-1g-arJ" firstAttribute="centerY" secondItem="aJi-li-2ut" secondAttribute="centerY" type="user" id="KNO-0g-XF9"/>
                             <constraint firstItem="aJi-li-2ut" firstAttribute="leading" secondItem="Pwe-AU-FvS" secondAttribute="leading" type="user" id="UaF-NB-GQ8"/>
                             <constraint firstItem="aJi-li-2ut" firstAttribute="top" secondItem="Pwe-AU-FvS" secondAttribute="top" type="user" id="t9u-zq-g9s"/>
-                            <constraint firstItem="vLb-1g-arJ" firstAttribute="top" secondItem="Pwe-AU-FvS" secondAttribute="top" constant="20" type="user" id="wMe-qN-Ijk"/>
+                            <constraint firstItem="vLb-1g-arJ" firstAttribute="top" secondItem="Pwe-AU-FvS" secondAttribute="top" constant="30" type="user" id="wMe-qN-Ijk"/>
                         </constraints>
                     </view>
                     <connections>
@@ -176,43 +176,6 @@
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="temp.png" width="640" height="920"/>
     </resources>
-    <classes>
-        <class className="GuessViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="guessChanged:"/>
-                <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="LinedTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LinedTextView.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buzzPressed:"/>
-                <relationship kind="outlet" name="backgroundHorizontalSpace" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="backgroundVerticalSpace" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="buzzButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="questionHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="textViewLog" candidateClass="LinedTextView"/>
-                <relationship kind="outlet" name="textViewLogHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="iOS7ProgressView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/iOS7ProgressView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
