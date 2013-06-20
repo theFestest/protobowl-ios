@@ -148,27 +148,10 @@
     
     [self resizeContentSize];
 }
-/*- (void) updateTimer
-{
-    self.elapsedTime += kTimerInterval;
-    
-    float remaining = MAX(self.duration - self.elapsedTime, 0);
-    NSString *timeText = [NSString stringWithFormat:@"%.1f", remaining];
-    self.timeLabel.text = timeText;
-    
-    float progress = self.elapsedTime / self.duration;
-    [self.timeBar setProgress:progress animated:NO];
-    if(progress >= 1.0)
-    {
-        // Done with the question
-        [self.manager expireTime];
-        [self.timer invalidate];
-    }
-}*/
+
 
 - (IBAction)buzzPressed:(id)sender
 {
-    //[self.timer invalidate];
     [self.manager buzz];
     
     [self presentGuessViewController];
@@ -233,22 +216,12 @@
                         [weakSelf.view layoutSubviews];
                         
                         // Trigger next question
-                        [weakSelf gotoNextQuestion];
+                        [weakSelf.manager next];
                     }];
                 }];
             }
         }
     }
-    
-    
-    
-//    NSLog(@"%f", offsetY);
-}
-
-- (void) gotoNextQuestion
-{
-    NSLog(@"Next");
-    [self.manager next];
 }
 
 - (void) resizeContentSize
