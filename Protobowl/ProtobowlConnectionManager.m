@@ -407,6 +407,8 @@ NSLog(@"%@", string); \
     if(self.currentQuestion.isExpired)
     {
         [self.socket sendEvent:@"next" withData:nil];
+        [self.buzzLines removeAllObjects];
+        [self.delegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
         return YES;
     }
     return NO;

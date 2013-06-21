@@ -115,8 +115,10 @@
         [self.scrollView layoutSubviews];
     } completion:nil];
     self.isNextAnimationEnabled = NO;
+    self.isAnimating = NO;
+
     
-//    [self resizeContentSize];
+    [self resizeContentSize];
     
     self.scrollView.contentOffset = CGPointMake(0, 0);
 }
@@ -125,7 +127,7 @@
 {
     self.questionTextView.text = text;
     
-//    [self resizeContentSize];
+    [self resizeContentSize];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateTime:(float)remainingTime progress:(float)progress
@@ -140,6 +142,7 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didSetBuzzEnabled:(BOOL)isBuzzEnabled
 {
     self.buzzButton.enabled = isBuzzEnabled;
+    self.buzzButton.userInteractionEnabled = isBuzzEnabled;
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didEndQuestion:(ProtobowlQuestion *)question
@@ -154,7 +157,7 @@
 {
     [self.manager buzz];
     
-    [self presentGuessViewController];
+//    [self presentGuessViewController];
 }
 
 - (void) presentGuessViewController
@@ -175,6 +178,7 @@
 {
     if(self.isAnimating || !self.isNextAnimationEnabled) return;
     
+
     // Calculate the maximum scroll offset for looking at normal content: only after this value do we consider transitioning
     CGPoint originalOffset = scrollView.contentOffset;
     float offsetY = originalOffset.y;
@@ -209,9 +213,11 @@
                     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                         weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                     } completion:^(BOOL finished) {
-                        weakSelf.isAnimating = NO;
                         weakSelf.contentView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                         weakSelf.questionHeightConstraint.constant = 200;
+                        weakSelf.buzzButton.enabled = YES;
+                        weakSelf.buzzButton.userInteractionEnabled = NO;
+                        weakSelf.timeBar.progress = 0;
                         weakSelf.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, weakSelf.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, weakSelf.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
                         [weakSelf.view layoutSubviews];
                         
