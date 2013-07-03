@@ -14,12 +14,10 @@
 } while(0)*/
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
 @property (weak, nonatomic) IBOutlet LinedTextView *textViewLog;
 @property (nonatomic, strong) ProtobowlConnectionManager *manager;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewLogHeightConstraint;
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
@@ -43,12 +41,10 @@
     [super viewDidLoad];
     
     self.manager = [[ProtobowlConnectionManager alloc] init];
-    self.manager.delegate = self;
+    self.manager.roomDelegate = self;
     
     [self.manager connect];
-    
-    [self resizeContentSize];
-    
+        
     self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 200);
     
     // Setup attributed string with bell glyph on buzz button
@@ -56,9 +52,9 @@
     NSString *buzzText = [NSString stringWithFormat:@"   %@ Buzz", bell];
     NSMutableAttributedString *attributedBuzzText = [[NSMutableAttributedString alloc] initWithString:buzzText];
     
-    UIFont *mainTextFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    UIFont *buzzFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     
-    [attributedBuzzText setAttributes:@{NSFontAttributeName : mainTextFont,
+    [attributedBuzzText setAttributes:@{NSFontAttributeName : buzzFont,
                                         NSForegroundColorAttributeName : [UIColor whiteColor]} range:NSMakeRange(0, buzzText.length)];
     [attributedBuzzText setAttributes:@{NSFontAttributeName: [UIFont iconicFontOfSize:20],
                                         NSForegroundColorAttributeName : [UIColor whiteColor]} range:[buzzText rangeOfString:bell]];
@@ -70,7 +66,9 @@
     self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
     
     
-    self.scrollView.delegate = self;
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(animateToNextQuestion)];
+    swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipe];
     
     // Question BG color = #f5f5f5
     // Question Border: 1px solid #e3e3e3
@@ -100,34 +98,36 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateBuzzLines:(NSArray *)lines
 {
     [self.textViewLog setLineArray:lines];
-     
-     CGSize textViewLogSize = [self.textViewLog.text sizeWithFont:self.textViewLog.font constrainedToSize:CGSizeMake(self.textViewLog.frame.size.width, 10000)];
-     self.textViewLogHeightConstraint.constant = textViewLogSize.height + 30;
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestion:(ProtobowlQuestion *)question
 {
 //    LOG(@"current height:%f", self.questionHeightConstraint.constant);
-    CGSize questionSize = [question.questionText sizeWithFont:self.questionTextView.font constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)];
-    self.questionHeightConstraint.constant = questionSize.height + 30;
+    int size = 16;
+    float newHeight = 0;
+    UIFont *newFont = nil;
+    while((newHeight = [question.questionText sizeWithFont:(newFont = [UIFont fontWithName:@"HelveticaNeue" size:size--]) constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)].height + 30) >= 280);
+    
+    
+    NSLog(@"Size: %f", newFont.pointSize);
+    
+    self.questionTextView.font = newFont;
+    self.questionHeightConstraint.constant = newHeight;
     
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        [self.scrollView layoutSubviews];
+        [self.contentView layoutSubviews];
     } completion:nil];
     self.isNextAnimationEnabled = NO;
     self.isAnimating = NO;
 
     
-    [self resizeContentSize];
     
-    self.scrollView.contentOffset = CGPointMake(0, 0);
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestionDisplayText:(NSString *)text
 {
     self.questionTextView.text = text;
     
-    [self resizeContentSize];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateTime:(float)remainingTime progress:(float)progress
@@ -148,8 +148,6 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didEndQuestion:(ProtobowlQuestion *)question
 {
     self.isNextAnimationEnabled = YES;
-    
-    [self resizeContentSize];
 }
 
 
@@ -157,86 +155,64 @@
 {
     [self.manager buzz];
     
-//    [self presentGuessViewController];
+    [self presentGuessViewController];
 }
 
 - (void) presentGuessViewController
 {
-    GuessViewController *toVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GuessViewController"];
-    toVC.questionDisplayText = self.questionTextView.text;
-    toVC.manager = self.manager;
-    [self presentViewController:toVC animated:YES completion:^{
-//        [toVC resizeFont];
-    }];
+    GuessViewController *guessVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GuessViewController"];
+    guessVC.questionDisplayText = self.questionTextView.text;
+    __weak ViewController *weakSelf = self;
+    guessVC.updateGuessTextCallback = ^(NSString *guessText) {
+        [weakSelf.manager updateGuess:guessText];
+    };
+    guessVC.submitGuessCallback = ^(NSString *guess) {
+        [weakSelf.manager submitGuess:guess];
+    };
+    guessVC.invalidBuzzCallback = ^{
+        [weakSelf.manager unpauseQuestion];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
+    self.manager.guessDelegate = guessVC;
+    
+    [self presentViewController:guessVC animated:YES completion:nil];
 }
-
 
 #define kScrollTransitionInteractionThreshold 50
 #define kScrollTransitionCompletionThreshold 60
 #define kScrollTransitionBackgroundImageInset 30
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+- (void) animateToNextQuestion
 {
     if(self.isAnimating || !self.isNextAnimationEnabled) return;
-    
 
-    // Calculate the maximum scroll offset for looking at normal content: only after this value do we consider transitioning
-    CGPoint originalOffset = scrollView.contentOffset;
-    float offsetY = originalOffset.y;
-    float bottomScroll = scrollView.contentSize.height - scrollView.frame.size.height;
-    if(offsetY <= bottomScroll) return;
-    offsetY -= bottomScroll; // Shift offset to start at 0 from the bottom of the scroll view
-    
-    if(offsetY >= kScrollTransitionInteractionThreshold)
-    {
-        float transitionOffset = offsetY - kScrollTransitionInteractionThreshold;
-        float diff = transitionOffset - self.lastTransitionOffset;
-        CGRect frame = self.contentView.frame;
-        frame.origin.y -= diff;
-        self.contentView.frame = frame;
-        
-        self.lastTransitionOffset = transitionOffset;
-        
-        if(transitionOffset >= kScrollTransitionCompletionThreshold)
-        {
-            if(diff > 1)
-            {
-                __weak ViewController *weakSelf = self;
-                self.lastTransitionOffset = 0;
-                self.isAnimating = YES;
-                [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                    CGRect animatedFrame = frame;
-                    animatedFrame.origin.y = -600;
-                    weakSelf.contentView.frame = animatedFrame;
-                } completion:^(BOOL finished) {
-                    weakSelf.questionTextView.text = @"";
-                    weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
-                    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                        weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
-                    } completion:^(BOOL finished) {
-                        weakSelf.contentView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
-                        weakSelf.questionHeightConstraint.constant = 200;
-                        weakSelf.buzzButton.enabled = YES;
-                        weakSelf.buzzButton.userInteractionEnabled = NO;
-                        weakSelf.timeBar.progress = 0;
-                        weakSelf.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, weakSelf.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, weakSelf.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
-                        [weakSelf.view layoutSubviews];
-                        
-                        // Trigger next question
-                        [weakSelf.manager next];
-                    }];
-                }];
-            }
-        }
-    }
+    __weak ViewController *weakSelf = self;
+    self.isAnimating = YES;
+
+    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        CGRect animatedFrame = weakSelf.contentView.frame;
+        animatedFrame.origin.y = -600;
+        weakSelf.contentView.frame = animatedFrame;
+    } completion:^(BOOL finished) {
+        weakSelf.questionTextView.text = @"";
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+        } completion:^(BOOL finished) {
+            weakSelf.contentView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+            weakSelf.questionHeightConstraint.constant = 200;
+            weakSelf.buzzButton.enabled = YES;
+            weakSelf.buzzButton.userInteractionEnabled = NO;
+            weakSelf.timeBar.progress = 0;
+            weakSelf.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, weakSelf.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, weakSelf.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
+            [weakSelf.view layoutSubviews];
+            
+            // Trigger next question
+            [weakSelf.manager next];
+        }];
+    }];
 }
 
-- (void) resizeContentSize
-{
-    if(self.scrollView.contentSize.height < self.scrollView.frame.size.height)
-    {
-        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 60);
-    }
-}
+
+
 
 #pragma mark - Interface Helper Methods
 - (void) logToTextView:(NSString *)message

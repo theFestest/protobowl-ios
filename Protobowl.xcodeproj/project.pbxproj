@@ -16,7 +16,11 @@
 		B50BFB9C176D548C0052700D /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = B50BFB96176D548C0052700D /* NSString+FontAwesome.m */; };
 		B50BFB9D176D548C0052700D /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */; };
 		B50BFB9E176D548C0052700D /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */; };
+		B510D037177B98EB008364F0 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EE1767CFA000B9870D /* libicucore.dylib */; };
+		B510D038177B98F0008364F0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
+		B510D039177B98FD008364F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
 		B5438496177025F50041ED8A /* temp.png in Resources */ = {isa = PBXBuildFile; fileRef = B5438495177025F50041ED8A /* temp.png */; };
+		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
 		B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACD176EBC9E00D1369E /* buzz_disabled.png */; };
 		B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */; };
@@ -155,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */,
 				B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */,
 				B5FD24EF1767CFA000B9870D /* libicucore.dylib in Frameworks */,
 				B5FD24ED1767CF9700B9870D /* Security.framework in Frameworks */,
@@ -168,6 +173,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B510D039177B98FD008364F0 /* Security.framework in Frameworks */,
+				B510D038177B98F0008364F0 /* CFNetwork.framework in Frameworks */,
+				B510D037177B98EB008364F0 /* libicucore.dylib in Frameworks */,
 				B5FD24911767CE9900B9870D /* SenTestingKit.framework in Frameworks */,
 				B5FD24921767CE9900B9870D /* UIKit.framework in Frameworks */,
 				B5FD24931767CE9900B9870D /* Foundation.framework in Frameworks */,

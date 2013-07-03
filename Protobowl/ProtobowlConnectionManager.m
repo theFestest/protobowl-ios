@@ -1,6 +1,7 @@
 
 #import "ProtobowlConnectionManager.h"
 #import "ProtobowlQuestion.h"
+#import <QuartzCore/QuartzCore.h>
 
 /*#define LOG(s, ...) do { \
 NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -26,16 +27,21 @@ NSLog(@"%@", string); \
 @property (nonatomic) BOOL isQuestionNew;
 @property (nonatomic) int questionWordIndex;
 
-@property (nonatomic) NSString *buzzSessionId;
-
 @property (nonatomic, strong) NSString *userID;
 
-
-@property (nonatomic) float elapsedTime;
+@property (nonatomic) float startQuestionTime;
 @property (nonatomic) float questionDuration; // In seconds
 @property (nonatomic, strong) NSTimer *questionTimer;
 
 @property (nonatomic) BOOL isQuestionPaused;
+@property (nonatomic) float startPauseTime;
+
+@property (nonatomic, strong) NSString *buzzSessionId;
+@property (nonatomic) BOOL hasPendingBuzz;
+@property (nonatomic, strong) NSTimer *buzzTimer;
+@property (nonatomic) float startBuzzTime;
+@property (nonatomic) float buzzDuration;
+
 @end
 
 @implementation ProtobowlConnectionManager
@@ -85,20 +91,22 @@ NSLog(@"%@", string); \
 - (void) connect
 {
     self.socket = [[SocketIO alloc] initWithDelegate:self];
-    [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:80];
-//    [self.socket connectToHost:@"dino.xvm.mit.edu" onPort:5566];
+    self.socket.useSecure = NO;
+//    [self.socket connectToHost:@"108.213.77.143" onPort:25565];
+//    [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
+//    [self.socket connectToHost:@"cab.antimatter15.com" onPort:443];
+    [self.socket connectToHost:@"dino.xvm.mit.edu" onPort:5566];
 }
-
 
 
 #pragma mark - socket.io delegate methods
 - (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {
-//    LOG(@"Disconnect with error: %@", error);
+    NSLog(@"Disconnect with error: %@", error);
 }
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error
 {
-//    LOG(@"Error: %@", error);
+    NSLog(@"Error: %@", error);
 }
 
 - (void) socketIODidConnect:(SocketIO *)socket
@@ -117,7 +125,7 @@ NSLog(@"%@", string); \
      @"custom_id" : @"Donald iOS",
      @"version" : @7}];
     
-    [self.delegate connectionManager:self didConnectWithSuccess:YES];
+    [self.roomDelegate connectionManager:self didConnectWithSuccess:YES];
 }
 
 
@@ -156,7 +164,7 @@ NSLog(@"%@", string); \
             }
         }
         
-        if(packetData[@"qid"])
+        if(packetData[@"qid"] && ![packetData[@"qid"] isKindOfClass:[NSNull class]])
         {
             NSString *newQid = packetData[@"qid"];
             if(![newQid isEqualToString:self.currentQuestion.qid])
@@ -183,11 +191,11 @@ NSLog(@"%@", string); \
                 self.currentQuestion.category = infoDict[@"category"];
                 self.currentQuestion.difficulty = infoDict[@"difficulty"];
                 
-                [self.delegate connectionManager:self didUpdateQuestion:self.currentQuestion];
-                [self.delegate connectionManager:self didSetBuzzEnabled:YES];
+                [self.roomDelegate connectionManager:self didUpdateQuestion:self.currentQuestion];
+                [self.roomDelegate connectionManager:self didSetBuzzEnabled:YES];
                 
                 // Setup timer for question
-                self.elapsedTime = 0;
+                self.startQuestionTime = CACurrentMediaTime();
                 self.questionDuration = self.currentQuestion.questionDuration / 1000.0f;
                 self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer) userInfo:nil repeats:YES];
                 [[NSRunLoop mainRunLoop] addTimer:self.questionTimer forMode:NSRunLoopCommonModes];
@@ -208,6 +216,32 @@ NSLog(@"%@", string); \
         {
             NSDictionary *attempt = packetData[@"attempt"];
             NSString *userID = attempt[@"user"];
+            
+            if(self.hasPendingBuzz)
+            {
+                if([userID isEqualToString:self.userID])
+                {
+                    self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
+                    self.hasPendingBuzz = NO;
+                    [self.guessDelegate connectionManager:self didClaimBuzz:YES];
+                    self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
+                    self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer) userInfo:nil repeats:YES];
+                    [[NSRunLoop mainRunLoop] addTimer:self.buzzTimer forMode:NSRunLoopCommonModes];
+                    self.startBuzzTime = CACurrentMediaTime();
+                }
+                else
+                {
+                    self.hasPendingBuzz = NO;
+                    self.buzzSessionId = nil;
+                    [self.guessDelegate connectionManager:self didClaimBuzz:NO];
+                }
+            }
+            
+            /*if([userID isEqualToString:self.userID])
+            {
+                return;
+            }*/
+            
             NSString *text = attempt[@"text"];
             BOOL done = [attempt[@"done"] boolValue];
             NSString *name = self.userData[userID][@"name"];
@@ -224,6 +258,11 @@ NSLog(@"%@", string); \
                 self.userData[userID][kUserDataBuzzLineNumberKey] = @(-1);
                 self.userData[userID][kUserDataIsBuzzingKey] = @NO;
                 self.userData[userID][kUserDataBuzzTextKey] = @"";
+                
+                if([userID isEqualToString:self.userID])
+                {
+                    [self.guessDelegate connectionManager:self didJudgeGuess:correct];
+                }
                 
                 [self unpauseQuestion];
             }
@@ -244,7 +283,7 @@ NSLog(@"%@", string); \
                 }
             }
             
-            [self.delegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
+            [self.roomDelegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
             
             
         }
@@ -280,13 +319,28 @@ NSLog(@"%@", string); \
             self.chatLines[index] = text;
         }
         
-        [self.delegate connectionManager:self didUpdateChatLines:[self.chatLines copy]];
+        [self.roomDelegate connectionManager:self didUpdateChatLines:[self.chatLines copy]];
         
         
     }
     else if([packet.name isEqualToString:@"log"])
     {
-        // Do something with log
+        NSString *verb = packetData[@"verb"];
+        if([verb isEqualToString:@"attempted an invalid buzz"])
+        {
+            // Log invalid buzz
+            NSString *userID = packetData[@"user"];
+            NSString *name = self.userData[userID][@"name"];
+            NSString *text = [NSString stringWithFormat:@"%@ %@", name, verb];
+            [self.buzzLines addObject:text];
+            [self.roomDelegate connectionManager:self didUpdateBuzzLines:self.buzzLines];
+            
+            if([userID isEqualToString:self.userID] && self.hasPendingBuzz)
+            {
+                self.hasPendingBuzz = NO;
+                [self.guessDelegate connectionManager:self didClaimBuzz:NO];
+            }
+        }
     }
     else
     {
@@ -303,7 +357,7 @@ NSLog(@"%@", string); \
     
     [self.currentQuestion.questionDisplayText appendFormat:@"%@ ", self.currentQuestion.questionTextAsWordArray[index]];
     
-    [self.delegate connectionManager:self didUpdateQuestionDisplayText:[self.currentQuestion.questionDisplayText copy]];
+    [self.roomDelegate connectionManager:self didUpdateQuestionDisplayText:[self.currentQuestion.questionDisplayText copy]];
     
     self.currentQuestion.questionDisplayWordIndex++;
     float timeValue = 0;
@@ -317,46 +371,81 @@ NSLog(@"%@", string); \
 
 - (void) pauseQuestion
 {
+    self.startPauseTime = CACurrentMediaTime();
+    
     self.isQuestionPaused = YES;
     [self.questionTimer invalidate];
+    self.questionTimer = nil;
     
-    [self.delegate connectionManager:self didSetBuzzEnabled:NO];
+    [self.roomDelegate connectionManager:self didSetBuzzEnabled:NO];
 }
 
 - (void) unpauseQuestion
 {
+    float pauseLength = CACurrentMediaTime() - self.startPauseTime;
+    self.startQuestionTime += pauseLength;
+    
     self.isQuestionPaused = NO;
+    [self.questionTimer invalidate];
     self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.questionTimer forMode:NSRunLoopCommonModes];
     
     [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:0 inModes:@[NSRunLoopCommonModes]];
     
-    [self.delegate connectionManager:self didSetBuzzEnabled:YES];
+    [self.roomDelegate connectionManager:self didSetBuzzEnabled:YES];
 }
 
 - (void) updateQuestionTimer
 {
-    self.elapsedTime += kTimerInterval;
+    float elapsedQuestionTime = CACurrentMediaTime() - self.startQuestionTime;
     
-    float remaining = MAX(self.questionDuration - self.elapsedTime, 0);
-    float progress = self.elapsedTime / self.questionDuration;
+    float remaining = MAX(self.questionDuration - elapsedQuestionTime, 0);
+    float progress = elapsedQuestionTime / self.questionDuration;
     
     if(progress >= 1.0)
     {
         // Done with the question
-        [self expireTime];
+        [self expireQuestionTime];
     }
     
-    [self.delegate connectionManager:self didUpdateTime:remaining progress:progress];
+    [self.roomDelegate connectionManager:self didUpdateTime:remaining progress:progress];
 }
 
-- (void) expireTime
+- (void) updateBuzzTimer
+{
+    float elapsedBuzzTime = CACurrentMediaTime() - self.startBuzzTime;
+    
+    float remaining = MAX(self.buzzDuration - elapsedBuzzTime, 0);
+    float progress = elapsedBuzzTime / self.buzzDuration;
+    
+    if(progress >= 1.0)
+    {
+        // Done with the buzz session
+        [self expireBuzzTime];
+    }
+    
+    [self.guessDelegate connectionManager:self didUpdateGuessTime:remaining progress:progress];
+
+}
+
+- (void) expireQuestionTime
 {
     [self.questionTimer invalidate];
     self.questionTimer = nil;
     self.currentQuestion.isExpired = YES;
-    [self.delegate connectionManager:self didSetBuzzEnabled:NO];
-    [self.delegate connectionManager:self didEndQuestion:self.currentQuestion];
+    [self.roomDelegate connectionManager:self didSetBuzzEnabled:NO];
+    [self.roomDelegate connectionManager:self didEndQuestion:self.currentQuestion];
+}
+
+- (void) expireBuzzTime
+{
+    [self.buzzTimer invalidate];
+    self.buzzTimer = nil;
+    self.hasPendingBuzz = NO;
+    self.buzzSessionId = nil;
+    [self.guessDelegate connectionManagerDidEndBuzzTime:self];
+    
+    [self unpauseQuestion];
 }
 
 - (BOOL) buzz
@@ -367,7 +456,7 @@ NSLog(@"%@", string); \
     }
     
     [self.socket sendEvent:@"buzz" withData:self.currentQuestion.qid];
-    self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
+    self.hasPendingBuzz = YES;
     
     [self pauseQuestion];
     
@@ -386,7 +475,7 @@ NSLog(@"%@", string); \
     }
 }
 
-- (void) submitGuess:(NSString *)guess withCallback:(GuessCallback) callback
+- (void) submitGuess:(NSString *)guess;
 {
     if(self.buzzSessionId)
     {
@@ -396,9 +485,10 @@ NSLog(@"%@", string); \
                                @"done" : @YES};
         [self.socket sendEvent:@"guess" withData:data];
         
+        self.buzzSessionId = nil;
         
         // TODO: don't call the callback until we receive a sync message with correct or not in it
-        callback(YES);
+        
     }
 }
 
@@ -408,7 +498,7 @@ NSLog(@"%@", string); \
     {
         [self.socket sendEvent:@"next" withData:nil];
         [self.buzzLines removeAllObjects];
-        [self.delegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
+        [self.roomDelegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
         return YES;
     }
     return NO;

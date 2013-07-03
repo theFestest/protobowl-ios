@@ -1,5 +1,6 @@
 
 #import "GuessViewController.h"
+#import "iOS7ProgressView.h"
 
 #define kInitialTextViewWidth 304
 #define kInitialTextViewHeight 198
@@ -7,6 +8,7 @@
 @interface GuessViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
 @property (weak, nonatomic) IBOutlet UITextField *guessTextField;
+@property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @end
 
 @implementation GuessViewController
@@ -19,6 +21,10 @@
     [self resizeFont];
     [self.guessTextField becomeFirstResponder];
     self.guessTextField.delegate = self;
+    
+    
+    self.timeBar.progressColor = [UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
 }
 
 
@@ -50,16 +56,6 @@
     self.questionTextView.text = text;
     
     [self resizeFont];
-
-    
-}
-
-- (void) submitGuess:(NSString *) guess
-{
-    [self.manager submitGuess:guess withCallback:^(BOOL correct) {
-        NSLog(@"%@", correct ? @"Correct" : @"Incorrect");
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    }];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -68,9 +64,49 @@
     return YES;
 }
 
+
+- (void) submitGuess:(NSString *) guess
+{
+    self.submitGuessCallback(guess);
+}
+
 - (IBAction)guessChanged:(id)sender
 {
-    [self.manager updateGuess:self.guessTextField.text];
+    self.updateGuessTextCallback(self.guessTextField.text);
+}
+
+
+// Connection manager guess delegate callbacks
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didClaimBuzz:(BOOL)isClaimed
+{
+    if(!isClaimed)
+    {
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.invalidBuzzCallback();
+        });
+    }
+    NSLog(@"Buzz claimed");
+    // Start buzz timer
+}
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress
+{
+    NSLog(@"Time left:%g, progress:%g", remainingTime, progress);
+    [self.timeBar setProgress:progress animated:NO];
+}
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didJudgeGuess:(BOOL)correct
+{
+    NSLog(@"%@", correct ? @"Correct" : @"Wrong");
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) connectionManagerDidEndBuzzTime:(ProtobowlConnectionManager *)manager
+{
+    self.submitGuessCallback(self.guessTextField.text);
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

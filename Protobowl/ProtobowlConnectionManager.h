@@ -4,7 +4,7 @@
 #import "ProtobowlQuestion.h"
 
 @class ProtobowlConnectionManager;
-@protocol ProtobowlConnectionDelegate <NSObject>
+@protocol ProtobowlRoomDelegate <NSObject>
 
 // Called when the connection manager has connected, and whether it succeeded or not
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didConnectWithSuccess:(BOOL)success;
@@ -32,20 +32,33 @@
 @end
 
 
+@protocol ProtobowlGuessDelegate <NSObject>
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didClaimBuzz:(BOOL)isClaimed; // Called when the server tells us that the client successfully buzzed, or that he / she was beat to the buzzer
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress;
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didJudgeGuess:(BOOL)correct;
+
+- (void) connectionManagerDidEndBuzzTime:(ProtobowlConnectionManager *)manager;
+
+@end
+
+
 @interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
 
-typedef void (^GuessCallback)(BOOL correct);
-
 - (void) connect;
-- (void) expireTime;
+- (void) expireQuestionTime;
 - (BOOL) buzz; // Returns if the user successfully buzzed
 - (void) updateGuess:(NSString *)guess;
-- (void) submitGuess:(NSString *)guess withCallback:(GuessCallback) callback;
+- (void) submitGuess:(NSString *)guess;;
 
 - (void) pauseQuestion;
 - (void) unpauseQuestion;
 
 - (BOOL) next; // Returns whether or not the next command was actually executed
-@property (nonatomic, weak) id<ProtobowlConnectionDelegate> delegate;
+
+@property (nonatomic, weak) id<ProtobowlRoomDelegate> roomDelegate;
+@property (nonatomic, weak) id<ProtobowlGuessDelegate> guessDelegate;
 
 @end

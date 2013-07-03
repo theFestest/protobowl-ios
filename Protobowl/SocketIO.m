@@ -29,7 +29,7 @@
 #import "SocketIOTransportXHR.h"
 
 #define DEBUG_LOGS 0
-#define DEBUG_CERTIFICATE 1
+#define DEBUG_CERTIFICATE 0
 
 #if DEBUG_LOGS
 #define DEBUGLOG(...) NSLog(__VA_ARGS__)
