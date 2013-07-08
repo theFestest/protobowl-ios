@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
+@property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic) float lastTransitionOffset;
@@ -102,7 +103,7 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestion:(ProtobowlQuestion *)question
 {
-//    LOG(@"current height:%f", self.questionHeightConstraint.constant);
+    // Calculate best font size
     int size = 16;
     float newHeight = 0;
     UIFont *newFont = nil;
@@ -121,7 +122,8 @@
     self.isAnimating = NO;
 
     
-    
+    // Set the category
+    self.answerLabel.text = question.category;
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestionDisplayText:(NSString *)text
@@ -148,6 +150,27 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didEndQuestion:(ProtobowlQuestion *)question
 {
     self.isNextAnimationEnabled = YES;
+    
+    NSString *answerWithRemovedComments = question.answerText;
+    int leftBracketIndex = [answerWithRemovedComments rangeOfString:@"["].location;
+    if(leftBracketIndex != NSNotFound)
+    {
+        answerWithRemovedComments = [answerWithRemovedComments substringToIndex:leftBracketIndex];
+    }
+    
+    int leftParenIndex = [answerWithRemovedComments rangeOfString:@"("].location;
+    if(leftParenIndex != NSNotFound)
+    {
+        answerWithRemovedComments = [answerWithRemovedComments substringToIndex:leftParenIndex];
+    }
+    
+    answerWithRemovedComments = [answerWithRemovedComments stringByReplacingOccurrencesOfString:@"{" withString:@""];
+    answerWithRemovedComments = [answerWithRemovedComments stringByReplacingOccurrencesOfString:@"}" withString:@""];
+    
+    answerWithRemovedComments = [answerWithRemovedComments stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
+
+
+    self.answerLabel.text = answerWithRemovedComments;
 }
 
 
@@ -194,6 +217,7 @@
         weakSelf.contentView.frame = animatedFrame;
     } completion:^(BOOL finished) {
         weakSelf.questionTextView.text = @"";
+        weakSelf.answerLabel.text = @"";
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
             weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
         } completion:^(BOOL finished) {

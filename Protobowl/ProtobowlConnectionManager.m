@@ -88,14 +88,15 @@ NSLog(@"%@", string); \
     return _questionDisplayText;
 }
 
+
 - (void) connect
 {
     self.socket = [[SocketIO alloc] initWithDelegate:self];
-    self.socket.useSecure = NO;
+    self.socket.useSecure = YES;
 //    [self.socket connectToHost:@"108.213.77.143" onPort:25565];
-//    [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
+    [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
 //    [self.socket connectToHost:@"cab.antimatter15.com" onPort:443];
-    [self.socket connectToHost:@"dino.xvm.mit.edu" onPort:5566];
+//    [self.socket connectToHost:@"dino.xvm.mit.edu" onPort:5566];
 }
 
 
@@ -123,7 +124,7 @@ NSLog(@"%@", string); \
      @"room_name" : @"minibitapp",
      @"muwave" : @NO,
      @"custom_id" : @"Donald iOS",
-     @"version" : @7}];
+     @"version" : @8}];
     
     [self.roomDelegate connectionManager:self didConnectWithSuccess:YES];
 }
@@ -139,9 +140,9 @@ NSLog(@"%@", string); \
     
     
     NSDictionary *packetData = packet.dataAsJSON[@"args"][0];
-    if([packetData isKindOfClass:[NSString class]])
+    if([packetData isKindOfClass:[NSString class]] || [packetData isKindOfClass:[NSNumber class]])
     {
-        NSLog(@"Unknown string data received: %@", packetData);
+        NSLog(@"Unknown data received: %@", packet.dataAsJSON);
         return;
     }
     
@@ -371,6 +372,8 @@ NSLog(@"%@", string); \
 
 - (void) pauseQuestion
 {
+    NSLog(@"Pausing question");
+    
     self.startPauseTime = CACurrentMediaTime();
     
     self.isQuestionPaused = YES;
@@ -382,8 +385,12 @@ NSLog(@"%@", string); \
 
 - (void) unpauseQuestion
 {
-    float pauseLength = CACurrentMediaTime() - self.startPauseTime;
+    NSLog(@"Unpause question");
+    
+    float now = CACurrentMediaTime();
+    float pauseLength = now - self.startPauseTime;
     self.startQuestionTime += pauseLength;
+    self.startPauseTime = now;
     
     self.isQuestionPaused = NO;
     [self.questionTimer invalidate];
@@ -393,6 +400,7 @@ NSLog(@"%@", string); \
     [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:0 inModes:@[NSRunLoopCommonModes]];
     
     [self.roomDelegate connectionManager:self didSetBuzzEnabled:YES];
+    
 }
 
 - (void) updateQuestionTimer
@@ -439,13 +447,16 @@ NSLog(@"%@", string); \
 
 - (void) expireBuzzTime
 {
-    [self.buzzTimer invalidate];
-    self.buzzTimer = nil;
-    self.hasPendingBuzz = NO;
-    self.buzzSessionId = nil;
-    [self.guessDelegate connectionManagerDidEndBuzzTime:self];
-    
-    [self unpauseQuestion];
+    if(self.buzzSessionId)
+    {
+        [self.buzzTimer invalidate];
+        self.buzzTimer = nil;
+        self.hasPendingBuzz = NO;
+        self.buzzSessionId = nil;
+        [self.guessDelegate connectionManagerDidEndBuzzTime:self];
+        
+        [self unpauseQuestion];
+    }
 }
 
 - (BOOL) buzz
@@ -486,6 +497,8 @@ NSLog(@"%@", string); \
         [self.socket sendEvent:@"guess" withData:data];
         
         self.buzzSessionId = nil;
+        
+        [self expireBuzzTime];
         
         // TODO: don't call the callback until we receive a sync message with correct or not in it
         
