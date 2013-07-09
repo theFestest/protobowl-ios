@@ -44,7 +44,7 @@
 {
     NSMutableString *text = [NSMutableString stringWithString:@""];
     
-    for (int i = 0; i < self.lines.count; i++)
+    for (int i = self.lines.count-1; i >= 0; i--)
     {
         NSString *line = self.lines[i];
         [text appendFormat:@"%@\n\n", line];
