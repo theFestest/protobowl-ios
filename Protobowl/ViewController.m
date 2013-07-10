@@ -52,7 +52,7 @@
     self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 200);
     self.questionTextView.layer.borderWidth = 1.0;
     self.questionTextView.layer.borderColor = [[UIColor colorWithWhite:227/255.0 alpha:1.0] CGColor];
-//    self.questionTextView.layer.cornerRadius = 4.0;
+    self.questionTextView.layer.cornerRadius = 10.0;
     
     // Setup attributed string with bell glyph on buzz button
     NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
