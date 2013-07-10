@@ -25,7 +25,6 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) ProtobowlQuestion *currentQuestion;
 @property (nonatomic, strong) NSString *questionDisplayText;
 @property (nonatomic) BOOL isQuestionNew;
-@property (nonatomic) int questionWordIndex;
 
 @property (nonatomic, strong) NSString *userID;
 
@@ -261,26 +260,17 @@ NSLog(@"%@", string); \
                 self.userData[userID][kUserDataBuzzTextKey] = @"";
                 
                 
-                
                 if([userID isEqualToString:self.userID])
                 {
                     [self.guessDelegate connectionManager:self didJudgeGuess:correct];
-                    
-                    [self unpauseQuestion];
-                    
-                    if(correct)
-                    {
-                         [self expireQuestionTime];
-                    }
                 }
-                else
+                
+                
+                [self unpauseQuestion];
+                
+                if(correct)
                 {
-                    [self unpauseQuestion];
-
-                    if(correct)
-                    {
-                        [self expireQuestionTime];
-                    }
+                     [self expireQuestionTime];
                 }
                 
             }
@@ -370,6 +360,8 @@ NSLog(@"%@", string); \
 {
     int index = self.currentQuestion.questionDisplayWordIndex;
     
+    NSLog(@"Updating question text with index: %d", index);
+    
     if(index >= self.currentQuestion.questionTextAsWordArray.count) return;
     if(self.isQuestionPaused) return;
     
@@ -455,8 +447,12 @@ NSLog(@"%@", string); \
 
 - (void) expireQuestionTime
 {
+    NSLog(@"Expiring question");
+    
     [self.roomDelegate connectionManager:self didUpdateTime:0 progress:1];
-    self.currentQuestion.rate = 0;
+    
+    self.currentQuestion.questionDisplayWordIndex = self.currentQuestion.questionTextAsWordArray.count;
+    [self.roomDelegate connectionManager:self didUpdateQuestionDisplayText:self.currentQuestion.questionText];
     
     [self.questionTimer invalidate];
     self.questionTimer = nil;

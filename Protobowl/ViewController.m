@@ -6,6 +6,7 @@
 #import "UIFont+FontAwesome.h"
 #import "NSString+FontAwesome.h"
 #import "iOS7ProgressView.h"
+#import <QuartzCore/QuartzCore.h>
 
 /*#define LOG(s, ...) do { \
     NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -47,6 +48,9 @@
     [self.manager connect];
         
     self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 200);
+    self.questionTextView.layer.borderWidth = 1.0;
+    self.questionTextView.layer.borderColor = [[UIColor colorWithWhite:227/255.0 alpha:1.0] CGColor];
+//    self.questionTextView.layer.cornerRadius = 4.0;
     
     // Setup attributed string with bell glyph on buzz button
     NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
