@@ -82,7 +82,10 @@
 {
     [super viewDidAppear:animated];
     
-    self.backgroundImageView.image = [self.contentView imageSnapshot];
+    if(self.questionTextView.text.length == 0 && self.answerLabel.text.length == 0 && self.timeLabel.text.length == 0)
+    {
+        self.backgroundImageView.image = [self.contentView imageSnapshot];
+    }
 }
 
 #pragma mark - Connection Manager Delegate Methods
