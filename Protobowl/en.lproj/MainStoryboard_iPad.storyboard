@@ -189,6 +189,7 @@
         <class className="GuessViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
             <relationships>
+                <relationship kind="action" name="guessChanged:"/>
                 <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
@@ -203,6 +204,7 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="buzzPressed:"/>
                 <relationship kind="outlet" name="answerLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="backgroundHorizontalSpace" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
