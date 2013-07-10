@@ -260,12 +260,29 @@ NSLog(@"%@", string); \
                 self.userData[userID][kUserDataIsBuzzingKey] = @NO;
                 self.userData[userID][kUserDataBuzzTextKey] = @"";
                 
+                
+                
                 if([userID isEqualToString:self.userID])
                 {
                     [self.guessDelegate connectionManager:self didJudgeGuess:correct];
+                    
+                    [self unpauseQuestion];
+                    
+                    if(correct)
+                    {
+                        [self expireQuestionTime];
+                    }
+                }
+                else
+                {
+                    [self unpauseQuestion];
+
+                    if(correct)
+                    {
+                        [self expireQuestionTime];
+                    }
                 }
                 
-                [self unpauseQuestion];
             }
             else
             {
@@ -438,6 +455,9 @@ NSLog(@"%@", string); \
 
 - (void) expireQuestionTime
 {
+    [self.roomDelegate connectionManager:self didUpdateTime:0 progress:1];
+    self.currentQuestion.rate = 0;
+    
     [self.questionTimer invalidate];
     self.questionTimer = nil;
     self.currentQuestion.isExpired = YES;
