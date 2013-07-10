@@ -7,6 +7,7 @@
 #import "NSString+FontAwesome.h"
 #import "iOS7ProgressView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIView+ImageSnapshot.h"
 
 /*#define LOG(s, ...) do { \
     NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -35,12 +36,13 @@
 
 @implementation ViewController
 
-
-
 #pragma mark - View Controller Life Cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.answerLabel.text = @"";
+    self.timeLabel.text = @"";
     
     self.manager = [[ProtobowlConnectionManager alloc] init];
     self.manager.roomDelegate = self;
@@ -74,9 +76,13 @@
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(animateToNextQuestion)];
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipe];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    // Question BG color = #f5f5f5
-    // Question Border: 1px solid #e3e3e3
+    self.backgroundImageView.image = [self.contentView imageSnapshot];
 }
 
 #pragma mark - Connection Manager Delegate Methods

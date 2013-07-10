@@ -30,6 +30,7 @@
 		B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */; };
 		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
+		B5AFB3E8178D351100AD8447 /* UIView+ImageSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFB3E7178D351100AD8447 /* UIView+ImageSnapshot.m */; };
 		B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */; };
 		B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24691767CE9900B9870D /* UIKit.framework */; };
 		B5FD246C1767CE9900B9870D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246B1767CE9900B9870D /* Foundation.framework */; };
@@ -104,6 +105,8 @@
 		B592957B176BC5E8008E0EB3 /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
 		B592957C176BC5E8008E0EB3 /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessViewController.m; sourceTree = "<group>"; };
 		B592957E176BDCC7008E0EB3 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "../../../../../../Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework"; sourceTree = "<group>"; };
+		B5AFB3E6178D351100AD8447 /* UIView+ImageSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ImageSnapshot.h"; sourceTree = "<group>"; };
+		B5AFB3E7178D351100AD8447 /* UIView+ImageSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ImageSnapshot.m"; sourceTree = "<group>"; };
 		B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS7ProgressView.h; sourceTree = "<group>"; };
 		B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS7ProgressView.m; sourceTree = "<group>"; };
 		B5FD24661767CE9900B9870D /* Protobowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Protobowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +246,8 @@
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 				B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */,
 				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
+				B5AFB3E6178D351100AD8447 /* UIView+ImageSnapshot.h */,
+				B5AFB3E7178D351100AD8447 /* UIView+ImageSnapshot.m */,
 			);
 			path = Protobowl;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				B50BFB9B176D548C0052700D /* NSString+FontAwesome.m in Sources */,
 				B50BFB9D176D548C0052700D /* UIFont+FontAwesome.m in Sources */,
 				B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */,
+				B5AFB3E8178D351100AD8447 /* UIView+ImageSnapshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

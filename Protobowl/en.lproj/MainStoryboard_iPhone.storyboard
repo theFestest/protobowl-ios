@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="temp.png" translatesAutoresizingMaskIntoConstraints="NO" id="vLb-1g-arJ"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buzz_enabled.png" translatesAutoresizingMaskIntoConstraints="NO" id="vLb-1g-arJ"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJi-li-2ut" userLabel="Content View">
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khn-3O-EB6" userLabel="Question Text">
@@ -71,7 +71,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="top" secondItem="UUI-Yf-biU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3zZ-SK-fuq"/>
                                     <constraint firstItem="kvN-TT-yuX" firstAttribute="top" secondItem="Khn-3O-EB6" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="6HC-Z6-ZSV"/>
@@ -93,7 +93,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aJi-li-2ut" firstAttribute="trailing" secondItem="Pwe-AU-FvS" secondAttribute="trailing" type="user" id="BTC-jV-4ff"/>
                             <constraint firstItem="aJi-li-2ut" firstAttribute="bottom" secondItem="Pwe-AU-FvS" secondAttribute="bottom" type="user" id="BlM-Ts-egg"/>
@@ -182,12 +182,12 @@
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
-        <image name="temp.png" width="640" height="920"/>
     </resources>
     <classes>
         <class className="GuessViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
             <relationships>
+                <relationship kind="action" name="guessChanged:"/>
                 <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
