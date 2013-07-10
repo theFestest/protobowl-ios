@@ -104,10 +104,11 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestion:(ProtobowlQuestion *)question
 {
     // Calculate best font size
-    int size = 16;
+    float maxHeight = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 280 : 400;
+    int size = 80;
     float newHeight = 0;
     UIFont *newFont = nil;
-    while((newHeight = [question.questionText sizeWithFont:(newFont = [UIFont fontWithName:@"HelveticaNeue" size:size--]) constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)].height + 30) >= 280);
+    while((newHeight = [question.questionText sizeWithFont:(newFont = [UIFont fontWithName:@"HelveticaNeue" size:size--]) constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)].height + 30) >= maxHeight);
     
     
     NSLog(@"Size: %f", newFont.pointSize);
