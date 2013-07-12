@@ -8,6 +8,7 @@
 #import "iOS7ProgressView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+ImageSnapshot.h"
+#import "PulloutView.h"
 
 /*#define LOG(s, ...) do { \
     NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
+@property (weak, nonatomic) IBOutlet PulloutView *scoreSlideView;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic) float lastTransitionOffset;
@@ -54,6 +56,7 @@
     self.questionTextView.layer.borderColor = [[UIColor colorWithWhite:227/255.0 alpha:1.0] CGColor];
     self.questionTextView.layer.cornerRadius = 10.0;
     
+    
     // Setup attributed string with bell glyph on buzz button
     NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
     NSString *buzzText = [NSString stringWithFormat:@"   %@ Buzz", bell];
@@ -81,6 +84,8 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self.scoreSlideView setupLayers];
     
     if(self.questionTextView.text.length == 0 && self.answerLabel.text.length == 0 && self.timeLabel.text.length == 0)
     {

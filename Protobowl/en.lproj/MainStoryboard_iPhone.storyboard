@@ -62,34 +62,56 @@
                                             <action selector="buzzPressed:" destination="P0k-61-TXZ" eventType="touchUpInside" id="XYK-Bg-Q9M"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Answer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUI-Yf-biU">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Answer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUI-Yf-biU">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="I07-8u-33l"/>
+                                            <constraint firstAttribute="height" constant="19" type="user" id="VKL-AS-Kka"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLm-8A-ETd" userLabel="Score Slide View" customClass="PulloutView">
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="35" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-Cq-P2N">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="42" id="eXS-Ln-8qJ"/>
+                                                    <constraint firstAttribute="height" constant="21" id="gKP-TH-gHK"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
+                                                <color key="textColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="i1Q-Cq-P2N" firstAttribute="centerY" secondItem="OLm-8A-ETd" secondAttribute="centerY" type="default" id="8ht-CQ-k1i"/>
+                                            <constraint firstItem="i1Q-Cq-P2N" firstAttribute="trailing" secondItem="OLm-8A-ETd" secondAttribute="trailing" constant="-8" type="user" id="Jv9-Nf-f3v"/>
+                                            <constraint firstAttribute="width" constant="260" type="user" id="N9c-xZ-tzX"/>
+                                            <constraint firstAttribute="height" constant="35" type="user" id="lnn-QG-Ibm"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="XSg-WS-VJS" firstAttribute="top" secondItem="UUI-Yf-biU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3zZ-SK-fuq"/>
+                                    <constraint firstItem="XSg-WS-VJS" firstAttribute="top" secondItem="UUI-Yf-biU" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="3zZ-SK-fuq"/>
                                     <constraint firstItem="kvN-TT-yuX" firstAttribute="top" secondItem="Khn-3O-EB6" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="6HC-Z6-ZSV"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="trailing" secondItem="fzc-jo-jdl" secondAttribute="trailing" type="default" id="Cz6-cm-zCp"/>
                                     <constraint firstItem="Mzp-HB-04s" firstAttribute="top" secondItem="kvN-TT-yuX" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="DSA-c3-p8F"/>
                                     <constraint firstAttribute="trailing" secondItem="fzc-jo-jdl" secondAttribute="trailing" constant="16" id="EOU-zf-juC"/>
                                     <constraint firstItem="UUI-Yf-biU" firstAttribute="leading" secondItem="Mzp-HB-04s" secondAttribute="leading" type="default" id="Fp7-zd-vBS"/>
                                     <constraint firstItem="kvN-TT-yuX" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" type="default" id="Fua-G9-S1i"/>
-                                    <constraint firstItem="Khn-3O-EB6" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="57" type="user" id="JnU-Lm-4tj"/>
+                                    <constraint firstItem="OLm-8A-ETd" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="6" type="user" id="GAp-VH-iMC"/>
                                     <constraint firstItem="Khn-3O-EB6" firstAttribute="trailing" secondItem="aJi-li-2ut" secondAttribute="trailing" constant="-8" type="user" id="Ovs-MO-paS"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="e1V-XL-yZ7"/>
                                     <constraint firstAttribute="bottom" secondItem="Mzp-HB-04s" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="jhr-qz-WVj"/>
+                                    <constraint firstItem="OLm-8A-ETd" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="-220" type="user" id="l6L-Cp-vrM"/>
                                     <constraint firstItem="Khn-3O-EB6" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="8" type="user" id="s2K-5u-YLs"/>
                                     <constraint firstItem="Khn-3O-EB6" firstAttribute="top" secondItem="XSg-WS-VJS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tAG-WJ-9QQ"/>
                                     <constraint firstItem="Mzp-HB-04s" firstAttribute="centerX" secondItem="kvN-TT-yuX" secondAttribute="centerX" type="default" id="tOW-3d-8DN"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="top" secondItem="fzc-jo-jdl" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="u5O-YX-FjC"/>
                                     <constraint firstItem="kvN-TT-yuX" firstAttribute="trailing" secondItem="aJi-li-2ut" secondAttribute="trailing" type="default" id="wUA-Yx-CxK"/>
-                                    <constraint firstItem="UUI-Yf-biU" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ylS-YZ-T4q"/>
+                                    <constraint firstItem="UUI-Yf-biU" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="20" type="user" id="ylS-YZ-T4q"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -115,6 +137,7 @@
                         <outlet property="contentView" destination="aJi-li-2ut" id="2Ne-n4-WtB"/>
                         <outlet property="questionHeightConstraint" destination="um9-Vf-XZI" id="gQB-w7-E7d"/>
                         <outlet property="questionTextView" destination="Khn-3O-EB6" id="5ZU-fB-L39"/>
+                        <outlet property="scoreSlideView" destination="OLm-8A-ETd" id="HZf-PA-N2y"/>
                         <outlet property="textViewLog" destination="kvN-TT-yuX" id="fB4-hU-7sc"/>
                         <outlet property="timeBar" destination="XSg-WS-VJS" id="xJJ-tH-mww"/>
                         <outlet property="timeLabel" destination="fzc-jo-jdl" id="dGt-wJ-oRY"/>
@@ -187,6 +210,7 @@
         <class className="GuessViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
             <relationships>
+                <relationship kind="action" name="guessChanged:"/>
                 <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
@@ -197,6 +221,9 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PulloutView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PulloutView.h"/>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
@@ -210,6 +237,7 @@
                 <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="questionHeightConstraint" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="scoreSlideView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="textViewLog" candidateClass="LinedTextView"/>
                 <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>

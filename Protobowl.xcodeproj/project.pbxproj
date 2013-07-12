@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		364D5954178F8729000B5F7A /* PulloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364D5953178F8729000B5F7A /* PulloutView.m */; };
 		B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B50652FD176A886300DA299D /* ProtobowlQuestion.m */; };
 		B50BFB91176D542B0052700D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50BFB90176D542B0052700D /* FontAwesome.ttf */; };
 		B50BFB92176D542B0052700D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50BFB90176D542B0052700D /* FontAwesome.ttf */; };
@@ -83,6 +84,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		364D5952178F8729000B5F7A /* PulloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulloutView.h; sourceTree = "<group>"; };
+		364D5953178F8729000B5F7A /* PulloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulloutView.m; sourceTree = "<group>"; };
 		B50652FC176A886300DA299D /* ProtobowlQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlQuestion.h; sourceTree = "<group>"; };
 		B50652FD176A886300DA299D /* ProtobowlQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlQuestion.m; sourceTree = "<group>"; };
 		B50BFB90176D542B0052700D /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
 				B5AFB3E6178D351100AD8447 /* UIView+ImageSnapshot.h */,
 				B5AFB3E7178D351100AD8447 /* UIView+ImageSnapshot.m */,
+				364D5952178F8729000B5F7A /* PulloutView.h */,
+				364D5953178F8729000B5F7A /* PulloutView.m */,
 			);
 			path = Protobowl;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 				B50BFB9D176D548C0052700D /* UIFont+FontAwesome.m in Sources */,
 				B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */,
 				B5AFB3E8178D351100AD8447 /* UIView+ImageSnapshot.m in Sources */,
+				364D5954178F8729000B5F7A /* PulloutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
