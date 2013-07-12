@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="P0k-61-TXZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="P0k-61-TXZ">
     <dependencies>
         <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -83,7 +83,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="i1Q-Cq-P2N" firstAttribute="centerY" secondItem="OLm-8A-ETd" secondAttribute="centerY" type="default" id="8ht-CQ-k1i"/>
                                             <constraint firstItem="i1Q-Cq-P2N" firstAttribute="trailing" secondItem="OLm-8A-ETd" secondAttribute="trailing" constant="-8" type="user" id="Jv9-Nf-f3v"/>
@@ -101,7 +100,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fzc-jo-jdl" secondAttribute="trailing" constant="16" id="EOU-zf-juC"/>
                                     <constraint firstItem="UUI-Yf-biU" firstAttribute="leading" secondItem="Mzp-HB-04s" secondAttribute="leading" type="default" id="Fp7-zd-vBS"/>
                                     <constraint firstItem="kvN-TT-yuX" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" type="default" id="Fua-G9-S1i"/>
-                                    <constraint firstItem="OLm-8A-ETd" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="6" type="user" id="GAp-VH-iMC"/>
+                                    <constraint firstItem="OLm-8A-ETd" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="4" type="user" id="GAp-VH-iMC"/>
                                     <constraint firstItem="Khn-3O-EB6" firstAttribute="trailing" secondItem="aJi-li-2ut" secondAttribute="trailing" constant="-8" type="user" id="Ovs-MO-paS"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="e1V-XL-yZ7"/>
                                     <constraint firstAttribute="bottom" secondItem="Mzp-HB-04s" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="jhr-qz-WVj"/>
@@ -210,7 +209,6 @@
         <class className="GuessViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
             <relationships>
-                <relationship kind="action" name="guessChanged:"/>
                 <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
@@ -237,7 +235,7 @@
                 <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="questionHeightConstraint" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="scoreSlideView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scoreSlideView" candidateClass="PulloutView"/>
                 <relationship kind="outlet" name="textViewLog" candidateClass="LinedTextView"/>
                 <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>

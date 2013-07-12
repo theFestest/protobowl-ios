@@ -36,8 +36,8 @@
     [self setClipsToBounds:NO];
     
     //the colors for the gradient.  highColor is at the top, lowColor as at the bottom
-    UIColor *highColor = [UIColor colorWithHue:211/360.0 saturation:0.5 brightness:1.0 alpha:1.0];
-    UIColor *lowColor = [UIColor colorWithHue:211/360.0 saturation:1.0 brightness:0.8 alpha:1.0];
+    UIColor *highColor = [UIColor colorWithHue:211/360.0 saturation:0.0 brightness:0.6 alpha:1.0];
+    UIColor *lowColor = [UIColor colorWithHue:211/360.0 saturation:0.0 brightness:0.5 alpha:1.0];
     
     //The gradient, simply enough.  It is a rectangle
     CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -61,7 +61,6 @@
     [[self layer] setShadowOffset:CGSizeMake(0, 6)];
     [[self layer] setShadowOpacity:0.75];
     [[self layer] setShadowRadius:10.0];
-    [self.layer setCornerRadius:5.0f];
 }
 
 @end
