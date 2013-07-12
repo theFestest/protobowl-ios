@@ -471,7 +471,7 @@ NSLog(@"%@", string); \
         self.buzzSessionId = nil;
         [self.guessDelegate connectionManagerDidEndBuzzTime:self];
         
-        [self unpauseQuestion];
+        //[self unpauseQuestion];
     }
 }
 
