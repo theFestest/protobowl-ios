@@ -11,25 +11,6 @@
 
 @implementation PulloutView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupLayers];
-    }
-    return self;
-}
-
-- (id) initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if(self)
-    {
-        [self setupLayers];
-    }
-    return self;
-}
-
 - (void) setupLayers
 {
     //turning off bounds clipping allows the shadow to extend beyond the rect of the view

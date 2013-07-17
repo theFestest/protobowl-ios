@@ -50,12 +50,12 @@
     self.manager.roomDelegate = self;
     
     [self.manager connect];
-        
+    
+    // Setup and stylize question text view
     self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 200);
     self.questionTextView.layer.borderWidth = 1.0;
     self.questionTextView.layer.borderColor = [[UIColor colorWithWhite:227/255.0 alpha:1.0] CGColor];
     self.questionTextView.layer.cornerRadius = 10.0;
-    
     
     // Setup attributed string with bell glyph on buzz button
     NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
@@ -71,22 +71,27 @@
     
     [self.buzzButton setAttributedTitle:attributedBuzzText forState:UIControlStateNormal];
     
-    
+    // Setup timer bar
     self.timeBar.progressColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
     self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
     
-    
+    // Setup next question swipe gesture
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(animateToNextQuestion)];
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipe];
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panInPullout:)];
+    [self.scoreSlideView addGestureRecognizer:pan];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    // Setup pullout view layers
     [self.scoreSlideView setupLayers];
     
+    // Take screenshot of main UI for use in animation
     if(self.questionTextView.text.length == 0 && self.answerLabel.text.length == 0 && self.timeLabel.text.length == 0)
     {
         self.backgroundImageView.image = [self.contentView imageSnapshot];
@@ -254,7 +259,10 @@
     }];
 }
 
-
+- (void) panInPullout:(UIPanGestureRecognizer *)pan
+{
+    NSLog(@"Pan");
+}
 
 
 #pragma mark - Interface Helper Methods
