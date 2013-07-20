@@ -17,15 +17,16 @@
 } while(0)*/
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *questionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *questionTextView;
+@property (weak, nonatomic) IBOutlet UIView *questionContainerView;
 @property (weak, nonatomic) IBOutlet LinedTextView *textViewLog;
 @property (nonatomic, strong) ProtobowlConnectionManager *manager;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionContainerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeightConstraint;
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
-@property (weak, nonatomic) IBOutlet PulloutView *scoreSlideView;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic) float lastTransitionOffset;
@@ -34,6 +35,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundHorizontalSpace;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic) BOOL isNextAnimationEnabled;
+
+@property (weak, nonatomic) IBOutlet PulloutView *scorePulloutView;
+@property (nonatomic) float pulloutStartX;
+
+@property (strong, nonatomic) UIViewController *sideMenu;
 @end
 
 @implementation ViewController
@@ -52,10 +58,10 @@
     [self.manager connect];
     
     // Setup and stylize question text view
-    self.questionTextView.frame = CGRectMake(0, 0, self.questionTextView.frame.size.width, 200);
-    self.questionTextView.layer.borderWidth = 1.0;
-    self.questionTextView.layer.borderColor = [[UIColor colorWithWhite:227/255.0 alpha:1.0] CGColor];
-    self.questionTextView.layer.cornerRadius = 10.0;
+    self.questionContainerView.frame = CGRectMake(0, 0, self.questionContainerView.frame.size.width, 200);
+    self.questionContainerView.layer.borderWidth = 1.0;
+    self.questionContainerView.layer.borderColor = [[UIColor colorWithWhite:227/255.0 alpha:1.0] CGColor];
+    self.questionContainerView.layer.cornerRadius = 10.0;
     
     // Setup attributed string with bell glyph on buzz button
     NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
@@ -81,7 +87,23 @@
     [self.view addGestureRecognizer:swipe];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panInPullout:)];
-    [self.scoreSlideView addGestureRecognizer:pan];
+    [self.scorePulloutView addGestureRecognizer:pan];
+    
+    
+    // Setup side menu view and view controller offscreen
+    self.sideMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"SideMenuViewController"];
+    [self addChildViewController:self.sideMenu];
+    
+    UIView *sideMenuView = self.sideMenu.view;
+    sideMenuView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:sideMenuView];
+    
+    NSNumber *width = @([[UIScreen mainScreen] bounds].size.width);
+    PulloutView *pulloutMenu = self.scorePulloutView;
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[sideMenuView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(sideMenuView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sideMenuView(width)][pulloutMenu]" options:0 metrics:NSDictionaryOfVariableBindings(width) views:NSDictionaryOfVariableBindings(sideMenuView, pulloutMenu)]];
+    
+    [self.contentView layoutIfNeeded];    
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -89,13 +111,15 @@
     [super viewDidAppear:animated];
     
     // Setup pullout view layers
-    [self.scoreSlideView setupLayers];
+    [self.scorePulloutView setupLayers];
     
     // Take screenshot of main UI for use in animation
     if(self.questionTextView.text.length == 0 && self.answerLabel.text.length == 0 && self.timeLabel.text.length == 0)
     {
         self.backgroundImageView.image = [self.contentView imageSnapshot];
     }
+    
+    self.pulloutStartX = self.scorePulloutView.frame.origin.x;
 }
 
 #pragma mark - Connection Manager Delegate Methods
@@ -137,7 +161,7 @@
     NSLog(@"Size: %f", newFont.pointSize);
     
     self.questionTextView.font = newFont;
-    self.questionHeightConstraint.constant = newHeight;
+    self.questionContainerHeightConstraint.constant = newHeight;
     
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [self.contentView layoutSubviews];
@@ -154,6 +178,10 @@
 {
     self.questionTextView.text = text;
     
+    CGSize constraintSize = CGSizeMake(self.questionTextView.frame.size.width, 10000);
+    CGSize targetSize = [text sizeWithFont:self.questionTextView.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    self.questionTextHeightConstraint.constant = targetSize.height;
+    [self.questionContainerView setNeedsLayout];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateTime:(float)remainingTime progress:(float)progress
@@ -246,12 +274,12 @@
             weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
         } completion:^(BOOL finished) {
             weakSelf.contentView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
-            weakSelf.questionHeightConstraint.constant = 200;
+            weakSelf.questionContainerHeightConstraint.constant = 200;
             weakSelf.buzzButton.enabled = YES;
             weakSelf.buzzButton.userInteractionEnabled = NO;
             weakSelf.timeBar.progress = 0;
             weakSelf.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, weakSelf.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, weakSelf.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
-            [weakSelf.view layoutSubviews];
+            [weakSelf.view setNeedsLayout];
             
             // Trigger next question
             [weakSelf.manager next];
@@ -261,7 +289,51 @@
 
 - (void) panInPullout:(UIPanGestureRecognizer *)pan
 {
-    NSLog(@"Pan");
+    float dx = self.scorePulloutView.frame.origin.x - self.pulloutStartX;
+    printf("%f\n", dx);
+    if(pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled)
+    {
+        float dx = self.scorePulloutView.frame.origin.x - self.pulloutStartX;
+        if(dx > 180) // User has pulled enough, finish transition
+        {
+            float endX = [UIScreen mainScreen].bounds.size.width;
+            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                CGRect frame = self.scorePulloutView.frame;
+                frame.origin.x = endX;
+                self.scorePulloutView.frame = frame;
+                
+                frame = self.sideMenu.view.frame;
+                frame.origin.x = 0;
+                self.sideMenu.view.frame = frame;
+            } completion:nil];
+        }
+        else // Cancel transition
+        {
+            CGRect frame = self.scorePulloutView.frame;
+            frame.origin.x = self.pulloutStartX;
+            
+            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.scorePulloutView.frame = frame;
+            } completion:^(BOOL complete){
+                [self.contentView setNeedsLayout];
+            }];
+        }
+    }
+    else
+    {
+        float dx = [pan translationInView:self.scorePulloutView].x;
+        
+        // Update pullout frame
+        CGRect frame = self.scorePulloutView.frame;
+        frame.origin.x += dx;
+        self.scorePulloutView.frame = frame;
+        
+        // Update side menu frame
+        frame = self.sideMenu.view.frame;
+        frame.origin.x += dx;
+        self.sideMenu.view.frame = frame;
+    }
+    [pan setTranslation:CGPointMake(0, 0) inView:self.scorePulloutView];
 }
 
 

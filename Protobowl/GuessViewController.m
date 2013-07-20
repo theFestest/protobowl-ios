@@ -6,9 +6,10 @@
 #define kInitialTextViewHeight 198
 
 @interface GuessViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *questionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *questionTextView;
 @property (weak, nonatomic) IBOutlet UITextField *guessTextField;
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionHeightConstraint;
 @end
 
 @implementation GuessViewController
@@ -28,7 +29,7 @@
 }
 
 
-- (void)resizeFont
+- (void) resizeFont
 {
     float width = self.questionTextView.frame.size.width - 16;
     float height = self.questionTextView.frame.size.height;
@@ -48,6 +49,11 @@
             break;
         }
     }
+    
+    CGSize constraintSize = CGSizeMake(width, 10000);
+    CGSize targetSize = [self.questionTextView.text sizeWithFont:self.questionTextView.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    self.questionHeightConstraint.constant = targetSize.height;
+    [self.view setNeedsLayout];
 }
 
 - (void) setQuestionDisplayText:(NSString *)text

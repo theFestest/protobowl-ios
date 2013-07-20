@@ -360,7 +360,7 @@ NSLog(@"%@", string); \
 {
     int index = self.currentQuestion.questionDisplayWordIndex;
     
-    NSLog(@"Updating question text with index: %d", index);
+//    NSLog(@"Updating question text with index: %d", index);
     
     if(index >= self.currentQuestion.questionTextAsWordArray.count) return;
     if(self.isQuestionPaused) return;

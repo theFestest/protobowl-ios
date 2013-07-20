@@ -80,13 +80,13 @@
         float dt = dw / kAnimSpeed; // (multiply with those differentials!)
         
         [UIView animateWithDuration:dt animations:^{
-            [self layoutSubviews];
+            [self setNeedsLayout];
         }];
     }
     else
     {
         self.progressWidthConstraint.constant = toWidth;
-        [self layoutSubviews];
+        [self setNeedsLayout];
     }
 }
 

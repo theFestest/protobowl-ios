@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="NrK-S7-TkM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="NrK-S7-TkM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -113,7 +113,7 @@
                         <outlet property="backgroundVerticalSpace" destination="tdD-tR-Wn4" id="nZy-MR-JDl"/>
                         <outlet property="buzzButton" destination="qJ9-mj-qEg" id="Tfd-in-7PV"/>
                         <outlet property="contentView" destination="Bx0-ML-JyJ" id="qHm-nU-e2r"/>
-                        <outlet property="questionHeightConstraint" destination="Juu-bD-6Tg" id="mtm-Qu-HdW"/>
+                        <outlet property="questionContainerHeightConstraint" destination="Juu-bD-6Tg" id="0rV-TM-Pmj"/>
                         <outlet property="questionTextView" destination="xdt-Bb-hD7" id="Pxe-YI-X6a"/>
                         <outlet property="textViewLog" destination="gKr-Cv-v2O" id="HY3-ea-mQ2"/>
                         <outlet property="timeBar" destination="8LG-eT-gc4" id="CG5-yA-Xtg"/>
@@ -185,43 +185,6 @@
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="temp.png" width="640" height="920"/>
     </resources>
-    <classes>
-        <class className="GuessViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="guessChanged:"/>
-                <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
-            </relationships>
-        </class>
-        <class className="LinedTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LinedTextView.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buzzPressed:"/>
-                <relationship kind="outlet" name="answerLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="backgroundHorizontalSpace" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="backgroundVerticalSpace" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="buzzButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="questionHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="textViewLog" candidateClass="LinedTextView"/>
-                <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="iOS7ProgressView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/iOS7ProgressView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
