@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
+
+//typedef void (^SideMenuPanCallback)(UIPanGestureRecognizer *pan);
 
 @interface SideMenuViewController : UIViewController
+
+@property (nonatomic, weak) ViewController *mainViewController;
 
 @end

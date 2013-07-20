@@ -7,8 +7,9 @@
 #import "NSString+FontAwesome.h"
 #import "iOS7ProgressView.h"
 #import <QuartzCore/QuartzCore.h>
-#import "UIView+ImageSnapshot.h"
+#import "UIView+Donald.h"
 #import "PulloutView.h"
+#import "SideMenuViewController.h"
 
 /*#define LOG(s, ...) do { \
     NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -38,8 +39,9 @@
 
 @property (weak, nonatomic) IBOutlet PulloutView *scorePulloutView;
 @property (nonatomic) float pulloutStartX;
+@property (nonatomic) float sideMenuStartX;
 
-@property (strong, nonatomic) UIViewController *sideMenu;
+@property (strong, nonatomic) SideMenuViewController *sideMenu;
 @end
 
 @implementation ViewController
@@ -59,9 +61,7 @@
     
     // Setup and stylize question text view
     self.questionContainerView.frame = CGRectMake(0, 0, self.questionContainerView.frame.size.width, 200);
-    self.questionContainerView.layer.borderWidth = 1.0;
-    self.questionContainerView.layer.borderColor = [[UIColor colorWithWhite:227/255.0 alpha:1.0] CGColor];
-    self.questionContainerView.layer.cornerRadius = 10.0;
+    [self.questionContainerView applySinkStyleWithInnerColor:nil borderColor:[UIColor colorWithWhite:227/255.0 alpha:1.0] borderWidth:1.0 andCornerRadius:10.0];
     
     // Setup attributed string with bell glyph on buzz button
     NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
@@ -86,13 +86,16 @@
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipe];
     
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panInPullout:)];
+    // Setup pullout pan gesture
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self.scorePulloutView addGestureRecognizer:pan];
     
     
     // Setup side menu view and view controller offscreen
     self.sideMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"SideMenuViewController"];
+    self.sideMenu.mainViewController = self;
     [self addChildViewController:self.sideMenu];
+    
     
     UIView *sideMenuView = self.sideMenu.view;
     sideMenuView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -103,7 +106,9 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[sideMenuView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(sideMenuView)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sideMenuView(width)][pulloutMenu]" options:0 metrics:NSDictionaryOfVariableBindings(width) views:NSDictionaryOfVariableBindings(sideMenuView, pulloutMenu)]];
     
-    [self.contentView layoutIfNeeded];    
+    [self.contentView layoutIfNeeded];
+    
+    self.sideMenuStartX = sideMenuView.frame.origin.x;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -287,53 +292,98 @@
     }];
 }
 
-- (void) panInPullout:(UIPanGestureRecognizer *)pan
+- (void) handlePan:(UIPanGestureRecognizer *)pan
 {
-    float dx = self.scorePulloutView.frame.origin.x - self.pulloutStartX;
-    printf("%f\n", dx);
-    if(pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled)
+    if(pan.view == self.scorePulloutView)
     {
-        float dx = self.scorePulloutView.frame.origin.x - self.pulloutStartX;
-        if(dx > 180) // User has pulled enough, finish transition
+        if(pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled)
         {
-            float endX = [UIScreen mainScreen].bounds.size.width;
-            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                CGRect frame = self.scorePulloutView.frame;
-                frame.origin.x = endX;
-                self.scorePulloutView.frame = frame;
-                
-                frame = self.sideMenu.view.frame;
-                frame.origin.x = 0;
-                self.sideMenu.view.frame = frame;
-            } completion:nil];
+            float dx = self.scorePulloutView.frame.origin.x - self.pulloutStartX;
+            if(dx > 180) // User has pulled enough, finish transition
+            {
+                [self animateSideMenuIn];
+            }
+            else // Cancel transition
+            {
+                [self animateSideMenuOut];
+            }
         }
-        else // Cancel transition
+        else
         {
-            CGRect frame = self.scorePulloutView.frame;
-            frame.origin.x = self.pulloutStartX;
+            float dx = [pan translationInView:self.scorePulloutView].x;
             
-            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.scorePulloutView.frame = frame;
-            } completion:^(BOOL complete){
-                [self.contentView setNeedsLayout];
-            }];
+            // Update pullout frame
+            CGRect frame = self.scorePulloutView.frame;
+            frame.origin.x += dx;
+            self.scorePulloutView.frame = frame;
+            
+            // Update side menu frame
+            frame = self.sideMenu.view.frame;
+            frame.origin.x += dx;
+            self.sideMenu.view.frame = frame;
         }
+        [pan setTranslation:CGPointZero inView:self.scorePulloutView];
     }
-    else
+    else // Handle callback from pan in Side Menu
     {
-        float dx = [pan translationInView:self.scorePulloutView].x;
+        float dx = self.sideMenu.view.frame.origin.x;
+        if(pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled)
+        {
+            if(dx < -120) // User has pulled enough, finish transition
+            {
+                [self animateSideMenuOut];
+            }
+            else // Cancel transition
+            {
+                [self animateSideMenuIn];
+            }
+        }
+        else
+        {
+            float dx = [pan translationInView:self.sideMenu.view].x;
+            
+            // Update pullout frame
+            CGRect frame = self.scorePulloutView.frame;
+            frame.origin.x += dx;
+            self.scorePulloutView.frame = frame;
+            
+            // Update side menu frame
+            frame = self.sideMenu.view.frame;
+            frame.origin.x += dx;
+            self.sideMenu.view.frame = frame;
+        }
         
-        // Update pullout frame
+        [pan setTranslation:CGPointZero inView:self.sideMenu.view];
+    }
+}
+
+- (void) animateSideMenuIn
+{
+    float endX = [UIScreen mainScreen].bounds.size.width;
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect frame = self.scorePulloutView.frame;
-        frame.origin.x += dx;
+        frame.origin.x = endX;
         self.scorePulloutView.frame = frame;
         
-        // Update side menu frame
         frame = self.sideMenu.view.frame;
-        frame.origin.x += dx;
+        frame.origin.x = 0;
         self.sideMenu.view.frame = frame;
-    }
-    [pan setTranslation:CGPointMake(0, 0) inView:self.scorePulloutView];
+    } completion:nil];
+}
+
+- (void) animateSideMenuOut
+{
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        CGRect frame = self.scorePulloutView.frame;
+        frame.origin.x = self.pulloutStartX;
+        self.scorePulloutView.frame = frame;
+        
+        frame = self.sideMenu.view.frame;
+        frame.origin.x = self.sideMenuStartX;
+        self.sideMenu.view.frame = frame;
+    } completion:^(BOOL complete){
+        [self.contentView setNeedsLayout];
+    }];
 }
 
 

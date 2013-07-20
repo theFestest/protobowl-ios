@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (ImageSnapshot)
+@interface UIView (Donald)
 
 - (UIImage *) imageSnapshot;
+
+- (void) applySinkStyleWithInnerColor:(UIColor *)innerColor borderColor:(UIColor *)borderColor borderWidth:(float)width andCornerRadius:(float)radius;
 
 @end
