@@ -21,12 +21,4 @@
     [self.view addGestureRecognizer:pan];
 }
 
-/*- (void) pan:(UIPanGestureRecognizer *)pan
-{
-    float dx = [pan translationInView:self.view].x;
-    self.panCallback(dx, pan);
-    
-    [pan setTranslation:CGPointZero inView:self.view];
-}*/
-
 @end

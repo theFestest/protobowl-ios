@@ -20,7 +20,6 @@
 		B510D037177B98EB008364F0 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EE1767CFA000B9870D /* libicucore.dylib */; };
 		B510D038177B98F0008364F0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B510D039177B98FD008364F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
-		B5438496177025F50041ED8A /* temp.png in Resources */ = {isa = PBXBuildFile; fileRef = B5438495177025F50041ED8A /* temp.png */; };
 		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
 		B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACD176EBC9E00D1369E /* buzz_disabled.png */; };
@@ -66,8 +65,8 @@
 		B5FD24DD1767CF3D00B9870D /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24D61767CF3D00B9870D /* NSData+SRB64Additions.m */; };
 		B5FD24DE1767CF3D00B9870D /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24D91767CF3D00B9870D /* SRWebSocket.m */; };
 		B5FD24DF1767CF3D00B9870D /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24D91767CF3D00B9870D /* SRWebSocket.m */; };
-		B5FD24E61767CF7200B9870D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E31767CF7200B9870D /* ViewController.m */; };
-		B5FD24E71767CF7200B9870D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E31767CF7200B9870D /* ViewController.m */; };
+		B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E31767CF7200B9870D /* MainViewController.m */; };
+		B5FD24E71767CF7200B9870D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E31767CF7200B9870D /* MainViewController.m */; };
 		B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E51767CF7200B9870D /* LinedTextView.m */; };
 		B5FD24E91767CF7200B9870D /* LinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E51767CF7200B9870D /* LinedTextView.m */; };
 		B5FD24ED1767CF9700B9870D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
@@ -96,7 +95,6 @@
 		B50BFB96176D548C0052700D /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		B50BFB97176D548C0052700D /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
 		B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
-		B5438495177025F50041ED8A /* temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp.png; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; };
 		B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlConnectionManager.m; sourceTree = "<group>"; };
 		B5811ACD176EBC9E00D1369E /* buzz_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_disabled.png; sourceTree = "<group>"; };
@@ -154,8 +152,8 @@
 		B5FD24D71767CF3D00B9870D /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
 		B5FD24D81767CF3D00B9870D /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		B5FD24D91767CF3D00B9870D /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
-		B5FD24E21767CF7200B9870D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B5FD24E31767CF7200B9870D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B5FD24E21767CF7200B9870D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		B5FD24E31767CF7200B9870D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B5FD24E41767CF7200B9870D /* LinedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinedTextView.h; sourceTree = "<group>"; };
 		B5FD24E51767CF7200B9870D /* LinedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinedTextView.m; sourceTree = "<group>"; };
 		B5FD24EA1767CF9300B9870D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -194,6 +192,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B57B6DA3179B8F8F005107F6 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				364D5952178F8729000B5F7A /* PulloutView.h */,
+				364D5953178F8729000B5F7A /* PulloutView.m */,
+				B5FD24E41767CF7200B9870D /* LinedTextView.h */,
+				B5FD24E51767CF7200B9870D /* LinedTextView.m */,
+				B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */,
+				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */ = {
+			isa = PBXGroup;
+			children = (
+				B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */,
+				B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */,
+				B50652FC176A886300DA299D /* ProtobowlQuestion.h */,
+				B50652FD176A886300DA299D /* ProtobowlQuestion.m */,
+			);
+			name = "Protobowl Connection Logic";
+			sourceTree = "<group>";
+		};
 		B5FD245D1767CE9900B9870D = {
 			isa = PBXGroup;
 			children = (
@@ -234,30 +256,17 @@
 		B5FD246F1767CE9900B9870D /* Protobowl */ = {
 			isa = PBXGroup;
 			children = (
-				B5438495177025F50041ED8A /* temp.png */,
-				B5FD24E21767CF7200B9870D /* ViewController.h */,
-				B5FD24E31767CF7200B9870D /* ViewController.m */,
-				B5FD24E41767CF7200B9870D /* LinedTextView.h */,
-				B5FD24E51767CF7200B9870D /* LinedTextView.m */,
-				B5FD24781767CE9900B9870D /* AppDelegate.h */,
-				B5FD24791767CE9900B9870D /* AppDelegate.m */,
 				B5FD24811767CE9900B9870D /* MainStoryboard_iPhone.storyboard */,
 				B5FD24841767CE9900B9870D /* MainStoryboard_iPad.storyboard */,
-				B5FD24701767CE9900B9870D /* Supporting Files */,
-				B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */,
-				B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */,
-				B50652FC176A886300DA299D /* ProtobowlQuestion.h */,
-				B50652FD176A886300DA299D /* ProtobowlQuestion.m */,
-				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
-				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
-				B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */,
-				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
-				B5AFB3E6178D351100AD8447 /* UIView+Donald.h */,
-				B5AFB3E7178D351100AD8447 /* UIView+Donald.m */,
-				364D5952178F8729000B5F7A /* PulloutView.h */,
-				364D5953178F8729000B5F7A /* PulloutView.m */,
+				B5FD24E21767CF7200B9870D /* MainViewController.h */,
+				B5FD24E31767CF7200B9870D /* MainViewController.m */,
 				B5F6C034179B46EA0040CB37 /* SideMenuViewController.h */,
 				B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */,
+				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
+				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
+				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
+				B57B6DA3179B8F8F005107F6 /* Custom Views */,
+				B5FD24701767CE9900B9870D /* Supporting Files */,
 			);
 			path = Protobowl;
 			sourceTree = "<group>";
@@ -265,6 +274,10 @@
 		B5FD24701767CE9900B9870D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5AFB3E6178D351100AD8447 /* UIView+Donald.h */,
+				B5AFB3E7178D351100AD8447 /* UIView+Donald.m */,
+				B5FD24781767CE9900B9870D /* AppDelegate.h */,
+				B5FD24791767CE9900B9870D /* AppDelegate.m */,
 				B5811ACD176EBC9E00D1369E /* buzz_disabled.png */,
 				B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */,
 				B5811ACF176EBC9E00D1369E /* buzz_enabled.png */,
@@ -426,7 +439,6 @@
 				B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */,
 				B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */,
 				B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */,
-				B5438496177025F50041ED8A /* temp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +484,7 @@
 				B5FD24DA1767CF3D00B9870D /* base64.c in Sources */,
 				B5FD24DC1767CF3D00B9870D /* NSData+SRB64Additions.m in Sources */,
 				B5FD24DE1767CF3D00B9870D /* SRWebSocket.m in Sources */,
-				B5FD24E61767CF7200B9870D /* ViewController.m in Sources */,
+				B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */,
 				B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */,
 				B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */,
 				B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */,
@@ -500,7 +512,7 @@
 				B5FD24DB1767CF3D00B9870D /* base64.c in Sources */,
 				B5FD24DD1767CF3D00B9870D /* NSData+SRB64Additions.m in Sources */,
 				B5FD24DF1767CF3D00B9870D /* SRWebSocket.m in Sources */,
-				B5FD24E71767CF7200B9870D /* ViewController.m in Sources */,
+				B5FD24E71767CF7200B9870D /* MainViewController.m in Sources */,
 				B5FD24E91767CF7200B9870D /* LinedTextView.m in Sources */,
 				B50BFB9A176D548C0052700D /* FAImageView.m in Sources */,
 				B50BFB9C176D548C0052700D /* NSString+FontAwesome.m in Sources */,

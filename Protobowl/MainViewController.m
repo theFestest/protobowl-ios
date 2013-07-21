@@ -1,5 +1,5 @@
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "SocketIOJSONSerialization.h"
 #import "LinedTextView.h"
 #import "GuessViewController.h"
@@ -17,7 +17,7 @@
     [self logToTextView:string]; \
 } while(0)*/
 
-@interface ViewController ()
+@interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *questionTextView;
 @property (weak, nonatomic) IBOutlet UIView *questionContainerView;
 @property (weak, nonatomic) IBOutlet LinedTextView *textViewLog;
@@ -44,7 +44,7 @@
 @property (strong, nonatomic) SideMenuViewController *sideMenu;
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 #pragma mark - View Controller Life Cycle
 - (void)viewDidLoad
@@ -244,7 +244,7 @@
 {
     GuessViewController *guessVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GuessViewController"];
     guessVC.questionDisplayText = self.questionTextView.text;
-    __weak ViewController *weakSelf = self;
+    __weak MainViewController *weakSelf = self;
     guessVC.updateGuessTextCallback = ^(NSString *guessText) {
         [weakSelf.manager updateGuess:guessText];
     };
@@ -267,7 +267,7 @@
 {
     if(self.isAnimating || !self.isNextAnimationEnabled) return;
 
-    __weak ViewController *weakSelf = self;
+    __weak MainViewController *weakSelf = self;
     self.isAnimating = YES;
 
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
