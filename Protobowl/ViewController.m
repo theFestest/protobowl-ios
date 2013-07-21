@@ -86,9 +86,11 @@
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipe];
     
-    // Setup pullout pan gesture
+    // Setup pullout pan and tap gesture
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self.scorePulloutView addGestureRecognizer:pan];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [self.scorePulloutView addGestureRecognizer:tap];
     
     
     // Setup side menu view and view controller offscreen
@@ -301,11 +303,11 @@
             float dx = self.scorePulloutView.frame.origin.x - self.pulloutStartX;
             if(dx > 180) // User has pulled enough, finish transition
             {
-                [self animateSideMenuIn];
+                [self animateSideMenuInWithDuration:0];
             }
             else // Cancel transition
             {
-                [self animateSideMenuOut];
+                [self animateSideMenuOutWithDuration:0];
             }
         }
         else
@@ -331,11 +333,11 @@
         {
             if(dx < -120) // User has pulled enough, finish transition
             {
-                [self animateSideMenuOut];
+                [self animateSideMenuOutWithDuration:0];
             }
             else // Cancel transition
             {
-                [self animateSideMenuIn];
+                [self animateSideMenuInWithDuration:0];
             }
         }
         else
@@ -357,10 +359,17 @@
     }
 }
 
-- (void) animateSideMenuIn
+- (void) tap:(UITapGestureRecognizer *)tap
 {
+    [self animateSideMenuInWithDuration:0.6];
+}
+
+- (void) animateSideMenuInWithDuration:(float) duration
+{
+    if(duration == 0) duration = 0.2;
+    
     float endX = [UIScreen mainScreen].bounds.size.width;
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect frame = self.scorePulloutView.frame;
         frame.origin.x = endX;
         self.scorePulloutView.frame = frame;
@@ -371,9 +380,11 @@
     } completion:nil];
 }
 
-- (void) animateSideMenuOut
+- (void) animateSideMenuOutWithDuration:(float) duration
 {
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    if(duration == 0) duration = 0.2;
+    
+    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect frame = self.scorePulloutView.frame;
         frame.origin.x = self.pulloutStartX;
         self.scorePulloutView.frame = frame;
