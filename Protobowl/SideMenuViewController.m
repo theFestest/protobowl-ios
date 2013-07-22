@@ -14,6 +14,7 @@
 
 @interface SideMenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *leaderboard;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderboardHeight;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *users;
 @end
@@ -68,9 +69,10 @@
 
 - (void) resizeTableView
 {
-    CGRect frame = self.leaderboard.frame;
-    frame.size.height = self.leaderboard.contentSize.height;
-    self.leaderboard.frame = frame;
+    self.leaderboardHeight.constant = self.leaderboard.contentSize.height;
+    
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
 }
 
 #pragma mark - Table View Delegate Methods
