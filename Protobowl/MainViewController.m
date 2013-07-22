@@ -260,7 +260,7 @@
 
 - (void) presentGuessViewController
 {
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationCurrentContext; // This line seems to prevent a crash bug when playing in the main lobby.  No idea why it was happening and why this fixes it  WTF!?!?!?
     
     GuessViewController *guessVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GuessViewController"];
     guessVC.questionDisplayText = self.questionTextView.text;
