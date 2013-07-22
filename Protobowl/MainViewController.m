@@ -260,6 +260,8 @@
 
 - (void) presentGuessViewController
 {
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    
     GuessViewController *guessVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GuessViewController"];
     guessVC.questionDisplayText = self.questionTextView.text;
     __weak MainViewController *weakSelf = self;
