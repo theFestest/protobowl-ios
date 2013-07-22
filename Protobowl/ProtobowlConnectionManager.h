@@ -69,4 +69,8 @@
 @property (nonatomic, weak) id<ProtobowlLeaderboardDelegate> leaderboardDelegate;
 @property (nonatomic, weak) id<ProtobowlGuessDelegate> guessDelegate;
 
+@property (nonatomic, strong) NSString *myName;
+@property (nonatomic) int myScore;
+@property (nonatomic) int myRank;
+
 @end

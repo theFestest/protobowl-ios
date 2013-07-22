@@ -28,7 +28,7 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) NSString *questionDisplayText;
 @property (nonatomic) BOOL isQuestionNew;
 
-@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *myUserID;
 
 @property (nonatomic) float startQuestionTime;
 @property (nonatomic) float questionDuration; // In seconds
@@ -151,7 +151,7 @@ NSLog(@"%@", string); \
     
     if(packetData[@"id"])
     {
-        self.userID = packetData[@"id"];
+        self.myUserID = packetData[@"id"];
     }
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
@@ -230,7 +230,7 @@ NSLog(@"%@", string); \
             
             if(self.hasPendingBuzz)
             {
-                if([userID isEqualToString:self.userID])
+                if([userID isEqualToString:self.myUserID])
                 {
                     self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
                     self.hasPendingBuzz = NO;
@@ -271,7 +271,7 @@ NSLog(@"%@", string); \
                 self.userData[userID][kUserDataBuzzTextKey] = @"";
                 
                 
-                if([userID isEqualToString:self.userID])
+                if([userID isEqualToString:self.myUserID])
                 {
                     [self.guessDelegate connectionManager:self didJudgeGuess:correct];
                 }
@@ -354,7 +354,7 @@ NSLog(@"%@", string); \
             [self.buzzLines addObject:text];
             [self.roomDelegate connectionManager:self didUpdateBuzzLines:self.buzzLines];
             
-            if([userID isEqualToString:self.userID] && self.hasPendingBuzz)
+            if([userID isEqualToString:self.myUserID] && self.hasPendingBuzz)
             {
                 self.hasPendingBuzz = NO;
                 [self.guessDelegate connectionManager:self didClaimBuzz:NO];
