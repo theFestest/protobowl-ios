@@ -25,23 +25,33 @@
     [gradient setFrame:[self bounds]];
     [gradient setColors:[NSArray arrayWithObjects:(id)[highColor CGColor], (id)[lowColor CGColor], nil]];
     
-    //the rounded rect, with a corner radius of 6 points.
-    //this *does* maskToBounds so that any sublayers are masked
-    //this allows the gradient to appear to have rounded corners
-    CALayer *roundRect = [CALayer layer];
-    [roundRect setFrame:[self bounds]];
-    [roundRect setCornerRadius:6.0f];
-    [roundRect setMasksToBounds:YES];
-    [roundRect addSublayer:gradient];
+    
+    // Create the path (with only the top-left corner rounded)
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                   byRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomRight
+                                                         cornerRadii:CGSizeMake(6.0, 6.0)];
+    
+    // Create the shape layer and set its path
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    
+    // Set the newly created shape layer as the mask for the image view's layer
+    gradient.mask = maskLayer;
+    
     
     //add the rounded rect layer underneath all other layers of the view
-    [[self layer] insertSublayer:roundRect atIndex:0];
+    //[self.layer insertSublayer:roundRect atIndex:0];
     
     //set the shadow on the view's layer
-    [[self layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self layer] setShadowOffset:CGSizeMake(0, 6)];
-    [[self layer] setShadowOpacity:0.75];
-    [[self layer] setShadowRadius:10.0];
+    [self.layer insertSublayer:gradient atIndex:0];
+    [self.layer setShadowColor:[[UIColor blackColor] CGColor]];
+    [self.layer setShadowOffset:CGSizeMake(0, 6)];
+    [self.layer setShadowOpacity:0.75];
+    [self.layer setShadowRadius:10.0];
+    
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
 @end

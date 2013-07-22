@@ -45,6 +45,13 @@
 @end
 
 
+@protocol ProtobowlLeaderboardDelegate <NSObject>
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users; // Users is an array of ProtobowlUser objects
+
+@end
+
+
 @interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
 
 - (void) connect;
@@ -59,6 +66,7 @@
 - (BOOL) next; // Returns whether or not the next command was actually executed
 
 @property (nonatomic, weak) id<ProtobowlRoomDelegate> roomDelegate;
+@property (nonatomic, weak) id<ProtobowlLeaderboardDelegate> leaderboardDelegate;
 @property (nonatomic, weak) id<ProtobowlGuessDelegate> guessDelegate;
 
 @end

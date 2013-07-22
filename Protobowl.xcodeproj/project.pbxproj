@@ -32,6 +32,9 @@
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFB3E7178D351100AD8447 /* UIView+Donald.m */; };
 		B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */; };
+		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
+		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
+		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
 		B5F6C036179B46EA0040CB37 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */; };
 		B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24691767CE9900B9870D /* UIKit.framework */; };
 		B5FD246C1767CE9900B9870D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246B1767CE9900B9870D /* Foundation.framework */; };
@@ -111,6 +114,12 @@
 		B5AFB3E7178D351100AD8447 /* UIView+Donald.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Donald.m"; sourceTree = "<group>"; };
 		B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS7ProgressView.h; sourceTree = "<group>"; };
 		B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS7ProgressView.m; sourceTree = "<group>"; };
+		B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardCell.h; sourceTree = "<group>"; };
+		B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardCell.m; sourceTree = "<group>"; };
+		B5D6A6DF179CB331009EB18B /* ProtobowlUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlUser.h; sourceTree = "<group>"; };
+		B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlUser.m; sourceTree = "<group>"; };
+		B5D6A6E2179CBDB8009EB18B /* ProtobowlScoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlScoring.h; sourceTree = "<group>"; };
+		B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlScoring.m; sourceTree = "<group>"; };
 		B5F6C034179B46EA0040CB37 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		B5FD24661767CE9900B9870D /* Protobowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Protobowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +210,8 @@
 				B5FD24E51767CF7200B9870D /* LinedTextView.m */,
 				B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */,
 				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
+				B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */,
+				B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -212,6 +223,10 @@
 				B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */,
 				B50652FC176A886300DA299D /* ProtobowlQuestion.h */,
 				B50652FD176A886300DA299D /* ProtobowlQuestion.m */,
+				B5D6A6DF179CB331009EB18B /* ProtobowlUser.h */,
+				B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */,
+				B5D6A6E2179CBDB8009EB18B /* ProtobowlScoring.h */,
+				B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */,
 			);
 			name = "Protobowl Connection Logic";
 			sourceTree = "<group>";
@@ -264,8 +279,8 @@
 				B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */,
 				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
-				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
+				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
 				B5FD24701767CE9900B9870D /* Supporting Files */,
 			);
 			path = Protobowl;
@@ -496,6 +511,9 @@
 				B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */,
 				364D5954178F8729000B5F7A /* PulloutView.m in Sources */,
 				B5F6C036179B46EA0040CB37 /* SideMenuViewController.m in Sources */,
+				B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */,
+				B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */,
+				B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +650,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";

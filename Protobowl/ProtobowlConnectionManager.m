@@ -1,6 +1,8 @@
 
 #import "ProtobowlConnectionManager.h"
 #import "ProtobowlQuestion.h"
+#import "ProtobowlUser.h"
+#import "ProtobowlScoring.h"
 #import <QuartzCore/QuartzCore.h>
 
 /*#define LOG(s, ...) do { \
@@ -40,6 +42,8 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) NSTimer *buzzTimer;
 @property (nonatomic) float startBuzzTime;
 @property (nonatomic) float buzzDuration;
+
+@property (nonatomic, strong) ProtobowlScoring *scoring;
 
 @end
 
@@ -162,6 +166,13 @@ NSLog(@"%@", string); \
                 userWithLineNumber[@"guessing"] = @NO;
                 self.userData[userID] = userWithLineNumber;
             }
+            
+            [self outputUsersToDelegate];
+        }
+        
+        if(packetData[@"scoring"])
+        {
+            self.scoring = [[ProtobowlScoring alloc] initWithScoringDictionary:packetData[@"scoring"]];
         }
         
         if(packetData[@"qid"] && ![packetData[@"qid"] isKindOfClass:[NSNull class]])
@@ -531,6 +542,29 @@ NSLog(@"%@", string); \
         return YES;
     }
     return NO;
+}
+
+- (void) outputUsersToDelegate
+{
+    NSMutableArray *users = [NSMutableArray arrayWithCapacity:self.userData.count];
+    for (NSString *userID in self.userData)
+    {
+        NSDictionary *userData = self.userData[userID];
+        
+        ProtobowlUser *user = [[ProtobowlUser alloc] init];
+        user.userID = userID;
+        user.name = userData[@"name"];
+        user.score = [userData[@"score"] intValue];
+        user.negs = [userData[@"negs"] intValue];
+        [users addObject:user];
+    }
+    
+    [self.leaderboardDelegate connectionManager:self didUpdateUsers:users];
+}
+
+- (int) calculateScoreForUser:(NSDictionary *)userData
+{
+    
 }
 
 @end

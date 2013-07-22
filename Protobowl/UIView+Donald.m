@@ -32,4 +32,9 @@
     self.layer.cornerRadius = 10.0;
 }
 
+- (void) applyStandardSinkStyle
+{
+    [self applySinkStyleWithInnerColor:nil borderColor:[UIColor colorWithWhite:227/255.0 alpha:1.0] borderWidth:1.0 andCornerRadius:10.0];
+}
+
 @end

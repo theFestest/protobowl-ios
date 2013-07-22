@@ -13,5 +13,6 @@
 - (UIImage *) imageSnapshot;
 
 - (void) applySinkStyleWithInnerColor:(UIColor *)innerColor borderColor:(UIColor *)borderColor borderWidth:(float)width andCornerRadius:(float)radius;
+- (void) applyStandardSinkStyle;
 
 @end

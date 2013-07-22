@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
 
-@interface SideMenuViewController : UIViewController
+@interface SideMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ProtobowlLeaderboardDelegate>
 
 @property (nonatomic, weak) MainViewController *mainViewController;
+
+- (void) setFullyOnscreen:(BOOL) onscreen;
 
 @end

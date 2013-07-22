@@ -101,16 +101,19 @@
     
     UIView *sideMenuView = self.sideMenu.view;
     sideMenuView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:sideMenuView];
+    [self.view addSubview:sideMenuView];
     
     NSNumber *width = @([[UIScreen mainScreen] bounds].size.width);
     PulloutView *pulloutMenu = self.scorePulloutView;
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[sideMenuView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(sideMenuView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sideMenuView(width)][pulloutMenu]" options:0 metrics:NSDictionaryOfVariableBindings(width) views:NSDictionaryOfVariableBindings(sideMenuView, pulloutMenu)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[sideMenuView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(sideMenuView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sideMenuView(width)][pulloutMenu]" options:0 metrics:NSDictionaryOfVariableBindings(width) views:NSDictionaryOfVariableBindings(sideMenuView, pulloutMenu)]];
     
-    [self.contentView layoutIfNeeded];
+    [self.view layoutIfNeeded];
     
     self.sideMenuStartX = sideMenuView.frame.origin.x;
+    
+    
+    self.manager.leaderboardDelegate = self.sideMenu;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -340,13 +343,17 @@
                 [self animateSideMenuInWithDuration:0];
             }
         }
+        else if(pan.state == UIGestureRecognizerStateBegan)
+        {
+            [self.sideMenu setFullyOnscreen:NO];
+        }
         else
         {
             float dx = [pan translationInView:self.sideMenu.view].x;
             
             // Update pullout frame
             CGRect frame = self.scorePulloutView.frame;
-            frame.origin.x += dx;
+            frame.origin.x += dx * 1.5;
             self.scorePulloutView.frame = frame;
             
             // Update side menu frame
@@ -377,13 +384,16 @@
         frame = self.sideMenu.view.frame;
         frame.origin.x = 0;
         self.sideMenu.view.frame = frame;
-    } completion:nil];
+    } completion:^(BOOL complete){
+        [self.sideMenu setFullyOnscreen:YES];
+    }];
 }
 
 - (void) animateSideMenuOutWithDuration:(float) duration
 {
     if(duration == 0) duration = 0.2;
     
+    [self.sideMenu setFullyOnscreen:NO];
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect frame = self.scorePulloutView.frame;
         frame.origin.x = self.pulloutStartX;
