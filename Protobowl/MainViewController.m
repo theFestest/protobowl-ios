@@ -42,6 +42,8 @@
 @property (nonatomic) float sideMenuStartX;
 
 @property (strong, nonatomic) SideMenuViewController *sideMenu;
+
+@property (nonatomic) BOOL isSideMenuOnScreen;
 @end
 
 @implementation MainViewController
@@ -112,8 +114,9 @@
     
     self.sideMenuStartX = sideMenuView.frame.origin.x;
     
-    
     self.manager.leaderboardDelegate = self.sideMenu;
+    
+    self.isSideMenuOnScreen = NO;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -268,7 +271,7 @@
 #define kScrollTransitionBackgroundImageInset 30
 - (void) animateToNextQuestion
 {
-    if(self.isAnimating || !self.isNextAnimationEnabled) return;
+    if(self.isAnimating || !self.isNextAnimationEnabled || self.isSideMenuOnScreen) return;
 
     __weak MainViewController *weakSelf = self;
     self.isAnimating = YES;
@@ -375,6 +378,8 @@
 {
     if(duration == 0) duration = 0.2;
     
+    self.isSideMenuOnScreen = YES;
+    
     float endX = [UIScreen mainScreen].bounds.size.width;
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect frame = self.scorePulloutView.frame;
@@ -404,6 +409,7 @@
         self.sideMenu.view.frame = frame;
     } completion:^(BOOL complete){
         [self.contentView setNeedsLayout];
+        self.isSideMenuOnScreen = NO;
     }];
 }
 

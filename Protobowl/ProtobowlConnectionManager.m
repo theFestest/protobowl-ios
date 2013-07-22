@@ -155,6 +155,11 @@ NSLog(@"%@", string); \
     }
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
+        if(packetData[@"scoring"])
+        {
+            self.scoring = [[ProtobowlScoring alloc] initWithScoringDictionary:packetData[@"scoring"]];
+        }
+        
         if(packetData[@"users"]) // If it contains user data, update the users
         {
             NSArray *users = packetData[@"users"];
@@ -168,11 +173,6 @@ NSLog(@"%@", string); \
             }
             
             [self outputUsersToDelegate];
-        }
-        
-        if(packetData[@"scoring"])
-        {
-            self.scoring = [[ProtobowlScoring alloc] initWithScoringDictionary:packetData[@"scoring"]];
         }
         
         if(packetData[@"qid"] && ![packetData[@"qid"] isKindOfClass:[NSNull class]])
@@ -546,6 +546,9 @@ NSLog(@"%@", string); \
 
 - (void) outputUsersToDelegate
 {
+    if(self.scoring == nil) return;
+    
+    // Setup user objects, calculate their scores, and add them to the users array
     NSMutableArray *users = [NSMutableArray arrayWithCapacity:self.userData.count];
     for (NSString *userID in self.userData)
     {
@@ -554,17 +557,49 @@ NSLog(@"%@", string); \
         ProtobowlUser *user = [[ProtobowlUser alloc] init];
         user.userID = userID;
         user.name = userData[@"name"];
-        user.score = [userData[@"score"] intValue];
-        user.negs = [userData[@"negs"] intValue];
+        user.score = [self.scoring calculateScoreForUser:userData];
+        user.negs = [self.scoring calculateNegsForUser:userData];
         [users addObject:user];
+    }
+    
+    // Sort the users array by score
+    [users sortUsingComparator:^NSComparisonResult(ProtobowlUser *obj1, ProtobowlUser *obj2) {
+        if(obj1.score < obj2.score)
+        {
+            return NSOrderedDescending;
+        }
+        else if(obj1.score > obj2.score)
+        {
+            return NSOrderedAscending;
+        }
+        else
+        {
+            return NSOrderedSame;
+        }
+    }];
+    
+    // Calculate user ranks
+    int lastScore = INT_MAX;
+    int currentRank = 0;
+    for (int i = 0; i < users.count; i++)
+    {
+        ProtobowlUser *user = users[i];
+        int score = user.score;
+        if(score < lastScore)
+        {
+            user.rank = ++currentRank;
+        }
+        else
+        {
+            user.rank = currentRank;
+        }
+        
+        lastScore = score;
     }
     
     [self.leaderboardDelegate connectionManager:self didUpdateUsers:users];
 }
 
-- (int) calculateScoreForUser:(NSDictionary *)userData
-{
-    
-}
+
 
 @end

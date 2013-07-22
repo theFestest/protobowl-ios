@@ -8,21 +8,80 @@
 
 #import "ProtobowlScoring.h"
 
+@interface ProtobowlScoring ()
+@property (nonatomic, strong) NSMutableDictionary *positiveValues;
+@property (nonatomic, strong) NSMutableDictionary *negativeValues;
+@end
+
 @implementation ProtobowlScoring
 
-- (void) initWithScoringDictionary:(NSDictionary *)scoring
+- (ProtobowlScoring *) initWithScoringDictionary:(NSDictionary *)scoring
 {
-    
+    self = [super init];
+    if(self)
+    {
+        self.positiveValues = [NSMutableDictionary dictionaryWithCapacity:scoring.count];
+        self.negativeValues = [NSMutableDictionary dictionaryWithCapacity:scoring.count];
+        
+        for (NSString *type in scoring)
+        {
+            NSArray *values = scoring[type];
+            self.positiveValues[type] = values[0];
+            self.negativeValues[type] = values[1];
+        }
+    }
+    return self;
 }
 
-- (int) positiveScoreOfType:(NSString *)type
+- (int) positiveScoreValueOfType:(NSString *)type
 {
-    
+    return [self.positiveValues[type] intValue];
 }
 
-- (int) negativeScoreOfType:(NSString *)type
+- (int) negativeScoreValueOfType:(NSString *)type // This returns a negative number!
 {
+    return [self.negativeValues[type] intValue];
+}
+
+
+
+- (int) calculateScoreForUser:(NSDictionary *)userData
+{
+    NSDictionary *corrects = userData[@"corrects"];
+    NSDictionary *wrongs = userData[@"wrongs"];
     
+    int score = 0;
+    for (NSString *type in corrects)
+    {
+        int answerCount = [corrects[type] intValue];
+        score += answerCount * [self positiveScoreValueOfType:type];
+    }
+    
+    for (NSString *type in wrongs)
+    {
+        int answerCount = [wrongs[type] intValue];
+        score += answerCount * [self negativeScoreValueOfType:type];
+    }
+    
+    return score;
+}
+
+- (int) calculateNegsForUser:(NSDictionary *)userData
+{
+    NSDictionary *wrongs = userData[@"wrongs"];
+    
+    int negs = 0;
+    for (NSString *type in wrongs)
+    {
+        int value = [self negativeScoreValueOfType:type];
+        if(value != 0)
+        {
+            int answerCount = [wrongs[type] intValue];
+            negs += answerCount;
+        }
+    }
+    
+    return negs;
 }
 
 @end

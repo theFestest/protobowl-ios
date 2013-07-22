@@ -273,6 +273,7 @@
                     </view>
                     <connections>
                         <outlet property="leaderboard" destination="deh-3u-4Gd" id="Lc4-XZ-PV5"/>
+                        <outlet property="scrollView" destination="cB0-Ov-sad" id="Ynb-Hd-skJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P4-Ea-iqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -356,7 +357,6 @@
         <class className="GuessViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
             <relationships>
-                <relationship kind="action" name="guessChanged:"/>
                 <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="questionHeightConstraint" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="questionTextView" candidateClass="UILabel"/>
@@ -405,6 +405,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SideMenuViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="leaderboard" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="iOS7ProgressView" superclassName="UIView">

@@ -11,7 +11,10 @@
 @interface ProtobowlScoring : NSObject
 
 - (ProtobowlScoring *) initWithScoringDictionary:(NSDictionary *)scoring;
-- (int) positiveScoreOfType:(NSString *)type;
-- (int) negativeScoreOfType:(NSString *)type;
+- (int) positiveScoreValueOfType:(NSString *)type;
+- (int) negativeScoreValueOfType:(NSString *)type;
+
+- (int) calculateScoreForUser:(NSDictionary *)userData;
+- (int) calculateNegsForUser:(NSDictionary *)userData;
 
 @end
