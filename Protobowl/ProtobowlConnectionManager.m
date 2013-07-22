@@ -612,7 +612,21 @@ NSLog(@"%@", string); \
         lastScore = score;
     }
     
+    ProtobowlUser *myself = [users objectAtIndex:[users indexOfObjectPassingTest:^BOOL(ProtobowlUser *obj, NSUInteger idx, BOOL *stop) {
+        if(obj.userID == self.myUserID)
+        {
+            *stop = YES;
+            return YES;
+        }
+        return NO;
+    }]];
+    
+    self.myName = myself.name;
+    self.myScore = myself.score;
+    self.myRank = myself.rank;
+    
     [self.leaderboardDelegate connectionManager:self didUpdateUsers:users];
+    [self.roomDelegate connectionManager:self didUpdateUsers:users];
 }
 
 

@@ -29,6 +29,8 @@
 // Called when buzz input should be disabled or enabled
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didSetBuzzEnabled:(BOOL)isBuzzEnabled;
 
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users; // Users is an array of ProtobowlUser objects
+
 @end
 
 

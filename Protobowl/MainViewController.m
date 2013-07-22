@@ -238,6 +238,12 @@
     self.answerLabel.text = answerWithRemovedComments;
 }
 
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users
+{
+    // Don't care about other people's scores, but use this opportunity to update our own score
+    
+}
+
 
 - (IBAction)buzzPressed:(id)sender
 {
