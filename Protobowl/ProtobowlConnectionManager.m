@@ -124,7 +124,7 @@ NSLog(@"%@", string); \
     [self.socket sendEvent:@"join" withData:@{@"cookie": cookie,
      @"auth" : auth,
      @"question_type" : @"qb",
-     @"room_name" : @"minibitapp",
+     @"room_name" : @"lobby",
      @"muwave" : @NO,
      @"custom_id" : @"Donald iOS",
      @"version" : @8}];
@@ -208,7 +208,7 @@ NSLog(@"%@", string); \
                 // Setup timer for question
                 self.startQuestionTime = CACurrentMediaTime();
                 self.questionDuration = self.currentQuestion.questionDuration / 1000.0f;
-                self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer) userInfo:nil repeats:YES];
+                self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer:) userInfo:nil repeats:YES];
                 [[NSRunLoop mainRunLoop] addTimer:self.questionTimer forMode:NSRunLoopCommonModes];
                 
                 self.currentQuestion.questionDisplayText = [@"" mutableCopy];
@@ -281,7 +281,7 @@ NSLog(@"%@", string); \
                 
                 if(correct)
                 {
-                     [self expireQuestionTime];
+                    [self expireQuestionTime:nil];
                 }
                 
             }
@@ -414,7 +414,7 @@ NSLog(@"%@", string); \
     
     self.isQuestionPaused = NO;
     [self.questionTimer invalidate];
-    self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer) userInfo:nil repeats:YES];
+    self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.questionTimer forMode:NSRunLoopCommonModes];
     
     [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:0 inModes:@[NSRunLoopCommonModes]];
@@ -423,7 +423,7 @@ NSLog(@"%@", string); \
     
 }
 
-- (void) updateQuestionTimer
+- (void) updateQuestionTimer:(NSTimer *)timer
 {
     float elapsedQuestionTime = CACurrentMediaTime() - self.startQuestionTime;
     
@@ -433,7 +433,7 @@ NSLog(@"%@", string); \
     if(progress >= 1.0)
     {
         // Done with the question
-        [self expireQuestionTime];
+        [self expireQuestionTime:timer];
     }
     
     [self.roomDelegate connectionManager:self didUpdateTime:remaining progress:progress];
@@ -456,7 +456,7 @@ NSLog(@"%@", string); \
 
 }
 
-- (void) expireQuestionTime
+- (void) expireQuestionTime:(NSTimer *)timer
 {
     NSLog(@"Expiring question");
     
@@ -467,6 +467,10 @@ NSLog(@"%@", string); \
     
     [self.questionTimer invalidate];
     self.questionTimer = nil;
+    
+    [timer invalidate];
+    timer = nil;
+    
     self.currentQuestion.isExpired = YES;
     [self.roomDelegate connectionManager:self didSetBuzzEnabled:NO];
     [self.roomDelegate connectionManager:self didEndQuestion:self.currentQuestion];
@@ -574,7 +578,18 @@ NSLog(@"%@", string); \
         }
         else
         {
-            return NSOrderedSame;
+            if(obj2.negs > obj1.negs)
+            {
+                return NSOrderedAscending;
+            }
+            else if(obj1.negs > obj2.negs)
+            {
+                return NSOrderedDescending;
+            }
+            else
+            {
+                return NSOrderedSame;
+            }
         }
     }];
     

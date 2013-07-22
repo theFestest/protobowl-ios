@@ -26,8 +26,8 @@
     [super viewDidLoad];
 	    
     // Setup pan gesture to navigate back
-    /*UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self.mainViewController action:@selector(handlePan:)];
-    [self.view addGestureRecognizer:pan];*/
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self.mainViewController action:@selector(handlePan:)];
+    [self.view addGestureRecognizer:pan];
     
     [self.view.layer setShadowColor:[[UIColor blackColor] CGColor]];
     [self.view.layer setShadowOffset:CGSizeMake(0, 6)];
@@ -57,6 +57,7 @@
         
         [self.leaderboard reloadData];
         [self resizeTableView];
+        self.view.layer.shouldRasterize = NO;
     }
     else
     {
@@ -64,6 +65,7 @@
         [self.view.layer setShadowOffset:CGSizeMake(0, 6)];
         [self.view.layer setShadowOpacity:0.75];
         [self.view.layer setShadowRadius:10.0];
+        self.view.layer.shouldRasterize = YES;
     }
 }
 
@@ -82,10 +84,7 @@
     {
         return self.users.count;
     }
-    else
-    {
-        return 1;
-    }
+    return 0;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

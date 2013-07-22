@@ -55,7 +55,7 @@
 @interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
 
 - (void) connect;
-- (void) expireQuestionTime;
+- (void) expireQuestionTime:(NSTimer *)timer;
 - (BOOL) buzz; // Returns if the user successfully buzzed
 - (void) updateGuess:(NSString *)guess;
 - (void) submitGuess:(NSString *)guess;;
