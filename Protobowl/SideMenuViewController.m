@@ -98,6 +98,14 @@
     cell.nameLabel.text = user.name;
     cell.negsLabel.text = [NSString stringWithFormat:@"%d Negs", user.negs];
     
+    cell.scoreLabel.backgroundColor = [UIColor greenColor];
+    
+    // Score ellipse colors:
+    // grey: 153,153,153
+    // yellow: 248,148,30
+    // green: 70,136,71
+    // blue: 59, 134, 173
+    
     return cell;
 }
 

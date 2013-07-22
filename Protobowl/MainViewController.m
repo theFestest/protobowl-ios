@@ -275,7 +275,14 @@
     };
     self.manager.guessDelegate = guessVC;
     
+    NSLog(@"Presenting");
     [self presentViewController:guessVC animated:YES completion:nil];
+}
+
+- (void) dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+    NSLog(@"Dismissing");
+    [super dismissViewControllerAnimated:flag completion:completion];
 }
 
 #define kScrollTransitionInteractionThreshold 50

@@ -99,7 +99,7 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress
 {
-    NSLog(@"Time left:%g, progress:%g", remainingTime, progress);
+    //NSLog(@"Time left:%g, progress:%g", remainingTime, progress);
     [self.timeBar setProgress:progress animated:NO];
 }
 
@@ -113,6 +113,11 @@
 {
     self.submitGuessCallback(self.guessTextField.text);
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) dealloc
+{
+    
 }
 
 @end
