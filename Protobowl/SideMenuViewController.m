@@ -91,15 +91,12 @@
 {
     LeaderboardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardCell" forIndexPath:indexPath];
     
-    if(self.users)
-    {
-        ProtobowlUser *user = self.users[indexPath.row];
-        
-        cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
-        cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
-        cell.nameLabel.text = user.name;
-        cell.negsLabel.text = [NSString stringWithFormat:@"%d Negs", user.negs];
-    }
+    ProtobowlUser *user = self.users[indexPath.row];
+    
+    cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
+    cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
+    cell.nameLabel.text = user.name;
+    cell.negsLabel.text = [NSString stringWithFormat:@"%d Negs", user.negs];
     
     return cell;
 }

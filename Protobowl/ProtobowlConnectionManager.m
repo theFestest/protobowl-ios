@@ -510,7 +510,7 @@ NSLog(@"%@", string); \
     if(self.buzzSessionId)
     {
         NSDictionary *data = @{@"text": guess,
-                               @"user": self.userID,
+                               @"user": self.myUserID,
                                @"session" : self.buzzSessionId,
                                @"done" : @NO};
         [self.socket sendEvent:@"guess" withData:data];
@@ -522,7 +522,7 @@ NSLog(@"%@", string); \
     if(self.buzzSessionId)
     {
         NSDictionary *data = @{@"text": guess,
-                               @"user": self.userID,
+                               @"user": self.myUserID,
                                @"session" : self.buzzSessionId,
                                @"done" : @YES};
         [self.socket sendEvent:@"guess" withData:data];
@@ -612,18 +612,28 @@ NSLog(@"%@", string); \
         lastScore = score;
     }
     
-    ProtobowlUser *myself = [users objectAtIndex:[users indexOfObjectPassingTest:^BOOL(ProtobowlUser *obj, NSUInteger idx, BOOL *stop) {
-        if(obj.userID == self.myUserID)
+    int indexOfMyself = [users indexOfObjectPassingTest:^BOOL(ProtobowlUser *obj, NSUInteger idx, BOOL *stop) {
+        if([obj.userID isEqualToString:self.myUserID])
         {
             *stop = YES;
             return YES;
         }
         return NO;
-    }]];
+    }];
+    if(indexOfMyself == NSNotFound)
+    {
+        self.myName = @"";
+        self.myScore = 0;
+        self.myRank = 0;
+    }
+    else
+    {
+        ProtobowlUser *myself = users[indexOfMyself];
+        self.myName = myself.name;
+        self.myScore = myself.score;
+        self.myRank = myself.rank;
+    }
     
-    self.myName = myself.name;
-    self.myScore = myself.score;
-    self.myRank = myself.rank;
     
     [self.leaderboardDelegate connectionManager:self didUpdateUsers:users];
     [self.roomDelegate connectionManager:self didUpdateUsers:users];

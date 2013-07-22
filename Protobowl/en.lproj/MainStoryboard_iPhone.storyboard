@@ -106,18 +106,26 @@
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLm-8A-ETd" userLabel="Score Slide View" customClass="PulloutView">
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="#2 Donald:  35" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-Cq-P2N">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Donald: #2,  35" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-Cq-P2N" userLabel="Label - Donald: #2,">
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="35" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nig-1P-2z5" userLabel="score label">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="i1Q-Cq-P2N" firstAttribute="centerY" secondItem="OLm-8A-ETd" secondAttribute="centerY" type="default" id="7oS-Kl-X03"/>
-                                    <constraint firstItem="i1Q-Cq-P2N" firstAttribute="leading" secondItem="OLm-8A-ETd" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="A8X-hp-lUg"/>
+                                    <constraint firstItem="i1Q-Cq-P2N" firstAttribute="leading" secondItem="OLm-8A-ETd" secondAttribute="leading" constant="9" type="user" id="A8X-hp-lUg"/>
+                                    <constraint firstItem="Nig-1P-2z5" firstAttribute="leading" secondItem="i1Q-Cq-P2N" secondAttribute="trailing" constant="-4" type="user" id="B77-gt-W8u"/>
                                     <constraint firstAttribute="width" constant="220" type="user" id="N9c-xZ-tzX"/>
-                                    <constraint firstAttribute="trailing" secondItem="i1Q-Cq-P2N" secondAttribute="trailing" constant="8" type="user" id="dEc-Ke-Mxq"/>
+                                    <constraint firstAttribute="trailing" secondItem="i1Q-Cq-P2N" secondAttribute="trailing" constant="45" type="user" id="dEc-Ke-Mxq"/>
+                                    <constraint firstItem="Nig-1P-2z5" firstAttribute="trailing" secondItem="OLm-8A-ETd" secondAttribute="trailing" constant="-8" type="user" id="fEk-V5-bAb"/>
+                                    <constraint firstItem="i1Q-Cq-P2N" firstAttribute="baseline" secondItem="Nig-1P-2z5" secondAttribute="baseline" type="user" id="iKZ-5D-3B9"/>
                                     <constraint firstAttribute="height" constant="35" type="user" id="lnn-QG-Ibm"/>
+                                    <constraint firstItem="i1Q-Cq-P2N" firstAttribute="top" secondItem="OLm-8A-ETd" secondAttribute="top" constant="4" type="user" id="znb-9T-J2L"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -143,6 +151,8 @@
                         <outlet property="backgroundVerticalSpace" destination="wMe-qN-Ijk" id="kB2-k9-GAm"/>
                         <outlet property="buzzButton" destination="Mzp-HB-04s" id="OR1-NA-10Q"/>
                         <outlet property="contentView" destination="aJi-li-2ut" id="2Ne-n4-WtB"/>
+                        <outlet property="myInfoLabel" destination="i1Q-Cq-P2N" id="9dv-xx-B52"/>
+                        <outlet property="myScoreLabel" destination="Nig-1P-2z5" id="eXK-vE-US2"/>
                         <outlet property="questionContainerHeightConstraint" destination="8WK-OY-h06" id="KlV-py-eOv"/>
                         <outlet property="questionContainerView" destination="3tO-t3-g9P" id="ovg-y5-SCu"/>
                         <outlet property="questionTextHeightConstraint" destination="9Cn-1y-PY8" id="ANu-hJ-dzo"/>
@@ -389,6 +399,8 @@
                 <relationship kind="outlet" name="backgroundVerticalSpace" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="buzzButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="myInfoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myScoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="questionContainerHeightConstraint" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="questionContainerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="questionTextHeightConstraint" candidateClass="NSLayoutConstraint"/>

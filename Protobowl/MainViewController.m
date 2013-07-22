@@ -44,6 +44,9 @@
 @property (strong, nonatomic) SideMenuViewController *sideMenu;
 
 @property (nonatomic) BOOL isSideMenuOnScreen;
+
+@property (weak, nonatomic) IBOutlet UILabel *myInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myScoreLabel;
 @end
 
 @implementation MainViewController
@@ -241,7 +244,10 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users
 {
     // Don't care about other people's scores, but use this opportunity to update our own score
+    self.myInfoLabel.text = [NSString stringWithFormat:@"%@: #%d", self.manager.myName, self.manager.myRank];
+    self.myScoreLabel.text = [NSString stringWithFormat:@"%d", self.manager.myScore];
     
+    [self.scorePulloutView layoutIfNeeded];
 }
 
 
