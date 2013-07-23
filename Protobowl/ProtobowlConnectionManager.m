@@ -124,7 +124,7 @@ NSLog(@"%@", string); \
     [self.socket sendEvent:@"join" withData:@{@"cookie": cookie,
      @"auth" : auth,
      @"question_type" : @"qb",
-     @"room_name" : @"lobby",
+     @"room_name" : @"minibitapp",
      @"muwave" : @NO,
      @"custom_id" : @"Donald iOS",
      @"version" : @8}];

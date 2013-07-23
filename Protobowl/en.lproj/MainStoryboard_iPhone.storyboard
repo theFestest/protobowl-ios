@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="P0k-61-TXZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="P0k-61-TXZ">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -14,12 +14,17 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buzz_enabled.png" translatesAutoresizingMaskIntoConstraints="NO" id="vLb-1g-arJ"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buzz_enabled.png" translatesAutoresizingMaskIntoConstraints="NO" id="vLb-1g-arJ">
+                                <rect key="frame" x="30" y="30" width="260" height="400"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJi-li-2ut" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tO-t3-g9P" userLabel="Question Container">
+                                        <rect key="frame" x="8" y="57" width="304" height="200"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="304" translatesAutoresizingMaskIntoConstraints="NO" id="WiC-iD-ZII">
+                                                <rect key="frame" x="4" y="4" width="304" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" type="user" id="9Cn-1y-PY8"/>
                                                 </constraints>
@@ -37,6 +42,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2.4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzc-jo-jdl" userLabel="Timer Label">
+                                        <rect key="frame" x="268" y="21" width="36" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" type="user" id="bta-lS-POp"/>
                                             <constraint firstAttribute="height" constant="18" type="user" id="dGM-wb-6l1"/>
@@ -46,6 +52,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvN-TT-yuX" userLabel="Buzz Text" customClass="LinedTextView">
+                                        <rect key="frame" x="0.0" y="265" width="320" height="123"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" type="user" id="mN1-gw-gZX"/>
                                         </constraints>
@@ -53,11 +60,13 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSg-WS-VJS" userLabel="Timer Progress" customClass="iOS7ProgressView">
+                                        <rect key="frame" x="20" y="47" width="284" height="2"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" type="user" id="Yfv-fJ-m9r"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-HB-04s" userLabel="Buzz Button">
+                                        <rect key="frame" x="20" y="396" width="278" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" type="user" id="DUs-U3-JAP"/>
                                             <constraint firstAttribute="width" constant="278" type="user" id="ssD-mk-9UB"/>
@@ -75,6 +84,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Answer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUI-Yf-biU">
+                                        <rect key="frame" x="20" y="20" width="240" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="I07-8u-33l"/>
                                             <constraint firstAttribute="height" constant="19" type="user" id="VKL-AS-Kka"/>
@@ -105,13 +115,16 @@
                                 </constraints>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLm-8A-ETd" userLabel="Score Slide View" customClass="PulloutView">
+                                <rect key="frame" x="-180" y="4" width="220" height="35"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Donald: #2,  35" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-Cq-P2N" userLabel="Label - Donald: #2,">
+                                        <rect key="frame" x="9" y="4" width="166" height="23"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="35" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nig-1P-2z5" userLabel="score label">
+                                        <rect key="frame" x="171" y="4" width="41" height="23"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -176,8 +189,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cB0-Ov-sad">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Leaderboard - minibitapp (3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4n-fK-MGk">
+                                        <rect key="frame" x="20" y="20" width="280" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="KxL-Wa-4bG"/>
                                         </constraints>
@@ -186,6 +201,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="deh-3u-4Gd">
+                                        <rect key="frame" x="20" y="53" width="280" height="240"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="240" type="user" id="TLp-th-Tai"/>
@@ -195,37 +211,32 @@
                                                 <rect key="frame" x="0.0" y="22" width="280" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="43"/>
+                                                    <rect key="frame" x="-1" y="0.0" width="282" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="#1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xY6-H8-SMN">
+                                                            <rect key="frame" x="9" y="11" width="37" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="JIt-bx-2cx"/>
                                                                 <constraint firstAttribute="width" constant="37" type="user" id="Y5W-F7-FmR"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="35" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIK-wB-TMt">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIK-wB-TMt" customClass="CapsuleLabel">
+                                                            <rect key="frame" x="54" y="11" width="61" height="22"/>
+                                                            <color key="backgroundColor" red="0.27450980390000002" green="0.53333333329999999" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" type="user" id="Fqr-xL-BVX"/>
+                                                                <constraint firstAttribute="width" constant="61" id="8Qr-bG-4I5"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Donald" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jDG-1X-bds">
+                                                            <rect key="frame" x="123" y="11" width="139" height="22"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" priority="598" constant="96" type="user" id="b76-7z-LIM"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="3 Negs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="EzF-0G-oJk">
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="61" type="user" id="FaP-Zk-Wxl"/>
+                                                                <constraint firstAttribute="width" constant="139" id="D4m-0t-ncd"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -235,23 +246,17 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="xY6-H8-SMN" firstAttribute="top" secondItem="8Xf-Ku-JRE" secondAttribute="top" constant="11" id="1FU-UX-h9Q"/>
-                                                    <constraint firstItem="eIK-wB-TMt" firstAttribute="leading" secondItem="xY6-H8-SMN" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="A9G-XD-N6k"/>
-                                                    <constraint firstItem="jDG-1X-bds" firstAttribute="baseline" secondItem="eIK-wB-TMt" secondAttribute="baseline" type="default" id="BWk-lo-wAq"/>
+                                                    <constraint firstItem="xY6-H8-SMN" firstAttribute="baseline" secondItem="jDG-1X-bds" secondAttribute="baseline" type="default" id="18c-TD-Vu7"/>
+                                                    <constraint firstItem="xY6-H8-SMN" firstAttribute="centerY" secondItem="8Xf-Ku-JRE" secondAttribute="centerY" constant="-0.5" type="default" id="9TZ-TK-OfA"/>
+                                                    <constraint firstItem="eIK-wB-TMt" firstAttribute="leading" secondItem="xY6-H8-SMN" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="CBD-eg-woy"/>
                                                     <constraint firstItem="jDG-1X-bds" firstAttribute="top" secondItem="eIK-wB-TMt" secondAttribute="top" type="default" id="Cre-IX-KVz"/>
+                                                    <constraint firstItem="eIK-wB-TMt" firstAttribute="bottom" secondItem="jDG-1X-bds" secondAttribute="bottom" type="default" id="DCX-Xf-O6z"/>
                                                     <constraint firstItem="eIK-wB-TMt" firstAttribute="top" secondItem="xY6-H8-SMN" secondAttribute="top" type="default" id="Hpg-we-BNi"/>
-                                                    <constraint firstItem="EzF-0G-oJk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jDG-1X-bds" secondAttribute="trailing" constant="8" type="user" id="Nan-xi-SvB"/>
-                                                    <constraint firstItem="xY6-H8-SMN" firstAttribute="leading" secondItem="8Xf-Ku-JRE" secondAttribute="leading" constant="8" type="user" id="cnW-VJ-eg7"/>
-                                                    <constraint firstItem="jDG-1X-bds" firstAttribute="leading" secondItem="eIK-wB-TMt" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="eP9-ZQ-uK9"/>
-                                                    <constraint firstItem="EzF-0G-oJk" firstAttribute="top" secondItem="jDG-1X-bds" secondAttribute="top" type="default" id="imB-24-93a"/>
-                                                    <constraint firstItem="eIK-wB-TMt" firstAttribute="baseline" secondItem="xY6-H8-SMN" secondAttribute="baseline" type="default" id="j7O-sg-Odg"/>
-                                                    <constraint firstItem="EzF-0G-oJk" firstAttribute="baseline" secondItem="jDG-1X-bds" secondAttribute="baseline" type="default" id="sRw-43-ZH9"/>
-                                                    <constraint firstItem="EzF-0G-oJk" firstAttribute="leading" secondItem="jDG-1X-bds" secondAttribute="trailing" constant="12" type="user" id="zHi-yy-smj"/>
-                                                    <constraint firstAttribute="trailing" secondItem="EzF-0G-oJk" secondAttribute="trailing" constant="8" type="user" id="zK2-u4-hLd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jDG-1X-bds" secondAttribute="trailing" constant="19" type="default" id="Zxj-sH-WPL"/>
+                                                    <constraint firstItem="jDG-1X-bds" firstAttribute="leading" secondItem="eIK-wB-TMt" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="sML-hg-CrU"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="nameLabel" destination="jDG-1X-bds" id="4po-cm-CNG"/>
-                                                    <outlet property="negsLabel" destination="EzF-0G-oJk" id="eO3-2V-tEW"/>
                                                     <outlet property="rankLabel" destination="xY6-H8-SMN" id="dQy-ld-Gib"/>
                                                     <outlet property="scoreLabel" destination="eIK-wB-TMt" id="Ct4-DH-plz"/>
                                                 </connections>
@@ -302,6 +307,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QxX-8M-f5R">
+                                <rect key="frame" x="20" y="8" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" type="user" id="n3t-69-WYG"/>
                                 </constraints>
@@ -312,8 +318,10 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSZ-ME-s5h" userLabel="Question Container">
+                                <rect key="frame" x="0.0" y="46" width="320" height="198"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="304" translatesAutoresizingMaskIntoConstraints="NO" id="OsO-E3-iPs">
+                                        <rect key="frame" x="8" y="0.0" width="304" height="198"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="198" type="user" id="AYw-iQ-Bjh"/>
                                         </constraints>
@@ -330,6 +338,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Zy-bwg" userLabel="Timer Progress" customClass="iOS7ProgressView">
+                                <rect key="frame" x="26" y="41" width="268" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" type="user" id="Dma-xZ-P8e"/>
                                 </constraints>
@@ -366,69 +375,6 @@
         <image name="buzz_enabled.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
     </resources>
-    <classes>
-        <class className="GuessViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GuessViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="guessChanged:"/>
-                <relationship kind="outlet" name="guessTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="questionHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
-            </relationships>
-        </class>
-        <class className="LeaderboardCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="negsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rankLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LinedTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LinedTextView.h"/>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buzzPressed:"/>
-                <relationship kind="outlet" name="answerLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="backgroundHorizontalSpace" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="backgroundVerticalSpace" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="buzzButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="myInfoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="myScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionContainerHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="questionContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="questionTextHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="questionTextView" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scorePulloutView" candidateClass="PulloutView"/>
-                <relationship kind="outlet" name="textViewLog" candidateClass="LinedTextView"/>
-                <relationship kind="outlet" name="timeBar" candidateClass="iOS7ProgressView"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PulloutView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PulloutView.h"/>
-        </class>
-        <class className="SideMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SideMenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="leaderboard" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="leaderboardHeight" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="iOS7ProgressView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/iOS7ProgressView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

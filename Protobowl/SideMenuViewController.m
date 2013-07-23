@@ -10,6 +10,7 @@
 #import "UIView+Donald.h"
 #import "LeaderboardCell.h"
 #import "ProtobowlUser.h"
+#import "UIColor+MoreConstructors.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface SideMenuViewController ()
@@ -42,10 +43,6 @@
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
 }
 
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
 - (void) setFullyOnscreen:(BOOL) onscreen
 {
@@ -96,15 +93,10 @@
     cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
     cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
     cell.nameLabel.text = user.name;
-    cell.negsLabel.text = [NSString stringWithFormat:@"%d Negs", user.negs];
     
-    cell.scoreLabel.backgroundColor = [UIColor greenColor];
-    
-    // Score ellipse colors:
-    // grey: 153,153,153
-    // yellow: 248,148,30
-    // green: 70,136,71
-    // blue: 59, 134, 173
+    cell.scoreLabel.backgroundColor = [UIColor colorWithByteRed:70 green:136 blue:71 alpha:255];
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     return cell;
 }

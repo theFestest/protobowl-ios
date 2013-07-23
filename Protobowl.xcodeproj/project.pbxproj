@@ -31,6 +31,9 @@
 		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFB3E7178D351100AD8447 /* UIView+Donald.m */; };
+		B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */; };
+		B5C004C2179F0C1500284199 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B592957E176BDCC7008E0EB3 /* Reveal.framework */; };
+		B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C4179F0E4700284199 /* CapsuleLabel.m */; };
 		B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */; };
 		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
@@ -112,6 +115,10 @@
 		B592957E176BDCC7008E0EB3 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "../../../../../../Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework"; sourceTree = "<group>"; };
 		B5AFB3E6178D351100AD8447 /* UIView+Donald.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Donald.h"; sourceTree = "<group>"; };
 		B5AFB3E7178D351100AD8447 /* UIView+Donald.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Donald.m"; sourceTree = "<group>"; };
+		B5C004BF179F088F00284199 /* UIColor+MoreConstructors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MoreConstructors.h"; sourceTree = "<group>"; };
+		B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MoreConstructors.m"; sourceTree = "<group>"; };
+		B5C004C3179F0E4700284199 /* CapsuleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapsuleLabel.h; sourceTree = "<group>"; };
+		B5C004C4179F0E4700284199 /* CapsuleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapsuleLabel.m; sourceTree = "<group>"; };
 		B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS7ProgressView.h; sourceTree = "<group>"; };
 		B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS7ProgressView.m; sourceTree = "<group>"; };
 		B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LeaderboardCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -175,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C004C2179F0C1500284199 /* Reveal.framework in Frameworks */,
 				B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */,
 				B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */,
 				B5FD24EF1767CFA000B9870D /* libicucore.dylib in Frameworks */,
@@ -212,6 +220,8 @@
 				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
 				B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */,
 				B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */,
+				B5C004C3179F0E4700284199 /* CapsuleLabel.h */,
+				B5C004C4179F0E4700284199 /* CapsuleLabel.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -313,6 +323,8 @@
 				B5FD247B1767CE9900B9870D /* Default.png */,
 				B5FD247D1767CE9900B9870D /* Default@2x.png */,
 				B5FD247F1767CE9900B9870D /* Default-568h@2x.png */,
+				B5C004BF179F088F00284199 /* UIColor+MoreConstructors.h */,
+				B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -498,6 +510,7 @@
 				B5FD24D01767CF2800B9870D /* SocketIOTransportXHR.m in Sources */,
 				B5FD24DA1767CF3D00B9870D /* base64.c in Sources */,
 				B5FD24DC1767CF3D00B9870D /* NSData+SRB64Additions.m in Sources */,
+				B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */,
 				B5FD24DE1767CF3D00B9870D /* SRWebSocket.m in Sources */,
 				B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */,
 				B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */,
@@ -509,6 +522,7 @@
 				B50BFB9D176D548C0052700D /* UIFont+FontAwesome.m in Sources */,
 				B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */,
 				B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */,
+				B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */,
 				364D5954178F8729000B5F7A /* PulloutView.m in Sources */,
 				B5F6C036179B46EA0040CB37 /* SideMenuViewController.m in Sources */,
 				B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */,
@@ -657,7 +671,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -676,7 +690,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
