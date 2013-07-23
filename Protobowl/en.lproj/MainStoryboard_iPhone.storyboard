@@ -193,9 +193,6 @@
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Leaderboard - minibitapp (3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4n-fK-MGk">
                                         <rect key="frame" x="20" y="20" width="280" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="KxL-Wa-4bG"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -280,7 +277,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cB0-Ov-sad" firstAttribute="bottom" secondItem="Un4-r3-Cue" secondAttribute="bottom" type="default" id="7Ls-pP-dRO"/>
                             <constraint firstItem="cB0-Ov-sad" firstAttribute="top" secondItem="Un4-r3-Cue" secondAttribute="top" type="default" id="QXR-Up-k0o"/>

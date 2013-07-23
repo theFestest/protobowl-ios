@@ -557,12 +557,27 @@ NSLog(@"%@", string); \
     for (NSString *userID in self.userData)
     {
         NSDictionary *userData = self.userData[userID];
+        BOOL isIdle = [userData[@"idle"] boolValue];
+        BOOL isOnline = [userData[@"online_state"] boolValue];
         
         ProtobowlUser *user = [[ProtobowlUser alloc] init];
         user.userID = userID;
         user.name = userData[@"name"];
         user.score = [self.scoring calculateScoreForUser:userData];
         user.negs = [self.scoring calculateNegsForUser:userData];
+        if([userID isEqualToString:self.myUserID])
+        {
+            user.status = ProtobowlUserStatusSelf;
+        }
+        else if(isIdle)
+        {
+            user.status = ProtobowlUserStatusIdle;
+        }
+        else
+        {
+            user.status = isOnline ? ProtobowlUserStatusOnline : ProtobowlUserStatusOffline;
+        }
+        
         [users addObject:user];
     }
     
