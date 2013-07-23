@@ -7,17 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-enum StatusColor {
-    StatusColorOnline = 0,
-    StatusColorOffline = 1,
-    StatusColorSelf = 2,
-    StatusColorIdle = 3
-};
-typedef enum StatusColor StatusColor;
+#import "ProtobowlUser.h"
 
 @interface CapsuleLabel : UILabel
 
-- (void) setStatusColor:(StatusColor)color;
+- (void) setUserStatus:(ProtobowlUserStatus)color;
 
 @end

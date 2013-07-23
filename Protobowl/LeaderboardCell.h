@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CapsuleLabel.h"
 
 @interface LeaderboardCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet CapsuleLabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end

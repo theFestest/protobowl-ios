@@ -92,9 +92,9 @@
     
     cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
     cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
+    [cell.scoreLabel setUserStatus:user.status];
     cell.nameLabel.text = user.name;
     
-    cell.scoreLabel.backgroundColor = [UIColor colorWithByteRed:70 green:136 blue:71 alpha:255];
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
