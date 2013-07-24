@@ -18,9 +18,23 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderboardHeight;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *users;
+
+@property (nonatomic) int selectedRow;
 @end
 
 @implementation SideMenuViewController
+
+- (void) reloadLeaderboard
+{
+    [self.leaderboard reloadData];
+    [self resizeTableView];
+}
+
+- (void) reloadLeaderboardAtIndices:(NSArray *)indices
+{
+    [self.leaderboard reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self resizeTableView];
+}
 
 - (void) viewDidLoad
 {
@@ -41,6 +55,8 @@
     [self.leaderboard applyStandardSinkStyle];
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
+    
+    self.selectedRow = -1;
 }
 
 
@@ -52,8 +68,7 @@
         [self.view.layer setShadowRadius:0.0];
         [self.view.layer setShadowColor:nil];
         
-        [self.leaderboard reloadData];
-        [self resizeTableView];
+        [self reloadLeaderboard];
         self.view.layer.shouldRasterize = NO;
     }
     else
@@ -69,7 +84,6 @@
 - (void) resizeTableView
 {
     self.leaderboardHeight.constant = self.leaderboard.contentSize.height;
-    
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
 }
@@ -101,6 +115,27 @@
     return cell;
 }
 
+- (float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == self.selectedRow)
+    {
+        return 200;
+    }
+    return 44;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Selected");
+    self.selectedRow = indexPath.row;
+    [self reloadLeaderboardAtIndices:[NSArray arrayWithObject:indexPath]];
+}
+
+
+- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Deselected");
+}
 
 
 #pragma mark - Protobowl Leaderboard Delegate Methods
@@ -109,9 +144,8 @@
     NSLog(@"%@", users);
     
     self.users = users;
-    [self.leaderboard reloadData];
     
-    [self resizeTableView];
+    [self reloadLeaderboard];
 }
 
 @end
