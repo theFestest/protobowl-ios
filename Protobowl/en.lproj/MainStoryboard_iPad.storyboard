@@ -116,7 +116,7 @@
                             <constraint firstItem="VLC-tq-KB5" firstAttribute="top" secondItem="BG3-da-oaD" secondAttribute="top" constant="30" type="user" id="tdD-tR-Wn4"/>
                         </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="answerLabel" destination="rNA-9b-Gwl" id="tOf-Wa-wNS"/>
                         <outlet property="backgroundHorizontalSpace" destination="nmC-HM-M6j" id="HvP-gw-piu"/>
@@ -181,7 +181,7 @@
                             <constraint firstItem="6u0-o0-j7y" firstAttribute="leading" secondItem="hu6-sw-OhT" secondAttribute="leading" constant="26" type="user" id="q7R-Wq-zhG"/>
                         </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="guessTextField" destination="sOU-Yh-lOT" id="TAb-cy-MtI"/>
                         <outlet property="questionTextView" destination="aPN-bd-vpN" id="xY0-0B-Yn6"/>
@@ -197,10 +197,10 @@
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
-        <image name="temp.png" width="640" height="920"/>
+        <image name="temp.png" width="280" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>

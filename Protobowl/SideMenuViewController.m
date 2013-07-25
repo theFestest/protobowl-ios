@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *users;
 
-@property (nonatomic) int selectedRow;
+@property (nonatomic) NSIndexPath *selectedRow;
 @end
 
 @implementation SideMenuViewController
@@ -56,7 +56,7 @@
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
     
-    self.selectedRow = -1;
+    self.selectedRow = nil;
 }
 
 
@@ -100,24 +100,42 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LeaderboardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardCell" forIndexPath:indexPath];
-    
-    ProtobowlUser *user = self.users[indexPath.row];
-    
-    cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
-    cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
-    [cell.scoreLabel setUserStatus:user.status];
-    cell.nameLabel.text = user.name;
-    
-    cell.layer.shouldRasterize = YES;
-    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    
-    return cell;
+    if([indexPath isEqual: self.selectedRow])
+    {
+        LeaderboardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardDetailCell" forIndexPath:indexPath];
+        
+        ProtobowlUser *user = self.users[indexPath.row];
+        
+        cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
+        cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
+        [cell.scoreLabel setUserStatus:user.status];
+        cell.nameLabel.text = user.name;
+        
+        cell.layer.shouldRasterize = YES;
+        cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        return cell;
+    }
+    else
+    {
+        LeaderboardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardCell" forIndexPath:indexPath];
+        
+        ProtobowlUser *user = self.users[indexPath.row];
+        
+        cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
+        cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
+        [cell.scoreLabel setUserStatus:user.status];
+        cell.nameLabel.text = user.name;
+        
+        cell.layer.shouldRasterize = YES;
+        cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        
+        return cell;
+    }
 }
 
 - (float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == self.selectedRow)
+    if([indexPath isEqual:self.selectedRow])
     {
         return 200;
     }
@@ -127,14 +145,24 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Selected");
-    self.selectedRow = indexPath.row;
-    [self reloadLeaderboardAtIndices:[NSArray arrayWithObject:indexPath]];
+    
+    NSIndexPath *lastSelected = [self.selectedRow copy];
+    self.selectedRow = indexPath;
+    if(lastSelected)
+    {
+        [self reloadLeaderboardAtIndices:@[lastSelected, indexPath]];
+    }
+    else
+    {
+        [self reloadLeaderboardAtIndices:@[indexPath]];
+    }
 }
 
 
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Deselected");
+    [self reloadLeaderboardAtIndices:[NSArray arrayWithObject:indexPath]];
 }
 
 
