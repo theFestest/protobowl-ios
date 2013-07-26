@@ -13,6 +13,9 @@
 #import "UIColor+MoreConstructors.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kLeaderboardCellHeight 44
+#define kLeaderboardDetailCellHeight 200
+
 @interface SideMenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *leaderboard;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderboardHeight;
@@ -30,8 +33,10 @@
     [self resizeTableView];
 }
 
-- (void) reloadLeaderboardAtIndices:(NSArray *)indices
+- (void) reloadLeaderboardAtIndices:(NSArray *)indices numDetailRows:(int)n
 {
+    float targetHeight = kLeaderboardCellHeight * ([self tableView:self.leaderboard numberOfRowsInSection:[indices[0] section]] - n) + kLeaderboardDetailCellHeight * n;
+    self.leaderboard.contentSize = CGSizeMake(self.leaderboard.contentSize.width, targetHeight);
     [self.leaderboard reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
     [self resizeTableView];
 }
@@ -83,9 +88,13 @@
 
 - (void) resizeTableView
 {
+    NSLog(@"Resizing!");
+    CGRect frame = self.leaderboard.frame;
+    frame.size.height = self.leaderboard.contentSize.height;
     self.leaderboardHeight.constant = self.leaderboard.contentSize.height;
-    
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.leaderboard.frame = frame;
+    }];
 }
 
 #pragma mark - Table View Delegate Methods
@@ -137,9 +146,9 @@
 {
     if([indexPath isEqual:self.selectedRow])
     {
-        return 200;
+        return kLeaderboardDetailCellHeight;
     }
-    return 44;
+    return kLeaderboardCellHeight;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -148,13 +157,17 @@
     
     NSIndexPath *lastSelected = [self.selectedRow copy];
     self.selectedRow = indexPath;
-    if(lastSelected)
+    if([lastSelected isEqual:indexPath])
     {
-        [self reloadLeaderboardAtIndices:@[lastSelected, indexPath]];
+        [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    }
+    else if(lastSelected)
+    {
+        [self reloadLeaderboardAtIndices:@[lastSelected, indexPath] numDetailRows:1];
     }
     else
     {
-        [self reloadLeaderboardAtIndices:@[indexPath]];
+        [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:1];
     }
 }
 
@@ -162,7 +175,8 @@
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Deselected");
-    [self reloadLeaderboardAtIndices:[NSArray arrayWithObject:indexPath]];
+    self.selectedRow = nil;
+    [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:0];
 }
 
 

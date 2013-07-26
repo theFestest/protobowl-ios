@@ -93,7 +93,7 @@
 
 - (CGSize) intrinsicContentSize
 {
-    CGSize s = [super intrinsicContentSize];
+    CGSize s = [self.text sizeWithFont:self.font];
     s.width += 20;
     return s;
 }
