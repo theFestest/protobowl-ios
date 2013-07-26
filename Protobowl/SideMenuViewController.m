@@ -100,9 +100,9 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([indexPath isEqual: self.selectedRow])
+    if([indexPath isEqual:self.selectedRow])
     {
-        LeaderboardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardDetailCell" forIndexPath:indexPath];
+        LeaderboardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell" forIndexPath:indexPath];
         
         ProtobowlUser *user = self.users[indexPath.row];
         
