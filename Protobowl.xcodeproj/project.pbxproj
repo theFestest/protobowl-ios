@@ -30,6 +30,7 @@
 		B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */; };
 		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
+		B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */; };
 		B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFB3E7178D351100AD8447 /* UIView+Donald.m */; };
 		B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */; };
 		B5C004C2179F0C1500284199 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B592957E176BDCC7008E0EB3 /* Reveal.framework */; };
@@ -113,6 +114,8 @@
 		B592957B176BC5E8008E0EB3 /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
 		B592957C176BC5E8008E0EB3 /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GuessViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B592957E176BDCC7008E0EB3 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "../../../../../../Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework"; sourceTree = "<group>"; };
+		B5AD88F117A2270300AAC11C /* LeaderboardDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardDetailCell.h; sourceTree = "<group>"; };
+		B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardDetailCell.m; sourceTree = "<group>"; };
 		B5AFB3E6178D351100AD8447 /* UIView+Donald.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Donald.h"; sourceTree = "<group>"; };
 		B5AFB3E7178D351100AD8447 /* UIView+Donald.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Donald.m"; sourceTree = "<group>"; };
 		B5C004BF179F088F00284199 /* UIColor+MoreConstructors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MoreConstructors.h"; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
 				B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */,
 				B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */,
+				B5AD88F117A2270300AAC11C /* LeaderboardDetailCell.h */,
+				B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */,
 				B5C004C3179F0E4700284199 /* CapsuleLabel.h */,
 				B5C004C4179F0E4700284199 /* CapsuleLabel.m */,
 			);
@@ -503,6 +508,7 @@
 			files = (
 				B5FD24761767CE9900B9870D /* main.m in Sources */,
 				B5FD247A1767CE9900B9870D /* AppDelegate.m in Sources */,
+				B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */,
 				B5FD24C81767CF2800B9870D /* SocketIO.m in Sources */,
 				B5FD24CA1767CF2800B9870D /* SocketIOJSONSerialization.m in Sources */,
 				B5FD24CC1767CF2800B9870D /* SocketIOPacket.m in Sources */,
