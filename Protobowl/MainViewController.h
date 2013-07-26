@@ -10,5 +10,5 @@
 #import "ProtobowlConnectionManager.h"
 
 @interface MainViewController : UIViewController <ProtobowlRoomDelegate, UIScrollViewDelegate>
-
+@property (nonatomic, strong) ProtobowlConnectionManager *manager;
 @end

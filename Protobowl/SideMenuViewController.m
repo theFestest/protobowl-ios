@@ -15,9 +15,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kLeaderboardCellHeight 44
-#define kLeaderboardDetailCellHeight 200
+#define kLeaderboardDetailCellHeight 240
 
 @interface SideMenuViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *leaderboardTitle;
 @property (weak, nonatomic) IBOutlet UITableView *leaderboard;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderboardHeight;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -119,7 +120,17 @@
         cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
         cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
         [cell.scoreLabel setUserStatus:user.status];
-        cell.nameLabel.text = user.name;
+        
+        if([user.userID isEqualToString:self.mainViewController.manager.myUserID])
+        {
+            [cell setToSelfLayout:YES];
+            cell.nameField.text = user.name;
+        }
+        else
+        {
+            [cell setToSelfLayout:NO];
+            cell.nameLabel.text = user.name;
+        }
         
         cell.layer.shouldRasterize = YES;
         cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -181,11 +192,22 @@
 }
 
 
+- (int) countActiveUsers:(NSArray *)users
+{
+    int count = 0;
+    for (ProtobowlUser *user in users)
+    {
+        if(user.status == ProtobowlUserStatusOnline || user.status == ProtobowlUserStatusSelf) count++;
+    }
+    return count;
+}
+
 #pragma mark - Protobowl Leaderboard Delegate Methods
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users inRoom:(NSString *)roomName
 {
     NSLog(@"%@", users);
     
+    self.leaderboardTitle.text = [NSString stringWithFormat:@"Leaderboard - %@ (%d)", roomName, [self countActiveUsers:users]];
     self.users = users;
     
     [self reloadLeaderboard];

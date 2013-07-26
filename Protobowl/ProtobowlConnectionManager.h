@@ -49,7 +49,7 @@
 
 @protocol ProtobowlLeaderboardDelegate <NSObject>
 
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users; // Users is an array of ProtobowlUser objects
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users inRoom:(NSString *)roomName; // Users is an array of ProtobowlUser objects
 
 @end
 
@@ -74,5 +74,6 @@
 @property (nonatomic, strong) NSString *myName;
 @property (nonatomic) int myScore;
 @property (nonatomic) int myRank;
+@property (nonatomic, strong) NSString *myUserID;
 
 @end

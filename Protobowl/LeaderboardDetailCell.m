@@ -10,20 +10,18 @@
 
 @implementation LeaderboardDetailCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void) setToSelfLayout:(BOOL)isSelf
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+    if(isSelf)
+    {
+        self.nameLabel.hidden = YES;
+        self.nameField.hidden = NO;
     }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    else
+    {
+        self.nameLabel.hidden = NO;
+        self.nameField.hidden = YES;
+    }
 }
 
 @end

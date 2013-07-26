@@ -28,7 +28,6 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) NSString *questionDisplayText;
 @property (nonatomic) BOOL isQuestionNew;
 
-@property (nonatomic, strong) NSString *myUserID;
 
 @property (nonatomic) float startQuestionTime;
 @property (nonatomic) float questionDuration; // In seconds
@@ -44,6 +43,8 @@ NSLog(@"%@", string); \
 @property (nonatomic) float buzzDuration;
 
 @property (nonatomic, strong) ProtobowlScoring *scoring;
+
+@property (nonatomic, strong) NSString *roomName;
 
 @end
 
@@ -155,6 +156,11 @@ NSLog(@"%@", string); \
     }
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
+        if(packetData[@"name"])
+        {
+            self.roomName = packetData[@"name"];
+        }
+        
         if(packetData[@"scoring"])
         {
             self.scoring = [[ProtobowlScoring alloc] initWithScoringDictionary:packetData[@"scoring"]];
@@ -650,7 +656,7 @@ NSLog(@"%@", string); \
     }
     
     
-    [self.leaderboardDelegate connectionManager:self didUpdateUsers:users];
+    [self.leaderboardDelegate connectionManager:self didUpdateUsers:users inRoom:self.roomName];
     [self.roomDelegate connectionManager:self didUpdateUsers:users];
 }
 

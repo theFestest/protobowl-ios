@@ -12,5 +12,8 @@
 @interface LeaderboardDetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;
 @property (weak, nonatomic) IBOutlet CapsuleLabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel; // At runtime will be either a UILabel or a UITextField
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+
+- (void) setToSelfLayout:(BOOL)isSelf;
 @end

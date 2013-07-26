@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *questionTextView;
 @property (weak, nonatomic) IBOutlet UIView *questionContainerView;
 @property (weak, nonatomic) IBOutlet LinedTextView *textViewLog;
-@property (nonatomic, strong) ProtobowlConnectionManager *manager;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeightConstraint;
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
