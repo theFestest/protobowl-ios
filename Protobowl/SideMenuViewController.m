@@ -11,6 +11,7 @@
 #import "LeaderboardCell.h"
 #import "ProtobowlUser.h"
 #import "UIColor+MoreConstructors.h"
+#import "LeaderboardDetailCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kLeaderboardCellHeight 44
@@ -111,7 +112,7 @@
 {
     if([indexPath isEqual:self.selectedRow])
     {
-        LeaderboardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardDetailCell" forIndexPath:indexPath];
+        LeaderboardDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardDetailCell" forIndexPath:indexPath];
         
         ProtobowlUser *user = self.users[indexPath.row];
         
