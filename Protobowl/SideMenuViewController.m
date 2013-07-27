@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSArray *users;
 
 @property (nonatomic) NSIndexPath *selectedRow;
+
+@property (nonatomic, strong) UITextField *activeField;
 @end
 
 @implementation SideMenuViewController
@@ -64,6 +66,8 @@
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
     
     self.selectedRow = nil;
+    
+    [self registerForKeyboardNotifications];
 }
 
 
@@ -121,7 +125,7 @@
         cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
         [cell.scoreLabel setUserStatus:user.status];
         
-        if([user.userID isEqualToString:self.mainViewController.manager.myUserID])
+        if([user.userID isEqualToString:self.mainViewController.manager.myself.userID])
         {
             [cell setToSelfLayout:YES];
             cell.nameField.text = user.name;
@@ -145,7 +149,17 @@
         cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
         cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
         [cell.scoreLabel setUserStatus:user.status];
-        cell.nameLabel.text = user.name;
+        
+        if([user.userID isEqualToString:self.mainViewController.manager.myself.userID])
+        {
+            [cell setToSelfLayout:YES];
+            cell.nameField.text = user.name;
+        }
+        else
+        {
+            [cell setToSelfLayout:NO];
+            cell.nameLabel.text = user.name;
+        }
         
         cell.layer.shouldRasterize = YES;
         cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -200,6 +214,79 @@
         if(user.status == ProtobowlUserStatusOnline || user.status == ProtobowlUserStatusSelf) count++;
     }
     return count;
+}
+
+
+#pragma mark - Text Field Delegate - Name Changing
+
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary *info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    CGRect openRect = self.view.frame;
+    openRect.size.height -= kbSize.height;
+    openRect.origin.y += self.scrollView.contentOffset.y;
+    
+    CGRect fieldRect = [self.activeField.superview convertRect:self.activeField.frame toView:self.scrollView];
+    if (!CGRectContainsPoint(openRect, fieldRect.origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, fieldRect.origin.y-kbSize.height + 20);
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
+}
+
+
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
+    NSLog(@"Start");
+    
+    self.activeField = textField;
+    
+    return YES;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"Return");
+    self.activeField = nil;
+    
+    [self.mainViewController.manager changeMyName:textField.text];
+    [textField endEditing:YES];
+    return YES;
+}
+
+- (BOOL) textFieldShouldEndEditing:(UITextField *)textField
+{
+    NSLog(@"End");
+    return YES;
 }
 
 #pragma mark - Protobowl Leaderboard Delegate Methods

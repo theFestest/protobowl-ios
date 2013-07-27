@@ -1,7 +1,6 @@
 
 #import "ProtobowlConnectionManager.h"
 #import "ProtobowlQuestion.h"
-#import "ProtobowlUser.h"
 #import "ProtobowlScoring.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -92,6 +91,21 @@ NSLog(@"%@", string); \
     return _questionDisplayText;
 }
 
+- (ProtobowlUser *) myself
+{
+    if(!_myself)
+    {
+        _myself = [[ProtobowlUser alloc] init];
+    }
+    return _myself;
+}
+
+
+- (void) changeMyName:(NSString *)name
+{
+    [self.socket sendEvent:@"set_name" withData:name];
+}
+
 
 - (void) connect
 {
@@ -152,7 +166,7 @@ NSLog(@"%@", string); \
     
     if(packetData[@"id"])
     {
-        self.myUserID = packetData[@"id"];
+        self.myself.userID = packetData[@"id"];
     }
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
@@ -236,7 +250,7 @@ NSLog(@"%@", string); \
             
             if(self.hasPendingBuzz)
             {
-                if([userID isEqualToString:self.myUserID])
+                if([userID isEqualToString:self.myself.userID])
                 {
                     self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
                     self.hasPendingBuzz = NO;
@@ -277,7 +291,7 @@ NSLog(@"%@", string); \
                 self.userData[userID][kUserDataBuzzTextKey] = @"";
                 
                 
-                if([userID isEqualToString:self.myUserID])
+                if([userID isEqualToString:self.myself.userID])
                 {
                     [self.guessDelegate connectionManager:self didJudgeGuess:correct];
                 }
@@ -360,7 +374,7 @@ NSLog(@"%@", string); \
             [self.buzzLines addObject:text];
             [self.roomDelegate connectionManager:self didUpdateBuzzLines:self.buzzLines];
             
-            if([userID isEqualToString:self.myUserID] && self.hasPendingBuzz)
+            if([userID isEqualToString:self.myself.userID] && self.hasPendingBuzz)
             {
                 self.hasPendingBuzz = NO;
                 [self.guessDelegate connectionManager:self didClaimBuzz:NO];
@@ -516,7 +530,7 @@ NSLog(@"%@", string); \
     if(self.buzzSessionId)
     {
         NSDictionary *data = @{@"text": guess,
-                               @"user": self.myUserID,
+                               @"user": self.myself.userID,
                                @"session" : self.buzzSessionId,
                                @"done" : @NO};
         [self.socket sendEvent:@"guess" withData:data];
@@ -528,7 +542,7 @@ NSLog(@"%@", string); \
     if(self.buzzSessionId)
     {
         NSDictionary *data = @{@"text": guess,
-                               @"user": self.myUserID,
+                               @"user": self.myself.userID,
                                @"session" : self.buzzSessionId,
                                @"done" : @YES};
         [self.socket sendEvent:@"guess" withData:data];
@@ -571,7 +585,7 @@ NSLog(@"%@", string); \
         user.name = userData[@"name"];
         user.score = [self.scoring calculateScoreForUser:userData];
         user.negs = [self.scoring calculateNegsForUser:userData];
-        if([userID isEqualToString:self.myUserID])
+        if([userID isEqualToString:self.myself.userID])
         {
             user.status = ProtobowlUserStatusSelf;
         }
@@ -634,7 +648,7 @@ NSLog(@"%@", string); \
     }
     
     int indexOfMyself = [users indexOfObjectPassingTest:^BOOL(ProtobowlUser *obj, NSUInteger idx, BOOL *stop) {
-        if([obj.userID isEqualToString:self.myUserID])
+        if([obj.userID isEqualToString:self.myself.userID])
         {
             *stop = YES;
             return YES;
@@ -643,16 +657,16 @@ NSLog(@"%@", string); \
     }];
     if(indexOfMyself == NSNotFound)
     {
-        self.myName = @"";
-        self.myScore = 0;
-        self.myRank = 0;
+        self.myself.name = @"";
+        self.myself.score = 0;
+        self.myself.rank = 0;
     }
     else
     {
         ProtobowlUser *myself = users[indexOfMyself];
-        self.myName = myself.name;
-        self.myScore = myself.score;
-        self.myRank = myself.rank;
+        self.myself.name = myself.name;
+        self.myself.score = myself.score;
+        self.myself.rank = myself.rank;
     }
     
     

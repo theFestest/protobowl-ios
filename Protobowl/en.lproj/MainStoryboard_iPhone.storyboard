@@ -241,18 +241,31 @@
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="arboreal ocelot" borderStyle="roundedRect" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="HSd-yM-Rdu">
+                                                            <rect key="frame" x="120" y="7" width="142" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="SJ3-Gg-tuj" id="jXv-ZW-PaN"/>
+                                                            </connections>
+                                                        </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <constraints>
+                                                    <constraint firstItem="rMt-Vq-hAC" firstAttribute="trailing" secondItem="HSd-yM-Rdu" secondAttribute="trailing" type="default" id="8bM-7s-Ga0"/>
+                                                    <constraint firstItem="HSd-yM-Rdu" firstAttribute="centerY" secondItem="rMt-Vq-hAC" secondAttribute="centerY" type="default" id="OS0-nH-oMj"/>
                                                     <constraint firstItem="u7k-TB-lRp" firstAttribute="baseline" secondItem="wBF-PE-UpF" secondAttribute="baseline" type="user" id="Oas-Ec-Aw6"/>
                                                     <constraint firstItem="wBF-PE-UpF" firstAttribute="leading" secondItem="ym9-xj-euq" secondAttribute="leading" constant="19" type="default" id="Yr3-8d-mBB"/>
                                                     <constraint firstItem="rMt-Vq-hAC" firstAttribute="baseline" secondItem="u7k-TB-lRp" secondAttribute="baseline" type="default" id="bgr-e3-eIu"/>
+                                                    <constraint firstItem="HSd-yM-Rdu" firstAttribute="leading" secondItem="rMt-Vq-hAC" secondAttribute="leading" type="default" id="iuQ-Vn-5Eh"/>
                                                     <constraint firstItem="u7k-TB-lRp" firstAttribute="leading" secondItem="ym9-xj-euq" secondAttribute="leading" constant="55" id="khR-Fa-UbV"/>
-                                                    <constraint firstAttribute="trailing" secondItem="rMt-Vq-hAC" secondAttribute="trailing" constant="19" type="default" id="mqv-QC-yCv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HSd-yM-Rdu" secondAttribute="trailing" constant="19" type="default" id="n8x-9h-cbq"/>
                                                     <constraint firstItem="wBF-PE-UpF" firstAttribute="centerY" secondItem="ym9-xj-euq" secondAttribute="centerY" constant="-0.5" type="default" id="rCp-fN-eLo"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="nameField" destination="HSd-yM-Rdu" id="ZKY-GU-c9U"/>
                                                     <outlet property="nameLabel" destination="rMt-Vq-hAC" id="UiP-Bc-fpy"/>
                                                     <outlet property="rankLabel" destination="wBF-PE-UpF" id="Fbz-AQ-0rO"/>
                                                     <outlet property="scoreLabel" destination="u7k-TB-lRp" id="W8p-Ok-385"/>
@@ -299,6 +312,9 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="SJ3-Gg-tuj" id="5Ua-bq-oqE"/>
+                                                            </connections>
                                                         </textField>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRH-hY-qS0" userLabel="Separator View">
                                                             <rect key="frame" x="21" y="40" width="241" height="1"/>

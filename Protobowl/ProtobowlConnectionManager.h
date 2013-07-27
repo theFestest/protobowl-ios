@@ -2,6 +2,7 @@
 #import <Foundation/Foundation.h>
 #import "SocketIO.h"
 #import "ProtobowlQuestion.h"
+#import "ProtobowlUser.h"
 
 @class ProtobowlConnectionManager;
 @protocol ProtobowlRoomDelegate <NSObject>
@@ -67,13 +68,13 @@
 
 - (BOOL) next; // Returns whether or not the next command was actually executed
 
+- (void) changeMyName:(NSString *)name;
+
 @property (nonatomic, weak) id<ProtobowlRoomDelegate> roomDelegate;
 @property (nonatomic, weak) id<ProtobowlLeaderboardDelegate> leaderboardDelegate;
 @property (nonatomic, weak) id<ProtobowlGuessDelegate> guessDelegate;
 
-@property (nonatomic, strong) NSString *myName;
-@property (nonatomic) int myScore;
-@property (nonatomic) int myRank;
-@property (nonatomic, strong) NSString *myUserID;
+
+@property (nonatomic, strong) ProtobowlUser *myself;
 
 @end

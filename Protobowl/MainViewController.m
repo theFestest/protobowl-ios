@@ -243,8 +243,8 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users
 {
     // Don't care about other people's scores, but use this opportunity to update our own score
-    self.myInfoLabel.text = [NSString stringWithFormat:@"%@: #%d", self.manager.myName, self.manager.myRank];
-    self.myScoreLabel.text = [NSString stringWithFormat:@"%d", self.manager.myScore];
+    self.myInfoLabel.text = [NSString stringWithFormat:@"%@: #%d", self.manager.myself.name, self.manager.myself.rank];
+    self.myScoreLabel.text = [NSString stringWithFormat:@"%d", self.manager.myself.score];
     
     [self.scorePulloutView layoutIfNeeded];
 }
