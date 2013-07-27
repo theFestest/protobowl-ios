@@ -250,11 +250,17 @@
 }
 
 
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didClaimBuzz:(BOOL)isClaimed
+{
+    if(isClaimed)
+    {
+        [self presentGuessViewController];
+    }
+}
+
 - (IBAction)buzzPressed:(id)sender
 {
     [self.manager buzz];
-    
-    [self presentGuessViewController];
 }
 
 - (void) presentGuessViewController

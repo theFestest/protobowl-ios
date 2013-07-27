@@ -254,7 +254,8 @@ NSLog(@"%@", string); \
                 {
                     self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
                     self.hasPendingBuzz = NO;
-                    [self.guessDelegate connectionManager:self didClaimBuzz:YES];
+                    [self.roomDelegate connectionManager:self didClaimBuzz:YES];
+                    [self pauseQuestion];
                     self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
                     self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer) userInfo:nil repeats:YES];
                     [[NSRunLoop mainRunLoop] addTimer:self.buzzTimer forMode:NSRunLoopCommonModes];
@@ -264,7 +265,7 @@ NSLog(@"%@", string); \
                 {
                     self.hasPendingBuzz = NO;
                     self.buzzSessionId = nil;
-                    [self.guessDelegate connectionManager:self didClaimBuzz:NO];
+                    [self.roomDelegate connectionManager:self didClaimBuzz:NO];
                 }
             }
             
@@ -377,7 +378,7 @@ NSLog(@"%@", string); \
             if([userID isEqualToString:self.myself.userID] && self.hasPendingBuzz)
             {
                 self.hasPendingBuzz = NO;
-                [self.guessDelegate connectionManager:self didClaimBuzz:NO];
+                [self.roomDelegate connectionManager:self didClaimBuzz:NO];
             }
         }
     }
@@ -519,8 +520,6 @@ NSLog(@"%@", string); \
     
     [self.socket sendEvent:@"buzz" withData:self.currentQuestion.qid];
     self.hasPendingBuzz = YES;
-    
-    [self pauseQuestion];
     
     return YES;
 }

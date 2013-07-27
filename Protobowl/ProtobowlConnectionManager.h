@@ -32,12 +32,13 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users; // Users is an array of ProtobowlUser objects
 
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didClaimBuzz:(BOOL)isClaimed; // Called when the server tells us that the client successfully buzzed, or that he / she was beat to the buzzer
+
+
 @end
 
 
 @protocol ProtobowlGuessDelegate <NSObject>
-
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didClaimBuzz:(BOOL)isClaimed; // Called when the server tells us that the client successfully buzzed, or that he / she was beat to the buzzer
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress;
 
