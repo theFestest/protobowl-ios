@@ -741,7 +741,7 @@ NSLog(@"%@", string); \
 - (NSString *) questionDisplayTextForIndex:(int)index inWordArray:(NSArray *) wordArray
 {
     NSString *retVal = @"";
-    for(int i = 0; i <= index; i++)
+    for(int i = 0; i < index; i++)
     {
         retVal = [retVal stringByAppendingString:wordArray[i]];
         retVal = [retVal stringByAppendingString:@" "];
