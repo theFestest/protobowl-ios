@@ -25,6 +25,7 @@ typedef enum ProtobowlUserStatus ProtobowlUserStatus;
 @property (nonatomic) int corrects;
 @property (nonatomic) int negatives;
 @property (nonatomic) int bestStreak;
+@property (nonatomic) NSTimeInterval lastTimeOnline;
 @property (nonatomic) ProtobowlUserStatus status;
 
 @end

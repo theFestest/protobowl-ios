@@ -109,6 +109,12 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) connectionManagerDidReceivePrompt:(ProtobowlConnectionManager *)manager
+{
+    NSLog(@"Received prompt!");
+    self.guessTextField.text = [NSString stringWithFormat:@"Prompt: %@", self.guessTextField.text];
+}
+
 - (void) connectionManagerDidEndBuzzTime:(ProtobowlConnectionManager *)manager
 {
     self.submitGuessCallback(self.guessTextField.text);

@@ -13,6 +13,7 @@
 #import "UIColor+MoreConstructors.h"
 #import "LeaderboardDetailCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "NSDate+FuzzyTime.h"
 
 #define kLeaderboardCellHeight 44
 #define kLeaderboardDetailCellHeight 180
@@ -128,6 +129,16 @@
         cell.correctsLabel.text = [NSString stringWithFormat:@"%d", user.corrects];
         cell.negativesLabel.text = [NSString stringWithFormat:@"%d", user.negatives];
         cell.bestStreakLabel.text = [NSString stringWithFormat:@"%d", user.bestStreak];
+        
+        if(user.status == ProtobowlUserStatusOffline)
+        {
+            NSDate *lastOnlineDate = [NSDate dateWithTimeIntervalSince1970:user.lastTimeOnline];
+            cell.lastSeenLabel.text = [NSDate fuzzyTimeSince:lastOnlineDate];
+        }
+        else
+        {
+            cell.lastSeenLabel.text = @"Right Now!";
+        }
         
         if([user.userID isEqualToString:self.mainViewController.manager.myself.userID])
         {

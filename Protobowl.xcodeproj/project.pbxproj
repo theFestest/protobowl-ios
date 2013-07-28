@@ -39,6 +39,8 @@
 		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
+		B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */; };
+		B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */; };
 		B5F6C036179B46EA0040CB37 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */; };
 		B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24691767CE9900B9870D /* UIKit.framework */; };
 		B5FD246C1767CE9900B9870D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246B1767CE9900B9870D /* Foundation.framework */; };
@@ -130,6 +132,10 @@
 		B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlUser.m; sourceTree = "<group>"; };
 		B5D6A6E2179CBDB8009EB18B /* ProtobowlScoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlScoring.h; sourceTree = "<group>"; };
 		B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlScoring.m; sourceTree = "<group>"; };
+		B5E9CF1117A4D4C000B67AEE /* NSDate+FuzzyTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FuzzyTime.h"; sourceTree = "<group>"; };
+		B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FuzzyTime.m"; sourceTree = "<group>"; };
+		B5E9CF1417A4D64600B67AEE /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
 		B5F6C034179B46EA0040CB37 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SideMenuViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SideMenuViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5FD24661767CE9900B9870D /* Protobowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Protobowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +336,10 @@
 				B5FD247F1767CE9900B9870D /* Default-568h@2x.png */,
 				B5C004BF179F088F00284199 /* UIColor+MoreConstructors.h */,
 				B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */,
+				B5E9CF1117A4D4C000B67AEE /* NSDate+FuzzyTime.h */,
+				B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */,
+				B5E9CF1417A4D64600B67AEE /* NSDate-Utilities.h */,
+				B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -511,6 +521,7 @@
 				B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */,
 				B5FD24C81767CF2800B9870D /* SocketIO.m in Sources */,
 				B5FD24CA1767CF2800B9870D /* SocketIOJSONSerialization.m in Sources */,
+				B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */,
 				B5FD24CC1767CF2800B9870D /* SocketIOPacket.m in Sources */,
 				B5FD24CE1767CF2800B9870D /* SocketIOTransportWebsocket.m in Sources */,
 				B5FD24D01767CF2800B9870D /* SocketIOTransportXHR.m in Sources */,
@@ -532,6 +543,7 @@
 				364D5954178F8729000B5F7A /* PulloutView.m in Sources */,
 				B5F6C036179B46EA0040CB37 /* SideMenuViewController.m in Sources */,
 				B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */,
+				B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */,
 				B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */,
 				B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */,
 			);
@@ -616,7 +628,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Donald Pinckney (X8ZD6953GU)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -631,6 +644,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "BE536D02-3185-44C8-9C5D-E3990B76882C";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -656,6 +670,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "BE536D02-3185-44C8-9C5D-E3990B76882C";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -685,6 +700,8 @@
 		B5FD24A31767CE9900B9870D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Donald Pinckney (X8ZD6953GU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Donald Pinckney (X8ZD6953GU)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

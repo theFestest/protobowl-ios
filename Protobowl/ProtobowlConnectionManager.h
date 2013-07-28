@@ -43,6 +43,7 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress;
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didJudgeGuess:(BOOL)correct;
+- (void) connectionManagerDidReceivePrompt:(ProtobowlConnectionManager *)manager;
 
 - (void) connectionManagerDidEndBuzzTime:(ProtobowlConnectionManager *)manager;
 

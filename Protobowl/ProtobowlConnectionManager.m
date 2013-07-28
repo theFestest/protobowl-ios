@@ -37,6 +37,7 @@ NSLog(@"%@", string); \
 
 @property (nonatomic, strong) NSString *buzzSessionId;
 @property (nonatomic) BOOL hasPendingBuzz;
+@property (nonatomic) BOOL hasPendingPrompt;
 @property (nonatomic, strong) NSTimer *buzzTimer;
 @property (nonatomic) float startBuzzTime;
 @property (nonatomic) float buzzDuration;
@@ -247,6 +248,7 @@ NSLog(@"%@", string); \
         {
             NSDictionary *attempt = packetData[@"attempt"];
             NSString *userID = attempt[@"user"];
+            BOOL isPrompt = [attempt[@"correct"] isKindOfClass:[NSString class]] && [attempt[@"correct"] isEqualToString:@"prompt"];
             
             if(self.hasPendingBuzz)
             {
@@ -257,6 +259,8 @@ NSLog(@"%@", string); \
                     [self.roomDelegate connectionManager:self didClaimBuzz:YES];
                     [self pauseQuestion];
                     self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
+                    
+                    [self.buzzTimer invalidate];
                     self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer) userInfo:nil repeats:YES];
                     [[NSRunLoop mainRunLoop] addTimer:self.buzzTimer forMode:NSRunLoopCommonModes];
                     self.startBuzzTime = CACurrentMediaTime();
@@ -268,46 +272,79 @@ NSLog(@"%@", string); \
                     [self.roomDelegate connectionManager:self didClaimBuzz:NO];
                 }
             }
-            
-            /*if([userID isEqualToString:self.userID])
+            else if(self.hasPendingPrompt && isPrompt)
             {
-                return;
-            }*/
+                // Initiate prompting
+                if([userID isEqualToString:self.myself.userID])
+                {
+                    [self.guessDelegate connectionManagerDidReceivePrompt:self];
+                    
+                    self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
+                    self.hasPendingPrompt = NO;
+                    self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
+                    
+                    [self.buzzTimer invalidate];
+                    self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer) userInfo:nil repeats:YES];
+                    [[NSRunLoop mainRunLoop] addTimer:self.buzzTimer forMode:NSRunLoopCommonModes];
+                    self.startBuzzTime = CACurrentMediaTime();
+                }
+                else
+                {
+                    self.hasPendingPrompt = NO;
+                    self.buzzSessionId = nil;
+                }
+            }
+
             
-            NSString *text = attempt[@"text"];
+            NSString *guessText = attempt[@"text"];
             BOOL done = [attempt[@"done"] boolValue];
             NSString *name = self.userData[userID][@"name"];
-            text = [NSString stringWithFormat:@"[Buzz] %@: %@", name, text];
+            NSString *text = [NSString stringWithFormat:@"[Buzz] %@: %@", name, guessText];
             
             if(done)
             {
                 BOOL correct = [attempt[@"correct"] boolValue];
-                text = [NSString stringWithFormat:@"%@ [%@]", text, correct ? @"Correct" : @"Wrong"];
-                int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
-                self.buzzLines[currentLineNumber] = text;
-                // TODO: Do something with correcness (log buzz)
                 
-                self.userData[userID][kUserDataBuzzLineNumberKey] = @(-1);
-                self.userData[userID][kUserDataIsBuzzingKey] = @NO;
-                self.userData[userID][kUserDataBuzzTextKey] = @"";
-                
-                
-                if([userID isEqualToString:self.myself.userID])
+                if(isPrompt)
                 {
-                    [self.guessDelegate connectionManager:self didJudgeGuess:correct];
+                    text = [NSString stringWithFormat:@"%@ [%@]", text, @"Prompt"];
+                    int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
+                    self.buzzLines[currentLineNumber] = text;
+                    
+                    self.userData[userID][kUserDataBuzzLineNumberKey] = @(-1);
+                    self.userData[userID][kUserDataIsBuzzingKey] = @YES;
+                    self.userData[userID][kUserDataBuzzTextKey] = @"";
+                    
+                    self.hasPendingPrompt = YES;
                 }
-                
-                
-                [self unpauseQuestion];
-                
-                if(correct)
+                else
                 {
-                    [self expireQuestionTime:nil];
+                    text = [NSString stringWithFormat:@"%@ [%@]", text, correct ? @"Correct" : @"Wrong"];
+                    int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
+                    self.buzzLines[currentLineNumber] = text;
+                    
+                    self.userData[userID][kUserDataBuzzLineNumberKey] = @(-1);
+                    self.userData[userID][kUserDataIsBuzzingKey] = @NO;
+                    self.userData[userID][kUserDataBuzzTextKey] = @"";
+                    
+                    
+                    if([userID isEqualToString:self.myself.userID])
+                    {
+                        [self.guessDelegate connectionManager:self didJudgeGuess:correct];
+                    }
+                    
+                    [self unpauseQuestion];
+                    
+                    if(correct)
+                    {
+                        [self expireQuestionTime:nil];
+                    }
                 }
                 
             }
             else
             {
+                // Update typed text
                 int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                 if(currentLineNumber == -1)
                 {
@@ -316,6 +353,7 @@ NSLog(@"%@", string); \
                     self.userData[userID][kUserDataBuzzLineNumberKey] = @(currentLineNumber);
                 }
                 self.buzzLines[currentLineNumber] = text;
+                
                 
                 if(!self.isQuestionPaused)
                 {
@@ -586,6 +624,7 @@ NSLog(@"%@", string); \
         user.corrects = [self.scoring calculateCorrectsForUser:userData];
         user.negatives = [self.scoring calculateNegsForUser:userData];
         user.bestStreak = [userData[@"streak_record"] intValue];
+        user.lastTimeOnline = [userData[@"last_session"] longLongValue] / 1000.0;
         if([userID isEqualToString:self.myself.userID])
         {
             user.status = ProtobowlUserStatusSelf;
