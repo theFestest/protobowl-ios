@@ -735,7 +735,7 @@ NSLog(@"%@", string); \
         sumSeconds += (timeValue * rate) / 1000.0f;
         i++;
     }
-    return --i;
+    return i;
 }
 
 - (NSString *) questionDisplayTextForIndex:(int)index inWordArray:(NSArray *) wordArray
