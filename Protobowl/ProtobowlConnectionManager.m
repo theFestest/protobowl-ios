@@ -195,7 +195,7 @@ NSLog(@"%@", string); \
             
             [self outputUsersToDelegate];
         }
-        
+      
         if(packetData[@"qid"] && ![packetData[@"qid"] isKindOfClass:[NSNull class]])
         {
             NSString *newQid = packetData[@"qid"];
@@ -212,10 +212,15 @@ NSLog(@"%@", string); \
                 self.currentQuestion.timing = packetData[@"timing"];
                 self.currentQuestion.isExpired = NO;
                 
-                self.currentQuestion.beginTime = [packetData[@"begin_time"] intValue];
-                self.currentQuestion.endTime = [packetData[@"end_time"] intValue];
+                self.currentQuestion.beginTime = [packetData[@"begin_time"] longLongValue];
+                self.currentQuestion.endTime = [packetData[@"end_time"] longLongValue];
                 self.currentQuestion.questionDuration = self.currentQuestion.endTime - self.currentQuestion.beginTime;
-                printf("%d\n", self.currentQuestion.questionDuration);
+                
+                // Calculate time offset in case the user has just joined the lobby
+                long long realTime = [packetData[@"real_time"] longLongValue];
+                long long timeOffset = [packetData[@"time_offset"] longLongValue];
+                double trueTimeOffset = (realTime - self.currentQuestion.beginTime - timeOffset) / 1000.0; // trueTimeOffset is used in timer setup code below
+                printf("Time offset: %f\n", trueTimeOffset);
                 
                 NSDictionary *infoDict = packetData[@"info"];
                 self.currentQuestion.tournament = infoDict[@"tournament"];
@@ -227,14 +232,16 @@ NSLog(@"%@", string); \
                 [self.roomDelegate connectionManager:self didSetBuzzEnabled:YES];
                 
                 // Setup timer for question
-                self.startQuestionTime = CACurrentMediaTime();
+                self.startQuestionTime = CACurrentMediaTime() - trueTimeOffset;
                 self.questionDuration = self.currentQuestion.questionDuration / 1000.0f;
                 self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer:) userInfo:nil repeats:YES];
                 [[NSRunLoop mainRunLoop] addTimer:self.questionTimer forMode:NSRunLoopCommonModes];
                 
-                self.currentQuestion.questionDisplayText = [@"" mutableCopy];
-                self.currentQuestion.questionDisplayWordIndex = 0;
                 self.currentQuestion.questionTextAsWordArray = [self.currentQuestion.questionText componentsSeparatedByString:@" "];
+                self.currentQuestion.questionDisplayWordIndex = [self questionDisplayWordIndexForTimeOffset:trueTimeOffset inTimingArray:self.currentQuestion.timing andQuestionRate:self.currentQuestion.rate];
+                self.currentQuestion.questionDisplayText = [[self questionDisplayTextForIndex:self.currentQuestion.questionDisplayWordIndex inWordArray:self.currentQuestion.questionTextAsWordArray] mutableCopy];
+                
+                [self.roomDelegate connectionManager:self didUpdateQuestionDisplayText:self.currentQuestion.questionDisplayText];
                 
                 [self performSelector:@selector(incrementQuestionDisplayText) withObject:nil afterDelay:0 inModes:@[NSRunLoopCommonModes]];
                 
@@ -249,6 +256,7 @@ NSLog(@"%@", string); \
             NSDictionary *attempt = packetData[@"attempt"];
             NSString *userID = attempt[@"user"];
             BOOL isPrompt = [attempt[@"correct"] isKindOfClass:[NSString class]] && [attempt[@"correct"] isEqualToString:@"prompt"];
+            
             
             if(self.hasPendingBuzz)
             {
@@ -493,6 +501,7 @@ NSLog(@"%@", string); \
     {
         // Done with the question
         [self expireQuestionTime:timer];
+        progress = 1;
     }
     
     [self.roomDelegate connectionManager:self didUpdateTime:remaining progress:progress];
@@ -712,6 +721,32 @@ NSLog(@"%@", string); \
     
     [self.leaderboardDelegate connectionManager:self didUpdateUsers:users inRoom:self.roomName];
     [self.roomDelegate connectionManager:self didUpdateUsers:users];
+}
+
+
+
+- (int) questionDisplayWordIndexForTimeOffset:(float)seconds inTimingArray:(NSArray *)timingArray andQuestionRate:(float)rate
+{
+    float sumSeconds = 0;
+    int i = 0;
+    while(i < timingArray.count && sumSeconds <= seconds)
+    {
+        float timeValue = [timingArray[i] floatValue];
+        sumSeconds += (timeValue * rate) / 1000.0f;
+        i++;
+    }
+    return --i;
+}
+
+- (NSString *) questionDisplayTextForIndex:(int)index inWordArray:(NSArray *) wordArray
+{
+    NSString *retVal = @"";
+    for(int i = 0; i <= index; i++)
+    {
+        retVal = [retVal stringByAppendingString:wordArray[i]];
+        retVal = [retVal stringByAppendingString:@" "];
+    }
+    return retVal;
 }
 
 

@@ -323,9 +323,7 @@
 
 #pragma mark - Protobowl Leaderboard Delegate Methods
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users inRoom:(NSString *)roomName
-{
-    NSLog(@"%@", users);
-    
+{    
     self.leaderboardTitle.text = [NSString stringWithFormat:@"Leaderboard - %@ (%d)", roomName, [self countActiveUsers:users]];
     self.users = users;
     

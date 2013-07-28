@@ -24,9 +24,9 @@
 @property (nonatomic, strong) NSMutableString *questionDisplayText;
 @property (nonatomic) int questionDisplayWordIndex;
 
-@property (nonatomic) int beginTime;
-@property (nonatomic) int endTime;
-@property (nonatomic) int questionDuration; // In milliseconds
+@property (nonatomic) long long beginTime;
+@property (nonatomic) long long endTime;
+@property (nonatomic) long long questionDuration; // In milliseconds
 
 @property (nonatomic) BOOL isExpired;
 
