@@ -15,5 +15,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 
+@property (weak, nonatomic) IBOutlet UILabel *correctsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *negativesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bestStreakLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastSeenLabel;
+
 - (void) setToSelfLayout:(BOOL)isSelf;
 @end

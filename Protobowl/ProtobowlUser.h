@@ -22,7 +22,9 @@ typedef enum ProtobowlUserStatus ProtobowlUserStatus;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic) int score;
 @property (nonatomic) int rank;
-@property (nonatomic) int negs;
+@property (nonatomic) int corrects;
+@property (nonatomic) int negatives;
+@property (nonatomic) int bestStreak;
 @property (nonatomic) ProtobowlUserStatus status;
 
 @end

@@ -15,6 +15,7 @@
 - (int) negativeScoreValueOfType:(NSString *)type;
 
 - (int) calculateScoreForUser:(NSDictionary *)userData;
+- (int) calculateCorrectsForUser:(NSDictionary *)userData;
 - (int) calculateNegsForUser:(NSDictionary *)userData;
 
 @end

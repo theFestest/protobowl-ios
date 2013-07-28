@@ -15,7 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kLeaderboardCellHeight 44
-#define kLeaderboardDetailCellHeight 240
+#define kLeaderboardDetailCellHeight 180
 
 @interface SideMenuViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *leaderboardTitle;
@@ -124,6 +124,10 @@
         cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
         cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
         [cell.scoreLabel setUserStatus:user.status];
+        
+        cell.correctsLabel.text = [NSString stringWithFormat:@"%d", user.corrects];
+        cell.negativesLabel.text = [NSString stringWithFormat:@"%d", user.negatives];
+        cell.bestStreakLabel.text = [NSString stringWithFormat:@"%d", user.bestStreak];
         
         if([user.userID isEqualToString:self.mainViewController.manager.myself.userID])
         {

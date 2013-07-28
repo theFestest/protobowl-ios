@@ -66,6 +66,19 @@
     return score;
 }
 
+- (int) calculateCorrectsForUser:(NSDictionary *)userData
+{
+    NSDictionary *corrects = userData[@"corrects"];
+    
+    int correctsCount = 0;
+    for (NSString *type in corrects)
+    {
+        correctsCount += [corrects[type] intValue];
+    }
+    
+    return correctsCount;
+}
+
 - (int) calculateNegsForUser:(NSDictionary *)userData
 {
     NSDictionary *wrongs = userData[@"wrongs"];

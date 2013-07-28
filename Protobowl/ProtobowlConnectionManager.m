@@ -583,7 +583,9 @@ NSLog(@"%@", string); \
         user.userID = userID;
         user.name = userData[@"name"];
         user.score = [self.scoring calculateScoreForUser:userData];
-        user.negs = [self.scoring calculateNegsForUser:userData];
+        user.corrects = [self.scoring calculateCorrectsForUser:userData];
+        user.negatives = [self.scoring calculateNegsForUser:userData];
+        user.bestStreak = [userData[@"streak_record"] intValue];
         if([userID isEqualToString:self.myself.userID])
         {
             user.status = ProtobowlUserStatusSelf;
@@ -612,11 +614,11 @@ NSLog(@"%@", string); \
         }
         else
         {
-            if(obj2.negs > obj1.negs)
+            if(obj2.negatives > obj1.negatives)
             {
                 return NSOrderedAscending;
             }
-            else if(obj1.negs > obj2.negs)
+            else if(obj1.negatives > obj2.negatives)
             {
                 return NSOrderedDescending;
             }

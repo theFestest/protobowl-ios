@@ -12,7 +12,7 @@
 
 - (NSString *) description
 {
-    return [NSString stringWithFormat:@"%@: {score=%d, rank=%d, negs=%d, userID=%@}", self.name, self.score, self.rank, self.negs, self.userID];
+    return [NSString stringWithFormat:@"%@: {score=%d, rank=%d, negs=%d, userID=%@}", self.name, self.score, self.rank, self.negatives, self.userID];
 }
 
 - (NSString *) debugDescription
