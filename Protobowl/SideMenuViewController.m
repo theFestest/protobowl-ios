@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *users;
 
-@property (nonatomic) NSIndexPath *selectedRow;
+@property (nonatomic) NSString *selectedUserID;
 
 @property (nonatomic, strong) UITextField *activeField;
 @end
@@ -66,7 +66,7 @@
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
     
-    self.selectedRow = nil;
+    self.selectedUserID = nil;
     
     [self registerForKeyboardNotifications];
 }
@@ -116,11 +116,12 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([indexPath isEqual:self.selectedRow])
+    ProtobowlUser *user = self.users[indexPath.row];
+
+    if([user.userID isEqual:self.selectedUserID])
     {
         LeaderboardDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaderboardDetailCell" forIndexPath:indexPath];
         
-        ProtobowlUser *user = self.users[indexPath.row];
         
         cell.rankLabel.text = [NSString stringWithFormat:@"#%d", user.rank];
         cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score];
@@ -185,7 +186,9 @@
 
 - (float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([indexPath isEqual:self.selectedRow])
+    ProtobowlUser *user = self.users[indexPath.row];
+    
+    if([user.userID isEqual:self.selectedUserID])
     {
         return kLeaderboardDetailCellHeight;
     }
@@ -196,8 +199,10 @@
 {
     NSLog(@"Selected");
     
-    NSIndexPath *lastSelected = [self.selectedRow copy];
-    self.selectedRow = indexPath;
+    NSString *userID = [self.users[indexPath.row] userID];
+    
+    NSIndexPath *lastSelected = [self indexPathForUserID:self.selectedUserID];
+    self.selectedUserID = userID;
     if([lastSelected isEqual:indexPath])
     {
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
@@ -216,7 +221,7 @@
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Deselected");
-    self.selectedRow = nil;
+    self.selectedUserID = nil;
     [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:0];
 }
 
@@ -231,6 +236,18 @@
     return count;
 }
 
+
+- (NSIndexPath *) indexPathForUserID:(NSString *) userID
+{
+    for(int i = 0; i < self.users.count; i++)
+    {
+        if([[self.users[i] userID] isEqualToString:userID])
+        {
+            return [NSIndexPath indexPathForRow:i inSection:0];
+        }
+    }
+    return nil;
+}
 
 #pragma mark - Text Field Delegate - Name Changing
 
