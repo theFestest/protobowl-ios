@@ -30,6 +30,7 @@
 		B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */; };
 		B5814E2D17A5A13E009639B6 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5814E2C17A5A13E009639B6 /* ding.wav */; };
 		B5814E2F17A5A223009639B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5814E2E17A5A223009639B6 /* AudioToolbox.framework */; };
+		B583DA2217A6415F00D0FEDA /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */; };
 		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */; };
@@ -116,6 +117,8 @@
 		B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_pressed@2x.png"; sourceTree = "<group>"; };
 		B5814E2C17A5A13E009639B6 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		B5814E2E17A5A223009639B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
+		B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		B5929579176B98F5008E0EB3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B592957B176BC5E8008E0EB3 /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
 		B592957C176BC5E8008E0EB3 /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GuessViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -306,6 +309,8 @@
 				B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */,
 				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
+				B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */,
+				B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
 				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
 				B5FD24701767CE9900B9870D /* Supporting Files */,
@@ -552,6 +557,7 @@
 				B5F6C036179B46EA0040CB37 /* LeaderboardViewController.m in Sources */,
 				B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */,
 				B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */,
+				B583DA2217A6415F00D0FEDA /* SideMenuViewController.m in Sources */,
 				B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */,
 				B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */,
 			);
