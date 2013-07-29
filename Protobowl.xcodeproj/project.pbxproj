@@ -28,6 +28,8 @@
 		B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD0176EBC9E00D1369E /* buzz_enabled@2x.png */; };
 		B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD1176EBC9E00D1369E /* buzz_pressed.png */; };
 		B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */; };
+		B5814E2D17A5A13E009639B6 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5814E2C17A5A13E009639B6 /* ding.wav */; };
+		B5814E2F17A5A223009639B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5814E2E17A5A223009639B6 /* AudioToolbox.framework */; };
 		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */; };
@@ -41,7 +43,7 @@
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
 		B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */; };
 		B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */; };
-		B5F6C036179B46EA0040CB37 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */; };
+		B5F6C036179B46EA0040CB37 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */; };
 		B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24691767CE9900B9870D /* UIKit.framework */; };
 		B5FD246C1767CE9900B9870D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246B1767CE9900B9870D /* Foundation.framework */; };
 		B5FD246E1767CE9900B9870D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246D1767CE9900B9870D /* CoreGraphics.framework */; };
@@ -112,6 +114,8 @@
 		B5811AD0176EBC9E00D1369E /* buzz_enabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_enabled@2x.png"; sourceTree = "<group>"; };
 		B5811AD1176EBC9E00D1369E /* buzz_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_pressed.png; sourceTree = "<group>"; };
 		B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_pressed@2x.png"; sourceTree = "<group>"; };
+		B5814E2C17A5A13E009639B6 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
+		B5814E2E17A5A223009639B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		B5929579176B98F5008E0EB3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B592957B176BC5E8008E0EB3 /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
 		B592957C176BC5E8008E0EB3 /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GuessViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -136,8 +140,8 @@
 		B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FuzzyTime.m"; sourceTree = "<group>"; };
 		B5E9CF1417A4D64600B67AEE /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
-		B5F6C034179B46EA0040CB37 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SideMenuViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SideMenuViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5F6C034179B46EA0040CB37 /* LeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LeaderboardViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LeaderboardViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5FD24661767CE9900B9870D /* Protobowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Protobowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5FD24691767CE9900B9870D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5FD246B1767CE9900B9870D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -191,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5814E2F17A5A223009639B6 /* AudioToolbox.framework in Frameworks */,
 				B5C004C2179F0C1500284199 /* Reveal.framework in Frameworks */,
 				B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */,
 				B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */,
@@ -274,6 +279,7 @@
 		B5FD24681767CE9900B9870D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5814E2E17A5A223009639B6 /* AudioToolbox.framework */,
 				B592957E176BDCC7008E0EB3 /* Reveal.framework */,
 				B5929579176B98F5008E0EB3 /* QuartzCore.framework */,
 				B5FD24E11767CF4600B9870D /* SocketRocket */,
@@ -296,8 +302,8 @@
 				B5FD24841767CE9900B9870D /* MainStoryboard_iPad.storyboard */,
 				B5FD24E21767CF7200B9870D /* MainViewController.h */,
 				B5FD24E31767CF7200B9870D /* MainViewController.m */,
-				B5F6C034179B46EA0040CB37 /* SideMenuViewController.h */,
-				B5F6C035179B46EA0040CB37 /* SideMenuViewController.m */,
+				B5F6C034179B46EA0040CB37 /* LeaderboardViewController.h */,
+				B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */,
 				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
@@ -310,6 +316,7 @@
 		B5FD24701767CE9900B9870D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5814E2C17A5A13E009639B6 /* ding.wav */,
 				B5AFB3E6178D351100AD8447 /* UIView+Donald.h */,
 				B5AFB3E7178D351100AD8447 /* UIView+Donald.m */,
 				B5FD24781767CE9900B9870D /* AppDelegate.h */,
@@ -476,6 +483,7 @@
 				B5FD24861767CE9900B9870D /* MainStoryboard_iPad.storyboard in Resources */,
 				B50BFB91176D542B0052700D /* FontAwesome.ttf in Resources */,
 				B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */,
+				B5814E2D17A5A13E009639B6 /* ding.wav in Resources */,
 				B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */,
 				B5811AD5176EBC9E00D1369E /* buzz_enabled.png in Resources */,
 				B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */,
@@ -541,7 +549,7 @@
 				B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */,
 				B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */,
 				364D5954178F8729000B5F7A /* PulloutView.m in Sources */,
-				B5F6C036179B46EA0040CB37 /* SideMenuViewController.m in Sources */,
+				B5F6C036179B46EA0040CB37 /* LeaderboardViewController.m in Sources */,
 				B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */,
 				B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */,
 				B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */,

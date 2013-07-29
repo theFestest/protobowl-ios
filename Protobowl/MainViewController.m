@@ -9,7 +9,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+Donald.h"
 #import "PulloutView.h"
-#import "SideMenuViewController.h"
+#import "LeaderboardViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 /*#define LOG(s, ...) do { \
     NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -40,7 +41,7 @@
 @property (nonatomic) float pulloutStartX;
 @property (nonatomic) float sideMenuStartX;
 
-@property (strong, nonatomic) SideMenuViewController *sideMenu;
+@property (strong, nonatomic) LeaderboardViewController *sideMenu;
 
 @property (nonatomic) BOOL isSideMenuOnScreen;
 
@@ -254,6 +255,11 @@
 {
     if(isClaimed)
     {
+        SystemSoundID ding;
+        NSURL *audioPath = [[NSBundle mainBundle] URLForResource:@"ding" withExtension:@"wav"];
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)audioPath, &ding);
+        AudioServicesPlaySystemSound(ding);
+        
         [self presentGuessViewController];
     }
 }

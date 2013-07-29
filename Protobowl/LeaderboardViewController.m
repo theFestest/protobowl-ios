@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Donald Pinckney. All rights reserved.
 //
 
-#import "SideMenuViewController.h"
+#import "LeaderboardViewController.h"
 #import "UIView+Donald.h"
 #import "LeaderboardCell.h"
 #import "ProtobowlUser.h"
@@ -18,7 +18,7 @@
 #define kLeaderboardCellHeight 44
 #define kLeaderboardDetailCellHeight 180
 
-@interface SideMenuViewController ()
+@interface LeaderboardViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *leaderboardTitle;
 @property (weak, nonatomic) IBOutlet UITableView *leaderboard;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderboardHeight;
@@ -30,7 +30,7 @@
 @property (nonatomic, strong) UITextField *activeField;
 @end
 
-@implementation SideMenuViewController
+@implementation LeaderboardViewController
 
 - (void) reloadLeaderboard
 {
