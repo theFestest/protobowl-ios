@@ -203,6 +203,7 @@
     NSLog(@"Selected");
     
     self.selectedCell = nil;
+    self.selectedCellController = nil;
     int lastSelected = self.selectedRow;
     self.selectedRow = indexPath.row;
     if(lastSelected == indexPath.row)
