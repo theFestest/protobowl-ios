@@ -309,7 +309,7 @@
 
 - (float) expandedHeight
 {
-    return [self calculateTableHeight] + 56; // Magic numbers via experimentation.  This value leaves a nice double thick line at the bottom of the leaderboard.
+    return [self calculateTableHeight] + 43; // Magic numbers via experimentation.  This value leaves a nice double thick line at the bottom of the leaderboard.
 }
 
 

@@ -23,5 +23,6 @@
 
 - (void) setFullyOnscreen:(BOOL) onscreen;
 - (void) reloadTableView;
+- (void) reloadTableViewAtIndices:(NSArray *)indices numDetailRows:(int)n;
 
 @end

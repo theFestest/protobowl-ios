@@ -44,12 +44,12 @@
     [self resizeTableView];
 }
 
-- (void) reloadLeaderboardAtIndices:(NSArray *)indices numDetailRows:(int)n
+- (void) reloadTableViewAtIndices:(NSArray *)indices numDetailRows:(int)n
 {
-    [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationFade];
     float targetHeight = [self calculateTableHeight];
     self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, targetHeight);
-    [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationNone];
     [self resizeTableView];
 }
 
@@ -211,11 +211,11 @@
     }
     else if(lastSelected != -1)
     {
-        [self reloadLeaderboardAtIndices:@[[NSIndexPath indexPathForRow:lastSelected inSection:indexPath.section], indexPath] numDetailRows:1];
+        [self reloadTableViewAtIndices:@[[NSIndexPath indexPathForRow:lastSelected inSection:indexPath.section], indexPath] numDetailRows:1];
     }
     else
     {
-        [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:1];
+        [self reloadTableViewAtIndices:@[indexPath] numDetailRows:1];
     }
 }
 
@@ -225,7 +225,7 @@
     NSLog(@"Deselected");
     self.selectedRow = -1;
     self.selectedCell = nil;
-    [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:0];
+    [self reloadTableViewAtIndices:@[indexPath] numDetailRows:0];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users inRoom:(NSString *)roomName
