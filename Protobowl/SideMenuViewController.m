@@ -14,6 +14,8 @@
 #import "LeaderboardDetailCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NSDate+FuzzyTime.h"
+#import "SideMenuExpandedCell.h"
+#import "LeaderboardViewController.h"
 
 #define kLeaderboardCellHeight 44
 #define kLeaderboardDetailCellHeight 180
@@ -110,34 +112,67 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SideMenuCollapsedCell" forIndexPath:indexPath];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:21];
-    
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"Leaderboard";
-            break;
-        case 1:
-            cell.textLabel.text = @"Settings";
-            break;
-        case 2:
-            cell.textLabel.text = @"Rooms";
-            break;
-        case 3:
-            cell.textLabel.text = @"Question History";
-            break;
-        default:
-            cell.textLabel.text = @"";
-            break;
+    if(indexPath.row == self.selectedRow)
+    {
+        SideMenuExpandedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SideMenuExpandedCell" forIndexPath:indexPath];
+        cell.parentVC = self;
+        UIViewController *vc = nil;
+        switch (indexPath.row)
+        {
+            case 0:
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LeaderboardViewController"];
+                ((LeaderboardViewController *)vc).mainViewController = self.mainViewController;
+                self.mainViewController.manager.leaderboardDelegate = (LeaderboardViewController *)vc;
+                break;
+            case 1:
+                vc = nil;
+                break;
+            case 2:
+                vc = nil;
+                break;
+            case 3:
+                vc = nil;
+                break;
+            default:
+                vc = nil;
+                break;
+        }
+        [cell setViewController:vc];
+        
+        return cell;
     }
-    return cell;
+    else
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SideMenuCollapsedCell" forIndexPath:indexPath];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:21];
+        
+        switch (indexPath.row)
+        {
+            case 0:
+                cell.textLabel.text = @"Leaderboard";
+                break;
+            case 1:
+                cell.textLabel.text = @"Settings";
+                break;
+            case 2:
+                cell.textLabel.text = @"Rooms";
+                break;
+            case 3:
+                cell.textLabel.text = @"Question History";
+                break;
+            default:
+                cell.textLabel.text = @"";
+                break;
+        }
+        return cell;
+    }
 }
 
 - (float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == self.selectedRow)
     {
-        return 200;
+        return 480;
     }
     return 44;
 }

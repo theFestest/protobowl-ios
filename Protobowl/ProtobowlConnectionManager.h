@@ -71,6 +71,7 @@
 - (BOOL) next; // Returns whether or not the next command was actually executed
 
 - (void) changeMyName:(NSString *)name;
+- (void) outputUsersToLeaderboardDelegate;
 
 @property (nonatomic, weak) id<ProtobowlRoomDelegate> roomDelegate;
 @property (nonatomic, weak) id<ProtobowlLeaderboardDelegate> leaderboardDelegate;

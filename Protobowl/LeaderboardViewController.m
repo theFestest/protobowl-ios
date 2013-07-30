@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *leaderboardTitle;
 @property (weak, nonatomic) IBOutlet UITableView *leaderboard;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderboardHeight;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *users;
 
 @property (nonatomic) NSString *selectedUserID;
@@ -49,49 +48,14 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-	    
-    // Setup pan gesture to navigate back
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self.mainViewController action:@selector(handlePan:)];
-    [self.view addGestureRecognizer:pan];
-    
-    [self.view.layer setShadowColor:[[UIColor blackColor] CGColor]];
-    [self.view.layer setShadowOffset:CGSizeMake(0, 6)];
-    [self.view.layer setShadowOpacity:0.75];
-    [self.view.layer setShadowRadius:10.0];
-    
-    self.view.layer.shouldRasterize = YES;
-    self.view.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    
-    [self.leaderboard applyStandardSinkStyle];
-    
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
     
     self.selectedUserID = nil;
     
     [self registerForKeyboardNotifications];
+    
+    [self.mainViewController.manager outputUsersToLeaderboardDelegate];
 }
 
-
-- (void) setFullyOnscreen:(BOOL) onscreen
-{
-    if(onscreen)
-    {
-        [self.view.layer setShadowOpacity:0.0];
-        [self.view.layer setShadowRadius:0.0];
-        [self.view.layer setShadowColor:nil];
-        
-        [self reloadLeaderboard];
-        self.view.layer.shouldRasterize = NO;
-    }
-    else
-    {
-        [self.view.layer setShadowColor:[[UIColor blackColor] CGColor]];
-        [self.view.layer setShadowOffset:CGSizeMake(0, 6)];
-        [self.view.layer setShadowOpacity:0.75];
-        [self.view.layer setShadowRadius:10.0];
-        self.view.layer.shouldRasterize = YES;
-    }
-}
 
 - (void) resizeTableView
 {
@@ -255,18 +219,18 @@
 // Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+                                                 name:UIKeyboardWillHideNotification object:nil];*/
     
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
+/*- (void)keyboardWasShown:(NSNotification*)aNotification
 {
     NSDictionary *info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -293,7 +257,7 @@
 {
     self.scrollView.contentInset = UIEdgeInsetsZero;
     self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
-}
+}*/
 
 
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField

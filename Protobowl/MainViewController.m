@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+Donald.h"
 #import "PulloutView.h"
-#import "LeaderboardViewController.h"
+#import "SideMenuViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 /*#define LOG(s, ...) do { \
@@ -41,7 +41,7 @@
 @property (nonatomic) float pulloutStartX;
 @property (nonatomic) float sideMenuStartX;
 
-@property (strong, nonatomic) LeaderboardViewController *sideMenu;
+@property (strong, nonatomic) SideMenuViewController *sideMenu;
 
 @property (nonatomic) BOOL isSideMenuOnScreen;
 

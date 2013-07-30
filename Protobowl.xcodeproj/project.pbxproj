@@ -42,6 +42,7 @@
 		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
+		B5E019E417A76CE900B76F46 /* SideMenuExpandedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */; };
 		B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */; };
 		B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */; };
 		B5F6C036179B46EA0040CB37 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */; };
@@ -139,6 +140,8 @@
 		B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlUser.m; sourceTree = "<group>"; };
 		B5D6A6E2179CBDB8009EB18B /* ProtobowlScoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlScoring.h; sourceTree = "<group>"; };
 		B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlScoring.m; sourceTree = "<group>"; };
+		B5E019E217A76CE900B76F46 /* SideMenuExpandedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuExpandedCell.h; sourceTree = "<group>"; };
+		B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuExpandedCell.m; sourceTree = "<group>"; };
 		B5E9CF1117A4D4C000B67AEE /* NSDate+FuzzyTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FuzzyTime.h"; sourceTree = "<group>"; };
 		B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FuzzyTime.m"; sourceTree = "<group>"; };
 		B5E9CF1417A4D64600B67AEE /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */,
 				B5C004C3179F0E4700284199 /* CapsuleLabel.h */,
 				B5C004C4179F0E4700284199 /* CapsuleLabel.m */,
+				B5E019E217A76CE900B76F46 /* SideMenuExpandedCell.h */,
+				B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */,
 				B50BFB99176D548C0052700D /* FAImageView.m in Sources */,
 				B50BFB9B176D548C0052700D /* NSString+FontAwesome.m in Sources */,
+				B5E019E417A76CE900B76F46 /* SideMenuExpandedCell.m in Sources */,
 				B50BFB9D176D548C0052700D /* UIFont+FontAwesome.m in Sources */,
 				B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */,
 				B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */,

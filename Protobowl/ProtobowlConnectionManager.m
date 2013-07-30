@@ -193,7 +193,7 @@ NSLog(@"%@", string); \
                 self.userData[userID] = userWithLineNumber;
             }
             
-            [self outputUsersToDelegate];
+            [self outputUsersToLeaderboardDelegate];
         }
       
         if(packetData[@"qid"] && ![packetData[@"qid"] isKindOfClass:[NSNull class]])
@@ -614,7 +614,7 @@ NSLog(@"%@", string); \
     return NO;
 }
 
-- (void) outputUsersToDelegate
+- (void) outputUsersToLeaderboardDelegate
 {
     if(self.scoring == nil) return;
     

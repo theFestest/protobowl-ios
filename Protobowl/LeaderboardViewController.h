@@ -13,6 +13,5 @@
 
 @property (nonatomic, weak) MainViewController *mainViewController;
 
-- (void) setFullyOnscreen:(BOOL) onscreen;
 
 @end
