@@ -24,5 +24,4 @@
 - (void) setFullyOnscreen:(BOOL) onscreen;
 - (void) reloadTableView;
 
-
 @end

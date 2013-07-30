@@ -190,7 +190,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Leaderboard - minibitapp (3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4n-fK-MGk">
-                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
+                                <rect key="frame" x="0.0" y="8" width="280" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" type="user" id="dPT-yo-Kt2"/>
                                 </constraints>
@@ -199,9 +199,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZPv-Zy-pIF">
-                                <rect key="frame" x="0.0" y="33" width="280" height="240"/>
+                                <rect key="frame" x="0.0" y="41" width="280" height="240"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" type="user" id="yZe-Bp-j1s"/>
                                 </constraints>
@@ -446,7 +445,7 @@
                             <constraint firstItem="P4n-fK-MGk" firstAttribute="leading" secondItem="Un4-r3-Cue" secondAttribute="leading" type="user" id="7iV-Qx-Sbx"/>
                             <constraint firstItem="P4n-fK-MGk" firstAttribute="trailing" secondItem="ZPv-Zy-pIF" secondAttribute="trailing" type="default" id="NBD-X9-fai"/>
                             <constraint firstItem="P4n-fK-MGk" firstAttribute="leading" secondItem="ZPv-Zy-pIF" secondAttribute="leading" type="default" id="YNL-Ov-8hk"/>
-                            <constraint firstItem="P4n-fK-MGk" firstAttribute="top" secondItem="Un4-r3-Cue" secondAttribute="top" type="user" id="cQE-7e-UcC"/>
+                            <constraint firstItem="P4n-fK-MGk" firstAttribute="top" secondItem="Un4-r3-Cue" secondAttribute="top" constant="8" type="user" id="cQE-7e-UcC"/>
                             <constraint firstItem="ZPv-Zy-pIF" firstAttribute="top" secondItem="P4n-fK-MGk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="o5i-uT-hno"/>
                         </constraints>
                     </view>
@@ -576,11 +575,11 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </tableViewCell>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SideMenuExpandedCell" rowHeight="480" id="l4L-Wl-hQT" customClass="SideMenuExpandedCell">
-                                                <rect key="frame" x="0.0" y="66" width="280" height="480"/>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SideMenuExpandedCell" rowHeight="200" id="l4L-Wl-hQT" customClass="SideMenuExpandedCell">
+                                                <rect key="frame" x="0.0" y="66" width="280" height="200"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="479"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="199"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>

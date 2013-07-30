@@ -705,11 +705,12 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
 				);
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos6.1;
@@ -731,6 +732,7 @@
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos6.1;

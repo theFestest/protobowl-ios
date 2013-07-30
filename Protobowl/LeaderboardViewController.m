@@ -185,6 +185,8 @@
     {
         [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:1];
     }
+    
+    [self.sideMenuViewController reloadTableView];
 }
 
 
@@ -193,6 +195,8 @@
     NSLog(@"Deselected");
     self.selectedUserID = nil;
     [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:0];
+    
+    [self.sideMenuViewController reloadTableView];
 }
 
 
@@ -305,7 +309,7 @@
 
 - (float) expandedHeight
 {
-    return self.users.count * 44 + 56; // Magic numbers via experimentation.  This value leaves a nice double thick line at the bottom of the leaderboard.
+    return [self calculateTableHeight] + 56; // Magic numbers via experimentation.  This value leaves a nice double thick line at the bottom of the leaderboard.
 }
 
 
