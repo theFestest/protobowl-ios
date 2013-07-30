@@ -9,10 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
 
+@class SideMenuViewController;
+@protocol CellViewController <NSObject>
+
+- (float) expandedHeight;
+@property (nonatomic, weak) SideMenuViewController *sideMenuViewController;
+
+@end
+
 @interface SideMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ProtobowlLeaderboardDelegate, UITextFieldDelegate>
 
 @property (nonatomic, weak) MainViewController *mainViewController;
 
 - (void) setFullyOnscreen:(BOOL) onscreen;
+- (void) reloadTableView;
+
 
 @end

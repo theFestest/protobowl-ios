@@ -9,13 +9,12 @@
 #import "SideMenuExpandedCell.h"
 
 @interface SideMenuExpandedCell ()
-@property (weak, nonatomic) UIViewController *addedVC;
 
 @end
 
 @implementation SideMenuExpandedCell
 
-- (void) setViewController:(UIViewController *)vc
+- (void) setViewController:(UIViewController<CellViewController> *)vc
 {
     [self.addedVC removeFromParentViewController];
     [self.addedVC.view removeFromSuperview];

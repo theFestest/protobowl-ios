@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SideMenuViewController.h"
 
 @interface SideMenuExpandedCell : UITableViewCell
-- (void) setViewController:(UIViewController *)vc;
-@property (nonatomic, strong) IBOutlet UIViewController *parentVC;
+- (void) setViewController:(UIViewController<CellViewController> *)vc;
+@property (nonatomic, strong) UIViewController *parentVC;
+@property (weak, nonatomic) UIViewController<CellViewController> *addedVC;
+
 @end

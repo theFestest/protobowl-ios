@@ -27,6 +27,8 @@
 @property (nonatomic, strong) NSArray *users;
 
 @property (nonatomic) int selectedRow;
+@property (nonatomic, strong) SideMenuExpandedCell *selectedCell;
+@property (nonatomic, strong) id<CellViewController> selectedCellController;
 
 @property (nonatomic, strong) UITextField *activeField;
 @end
@@ -36,11 +38,15 @@
 - (void) reloadTableView
 {
     [self.tableView reloadData];
+    float targetHeight = [self calculateTableHeight];
+    self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, targetHeight);
+    [self.tableView reloadData];
     [self resizeTableView];
 }
 
 - (void) reloadLeaderboardAtIndices:(NSArray *)indices numDetailRows:(int)n
 {
+    [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
     float targetHeight = [self calculateTableHeight];
     self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, targetHeight);
     [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -114,30 +120,42 @@
 {
     if(indexPath.row == self.selectedRow)
     {
-        SideMenuExpandedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SideMenuExpandedCell" forIndexPath:indexPath];
-        cell.parentVC = self;
-        UIViewController *vc = nil;
-        switch (indexPath.row)
+        SideMenuExpandedCell *cell = nil;
+        if(self.selectedCell == nil)
         {
-            case 0:
-                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LeaderboardViewController"];
-                ((LeaderboardViewController *)vc).mainViewController = self.mainViewController;
-                self.mainViewController.manager.leaderboardDelegate = (LeaderboardViewController *)vc;
-                break;
-            case 1:
-                vc = nil;
-                break;
-            case 2:
-                vc = nil;
-                break;
-            case 3:
-                vc = nil;
-                break;
-            default:
-                vc = nil;
-                break;
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SideMenuExpandedCell" forIndexPath:indexPath];
+            cell.parentVC = self;
+            UIViewController<CellViewController> *vc = nil;
+            switch (indexPath.row)
+            {
+                case 0:
+                    vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LeaderboardViewController"];
+                    ((LeaderboardViewController *)vc).mainViewController = self.mainViewController;
+                    self.mainViewController.manager.leaderboardDelegate = (LeaderboardViewController *)vc;
+                    break;
+                case 1:
+                    vc = nil;
+                    break;
+                case 2:
+                    vc = nil;
+                    break;
+                case 3:
+                    vc = nil;
+                    break;
+                default:
+                    vc = nil;
+                    break;
+            }
+            vc.sideMenuViewController = self;
+            [cell setViewController:vc];
+            
+            self.selectedCell = cell;
+            self.selectedCellController = vc;
         }
-        [cell setViewController:vc];
+        else
+        {
+            cell = self.selectedCell;
+        }
         
         return cell;
     }
@@ -172,7 +190,9 @@
 {
     if(indexPath.row == self.selectedRow)
     {
-        return 480;
+        float height = [self.selectedCellController expandedHeight];
+        printf("%g\n", height);
+        return height;
     }
     return 44;
 }
@@ -181,7 +201,7 @@
 {
     NSLog(@"Selected");
     
-    
+    self.selectedCell = nil;
     int lastSelected = self.selectedRow;
     self.selectedRow = indexPath.row;
     if(lastSelected == indexPath.row)
@@ -203,6 +223,7 @@
 {
     NSLog(@"Deselected");
     self.selectedRow = -1;
+    self.selectedCell = nil;
     [self reloadLeaderboardAtIndices:@[indexPath] numDetailRows:0];
 }
 

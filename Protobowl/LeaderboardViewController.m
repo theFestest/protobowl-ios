@@ -30,16 +30,22 @@
 @end
 
 @implementation LeaderboardViewController
+@synthesize sideMenuViewController;
+
 
 - (void) reloadLeaderboard
 {
+    [self.leaderboard reloadData];
+    float targetHeight = [self calculateTableHeight];
+    self.leaderboard.contentSize = CGSizeMake(self.leaderboard.contentSize.width, targetHeight);
     [self.leaderboard reloadData];
     [self resizeTableView];
 }
 
 - (void) reloadLeaderboardAtIndices:(NSArray *)indices numDetailRows:(int)n
 {
-    float targetHeight = kLeaderboardCellHeight * ([self tableView:self.leaderboard numberOfRowsInSection:[indices[0] section]] - n) + kLeaderboardDetailCellHeight * n;
+    [self.leaderboard reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+    float targetHeight = [self calculateTableHeight];
     self.leaderboard.contentSize = CGSizeMake(self.leaderboard.contentSize.width, targetHeight);
     [self.leaderboard reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationAutomatic];
     [self resizeTableView];
@@ -292,6 +298,26 @@
     self.users = users;
     
     [self reloadLeaderboard];
+    [self.sideMenuViewController reloadTableView];
+    NSLog(@"Reloading leaderboard");
+}
+
+
+- (float) expandedHeight
+{
+    return self.users.count * 44 + 56; // Magic numbers via experimentation.  This value leaves a nice double thick line at the bottom of the leaderboard.
+}
+
+
+- (float) calculateTableHeight
+{
+    int rows = [self.leaderboard.dataSource tableView:self.leaderboard numberOfRowsInSection:0];
+    float height = 0;
+    for(int i = 0; i < rows; i++)
+    {
+        height += [self.leaderboard.delegate tableView:self.leaderboard heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+    }
+    return height;
 }
 
 @end

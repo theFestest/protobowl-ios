@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
+#import "SideMenuViewController.h"
 
-@interface LeaderboardViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ProtobowlLeaderboardDelegate, UITextFieldDelegate>
+
+@interface LeaderboardViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ProtobowlLeaderboardDelegate, UITextFieldDelegate, CellViewController>
 
 @property (nonatomic, weak) MainViewController *mainViewController;
 
