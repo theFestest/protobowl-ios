@@ -11,7 +11,7 @@
 
 @interface SideMenuExpandedCell : UITableViewCell
 - (void) setViewController:(UIViewController<CellViewController> *)vc;
-@property (nonatomic, strong) UIViewController *parentVC;
+@property (nonatomic, weak) UIViewController *parentVC;
 @property (weak, nonatomic) UIViewController<CellViewController> *addedVC;
 
 @end
