@@ -46,7 +46,7 @@
 
 - (void) reloadTableViewAtIndices:(NSArray *)indices numDetailRows:(int)n
 {
-//    [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationFade];
     float targetHeight = [self calculateTableHeight];
     self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, targetHeight);
     [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationNone];
@@ -135,7 +135,7 @@
                     self.mainViewController.manager.leaderboardDelegate = (LeaderboardViewController *)vc;
                     break;
                 case 1:
-                    vc = nil;
+                    vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                     break;
                 case 2:
                     vc = nil;

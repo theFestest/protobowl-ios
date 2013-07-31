@@ -22,6 +22,7 @@
 		B510D039177B98FD008364F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
 		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
+		B577625317A8B97D00F5CED5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B577625217A8B97D00F5CED5 /* SettingsViewController.m */; };
 		B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACD176EBC9E00D1369E /* buzz_disabled.png */; };
 		B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */; };
 		B5811AD5176EBC9E00D1369E /* buzz_enabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACF176EBC9E00D1369E /* buzz_enabled.png */; };
@@ -110,6 +111,8 @@
 		B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlConnectionManager.m; sourceTree = "<group>"; };
+		B577625117A8B97D00F5CED5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B577625217A8B97D00F5CED5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B5811ACD176EBC9E00D1369E /* buzz_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_disabled.png; sourceTree = "<group>"; };
 		B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_disabled@2x.png"; sourceTree = "<group>"; };
 		B5811ACF176EBC9E00D1369E /* buzz_enabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_enabled.png; sourceTree = "<group>"; };
@@ -316,6 +319,8 @@
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 				B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */,
 				B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */,
+				B577625117A8B97D00F5CED5 /* SettingsViewController.h */,
+				B577625217A8B97D00F5CED5 /* SettingsViewController.m */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
 				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
 				B5FD24701767CE9900B9870D /* Supporting Files */,
@@ -564,6 +569,7 @@
 				B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */,
 				B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */,
 				B583DA2217A6415F00D0FEDA /* SideMenuViewController.m in Sources */,
+				B577625317A8B97D00F5CED5 /* SettingsViewController.m in Sources */,
 				B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */,
 				B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */,
 			);
