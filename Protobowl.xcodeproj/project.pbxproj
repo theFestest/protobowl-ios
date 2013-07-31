@@ -38,6 +38,8 @@
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B5A093EE17A8DAAB0040DBDC /* RadioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A093ED17A8DAAB0040DBDC /* RadioCell.m */; };
 		B5A093F117A8DB7B0040DBDC /* ActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A093F017A8DB7B0040DBDC /* ActionCell.m */; };
+		B5A093F417A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A093F317A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m */; };
+		B5A093F717A8E5110040DBDC /* NSArray+MutableDeepCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A093F617A8E5110040DBDC /* NSArray+MutableDeepCopy.m */; };
 		B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */; };
 		B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFB3E7178D351100AD8447 /* UIView+Donald.m */; };
 		B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */; };
@@ -138,6 +140,10 @@
 		B5A093ED17A8DAAB0040DBDC /* RadioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioCell.m; sourceTree = "<group>"; };
 		B5A093EF17A8DB7B0040DBDC /* ActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionCell.h; sourceTree = "<group>"; };
 		B5A093F017A8DB7B0040DBDC /* ActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionCell.m; sourceTree = "<group>"; };
+		B5A093F217A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MutableDeepCopy.h"; sourceTree = "<group>"; };
+		B5A093F317A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MutableDeepCopy.m"; sourceTree = "<group>"; };
+		B5A093F517A8E5110040DBDC /* NSArray+MutableDeepCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MutableDeepCopy.h"; sourceTree = "<group>"; };
+		B5A093F617A8E5110040DBDC /* NSArray+MutableDeepCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MutableDeepCopy.m"; sourceTree = "<group>"; };
 		B5AD88F117A2270300AAC11C /* LeaderboardDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardDetailCell.h; sourceTree = "<group>"; };
 		B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardDetailCell.m; sourceTree = "<group>"; };
 		B5AFB3E6178D351100AD8447 /* UIView+Donald.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Donald.h"; sourceTree = "<group>"; };
@@ -380,6 +386,10 @@
 				B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */,
 				B5E9CF1417A4D64600B67AEE /* NSDate-Utilities.h */,
 				B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */,
+				B5A093F217A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.h */,
+				B5A093F317A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m */,
+				B5A093F517A8E5110040DBDC /* NSArray+MutableDeepCopy.h */,
+				B5A093F617A8E5110040DBDC /* NSArray+MutableDeepCopy.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -576,6 +586,7 @@
 				B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */,
 				B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */,
 				B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */,
+				B5A093F417A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m in Sources */,
 				B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */,
 				B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */,
 				B50BFB99176D548C0052700D /* FAImageView.m in Sources */,
@@ -587,6 +598,7 @@
 				B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */,
 				B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */,
 				364D5954178F8729000B5F7A /* PulloutView.m in Sources */,
+				B5A093F717A8E5110040DBDC /* NSArray+MutableDeepCopy.m in Sources */,
 				B5F6C036179B46EA0040CB37 /* LeaderboardViewController.m in Sources */,
 				B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */,
 				B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */,

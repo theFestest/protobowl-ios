@@ -139,7 +139,6 @@
             {
                 vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                 NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
-                NSLog(@"Plist path: %@", plistPath);
                 [((SettingsViewController *)vc) setupWithPlistPath:plistPath];
             }
             else if(indexPath.row == 2)

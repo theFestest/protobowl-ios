@@ -12,6 +12,7 @@
 		<array>
 			<string>Sound On Buzz</string>
 			<string>Reset Score</string>
+            <string>Test Categories</string>
 		</array>
 		<key>Sound On Buzz</key>
 		<dict>
@@ -19,6 +20,19 @@
 			<integer>0</integer>
 			<key>SettingsCellType</key>
 			<string>SettingsCellTypeBool</string>
+		</dict>
+        <key>Test Categories</key>
+		<dict>
+			<key>options</key>
+			<array>
+                <string>History</string>
+                <string>Religion</string>
+                <string>Science</string>
+            </array>
+            <key>value</key>
+			<integer>1</integer>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeRadio</string>
 		</dict>
 		<key>Reset Score</key>
 		<dict>
