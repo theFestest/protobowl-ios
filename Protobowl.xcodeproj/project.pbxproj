@@ -23,6 +23,8 @@
 		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
 		B577625317A8B97D00F5CED5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B577625217A8B97D00F5CED5 /* SettingsViewController.m */; };
+		B577625617A8C80C00F5CED5 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B577625517A8C80C00F5CED5 /* SwitchCell.m */; };
+		B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B577625717A8CA8D00F5CED5 /* Settings.plist */; };
 		B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACD176EBC9E00D1369E /* buzz_disabled.png */; };
 		B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */; };
 		B5811AD5176EBC9E00D1369E /* buzz_enabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811ACF176EBC9E00D1369E /* buzz_enabled.png */; };
@@ -113,6 +115,9 @@
 		B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlConnectionManager.m; sourceTree = "<group>"; };
 		B577625117A8B97D00F5CED5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B577625217A8B97D00F5CED5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		B577625417A8C80C00F5CED5 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		B577625517A8C80C00F5CED5 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
+		B577625717A8CA8D00F5CED5 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		B5811ACD176EBC9E00D1369E /* buzz_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_disabled.png; sourceTree = "<group>"; };
 		B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_disabled@2x.png"; sourceTree = "<group>"; };
 		B5811ACF176EBC9E00D1369E /* buzz_enabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_enabled.png; sourceTree = "<group>"; };
@@ -249,6 +254,9 @@
 				B5C004C4179F0E4700284199 /* CapsuleLabel.m */,
 				B5E019E217A76CE900B76F46 /* SideMenuExpandedCell.h */,
 				B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */,
+				B577625417A8C80C00F5CED5 /* SwitchCell.h */,
+				B577625517A8C80C00F5CED5 /* SwitchCell.m */,
+				B577625717A8CA8D00F5CED5 /* Settings.plist */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -493,6 +501,7 @@
 				B5FD24741767CE9900B9870D /* InfoPlist.strings in Resources */,
 				B5FD247C1767CE9900B9870D /* Default.png in Resources */,
 				B5FD247E1767CE9900B9870D /* Default@2x.png in Resources */,
+				B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */,
 				B5FD24801767CE9900B9870D /* Default-568h@2x.png in Resources */,
 				B5FD24831767CE9900B9870D /* MainStoryboard_iPhone.storyboard in Resources */,
 				B5FD24861767CE9900B9870D /* MainStoryboard_iPad.storyboard in Resources */,
@@ -558,6 +567,7 @@
 				B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */,
 				B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */,
 				B50BFB99176D548C0052700D /* FAImageView.m in Sources */,
+				B577625617A8C80C00F5CED5 /* SwitchCell.m in Sources */,
 				B50BFB9B176D548C0052700D /* NSString+FontAwesome.m in Sources */,
 				B5E019E417A76CE900B76F46 /* SideMenuExpandedCell.m in Sources */,
 				B50BFB9D176D548C0052700D /* UIFont+FontAwesome.m in Sources */,
@@ -711,7 +721,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
 				);
-				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";
@@ -719,7 +729,7 @@
 				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -741,7 +751,7 @@
 				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

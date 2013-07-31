@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SideMenuViewController.h"
 
-@interface SettingsViewController : UIViewController<CellViewController>
+@interface SettingsViewController : UIViewController<CellViewController, UITableViewDataSource>
+
+- (void) setupWithPlistPath:(NSString *)path;
 
 @end

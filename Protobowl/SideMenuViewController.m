@@ -16,6 +16,7 @@
 #import "NSDate+FuzzyTime.h"
 #import "SideMenuExpandedCell.h"
 #import "LeaderboardViewController.h"
+#import "SettingsViewController.h"
 
 #define kLeaderboardCellHeight 44
 #define kLeaderboardDetailCellHeight 180
@@ -127,26 +128,33 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"SideMenuExpandedCell" forIndexPath:indexPath];
             cell.parentVC = self;
             UIViewController<CellViewController> *vc = nil;
-            switch (indexPath.row)
+            
+            if(indexPath.row == 0)
             {
-                case 0:
-                    vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LeaderboardViewController"];
-                    ((LeaderboardViewController *)vc).mainViewController = self.mainViewController;
-                    self.mainViewController.manager.leaderboardDelegate = (LeaderboardViewController *)vc;
-                    break;
-                case 1:
-                    vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
-                    break;
-                case 2:
-                    vc = nil;
-                    break;
-                case 3:
-                    vc = nil;
-                    break;
-                default:
-                    vc = nil;
-                    break;
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LeaderboardViewController"];
+                ((LeaderboardViewController *)vc).mainViewController = self.mainViewController;
+                self.mainViewController.manager.leaderboardDelegate = (LeaderboardViewController *)vc;
             }
+            else if(indexPath.row == 1)
+            {
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+                NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
+                NSLog(@"Plist path: %@", plistPath);
+                [((SettingsViewController *)vc) setupWithPlistPath:plistPath];
+            }
+            else if(indexPath.row == 2)
+            {
+                vc = nil;
+            }
+            else if(indexPath.row == 3)
+            {
+                vc = nil;
+            }
+            else
+            {
+                vc = nil;
+            }
+            
             vc.sideMenuViewController = self;
             [cell setViewController:vc];
             

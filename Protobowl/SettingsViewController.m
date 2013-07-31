@@ -9,15 +9,31 @@
 #import "SettingsViewController.h"
 #import "UIView+Donald.h"
 #import "UIColor+MoreConstructors.h"
+#import "SwitchCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kLeaderboardCellHeight 44
 #define kLeaderboardDetailCellHeight 180
 
+
+NSString *SettingsCellTypeBool = @"SettingsCellTypeBool";
+NSString *SettingsCellTypeRadio = @"SettingsCellTypeRadio";
+NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
+
+@interface SettingsCellDescriptor : NSObject
+@property (nonatomic, strong) NSString *key;
+@property (nonatomic) NSString *type;
+@end
+
+@implementation SettingsCellDescriptor
+@end
+
+
 @interface SettingsViewController ()
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-
-
+@property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
+@property (nonatomic, strong) NSString *filePath;
+@property (nonatomic) int groupCount;
+@property (nonatomic, strong) NSMutableDictionary *rootDict;
 @end
 
 @implementation SettingsViewController
@@ -28,20 +44,69 @@
     [super viewDidLoad];
     
     [self.sideMenuViewController reloadTableView];
-    self.containerView.exclusiveTouch = YES;
-    
-    UITapGestureRecognizer *fakeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fakeTapAction)]; // Add a tap gesture recognizer which does nothing so it overrides the tap gesture on the outer cell.
-    [self.containerView addGestureRecognizer:fakeTap];
-}
-
-- (void) fakeTapAction
-{
-    
 }
 
 - (float) expandedHeight
 {
     return 480;
+}
+
+
+- (void) setupWithPlistPath:(NSString *)path
+{
+    self.filePath = path;
+    
+    NSDictionary *rootDict = [NSDictionary dictionaryWithContentsOfFile:path];
+    self.rootDict = [rootDict mutableCopy];
+    
+    [self.settingsTableView reloadData];
+}
+
+- (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSString *groupKey = self.rootDict[@"GroupOrder"][section];
+    NSDictionary *groupDict = self.rootDict[groupKey];
+    NSArray *rowOrder = groupDict[@"RowOrder"];
+    
+    return rowOrder.count;
+}
+
+- (int) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSArray *groupOrder = self.rootDict[@"GroupOrder"];
+    return groupOrder.count;
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *groupKey = self.rootDict[@"GroupOrder"][section];
+    return groupKey;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Root dict: %@", self.rootDict);
+    NSString *groupKey = self.rootDict[@"GroupOrder"][indexPath.section];
+    NSDictionary *groupDict = self.rootDict[groupKey];
+    NSArray *rowOrder = groupDict[@"RowOrder"];
+    NSString *rowKey = rowOrder[indexPath.row];
+    NSDictionary *row = groupDict[rowKey];
+    
+    NSString *rowType = row[@"SettingsCellType"];
+    UITableViewCell *cell = nil;
+    if([rowType isEqualToString:SettingsCellTypeBool])
+    {
+        BOOL value = [row[@"value"] boolValue];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SwitchCell" forIndexPath:indexPath];
+        ((SwitchCell *)cell).titleLabel.text = rowKey;
+        ((SwitchCell *)cell).switchControl.on = value;
+    }
+    else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"DefaultCell" forIndexPath:indexPath];
+    }
+    
+    return cell;
 }
 
 @end

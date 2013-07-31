@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GroupOrder</key>
+	<array>
+		<string>Personal</string>
+	</array>
+	<key>Personal</key>
+	<dict>
+		<key>RowOrder</key>
+		<array>
+			<string>Sound On Buzz</string>
+			<string>Reset Score</string>
+		</array>
+		<key>Sound On Buzz</key>
+		<dict>
+			<key>value</key>
+			<integer>0</integer>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeBool</string>
+		</dict>
+		<key>Reset Score</key>
+		<dict>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeAction</string>
+		</dict>
+	</dict>
+	<key>Room</key>
+	<dict/>
+</dict>
+</plist>
