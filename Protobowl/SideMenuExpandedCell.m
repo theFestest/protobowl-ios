@@ -18,6 +18,9 @@
 {    
     [self.addedVC removeFromParentViewController];
     [self.addedVC.view removeFromSuperview];
+    self.addedVC = nil;
+    
+    [[self.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if(vc)
     {
         UIView *mainView = vc.view;
