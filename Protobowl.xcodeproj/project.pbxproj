@@ -36,6 +36,8 @@
 		B583DA2217A6415F00D0FEDA /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */; };
 		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
+		B5A093EE17A8DAAB0040DBDC /* RadioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A093ED17A8DAAB0040DBDC /* RadioCell.m */; };
+		B5A093F117A8DB7B0040DBDC /* ActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A093F017A8DB7B0040DBDC /* ActionCell.m */; };
 		B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */; };
 		B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFB3E7178D351100AD8447 /* UIView+Donald.m */; };
 		B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */; };
@@ -132,6 +134,10 @@
 		B592957B176BC5E8008E0EB3 /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
 		B592957C176BC5E8008E0EB3 /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GuessViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B592957E176BDCC7008E0EB3 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "../../../../../../Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework"; sourceTree = "<group>"; };
+		B5A093EC17A8DAAB0040DBDC /* RadioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioCell.h; sourceTree = "<group>"; };
+		B5A093ED17A8DAAB0040DBDC /* RadioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioCell.m; sourceTree = "<group>"; };
+		B5A093EF17A8DB7B0040DBDC /* ActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionCell.h; sourceTree = "<group>"; };
+		B5A093F017A8DB7B0040DBDC /* ActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionCell.m; sourceTree = "<group>"; };
 		B5AD88F117A2270300AAC11C /* LeaderboardDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardDetailCell.h; sourceTree = "<group>"; };
 		B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardDetailCell.m; sourceTree = "<group>"; };
 		B5AFB3E6178D351100AD8447 /* UIView+Donald.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Donald.h"; sourceTree = "<group>"; };
@@ -257,6 +263,10 @@
 				B577625417A8C80C00F5CED5 /* SwitchCell.h */,
 				B577625517A8C80C00F5CED5 /* SwitchCell.m */,
 				B577625717A8CA8D00F5CED5 /* Settings.plist */,
+				B5A093EC17A8DAAB0040DBDC /* RadioCell.h */,
+				B5A093ED17A8DAAB0040DBDC /* RadioCell.m */,
+				B5A093EF17A8DB7B0040DBDC /* ActionCell.h */,
+				B5A093F017A8DB7B0040DBDC /* ActionCell.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -555,11 +565,13 @@
 				B5FD24CA1767CF2800B9870D /* SocketIOJSONSerialization.m in Sources */,
 				B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */,
 				B5FD24CC1767CF2800B9870D /* SocketIOPacket.m in Sources */,
+				B5A093EE17A8DAAB0040DBDC /* RadioCell.m in Sources */,
 				B5FD24CE1767CF2800B9870D /* SocketIOTransportWebsocket.m in Sources */,
 				B5FD24D01767CF2800B9870D /* SocketIOTransportXHR.m in Sources */,
 				B5FD24DA1767CF3D00B9870D /* base64.c in Sources */,
 				B5FD24DC1767CF3D00B9870D /* NSData+SRB64Additions.m in Sources */,
 				B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */,
+				B5A093F117A8DB7B0040DBDC /* ActionCell.m in Sources */,
 				B5FD24DE1767CF3D00B9870D /* SRWebSocket.m in Sources */,
 				B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */,
 				B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */,

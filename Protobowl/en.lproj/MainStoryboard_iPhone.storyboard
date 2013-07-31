@@ -677,8 +677,56 @@
                                             <outlet property="titleLabel" destination="rom-yi-kVS" id="nTZ-Nh-s6U"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RadioCell" id="dVN-3e-Lr8" customClass="RadioCell">
+                                        <rect key="frame" x="0.0" y="91" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound on buzz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Up-Ar-nJk">
+                                                    <rect key="frame" x="20" y="11" width="111" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="4Up-Ar-nJk" firstAttribute="centerY" secondItem="dVN-3e-Lr8" secondAttribute="centerY" constant="-0.5" type="default" id="bC5-Ec-w6H"/>
+                                            <constraint firstItem="4Up-Ar-nJk" firstAttribute="leading" secondItem="dVN-3e-Lr8" secondAttribute="leading" constant="30" type="default" id="kPb-0k-sve"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="4Up-Ar-nJk" id="lwC-ao-vTH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionCell" id="ueT-Kf-Ha6" customClass="ActionCell">
+                                        <rect key="frame" x="0.0" y="135" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound on buzz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6T-PJ-6Ye">
+                                                    <rect key="frame" x="20" y="11" width="111" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Q6T-PJ-6Ye" firstAttribute="centerY" secondItem="ueT-Kf-Ha6" secondAttribute="centerY" constant="-0.5" type="default" id="bPT-pz-kNi"/>
+                                            <constraint firstItem="Q6T-PJ-6Ye" firstAttribute="leading" secondItem="ueT-Kf-Ha6" secondAttribute="leading" constant="30" type="default" id="hio-NO-3E3"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="Q6T-PJ-6Ye" id="ltM-ua-fMA"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DefaultCell" id="Pbg-5n-Pff">
-                                        <rect key="frame" x="0.0" y="91" width="280" height="45"/>
+                                        <rect key="frame" x="0.0" y="179" width="280" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="260" height="43"/>

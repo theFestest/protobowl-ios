@@ -10,6 +10,8 @@
 #import "UIView+Donald.h"
 #import "UIColor+MoreConstructors.h"
 #import "SwitchCell.h"
+#import "RadioCell.h"
+#import "ActionCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kLeaderboardCellHeight 44
@@ -100,6 +102,21 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
         cell = [tableView dequeueReusableCellWithIdentifier:@"SwitchCell" forIndexPath:indexPath];
         ((SwitchCell *)cell).titleLabel.text = rowKey;
         ((SwitchCell *)cell).switchControl.on = value;
+    }
+    else if([rowType isEqualToString:SettingsCellTypeRadio])
+    {
+        int value = [row[@"value"] intValue];
+        NSArray *options = row[@"options"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"RadioCell" forIndexPath:indexPath];
+        ((RadioCell *)cell).titleLabel.text = rowKey;
+        ((RadioCell *)cell).selection = value;
+        ((RadioCell *)cell).options = options;
+    }
+    else if([rowType isEqualToString:SettingsCellTypeAction])
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ActionCell" forIndexPath:indexPath];
+        ((ActionCell *)cell).titleLabel.text = rowKey;
+        ((ActionCell *)cell).callback = nil;
     }
     else
     {
