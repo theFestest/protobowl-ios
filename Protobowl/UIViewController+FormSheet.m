@@ -45,6 +45,8 @@
     vc.view.frame = offscreen;
     
     [vc.view.layer setCornerRadius:6.0];
+    [vc.view.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [vc.view.layer setBorderWidth:1.0];
     vc.view.clipsToBounds = YES;
     
     objc_setAssociatedObject(self, kOverlayViewKey, formOverlayView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
