@@ -13,4 +13,5 @@ typedef void (^ActionCellCallback)();
 @interface ActionCell : UITableViewCell
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) ActionCellCallback callback;
+@property (nonatomic, strong) NSString *keyPath;
 @end

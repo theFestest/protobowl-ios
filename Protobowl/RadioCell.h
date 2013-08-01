@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^RadioChangedCallback)(int selection);
+
 @interface RadioCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) NSArray *options;
 @property (nonatomic) int selection;
+@property (nonatomic, strong) RadioChangedCallback radioChangedCallback;
+@property (nonatomic, weak) UIViewController *referenceViewController;
+@property (nonatomic, strong) NSString *keyPath;
 @end

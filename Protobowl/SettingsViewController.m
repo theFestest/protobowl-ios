@@ -48,6 +48,8 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     [super viewDidLoad];
     
     [self.sideMenuViewController reloadTableView];
+    
+    self.settingsTableView.clipsToBounds = NO;
 }
 
 - (float) expandedHeight
@@ -98,10 +100,10 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     
     NSString *rowType = row[@"SettingsCellType"];
     UITableViewCell *cell = nil;
+    NSString *rowKeyPath = [NSString stringWithFormat:@"%@.%@", groupKey, rowKey];
     if([rowType isEqualToString:SettingsCellTypeBool])
     {
-        NSString *valuePath = [NSString stringWithFormat:@"%@.%@", groupKey, rowKey];
-        NSNumber *objVal = [[NSUserDefaults standardUserDefaults] objectForKey:valuePath];
+        NSNumber *objVal = [[NSUserDefaults standardUserDefaults] objectForKey:rowKeyPath];
         BOOL value;
         if(objVal)
         {
@@ -117,22 +119,39 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
         
         [((SwitchCell *)cell).switchControl addTarget:self action:@selector(cellSwitchChanged:) forControlEvents:UIControlEventValueChanged];
         
-        objc_setAssociatedObject(((SwitchCell *)cell).switchControl, kValuePathKey, valuePath, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(((SwitchCell *)cell).switchControl, kValuePathKey, rowKeyPath, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     else if([rowType isEqualToString:SettingsCellTypeRadio])
     {
-        int value = [row[@"value"] intValue];
+        NSNumber *objVal = [[NSUserDefaults standardUserDefaults] objectForKey:rowKeyPath];
+        int value;
+        if(objVal)
+        {
+            value = [objVal intValue];
+        }
+        else
+        {
+            value = [row[@"value"] boolValue];
+        }
         NSArray *options = row[@"options"];
         cell = [tableView dequeueReusableCellWithIdentifier:@"RadioCell" forIndexPath:indexPath];
         ((RadioCell *)cell).titleLabel.text = rowKey;
         ((RadioCell *)cell).selection = value;
+        ((RadioCell *)cell).keyPath = rowKeyPath;
         ((RadioCell *)cell).options = options;
+        ((RadioCell *)cell).radioChangedCallback = ^(int selection){
+            [self cellRadioChanged:selection key:rowKeyPath];
+        };
+        ((RadioCell *)cell).referenceViewController = self.sideMenuViewController;
     }
     else if([rowType isEqualToString:SettingsCellTypeAction])
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"ActionCell" forIndexPath:indexPath];
         ((ActionCell *)cell).titleLabel.text = rowKey;
-        ((ActionCell *)cell).callback = nil;
+        ((ActionCell *)cell).callback = ^{
+            
+        };
+        ((ActionCell *)cell).keyPath = rowKeyPath;
     }
     else
     {
@@ -149,7 +168,20 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSNumber numberWithBool:sw.isOn] forKey:valuePath];
     [defaults synchronize];
-    NSLog(@"path: %@", valuePath);
+    NSLog(@"Switch path: %@", valuePath);
+}
+
+- (void) cellRadioChanged:(int)selection key:(NSString *)key
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithInt:selection] forKey:key];
+    [defaults synchronize];
+    NSLog(@"Radio path: %@", key);
+}
+
+- (void) cellActionTriggered:(NSString *)key
+{
+    NSLog(@"Action path: %@", key);
 }
 
 @end

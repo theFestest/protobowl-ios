@@ -620,6 +620,80 @@
             </objects>
             <point key="canvasLocation" x="250" y="849"/>
         </scene>
+        <!--Radio Group View Controller-->
+        <scene sceneID="QkN-D5-fKl">
+            <objects>
+                <viewController storyboardIdentifier="RadioGroupViewController" id="yRv-Km-9bi" customClass="RadioGroupViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aoI-sk-aHZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dve-D6-xkd">
+                                <rect key="frame" x="0.0" y="44" width="320" height="456"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RadioGroupCell" textLabel="wF0-iT-OAj" style="IBUITableViewCellStyleDefault" id="qmu-54-0EB">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qmu-54-0EB" id="0CB-JN-GBm">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wF0-iT-OAj">
+                                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="yRv-Km-9bi" id="3Qz-hf-1oo"/>
+                                    <outlet property="delegate" destination="yRv-Km-9bi" id="p6z-Dc-MGQ"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnR-w7-vep">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.66000000000000003" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" white="0.66000000000000003" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Radio Group" id="E0C-em-jM9">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="WN7-9j-byv">
+                                            <connections>
+                                                <action selector="doneButtonPressed" destination="yRv-Km-9bi" id="kBv-to-MBE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Dve-D6-xkd" firstAttribute="top" secondItem="QnR-w7-vep" secondAttribute="bottom" type="default" id="F5c-5s-nhx"/>
+                            <constraint firstItem="QnR-w7-vep" firstAttribute="leading" secondItem="aoI-sk-aHZ" secondAttribute="leading" type="default" id="ILq-c9-Qrj"/>
+                            <constraint firstItem="QnR-w7-vep" firstAttribute="top" secondItem="aoI-sk-aHZ" secondAttribute="top" type="default" id="Rxn-PJ-JP2"/>
+                            <constraint firstItem="Dve-D6-xkd" firstAttribute="trailing" secondItem="QnR-w7-vep" secondAttribute="trailing" type="default" id="WUh-7f-crj"/>
+                            <constraint firstItem="Dve-D6-xkd" firstAttribute="leading" secondItem="QnR-w7-vep" secondAttribute="leading" type="default" id="m5x-qH-zez"/>
+                            <constraint firstAttribute="bottom" secondItem="Dve-D6-xkd" secondAttribute="bottom" type="default" id="nYd-Hx-Cgb"/>
+                            <constraint firstAttribute="trailing" secondItem="QnR-w7-vep" secondAttribute="trailing" type="default" id="ov3-GZ-x1u"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="QnR-w7-vep" id="gk3-tg-1Eh"/>
+                        <outlet property="radioGroupTable" destination="Dve-D6-xkd" id="4m6-8T-9tT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E1C-H0-PmF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1098" y="1167"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="ZSv-SC-wfT">
             <objects>
@@ -640,11 +714,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="imC-fU-joH">
                                 <rect key="frame" x="0.0" y="42" width="280" height="418"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="418" type="user" id="N6T-Qe-8is"/>
                                 </constraints>
-                                <color key="sectionIndexTrackingBackgroundColor" white="0.97999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SwitchCell" id="0bO-5x-Lkj" customClass="SwitchCell">
                                         <rect key="frame" x="0.0" y="46" width="280" height="45"/>
@@ -660,7 +733,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e5k-Sx-c1Z">
-                                                    <rect key="frame" x="183" y="8" width="79" height="27"/>
+                                                    <rect key="frame" x="175" y="8" width="79" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </switch>
                                             </subviews>
@@ -670,7 +743,7 @@
                                             <constraint firstItem="rom-yi-kVS" firstAttribute="centerY" secondItem="0bO-5x-Lkj" secondAttribute="centerY" constant="-0.5" type="default" id="43t-0q-jey"/>
                                             <constraint firstItem="rom-yi-kVS" firstAttribute="leading" secondItem="0bO-5x-Lkj" secondAttribute="leading" constant="30" type="default" id="QRk-gr-b78"/>
                                             <constraint firstItem="e5k-Sx-c1Z" firstAttribute="centerY" secondItem="rom-yi-kVS" secondAttribute="centerY" type="default" id="jYZ-kg-3vY"/>
-                                            <constraint firstAttribute="trailing" secondItem="e5k-Sx-c1Z" secondAttribute="trailing" constant="10" type="default" id="wgz-y7-pMz"/>
+                                            <constraint firstAttribute="trailing" secondItem="e5k-Sx-c1Z" secondAttribute="trailing" constant="18" type="user" id="wgz-y7-pMz"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="switchControl" destination="e5k-Sx-c1Z" id="rld-K0-Tlq"/>
