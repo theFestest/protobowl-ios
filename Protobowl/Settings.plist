@@ -5,6 +5,7 @@
 	<key>GroupOrder</key>
 	<array>
 		<string>Personal</string>
+		<string>Room</string>
 	</array>
 	<key>Personal</key>
 	<dict>
@@ -12,7 +13,6 @@
 		<array>
 			<string>Sound On Buzz</string>
 			<string>Reset Score</string>
-            <string>Test Categories</string>
 		</array>
 		<key>Sound On Buzz</key>
 		<dict>
@@ -21,19 +21,6 @@
 			<key>SettingsCellType</key>
 			<string>SettingsCellTypeBool</string>
 		</dict>
-        <key>Test Categories</key>
-		<dict>
-			<key>options</key>
-			<array>
-                <string>History</string>
-                <string>Religion</string>
-                <string>Science</string>
-            </array>
-            <key>value</key>
-			<integer>1</integer>
-			<key>SettingsCellType</key>
-			<string>SettingsCellTypeRadio</string>
-		</dict>
 		<key>Reset Score</key>
 		<dict>
 			<key>SettingsCellType</key>
@@ -41,6 +28,73 @@
 		</dict>
 	</dict>
 	<key>Room</key>
-	<dict/>
+	<dict>
+		<key>RowOrder</key>
+		<array>
+			<string>Difficulty</string>
+			<string>Categories</string>
+			<string>Show Bonus Questions</string>
+			<string>Allow Multiple Buzzes</string>
+			<string>Allow Question Skipping</string>
+		</array>
+		<key>Difficulty</key>
+		<dict>
+			<key>options</key>
+			<array>
+				<string>Any</string>
+				<string>Open</string>
+				<string>Science</string>
+				<string>HS</string>
+				<string>College</string>
+				<string>MS</string>
+			</array>
+			<key>value</key>
+			<integer>3</integer>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeRadio</string>
+		</dict>
+		<key>Categories</key>
+		<dict>
+			<key>options</key>
+			<array>
+				<string>Everything</string>
+				<string>Fine Arts</string>
+				<string>Geography</string>
+				<string>History</string>
+				<string>Literature</string>
+				<string>Mythology</string>
+				<string>Philosophy</string>
+				<string>Religion</string>
+				<string>Science</string>
+				<string>Social Science</string>
+				<string>Trash</string>
+			</array>
+			<key>value</key>
+			<integer>0</integer>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeRadio</string>
+		</dict>
+		<key>Show Bonus Questions</key>
+		<dict>
+			<key>value</key>
+			<integer>0</integer>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeBool</string>
+		</dict>
+		<key>Allow Multiple Buzzes</key>
+		<dict>
+			<key>value</key>
+			<integer>1</integer>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeBool</string>
+		</dict>
+		<key>Allow Question Skipping</key>
+		<dict>
+			<key>value</key>
+			<integer>1</integer>
+			<key>SettingsCellType</key>
+			<string>SettingsCellTypeBool</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
