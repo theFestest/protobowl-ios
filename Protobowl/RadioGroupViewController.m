@@ -19,6 +19,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.lastSelected = [NSIndexPath indexPathForRow:self.selection inSection:0];
+    self.navigationBar.topItem.title = self.title;
 }
 
 - (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

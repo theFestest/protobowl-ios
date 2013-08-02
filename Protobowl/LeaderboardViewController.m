@@ -147,6 +147,13 @@
             cell.nameLabel.text = user.name;
         }
         
+        UIImageView *downArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"down_arrow"]];
+        CGRect frame = downArrowView.frame;
+        frame.size.width /= 2.0;
+        frame.size.height /= 2.0;
+        downArrowView.frame = frame;
+        cell.accessoryView = downArrowView;
+        
         cell.layer.shouldRasterize = YES;
         cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
         

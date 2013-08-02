@@ -191,6 +191,14 @@
                 cell.textLabel.text = @"";
                 break;
         }
+        
+        UIImageView *downArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"down_arrow"]];
+        CGRect frame = downArrowView.frame;
+        frame.size.width /= 2.0;
+        frame.size.height /= 2.0;
+        downArrowView.frame = frame;
+        cell.accessoryView = downArrowView;
+        
         return cell;
     }
 }

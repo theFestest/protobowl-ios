@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		364D5954178F8729000B5F7A /* PulloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364D5953178F8729000B5F7A /* PulloutView.m */; };
 		B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B50652FD176A886300DA299D /* ProtobowlQuestion.m */; };
+		B506B79617AB91F7009CD717 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B506B79517AB91F7009CD717 /* down_arrow.png */; };
 		B50BFB91176D542B0052700D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50BFB90176D542B0052700D /* FontAwesome.ttf */; };
 		B50BFB92176D542B0052700D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50BFB90176D542B0052700D /* FontAwesome.ttf */; };
 		B50BFB99176D548C0052700D /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B50BFB94176D548C0052700D /* FAImageView.m */; };
@@ -110,6 +111,7 @@
 		364D5953178F8729000B5F7A /* PulloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulloutView.m; sourceTree = "<group>"; };
 		B50652FC176A886300DA299D /* ProtobowlQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlQuestion.h; sourceTree = "<group>"; };
 		B50652FD176A886300DA299D /* ProtobowlQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlQuestion.m; sourceTree = "<group>"; };
+		B506B79517AB91F7009CD717 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = "<group>"; };
 		B50BFB90176D542B0052700D /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		B50BFB93176D548C0052700D /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
 		B50BFB94176D548C0052700D /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		B5FD24701767CE9900B9870D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B506B79517AB91F7009CD717 /* down_arrow.png */,
 				B5814E2C17A5A13E009639B6 /* ding.wav */,
 				B5AFB3E6178D351100AD8447 /* UIView+Donald.h */,
 				B5AFB3E7178D351100AD8447 /* UIView+Donald.m */,
@@ -531,6 +534,7 @@
 				B5FD24741767CE9900B9870D /* InfoPlist.strings in Resources */,
 				B5FD247C1767CE9900B9870D /* Default.png in Resources */,
 				B5FD247E1767CE9900B9870D /* Default@2x.png in Resources */,
+				B506B79617AB91F7009CD717 /* down_arrow.png in Resources */,
 				B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */,
 				B5FD24801767CE9900B9870D /* Default-568h@2x.png in Resources */,
 				B5FD24831767CE9900B9870D /* MainStoryboard_iPhone.storyboard in Resources */,

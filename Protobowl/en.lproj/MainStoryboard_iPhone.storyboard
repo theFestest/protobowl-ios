@@ -232,17 +232,17 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arboreal ocelot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMt-Vq-hAC">
-                                                    <rect key="frame" x="119" y="12" width="142" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arboreal ocelot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMt-Vq-hAC">
+                                                    <rect key="frame" x="118" y="12" width="130" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="142" id="860-v1-c5y"/>
+                                                        <constraint firstAttribute="width" constant="130" type="user" id="860-v1-c5y"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="arboreal ocelot" borderStyle="roundedRect" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="HSd-yM-Rdu">
-                                                    <rect key="frame" x="119" y="7" width="142" height="30"/>
+                                                    <rect key="frame" x="118" y="7" width="130" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -254,15 +254,16 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="HSd-yM-Rdu" firstAttribute="leading" secondItem="ym9-xj-euq" secondAttribute="leading" constant="119" id="6vY-m1-OSz"/>
-                                            <constraint firstItem="rMt-Vq-hAC" firstAttribute="trailing" secondItem="HSd-yM-Rdu" secondAttribute="trailing" type="default" id="8bM-7s-Ga0"/>
-                                            <constraint firstItem="HSd-yM-Rdu" firstAttribute="centerY" secondItem="rMt-Vq-hAC" secondAttribute="centerY" type="default" id="OS0-nH-oMj"/>
+                                            <constraint firstAttribute="trailing" secondItem="HSd-yM-Rdu" secondAttribute="trailing" constant="32" type="user" id="H03-p5-XDt"/>
+                                            <constraint firstItem="HSd-yM-Rdu" firstAttribute="width" secondItem="rMt-Vq-hAC" secondAttribute="width" type="user" id="O4w-I5-EnN"/>
+                                            <constraint firstItem="HSd-yM-Rdu" firstAttribute="centerY" secondItem="rMt-Vq-hAC" secondAttribute="centerY" type="user" id="OS0-nH-oMj"/>
                                             <constraint firstItem="u7k-TB-lRp" firstAttribute="baseline" secondItem="wBF-PE-UpF" secondAttribute="baseline" type="user" id="Oas-Ec-Aw6"/>
                                             <constraint firstItem="wBF-PE-UpF" firstAttribute="leading" secondItem="ym9-xj-euq" secondAttribute="leading" constant="19" type="default" id="Yr3-8d-mBB"/>
-                                            <constraint firstItem="rMt-Vq-hAC" firstAttribute="baseline" secondItem="u7k-TB-lRp" secondAttribute="baseline" type="default" id="bgr-e3-eIu"/>
+                                            <constraint firstItem="HSd-yM-Rdu" firstAttribute="top" secondItem="ym9-xj-euq" secondAttribute="top" constant="7" type="user" id="aSk-en-IiA"/>
+                                            <constraint firstItem="rMt-Vq-hAC" firstAttribute="top" secondItem="ym9-xj-euq" secondAttribute="top" constant="12" type="user" id="gSq-Jp-BH8"/>
                                             <constraint firstItem="HSd-yM-Rdu" firstAttribute="leading" secondItem="rMt-Vq-hAC" secondAttribute="leading" type="default" id="iuQ-Vn-5Eh"/>
                                             <constraint firstItem="u7k-TB-lRp" firstAttribute="leading" secondItem="ym9-xj-euq" secondAttribute="leading" constant="55" id="khR-Fa-UbV"/>
-                                            <constraint firstItem="wBF-PE-UpF" firstAttribute="centerY" secondItem="ym9-xj-euq" secondAttribute="centerY" constant="-0.5" type="default" id="rCp-fN-eLo"/>
+                                            <constraint firstItem="wBF-PE-UpF" firstAttribute="centerY" secondItem="ym9-xj-euq" secondAttribute="centerY" constant="-0.5" type="user" id="rCp-fN-eLo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="nameField" destination="HSd-yM-Rdu" id="ZKY-GU-c9U"/>
@@ -688,7 +689,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="navigationBar" destination="QnR-w7-vep" id="gk3-tg-1Eh"/>
+                        <outlet property="navigationBar" destination="QnR-w7-vep" id="7ts-UZ-2cF"/>
                         <outlet property="radioGroupTable" destination="Dve-D6-xkd" id="4m6-8T-9tT"/>
                     </connections>
                 </viewController>
