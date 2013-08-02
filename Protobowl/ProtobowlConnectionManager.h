@@ -56,6 +56,12 @@
 
 @end
 
+@protocol ProtobowlSettingsDelegate <NSObject>
+
+- (void) connectionManagerDidChangeRoomSetting:(ProtobowlConnectionManager *)manager;
+
+@end
+
 
 @interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
 
@@ -72,11 +78,13 @@
 
 - (void) changeMyName:(NSString *)name;
 - (void) resetScore;
-- (void) setCategory:(NSString *)categoryName;
-- (void) setDifficulty:(NSString *)difficulty;
 
-- (NSString *) category;
-- (NSString *) difficulty;
+// Room settings
+@property (nonatomic, strong) NSString *currentDifficulty;
+@property (nonatomic, strong) NSString *currentCategory;
+@property (nonatomic) BOOL showBonusQuestions;
+@property (nonatomic) BOOL allowSkip;
+@property (nonatomic) BOOL allowMultipleBuzzes;
 
 
 - (void) outputUsersToLeaderboardDelegate;
@@ -84,6 +92,7 @@
 @property (nonatomic, weak) id<ProtobowlRoomDelegate> roomDelegate;
 @property (nonatomic, weak) id<ProtobowlLeaderboardDelegate> leaderboardDelegate;
 @property (nonatomic, weak) id<ProtobowlGuessDelegate> guessDelegate;
+@property (nonatomic, weak) id<ProtobowlSettingsDelegate> settingsDelegate;
 
 
 @property (nonatomic, strong) ProtobowlUser *myself;

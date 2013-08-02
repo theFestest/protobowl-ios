@@ -117,9 +117,7 @@
     [self.view layoutIfNeeded];
     
     self.sideMenuStartX = sideMenuView.frame.origin.x;
-    
-    self.manager.leaderboardDelegate = self.sideMenu;
-    
+        
     self.isSideMenuOnScreen = NO;
 }
 
@@ -256,10 +254,13 @@
 {
     if(isClaimed)
     {
-        SystemSoundID ding;
-        NSURL *audioPath = [[NSBundle mainBundle] URLForResource:@"ding" withExtension:@"wav"];
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)audioPath, &ding);
-        AudioServicesPlaySystemSound(ding);
+        if([[[NSUserDefaults standardUserDefaults] valueForKey:@"Personal.Sound On Buzz"] boolValue])
+        {
+            SystemSoundID ding;
+            NSURL *audioPath = [[NSBundle mainBundle] URLForResource:@"ding" withExtension:@"wav"];
+            AudioServicesCreateSystemSoundID((__bridge CFURLRef)audioPath, &ding);
+            AudioServicesPlaySystemSound(ding);
+        }
         
         [self presentGuessViewController];
     }

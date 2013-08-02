@@ -46,9 +46,6 @@ NSLog(@"%@", string); \
 
 @property (nonatomic, strong) NSString *roomName;
 
-@property (nonatomic, strong) NSString *currentDifficulty;
-@property (nonatomic, strong) NSString *currentCategory;
-
 @end
 
 @implementation ProtobowlConnectionManager
@@ -174,23 +171,54 @@ NSLog(@"%@", string); \
     }
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
-        if(packetData[@"category"])
+        // Room settings sync
+        BOOL settingChanged = NO;
+        if(packetData[@"category"] && ![packetData[@"category"] isKindOfClass:[NSNull class]])
         {
-            self.currentCategory = packetData[@"category"];
+            settingChanged = YES;
+            _currentCategory = packetData[@"category"];
         }
-        if(packetData[@"difficulty"])
+        if(packetData[@"difficulty"] && ![packetData[@"difficulty"] isKindOfClass:[NSNull class]])
         {
-            self.currentDifficulty = packetData[@"difficulty"];
+            settingChanged = YES;
+            _currentDifficulty = packetData[@"difficulty"];
         }
+        if(packetData[@"show_bonus"] && ![packetData[@"show_bonus"] isKindOfClass:[NSNull class]])
+        {
+            settingChanged = YES;
+            _showBonusQuestions = [packetData[@"show_bonus"] boolValue];
+        }
+        if(packetData[@"no_skip"] && ![packetData[@"no_skip"] isKindOfClass:[NSNull class]])
+        {
+            settingChanged = YES;
+            _allowSkip = ![packetData[@"no_skip"] boolValue];
+        }
+        if(packetData[@"max_buzz"])
+        {
+            settingChanged = YES;
+            if([packetData[@"max_buzz"] isKindOfClass:[NSNull class]])
+            {
+                _allowMultipleBuzzes = YES;
+            }
+            else
+            {
+                _allowMultipleBuzzes = ![packetData[@"max_buzz"] boolValue];
+            }
+        }
+        if(settingChanged)
+        {
+            [self.settingsDelegate connectionManagerDidChangeRoomSetting:self];
+        }
+        
         
         if(packetData[@"name"])
         {
-            self.roomName = packetData[@"name"];
+            _roomName = packetData[@"name"];
         }
         
         if(packetData[@"scoring"])
         {
-            self.scoring = [[ProtobowlScoring alloc] initWithScoringDictionary:packetData[@"scoring"]];
+            _scoring = [[ProtobowlScoring alloc] initWithScoringDictionary:packetData[@"scoring"]];
         }
         
         if(packetData[@"users"]) // If it contains user data, update the users
@@ -766,29 +794,50 @@ NSLog(@"%@", string); \
     [self.socket sendEvent:@"reset_score" withData:@YES];
 }
 
-- (void) setCategory:(NSString *)categoryName
+- (void) setCurrentCategory:(NSString *)currentCategory
 {
-    if([categoryName isEqualToString:@"Everything"])
+    _currentCategory = currentCategory;
+    if([currentCategory isEqualToString:@"Everything"])
     {
-        categoryName = @"potpourri";
+        currentCategory = @"potpourri";
     }
-    [self.socket sendEvent:@"set_category" withData:categoryName];
+    [self.socket sendEvent:@"set_category" withData:currentCategory];
 }
 
-- (void) setDifficulty:(NSString *)difficulty
+- (void) setCurrentDifficulty:(NSString *)currentDifficulty
 {
-    [self.socket sendEvent:@"set_difficulty" withData:difficulty];
+    _currentDifficulty = currentDifficulty;
+    [self.socket sendEvent:@"set_difficulty" withData:currentDifficulty];
 }
 
-- (NSString *) category
+- (void) setShowBonusQuestions:(BOOL)showBonusQuestions
 {
-    return self.currentCategory;
+    _showBonusQuestions = showBonusQuestions;
+    
+    [self.socket sendEvent:@"set_bonus" withData:@(showBonusQuestions)];
 }
 
-- (NSString *) difficulty
+- (void) setAllowSkip:(BOOL)allowSkip
 {
-    return self.currentDifficulty;
+    _allowSkip = allowSkip;
+    
+    [self.socket sendEvent:@"set_skip" withData:@(allowSkip)];
 }
+
+- (void) setAllowMultipleBuzzes:(BOOL)allowMultipleBuzzes
+{
+    _allowMultipleBuzzes = allowMultipleBuzzes;
+    
+    if(allowMultipleBuzzes)
+    {
+        [self.socket sendEvent:@"set_max_buzz" withData:@0];
+    }
+    else
+    {
+        [self.socket sendEvent:@"set_max_buzz" withData:@1];
+    }
+}
+
 
 
 @end

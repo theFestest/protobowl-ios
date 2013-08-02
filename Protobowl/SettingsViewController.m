@@ -105,7 +105,19 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     {
         NSNumber *objVal = [[NSUserDefaults standardUserDefaults] objectForKey:rowKeyPath];
         BOOL value;
-        if(objVal)
+        if([rowKeyPath isEqualToString:@"Room.Show Bonus Questions"])
+        {
+            value = self.sideMenuViewController.mainViewController.manager.showBonusQuestions;
+        }
+        else if([rowKeyPath isEqualToString:@"Room.Allow Multiple Buzzes"])
+        {
+            value = self.sideMenuViewController.mainViewController.manager.allowMultipleBuzzes;
+        }
+        else if([rowKeyPath isEqualToString:@"Room.Allow Question Skipping"])
+        {
+            value = self.sideMenuViewController.mainViewController.manager.allowSkip;
+        }
+        else if(objVal)
         {
             value = [objVal boolValue];
         }
@@ -115,7 +127,8 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
         }
         cell = [tableView dequeueReusableCellWithIdentifier:@"SwitchCell" forIndexPath:indexPath];
         ((SwitchCell *)cell).titleLabel.text = rowKey;
-        ((SwitchCell *)cell).switchControl.on = value;
+//        ((SwitchCell *)cell).switchControl.on = value;
+        [((SwitchCell *)cell).switchControl setOn:value animated:YES];
         
         [((SwitchCell *)cell).switchControl addTarget:self action:@selector(cellSwitchChanged:) forControlEvents:UIControlEventValueChanged];
         
@@ -128,12 +141,12 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
         int value;
         if([rowKeyPath isEqualToString:@"Room.Difficulty"])
         {
-            NSString *difficulty = [self.sideMenuViewController.mainViewController.manager difficulty];
+            NSString *difficulty = self.sideMenuViewController.mainViewController.manager.currentDifficulty;
             value = [options indexOfObject:difficulty];
         }
         else if([rowKeyPath isEqualToString:@"Room.Categories"])
         {
-            NSString *category = [self.sideMenuViewController.mainViewController.manager category];
+            NSString *category = self.sideMenuViewController.mainViewController.manager.currentCategory;
             value = [options indexOfObject:category];
         }
         else if(objVal)
@@ -178,12 +191,25 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
 
 - (void) cellSwitchChanged:(UISwitch *)sw
 {
-    NSString *valuePath = objc_getAssociatedObject(sw, kValuePathKey);
+    NSString *rowKeyPath = objc_getAssociatedObject(sw, kValuePathKey);
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithBool:sw.isOn] forKey:valuePath];
+    [defaults setObject:[NSNumber numberWithBool:sw.isOn] forKey:rowKeyPath];
     [defaults synchronize];
-    NSLog(@"Switch path: %@", valuePath);
+    
+    if([rowKeyPath isEqualToString:@"Room.Show Bonus Questions"])
+    {
+        self.sideMenuViewController.mainViewController.manager.showBonusQuestions = sw.isOn;
+    }
+    else if([rowKeyPath isEqualToString:@"Room.Allow Multiple Buzzes"])
+    {
+        self.sideMenuViewController.mainViewController.manager.allowMultipleBuzzes = sw.isOn;
+    }
+    else if([rowKeyPath isEqualToString:@"Room.Allow Question Skipping"])
+    {
+        self.sideMenuViewController.mainViewController.manager.allowSkip = sw.isOn;
+    }
+    NSLog(@"Switch path: %@", rowKeyPath);
 }
 
 - (void) cellRadioChanged:(int)selection selectionString:(NSString *)selectionString key:(NSString *)key
@@ -198,11 +224,11 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     
     if([key isEqualToString:@"Room.Difficulty"])
     {
-        [self.sideMenuViewController.mainViewController.manager setDifficulty:selectionString];
+        self.sideMenuViewController.mainViewController.manager.currentDifficulty = selectionString;
     }
     else if([key isEqualToString:@"Room.Categories"])
     {
-        [self.sideMenuViewController.mainViewController.manager setCategory:selectionString];
+        self.sideMenuViewController.mainViewController.manager.currentCategory = selectionString;
     }
 }
 
@@ -211,7 +237,7 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     NSLog(@"Action path: %@", key);
     if([key isEqualToString:@"Personal.Reset Score"])
     {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Reset score to 0" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Reset Score" otherButtonTitles:nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Reset score to 0 points" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Reset Score" otherButtonTitles:nil];
         [actionSheet showFromRect:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height) inView:cell animated:YES];
     }
 }
@@ -228,6 +254,12 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     {
         [self resetScore];
     }
+}
+
+
+- (void) connectionManagerDidChangeRoomSetting:(ProtobowlConnectionManager *)manager
+{
+    [self.settingsTableView reloadData];
 }
 
 @end

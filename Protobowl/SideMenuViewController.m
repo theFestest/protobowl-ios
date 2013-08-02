@@ -140,6 +140,7 @@
                 vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                 NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
                 [((SettingsViewController *)vc) setupWithPlistPath:plistPath];
+                self.mainViewController.manager.settingsDelegate = (SettingsViewController *)vc;
             }
             else if(indexPath.row == 2)
             {
@@ -236,10 +237,6 @@
     [self reloadTableViewAtIndices:@[indexPath] numDetailRows:0];
 }
 
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users inRoom:(NSString *)roomName
-{
-    
-}
 
 - (float) calculateTableHeight
 {

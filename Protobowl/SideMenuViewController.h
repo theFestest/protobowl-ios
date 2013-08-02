@@ -17,7 +17,7 @@
 
 @end
 
-@interface SideMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ProtobowlLeaderboardDelegate, UITextFieldDelegate>
+@interface SideMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, weak) MainViewController *mainViewController;
 
