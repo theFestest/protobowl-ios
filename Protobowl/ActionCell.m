@@ -10,5 +10,15 @@
 
 @implementation ActionCell
 
+- (void) setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    
+    if(selected)
+    {
+        self.callback(self);
+        [self setSelected:NO animated:YES];
+    }
+}
 
 @end

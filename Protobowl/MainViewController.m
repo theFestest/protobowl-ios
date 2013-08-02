@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet LinedTextView *textViewLog;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pulloutPositionConstraint;
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
@@ -413,14 +414,11 @@
     self.isSideMenuOnScreen = YES;
     
     float endX = [UIScreen mainScreen].bounds.size.width;
+    self.pulloutPositionConstraint.constant = endX;
+    [self.view setNeedsUpdateConstraints];
+    
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        CGRect frame = self.scorePulloutView.frame;
-        frame.origin.x = endX;
-        self.scorePulloutView.frame = frame;
-        
-        frame = self.sideMenu.view.frame;
-        frame.origin.x = 0;
-        self.sideMenu.view.frame = frame;
+        [self.view layoutIfNeeded];
     } completion:^(BOOL complete){
         [self.sideMenu setFullyOnscreen:YES];
     }];
@@ -431,16 +429,13 @@
     if(duration == 0) duration = 0.2;
     
     [self.sideMenu setFullyOnscreen:NO];
+    
+    self.pulloutPositionConstraint.constant = -180;
+    [self.view setNeedsUpdateConstraints];
+    
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        CGRect frame = self.scorePulloutView.frame;
-        frame.origin.x = self.pulloutStartX;
-        self.scorePulloutView.frame = frame;
-        
-        frame = self.sideMenu.view.frame;
-        frame.origin.x = self.sideMenuStartX;
-        self.sideMenu.view.frame = frame;
+        [self.view layoutIfNeeded];
     } completion:^(BOOL complete){
-        [self.contentView setNeedsLayout];
         self.isSideMenuOnScreen = NO;
     }];
 }

@@ -134,11 +134,13 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
             value = [row[@"value"] boolValue];
         }
         NSArray *options = row[@"options"];
+        NSString *selectionString = options[value];
         cell = [tableView dequeueReusableCellWithIdentifier:@"RadioCell" forIndexPath:indexPath];
         ((RadioCell *)cell).titleLabel.text = rowKey;
         ((RadioCell *)cell).selection = value;
         ((RadioCell *)cell).keyPath = rowKeyPath;
         ((RadioCell *)cell).options = options;
+        ((RadioCell *)cell).subtitleLabel.text = selectionString;
         ((RadioCell *)cell).radioChangedCallback = ^(int selection){
             [self cellRadioChanged:selection key:rowKeyPath];
         };
@@ -148,10 +150,9 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"ActionCell" forIndexPath:indexPath];
         ((ActionCell *)cell).titleLabel.text = rowKey;
-        ((ActionCell *)cell).callback = ^{
-            
+        ((ActionCell *)cell).callback = ^(ActionCell *actionCell){
+            [self cellActionTriggered:rowKeyPath cell:actionCell];
         };
-        ((ActionCell *)cell).keyPath = rowKeyPath;
     }
     else
     {
@@ -177,11 +178,28 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     [defaults setObject:[NSNumber numberWithInt:selection] forKey:key];
     [defaults synchronize];
     NSLog(@"Radio path: %@", key);
+    
+    [self.settingsTableView reloadData];
 }
 
-- (void) cellActionTriggered:(NSString *)key
+- (void) cellActionTriggered:(NSString *)key cell:(ActionCell *)cell
 {
     NSLog(@"Action path: %@", key);
+    if([key isEqualToString:@"Personal.Reset Score"])
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Reset score to 0" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Reset Score" otherButtonTitles:nil];
+        [actionSheet showFromRect:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height) inView:cell animated:YES];
+    }
+}
+
+- (void) resetScore
+{
+    
+}
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%d", buttonIndex);
 }
 
 @end

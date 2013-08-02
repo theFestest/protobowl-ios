@@ -12,6 +12,7 @@ typedef void (^RadioChangedCallback)(int selection);
 
 @interface RadioCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 @property (weak, nonatomic) NSArray *options;
 @property (nonatomic) int selection;
 @property (nonatomic, strong) RadioChangedCallback radioChangedCallback;
