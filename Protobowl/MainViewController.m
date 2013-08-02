@@ -414,8 +414,9 @@
     self.isSideMenuOnScreen = YES;
     
     float endX = [UIScreen mainScreen].bounds.size.width;
-    self.pulloutPositionConstraint.constant = endX;
+    self.pulloutPositionConstraint.constant = 120; // Tricks iOS into thinking it needs to update the constraints
     [self.view setNeedsUpdateConstraints];
+    self.pulloutPositionConstraint.constant = endX;
     
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.view layoutIfNeeded];
@@ -430,8 +431,9 @@
     
     [self.sideMenu setFullyOnscreen:NO];
     
-    self.pulloutPositionConstraint.constant = -180;
+    self.pulloutPositionConstraint.constant = 120; // Tricks iOS into thinking it needs to update the constraints
     [self.view setNeedsUpdateConstraints];
+    self.pulloutPositionConstraint.constant = -180;
     
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.view layoutIfNeeded];

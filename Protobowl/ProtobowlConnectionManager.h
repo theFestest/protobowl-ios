@@ -71,6 +71,14 @@
 - (BOOL) next; // Returns whether or not the next command was actually executed
 
 - (void) changeMyName:(NSString *)name;
+- (void) resetScore;
+- (void) setCategory:(NSString *)categoryName;
+- (void) setDifficulty:(NSString *)difficulty;
+
+- (NSString *) category;
+- (NSString *) difficulty;
+
+
 - (void) outputUsersToLeaderboardDelegate;
 
 @property (nonatomic, weak) id<ProtobowlRoomDelegate> roomDelegate;

@@ -46,6 +46,9 @@ NSLog(@"%@", string); \
 
 @property (nonatomic, strong) NSString *roomName;
 
+@property (nonatomic, strong) NSString *currentDifficulty;
+@property (nonatomic, strong) NSString *currentCategory;
+
 @end
 
 @implementation ProtobowlConnectionManager
@@ -171,6 +174,15 @@ NSLog(@"%@", string); \
     }
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
+        if(packetData[@"category"])
+        {
+            self.currentCategory = packetData[@"category"];
+        }
+        if(packetData[@"difficulty"])
+        {
+            self.currentDifficulty = packetData[@"difficulty"];
+        }
+        
         if(packetData[@"name"])
         {
             self.roomName = packetData[@"name"];
@@ -749,6 +761,34 @@ NSLog(@"%@", string); \
     return retVal;
 }
 
+- (void) resetScore
+{
+    [self.socket sendEvent:@"reset_score" withData:@YES];
+}
+
+- (void) setCategory:(NSString *)categoryName
+{
+    if([categoryName isEqualToString:@"Everything"])
+    {
+        categoryName = @"potpourri";
+    }
+    [self.socket sendEvent:@"set_category" withData:categoryName];
+}
+
+- (void) setDifficulty:(NSString *)difficulty
+{
+    [self.socket sendEvent:@"set_difficulty" withData:difficulty];
+}
+
+- (NSString *) category
+{
+    return self.currentCategory;
+}
+
+- (NSString *) difficulty
+{
+    return self.currentDifficulty;
+}
 
 
 @end

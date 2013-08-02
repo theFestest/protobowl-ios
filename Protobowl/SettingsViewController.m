@@ -123,17 +123,31 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     }
     else if([rowType isEqualToString:SettingsCellTypeRadio])
     {
+        NSArray *options = row[@"options"];
         NSNumber *objVal = [[NSUserDefaults standardUserDefaults] objectForKey:rowKeyPath];
         int value;
-        if(objVal)
+        if([rowKeyPath isEqualToString:@"Room.Difficulty"])
+        {
+            NSString *difficulty = [self.sideMenuViewController.mainViewController.manager difficulty];
+            value = [options indexOfObject:difficulty];
+        }
+        else if([rowKeyPath isEqualToString:@"Room.Categories"])
+        {
+            NSString *category = [self.sideMenuViewController.mainViewController.manager category];
+            value = [options indexOfObject:category];
+        }
+        else if(objVal)
         {
             value = [objVal intValue];
+            if(value >= options.count)
+            {
+                value = [row[@"value"] intValue];
+            }
         }
         else
         {
-            value = [row[@"value"] boolValue];
+            value = [row[@"value"] intValue];
         }
-        NSArray *options = row[@"options"];
         NSString *selectionString = options[value];
         cell = [tableView dequeueReusableCellWithIdentifier:@"RadioCell" forIndexPath:indexPath];
         ((RadioCell *)cell).titleLabel.text = rowKey;
@@ -142,7 +156,7 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
         ((RadioCell *)cell).options = options;
         ((RadioCell *)cell).subtitleLabel.text = selectionString;
         ((RadioCell *)cell).radioChangedCallback = ^(int selection){
-            [self cellRadioChanged:selection key:rowKeyPath];
+            [self cellRadioChanged:selection selectionString:options[selection] key:rowKeyPath];
         };
         ((RadioCell *)cell).referenceViewController = self.sideMenuViewController;
     }
@@ -172,7 +186,7 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     NSLog(@"Switch path: %@", valuePath);
 }
 
-- (void) cellRadioChanged:(int)selection key:(NSString *)key
+- (void) cellRadioChanged:(int)selection selectionString:(NSString *)selectionString key:(NSString *)key
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSNumber numberWithInt:selection] forKey:key];
@@ -180,6 +194,16 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
     NSLog(@"Radio path: %@", key);
     
     [self.settingsTableView reloadData];
+    
+    
+    if([key isEqualToString:@"Room.Difficulty"])
+    {
+        [self.sideMenuViewController.mainViewController.manager setDifficulty:selectionString];
+    }
+    else if([key isEqualToString:@"Room.Categories"])
+    {
+        [self.sideMenuViewController.mainViewController.manager setCategory:selectionString];
+    }
 }
 
 - (void) cellActionTriggered:(NSString *)key cell:(ActionCell *)cell
@@ -194,12 +218,16 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
 
 - (void) resetScore
 {
-    
+    NSLog(@"Resetting score!!!");
+    [self.sideMenuViewController.mainViewController.manager resetScore];
 }
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"%d", buttonIndex);
+    if(buttonIndex == 0)
+    {
+        [self resetScore];
+    }
 }
 
 @end
