@@ -20,7 +20,8 @@
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *questionTextView;
-@property (weak, nonatomic) IBOutlet UIView *questionContainerView;
+@property (weak, nonatomic) IBOutlet UIScrollView *questionContainerView;
+@property (nonatomic) BOOL isUserScrolling;
 @property (weak, nonatomic) IBOutlet LinedTextView *textViewLog;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeightConstraint;
@@ -90,6 +91,7 @@
     // Setup next question swipe gesture
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(animateToNextQuestion)];
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    swipe.delegate = self;
     [self.view addGestureRecognizer:swipe];
     
     // Setup pullout pan and tap gesture
@@ -119,6 +121,8 @@
     self.sideMenuStartX = sideMenuView.frame.origin.x;
         
     self.isSideMenuOnScreen = NO;
+    
+    self.isUserScrolling = NO;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -168,9 +172,12 @@
     // Calculate best font size
     float maxHeight = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 280 : 400;
     int size = 80;
+    int minSize = 14;
     float newHeight = 0;
     UIFont *newFont = nil;
-    while((newHeight = [question.questionText sizeWithFont:(newFont = [UIFont fontWithName:@"HelveticaNeue" size:size--]) constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)].height + 30) >= maxHeight);
+    while((newHeight = [question.questionText sizeWithFont:(newFont = [UIFont fontWithName:@"HelveticaNeue" size:size--]) constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)].height + 30) >= maxHeight && (size > (minSize - 1)));
+    
+    newHeight = MIN(newHeight, maxHeight);
     
     
     NSLog(@"Size: %f", newFont.pointSize);
@@ -196,6 +203,12 @@
     CGSize constraintSize = CGSizeMake(self.questionTextView.frame.size.width, 10000);
     CGSize targetSize = [text sizeWithFont:self.questionTextView.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     self.questionTextHeightConstraint.constant = targetSize.height;
+    self.questionContainerView.contentSize = CGSizeMake(self.questionContainerView.frame.size.width, targetSize.height);
+    
+    if(targetSize.height > self.questionContainerView.frame.size.height && !self.questionContainerView.dragging)
+    {
+        self.questionContainerView.contentOffset = CGPointMake(0, targetSize.height - self.questionContainerView.frame.size.height);
+    }
     [self.questionContainerView setNeedsLayout];
 }
 
@@ -441,6 +454,25 @@
     } completion:^(BOOL complete){
         self.isSideMenuOnScreen = NO;
     }];
+}
+
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.isUserScrolling = YES;
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    self.isUserScrolling = NO;
+}
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if(gestureRecognizer.view == self.questionContainerView || otherGestureRecognizer.view == self.questionContainerView)
+    {
+        return YES;
+    }
+    return NO;
 }
 
 

@@ -18,12 +18,6 @@
     
     if(selected)
     {
-        NSNumber *objVal = [[NSUserDefaults standardUserDefaults] objectForKey:self.keyPath];
-        if(objVal)
-        {
-            self.selection = [objVal intValue];
-        }
-        
         RadioGroupViewController *form = [self.referenceViewController.storyboard instantiateViewControllerWithIdentifier:@"RadioGroupViewController"];
         form.options = self.options;
         form.selection = self.selection;

@@ -177,6 +177,10 @@ NSLog(@"%@", string); \
         {
             settingChanged = YES;
             _currentCategory = packetData[@"category"];
+            if([_currentCategory isEqualToString:@""])
+            {
+                _currentCategory = @"Everything";
+            }
         }
         if(packetData[@"difficulty"] && ![packetData[@"difficulty"] isKindOfClass:[NSNull class]])
         {

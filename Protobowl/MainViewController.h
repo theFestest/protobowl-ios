@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ProtobowlConnectionManager.h"
 
-@interface MainViewController : UIViewController <ProtobowlRoomDelegate, UIScrollViewDelegate>
+@interface MainViewController : UIViewController <ProtobowlRoomDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong) ProtobowlConnectionManager *manager;
 @end
