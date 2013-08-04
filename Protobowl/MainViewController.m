@@ -180,13 +180,14 @@
     newHeight = MIN(newHeight, maxHeight);
     
     
-    NSLog(@"Size: %f", newFont.pointSize);
+    NSLog(@"Height: %f", newHeight);
     
     self.questionTextView.font = newFont;
     self.questionContainerHeightConstraint.constant = newHeight;
     
+    [self.contentView setNeedsUpdateConstraints];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        [self.contentView layoutSubviews];
+        [self.contentView layoutIfNeeded];
     } completion:nil];
     self.isNextAnimationEnabled = NO;
     self.isAnimating = NO;
@@ -334,7 +335,7 @@
             weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
         } completion:^(BOOL finished) {
             weakSelf.contentView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
-            weakSelf.questionContainerHeightConstraint.constant = 200;
+            weakSelf.questionContainerHeightConstraint.constant = 280; // 200
             weakSelf.buzzButton.enabled = YES;
             weakSelf.buzzButton.userInteractionEnabled = NO;
             weakSelf.timeBar.progress = 0;

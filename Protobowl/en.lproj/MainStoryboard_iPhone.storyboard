@@ -21,12 +21,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tO-t3-g9P" userLabel="Question Container">
-                                        <rect key="frame" x="8" y="57" width="304" height="200"/>
+                                        <rect key="frame" x="8" y="57" width="304" height="280"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="296" translatesAutoresizingMaskIntoConstraints="NO" id="WiC-iD-ZII">
-                                                <rect key="frame" x="4" y="0.0" width="296" height="200"/>
+                                                <rect key="frame" x="4" y="0.0" width="296" height="280"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" type="user" id="9Cn-1y-PY8"/>
+                                                    <constraint firstAttribute="height" constant="280" type="user" id="9Cn-1y-PY8"/>
                                                     <constraint firstAttribute="width" constant="296" type="user" id="K6Y-Wh-ATT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -36,11 +36,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.94106409671532842" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" type="user" id="8WK-OY-h06"/>
+                                            <constraint firstAttribute="height" constant="280" type="user" id="8WK-OY-h06"/>
+                                            <constraint firstAttribute="bottom" secondItem="WiC-iD-ZII" secondAttribute="bottom" type="default" id="IHC-Le-TZ6"/>
                                             <constraint firstAttribute="trailing" secondItem="WiC-iD-ZII" secondAttribute="trailing" constant="4" id="PoY-u2-Pbv"/>
-                                            <constraint firstItem="WiC-iD-ZII" firstAttribute="top" secondItem="3tO-t3-g9P" secondAttribute="top" type="default" id="Wbi-9i-In2"/>
                                             <constraint firstItem="WiC-iD-ZII" firstAttribute="leading" secondItem="3tO-t3-g9P" secondAttribute="leading" constant="4" type="user" id="bFc-AH-jjw"/>
-                                            <constraint firstAttribute="bottom" secondItem="WiC-iD-ZII" secondAttribute="bottom" type="default" id="fnq-kD-pMC"/>
+                                            <constraint firstItem="WiC-iD-ZII" firstAttribute="top" secondItem="3tO-t3-g9P" secondAttribute="top" type="default" id="ccm-v3-tDO"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="delegate" destination="P0k-61-TXZ" id="SlY-EH-D0k"/>
@@ -57,7 +57,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvN-TT-yuX" userLabel="Buzz Text" customClass="LinedTextView">
-                                        <rect key="frame" x="0.0" y="265" width="320" height="123"/>
+                                        <rect key="frame" x="0.0" y="345" width="320" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" type="user" id="mN1-gw-gZX"/>
                                         </constraints>
