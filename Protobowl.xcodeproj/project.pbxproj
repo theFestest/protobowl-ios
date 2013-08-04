@@ -49,6 +49,18 @@
 		B5C004C2179F0C1500284199 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B592957E176BDCC7008E0EB3 /* Reveal.framework */; };
 		B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C4179F0E4700284199 /* CapsuleLabel.m */; };
 		B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */; };
+		B5D1459517ADDE92004706D2 /* buzz_early_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458B17ADDE92004706D2 /* buzz_early_tag.png */; };
+		B5D1459617ADDE92004706D2 /* buzz_early_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458C17ADDE92004706D2 /* buzz_early_tag@2x.png */; };
+		B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458D17ADDE92004706D2 /* buzz_tag.png */; };
+		B5D1459817ADDE92004706D2 /* buzz_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458E17ADDE92004706D2 /* buzz_tag@2x.png */; };
+		B5D1459917ADDE92004706D2 /* correct_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458F17ADDE92004706D2 /* correct_tag.png */; };
+		B5D1459A17ADDE92004706D2 /* correct_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1459017ADDE92004706D2 /* correct_tag@2x.png */; };
+		B5D1459B17ADDE92004706D2 /* prompt_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1459117ADDE92004706D2 /* prompt_tag.png */; };
+		B5D1459C17ADDE92004706D2 /* prompt_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1459217ADDE92004706D2 /* prompt_tag@2x.png */; };
+		B5D1459D17ADDE92004706D2 /* wrong_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1459317ADDE92004706D2 /* wrong_tag.png */; };
+		B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1459417ADDE92004706D2 /* wrong_tag@2x.png */; };
+		B5D145A317ADDF79004706D2 /* BuzzLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A217ADDF79004706D2 /* BuzzLogCell.m */; };
+		B5D145A617ADE8C9004706D2 /* LinedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */; };
 		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
@@ -90,8 +102,6 @@
 		B5FD24DF1767CF3D00B9870D /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24D91767CF3D00B9870D /* SRWebSocket.m */; };
 		B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E31767CF7200B9870D /* MainViewController.m */; };
 		B5FD24E71767CF7200B9870D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E31767CF7200B9870D /* MainViewController.m */; };
-		B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E51767CF7200B9870D /* LinedTextView.m */; };
-		B5FD24E91767CF7200B9870D /* LinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD24E51767CF7200B9870D /* LinedTextView.m */; };
 		B5FD24ED1767CF9700B9870D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
 		B5FD24EF1767CFA000B9870D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EE1767CFA000B9870D /* libicucore.dylib */; };
 /* End PBXBuildFile section */
@@ -162,6 +172,20 @@
 		B5C004C4179F0E4700284199 /* CapsuleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapsuleLabel.m; sourceTree = "<group>"; };
 		B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS7ProgressView.h; sourceTree = "<group>"; };
 		B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS7ProgressView.m; sourceTree = "<group>"; };
+		B5D1458B17ADDE92004706D2 /* buzz_early_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_early_tag.png; sourceTree = "<group>"; };
+		B5D1458C17ADDE92004706D2 /* buzz_early_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_early_tag@2x.png"; sourceTree = "<group>"; };
+		B5D1458D17ADDE92004706D2 /* buzz_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_tag.png; sourceTree = "<group>"; };
+		B5D1458E17ADDE92004706D2 /* buzz_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_tag@2x.png"; sourceTree = "<group>"; };
+		B5D1458F17ADDE92004706D2 /* correct_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = correct_tag.png; sourceTree = "<group>"; };
+		B5D1459017ADDE92004706D2 /* correct_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "correct_tag@2x.png"; sourceTree = "<group>"; };
+		B5D1459117ADDE92004706D2 /* prompt_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prompt_tag.png; sourceTree = "<group>"; };
+		B5D1459217ADDE92004706D2 /* prompt_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "prompt_tag@2x.png"; sourceTree = "<group>"; };
+		B5D1459317ADDE92004706D2 /* wrong_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong_tag.png; sourceTree = "<group>"; };
+		B5D1459417ADDE92004706D2 /* wrong_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wrong_tag@2x.png"; sourceTree = "<group>"; };
+		B5D145A117ADDF79004706D2 /* BuzzLogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzLogCell.h; sourceTree = "<group>"; };
+		B5D145A217ADDF79004706D2 /* BuzzLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzLogCell.m; sourceTree = "<group>"; };
+		B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinedTableViewController.h; sourceTree = "<group>"; };
+		B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinedTableViewController.m; sourceTree = "<group>"; };
 		B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LeaderboardCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardCell.m; sourceTree = "<group>"; };
 		B5D6A6DF179CB331009EB18B /* ProtobowlUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlUser.h; sourceTree = "<group>"; };
@@ -217,8 +241,6 @@
 		B5FD24D91767CF3D00B9870D /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		B5FD24E21767CF7200B9870D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		B5FD24E31767CF7200B9870D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MainViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B5FD24E41767CF7200B9870D /* LinedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinedTextView.h; sourceTree = "<group>"; };
-		B5FD24E51767CF7200B9870D /* LinedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinedTextView.m; sourceTree = "<group>"; };
 		B5FD24EA1767CF9300B9870D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B5FD24EC1767CF9700B9870D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5FD24EE1767CFA000B9870D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -262,8 +284,6 @@
 			children = (
 				364D5952178F8729000B5F7A /* PulloutView.h */,
 				364D5953178F8729000B5F7A /* PulloutView.m */,
-				B5FD24E41767CF7200B9870D /* LinedTextView.h */,
-				B5FD24E51767CF7200B9870D /* LinedTextView.m */,
 				B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */,
 				B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */,
 				B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */,
@@ -276,11 +296,12 @@
 				B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */,
 				B577625417A8C80C00F5CED5 /* SwitchCell.h */,
 				B577625517A8C80C00F5CED5 /* SwitchCell.m */,
-				B577625717A8CA8D00F5CED5 /* Settings.plist */,
 				B5A093EC17A8DAAB0040DBDC /* RadioCell.h */,
 				B5A093ED17A8DAAB0040DBDC /* RadioCell.m */,
 				B5A093EF17A8DB7B0040DBDC /* ActionCell.h */,
 				B5A093F017A8DB7B0040DBDC /* ActionCell.m */,
+				B5D145A117ADDF79004706D2 /* BuzzLogCell.h */,
+				B5D145A217ADDF79004706D2 /* BuzzLogCell.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -298,6 +319,85 @@
 				B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */,
 			);
 			name = "Protobowl Connection Logic";
+			sourceTree = "<group>";
+		};
+		B5D1458717ADDE20004706D2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B5D1458A17ADDE85004706D2 /* Tags */,
+				B5D1458917ADDE5D004706D2 /* Buttons */,
+				B506B79517AB91F7009CD717 /* down_arrow.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B5D1458817ADDE36004706D2 /* Categories and Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B5AFB3E6178D351100AD8447 /* UIView+Donald.h */,
+				B5AFB3E7178D351100AD8447 /* UIView+Donald.m */,
+				B50BFB93176D548C0052700D /* FAImageView.h */,
+				B50BFB94176D548C0052700D /* FAImageView.m */,
+				B50BFB95176D548C0052700D /* NSString+FontAwesome.h */,
+				B50BFB96176D548C0052700D /* NSString+FontAwesome.m */,
+				B50BFB97176D548C0052700D /* UIFont+FontAwesome.h */,
+				B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */,
+				B5C004BF179F088F00284199 /* UIColor+MoreConstructors.h */,
+				B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */,
+				B5E9CF1117A4D4C000B67AEE /* NSDate+FuzzyTime.h */,
+				B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */,
+				B5E9CF1417A4D64600B67AEE /* NSDate-Utilities.h */,
+				B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */,
+				B5A093F217A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.h */,
+				B5A093F317A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m */,
+				B5A093F517A8E5110040DBDC /* NSArray+MutableDeepCopy.h */,
+				B5A093F617A8E5110040DBDC /* NSArray+MutableDeepCopy.m */,
+				B59E919E17AA1ED8003CE35C /* UIViewController+FormSheet.h */,
+				B59E919F17AA1ED8003CE35C /* UIViewController+FormSheet.m */,
+			);
+			name = "Categories and Helper Classes";
+			sourceTree = "<group>";
+		};
+		B5D1458917ADDE5D004706D2 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B5811ACD176EBC9E00D1369E /* buzz_disabled.png */,
+				B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */,
+				B5811ACF176EBC9E00D1369E /* buzz_enabled.png */,
+				B5811AD0176EBC9E00D1369E /* buzz_enabled@2x.png */,
+				B5811AD1176EBC9E00D1369E /* buzz_pressed.png */,
+				B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		B5D1458A17ADDE85004706D2 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				B5D1458B17ADDE92004706D2 /* buzz_early_tag.png */,
+				B5D1458C17ADDE92004706D2 /* buzz_early_tag@2x.png */,
+				B5D1458D17ADDE92004706D2 /* buzz_tag.png */,
+				B5D1458E17ADDE92004706D2 /* buzz_tag@2x.png */,
+				B5D1458F17ADDE92004706D2 /* correct_tag.png */,
+				B5D1459017ADDE92004706D2 /* correct_tag@2x.png */,
+				B5D1459117ADDE92004706D2 /* prompt_tag.png */,
+				B5D1459217ADDE92004706D2 /* prompt_tag@2x.png */,
+				B5D1459317ADDE92004706D2 /* wrong_tag.png */,
+				B5D1459417ADDE92004706D2 /* wrong_tag@2x.png */,
+			);
+			name = Tags;
+			sourceTree = "<group>";
+		};
+		B5D145A017ADDF3D004706D2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B577625117A8B97D00F5CED5 /* SettingsViewController.h */,
+				B577625217A8B97D00F5CED5 /* SettingsViewController.m */,
+				B54BD44817AA2C980077F1DA /* RadioGroupViewController.h */,
+				B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */,
+				B577625717A8CA8D00F5CED5 /* Settings.plist */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		B5FD245D1767CE9900B9870D = {
@@ -351,13 +451,12 @@
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 				B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */,
 				B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */,
-				B577625117A8B97D00F5CED5 /* SettingsViewController.h */,
-				B577625217A8B97D00F5CED5 /* SettingsViewController.m */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
+				B5D145A017ADDF3D004706D2 /* Settings */,
 				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
 				B5FD24701767CE9900B9870D /* Supporting Files */,
-				B54BD44817AA2C980077F1DA /* RadioGroupViewController.h */,
-				B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */,
+				B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */,
+				B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */,
 			);
 			path = Protobowl;
 			sourceTree = "<group>";
@@ -365,44 +464,19 @@
 		B5FD24701767CE9900B9870D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B506B79517AB91F7009CD717 /* down_arrow.png */,
+				B5D1458717ADDE20004706D2 /* Images */,
+				B5D1458817ADDE36004706D2 /* Categories and Helper Classes */,
+				B5FD24711767CE9900B9870D /* Protobowl-Info.plist */,
 				B5814E2C17A5A13E009639B6 /* ding.wav */,
-				B5AFB3E6178D351100AD8447 /* UIView+Donald.h */,
-				B5AFB3E7178D351100AD8447 /* UIView+Donald.m */,
+				B50BFB90176D542B0052700D /* FontAwesome.ttf */,
+				B5FD24721767CE9900B9870D /* InfoPlist.strings */,
 				B5FD24781767CE9900B9870D /* AppDelegate.h */,
 				B5FD24791767CE9900B9870D /* AppDelegate.m */,
-				B5811ACD176EBC9E00D1369E /* buzz_disabled.png */,
-				B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */,
-				B5811ACF176EBC9E00D1369E /* buzz_enabled.png */,
-				B5811AD0176EBC9E00D1369E /* buzz_enabled@2x.png */,
-				B5811AD1176EBC9E00D1369E /* buzz_pressed.png */,
-				B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */,
-				B50BFB93176D548C0052700D /* FAImageView.h */,
-				B50BFB94176D548C0052700D /* FAImageView.m */,
-				B50BFB95176D548C0052700D /* NSString+FontAwesome.h */,
-				B50BFB96176D548C0052700D /* NSString+FontAwesome.m */,
-				B50BFB97176D548C0052700D /* UIFont+FontAwesome.h */,
-				B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */,
-				B50BFB90176D542B0052700D /* FontAwesome.ttf */,
-				B5FD24711767CE9900B9870D /* Protobowl-Info.plist */,
-				B5FD24721767CE9900B9870D /* InfoPlist.strings */,
 				B5FD24751767CE9900B9870D /* main.m */,
 				B5FD24771767CE9900B9870D /* Protobowl-Prefix.pch */,
 				B5FD247B1767CE9900B9870D /* Default.png */,
 				B5FD247D1767CE9900B9870D /* Default@2x.png */,
 				B5FD247F1767CE9900B9870D /* Default-568h@2x.png */,
-				B5C004BF179F088F00284199 /* UIColor+MoreConstructors.h */,
-				B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */,
-				B5E9CF1117A4D4C000B67AEE /* NSDate+FuzzyTime.h */,
-				B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */,
-				B5E9CF1417A4D64600B67AEE /* NSDate-Utilities.h */,
-				B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */,
-				B5A093F217A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.h */,
-				B5A093F317A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m */,
-				B5A093F517A8E5110040DBDC /* NSArray+MutableDeepCopy.h */,
-				B5A093F617A8E5110040DBDC /* NSArray+MutableDeepCopy.m */,
-				B59E919E17AA1ED8003CE35C /* UIViewController+FormSheet.h */,
-				B59E919F17AA1ED8003CE35C /* UIViewController+FormSheet.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -532,20 +606,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5FD24741767CE9900B9870D /* InfoPlist.strings in Resources */,
+				B5D1459917ADDE92004706D2 /* correct_tag.png in Resources */,
 				B5FD247C1767CE9900B9870D /* Default.png in Resources */,
 				B5FD247E1767CE9900B9870D /* Default@2x.png in Resources */,
 				B506B79617AB91F7009CD717 /* down_arrow.png in Resources */,
+				B5D1459D17ADDE92004706D2 /* wrong_tag.png in Resources */,
 				B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */,
+				B5D1459517ADDE92004706D2 /* buzz_early_tag.png in Resources */,
 				B5FD24801767CE9900B9870D /* Default-568h@2x.png in Resources */,
+				B5D1459A17ADDE92004706D2 /* correct_tag@2x.png in Resources */,
 				B5FD24831767CE9900B9870D /* MainStoryboard_iPhone.storyboard in Resources */,
 				B5FD24861767CE9900B9870D /* MainStoryboard_iPad.storyboard in Resources */,
+				B5D1459C17ADDE92004706D2 /* prompt_tag@2x.png in Resources */,
 				B50BFB91176D542B0052700D /* FontAwesome.ttf in Resources */,
+				B5D1459B17ADDE92004706D2 /* prompt_tag.png in Resources */,
 				B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */,
 				B5814E2D17A5A13E009639B6 /* ding.wav in Resources */,
 				B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */,
 				B5811AD5176EBC9E00D1369E /* buzz_enabled.png in Resources */,
 				B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */,
 				B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */,
+				B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */,
+				B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */,
+				B5D1459617ADDE92004706D2 /* buzz_early_tag@2x.png in Resources */,
+				B5D1459817ADDE92004706D2 /* buzz_tag@2x.png in Resources */,
 				B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +669,7 @@
 				B5FD24761767CE9900B9870D /* main.m in Sources */,
 				B5FD247A1767CE9900B9870D /* AppDelegate.m in Sources */,
 				B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */,
+				B5D145A317ADDF79004706D2 /* BuzzLogCell.m in Sources */,
 				B5FD24C81767CF2800B9870D /* SocketIO.m in Sources */,
 				B5FD24CA1767CF2800B9870D /* SocketIOJSONSerialization.m in Sources */,
 				B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */,
@@ -599,13 +684,13 @@
 				B5A093F117A8DB7B0040DBDC /* ActionCell.m in Sources */,
 				B5FD24DE1767CF3D00B9870D /* SRWebSocket.m in Sources */,
 				B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */,
-				B5FD24E81767CF7200B9870D /* LinedTextView.m in Sources */,
 				B59E91A017AA1ED8003CE35C /* UIViewController+FormSheet.m in Sources */,
 				B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */,
 				B5A093F417A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m in Sources */,
 				B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */,
 				B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */,
 				B50BFB99176D548C0052700D /* FAImageView.m in Sources */,
+				B5D145A617ADE8C9004706D2 /* LinedTableViewController.m in Sources */,
 				B577625617A8C80C00F5CED5 /* SwitchCell.m in Sources */,
 				B50BFB9B176D548C0052700D /* NSString+FontAwesome.m in Sources */,
 				B5E019E417A76CE900B76F46 /* SideMenuExpandedCell.m in Sources */,
@@ -639,7 +724,6 @@
 				B5FD24DD1767CF3D00B9870D /* NSData+SRB64Additions.m in Sources */,
 				B5FD24DF1767CF3D00B9870D /* SRWebSocket.m in Sources */,
 				B5FD24E71767CF7200B9870D /* MainViewController.m in Sources */,
-				B5FD24E91767CF7200B9870D /* LinedTextView.m in Sources */,
 				B50BFB9A176D548C0052700D /* FAImageView.m in Sources */,
 				B50BFB9C176D548C0052700D /* NSString+FontAwesome.m in Sources */,
 				B50BFB9E176D548C0052700D /* UIFont+FontAwesome.m in Sources */,

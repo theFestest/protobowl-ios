@@ -1,7 +1,6 @@
 
 #import "MainViewController.h"
 #import "SocketIOJSONSerialization.h"
-#import "LinedTextView.h"
 #import "GuessViewController.h"
 #import "UIFont+FontAwesome.h"
 #import "NSString+FontAwesome.h"
@@ -10,6 +9,8 @@
 #import "UIView+Donald.h"
 #import "PulloutView.h"
 #import "SideMenuViewController.h"
+#import "BuzzLogCell.h"
+#import "LinedTableViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 /*#define LOG(s, ...) do { \
@@ -22,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *questionTextView;
 @property (weak, nonatomic) IBOutlet UIScrollView *questionContainerView;
 @property (nonatomic) BOOL isUserScrolling;
-@property (weak, nonatomic) IBOutlet LinedTextView *textViewLog;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pulloutPositionConstraint;
@@ -49,6 +49,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *myInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myScoreLabel;
+
+@property (weak, nonatomic) IBOutlet UITableView *buzzLogTableView;
+@property (nonatomic, strong) LinedTableViewController *buzzLogController;
 @end
 
 @implementation MainViewController
@@ -123,6 +126,9 @@
     self.isSideMenuOnScreen = NO;
     
     self.isUserScrolling = NO;
+    
+    self.buzzLogController = [[LinedTableViewController alloc] initWithCellIdentifier:@"BuzzLogCell" inTableView:self.buzzLogTableView];
+    self.buzzLogTableView.dataSource = self.buzzLogController;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -164,7 +170,8 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateBuzzLines:(NSArray *)lines
 {
-    [self.textViewLog setLineArray:lines];
+//    [self.textViewLog setLineArray:lines];
+    [self.buzzLogController setLineArray:lines];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestion:(ProtobowlQuestion *)question
@@ -474,13 +481,6 @@
         return YES;
     }
     return NO;
-}
-
-
-#pragma mark - Interface Helper Methods
-- (void) logToTextView:(NSString *)message
-{
-    [self.textViewLog addLine:message];
 }
 
 @end

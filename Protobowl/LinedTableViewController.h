@@ -1,14 +1,17 @@
 //
-//  LinedTextView.h
+//  LinedTableViewController.h
 //  Protobowl
 //
-//  Created by Donald Pinckney on 6/7/13.
+//  Created by Donald Pinckney on 8/3/13.
 //  Copyright (c) 2013 Donald Pinckney. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface LinedTextView : UITextView
+@interface LinedTableViewController : NSObject <UITableViewDataSource, UITableViewDelegate>
+
+- (instancetype) initWithCellIdentifier:(NSString *)cellID inTableView:(UITableView *)tableView;
+
 - (void) addLine:(NSString *)string;
 - (int) lineCount;
 - (NSString *) textOfLine:(int)line;
