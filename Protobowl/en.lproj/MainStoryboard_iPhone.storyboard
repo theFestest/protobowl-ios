@@ -29,7 +29,7 @@
                                                     <constraint firstAttribute="height" constant="280" type="user" id="9Cn-1y-PY8"/>
                                                     <constraint firstAttribute="width" constant="296" type="user" id="K6Y-Wh-ATT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -61,7 +61,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" type="user" id="mN1-gw-gZX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSg-WS-VJS" userLabel="Timer Progress" customClass="iOS7ProgressView">
@@ -238,13 +238,13 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arboreal ocelot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMt-Vq-hAC">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arboreal ocelot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMt-Vq-hAC">
                                                     <rect key="frame" x="118" y="12" width="130" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" type="user" id="860-v1-c5y"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="arboreal ocelot" borderStyle="roundedRect" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="HSd-yM-Rdu">
@@ -305,13 +305,14 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arboreal ocelot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1y7-N6-Eha">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arboreal ocelot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1y7-N6-Eha">
                                                     <rect key="frame" x="119" y="12" width="142" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="T34-Rj-HJk"/>
                                                         <constraint firstAttribute="width" constant="142" id="Y2g-xs-l62"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="arboreal ocelot" borderStyle="roundedRect" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZYh-Zf-mEF">
@@ -376,9 +377,6 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 minutes ago" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="oYh-W8-91h">
                                                     <rect key="frame" x="107" y="136" width="150" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="0Br-EU-4oE"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -398,15 +396,16 @@
                                             <constraint firstItem="z85-gf-rlh" firstAttribute="top" secondItem="QNA-dd-thR" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="88Q-I2-UdU"/>
                                             <constraint firstItem="GRH-hY-qS0" firstAttribute="leading" secondItem="KbB-XD-aqI" secondAttribute="leading" type="default" id="8Ru-DI-eBS"/>
                                             <constraint firstItem="hpQ-Kk-sa4" firstAttribute="leading" secondItem="otu-wg-BOE" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="8Vt-mZ-mKH"/>
-                                            <constraint firstItem="KbB-XD-aqI" firstAttribute="top" secondItem="CNs-a5-Wm4" secondAttribute="top" constant="11" type="user" id="8kP-5D-XJc"/>
+                                            <constraint firstItem="GRH-hY-qS0" firstAttribute="centerX" secondItem="CNs-a5-Wm4" secondAttribute="centerX" type="default" id="9P6-dc-fQ7"/>
                                             <constraint firstItem="oYh-W8-91h" firstAttribute="leading" secondItem="nZn-AP-aEv" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9e8-eF-PSV"/>
                                             <constraint firstItem="KbB-XD-aqI" firstAttribute="leading" secondItem="CNs-a5-Wm4" secondAttribute="leading" constant="19" type="user" id="B29-Yy-iOR"/>
+                                            <constraint firstItem="1y7-N6-Eha" firstAttribute="top" secondItem="CNs-a5-Wm4" secondAttribute="top" constant="12" id="C8U-wI-uhz"/>
                                             <constraint firstItem="oYh-W8-91h" firstAttribute="top" secondItem="z85-gf-rlh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ET2-VT-GB8"/>
                                             <constraint firstItem="1y7-N6-Eha" firstAttribute="trailing" secondItem="ZYh-Zf-mEF" secondAttribute="trailing" type="default" id="EXh-mw-583"/>
                                             <constraint firstItem="nZn-AP-aEv" firstAttribute="top" secondItem="z85-gf-rlh" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="FEY-4P-T1V"/>
                                             <constraint firstItem="QNA-dd-thR" firstAttribute="trailing" secondItem="hpQ-Kk-sa4" secondAttribute="trailing" type="default" id="Ft4-eL-qBF"/>
-                                            <constraint firstItem="1y7-N6-Eha" firstAttribute="baseline" secondItem="GjU-6y-7mp" secondAttribute="baseline" type="user" id="GFK-q5-5hf"/>
-                                            <constraint firstItem="KbB-XD-aqI" firstAttribute="baseline" secondItem="GjU-6y-7mp" secondAttribute="baseline" type="user" id="L4Y-Ga-NXl"/>
+                                            <constraint firstItem="GjU-6y-7mp" firstAttribute="baseline" secondItem="KbB-XD-aqI" secondAttribute="baseline" type="default" id="Gp4-83-ujb"/>
+                                            <constraint firstItem="ZYh-Zf-mEF" firstAttribute="top" secondItem="CNs-a5-Wm4" secondAttribute="top" constant="6" id="HLi-2k-Kd1"/>
                                             <constraint firstItem="GjU-6y-7mp" firstAttribute="leading" secondItem="CNs-a5-Wm4" secondAttribute="leading" constant="55" type="user" id="Nri-ZK-n5I"/>
                                             <constraint firstItem="Q8g-xB-FzB" firstAttribute="top" secondItem="hpQ-Kk-sa4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ReK-tJ-Z3e"/>
                                             <constraint firstItem="otu-wg-BOE" firstAttribute="top" secondItem="GRH-hY-qS0" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RyL-qm-1cO"/>
