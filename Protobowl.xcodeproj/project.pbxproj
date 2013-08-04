@@ -61,6 +61,7 @@
 		B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1459417ADDE92004706D2 /* wrong_tag@2x.png */; };
 		B5D145A317ADDF79004706D2 /* BuzzLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A217ADDF79004706D2 /* BuzzLogCell.m */; };
 		B5D145A617ADE8C9004706D2 /* LinedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */; };
+		B5D145A917AE2120004706D2 /* ASUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A817AE2120004706D2 /* ASUILabel.m */; };
 		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
@@ -186,6 +187,8 @@
 		B5D145A217ADDF79004706D2 /* BuzzLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzLogCell.m; sourceTree = "<group>"; };
 		B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinedTableViewController.h; sourceTree = "<group>"; };
 		B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinedTableViewController.m; sourceTree = "<group>"; };
+		B5D145A717AE2120004706D2 /* ASUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUILabel.h; sourceTree = "<group>"; };
+		B5D145A817AE2120004706D2 /* ASUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASUILabel.m; sourceTree = "<group>"; };
 		B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LeaderboardCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardCell.m; sourceTree = "<group>"; };
 		B5D6A6DF179CB331009EB18B /* ProtobowlUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlUser.h; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				B5A093F617A8E5110040DBDC /* NSArray+MutableDeepCopy.m */,
 				B59E919E17AA1ED8003CE35C /* UIViewController+FormSheet.h */,
 				B59E919F17AA1ED8003CE35C /* UIViewController+FormSheet.m */,
+				B5D145A717AE2120004706D2 /* ASUILabel.h */,
+				B5D145A817AE2120004706D2 /* ASUILabel.m */,
 			);
 			name = "Categories and Helper Classes";
 			sourceTree = "<group>";
@@ -451,12 +456,12 @@
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 				B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */,
 				B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */,
+				B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */,
+				B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
 				B5D145A017ADDF3D004706D2 /* Settings */,
 				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
 				B5FD24701767CE9900B9870D /* Supporting Files */,
-				B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */,
-				B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */,
 			);
 			path = Protobowl;
 			sourceTree = "<group>";
@@ -676,6 +681,7 @@
 				B5FD24CC1767CF2800B9870D /* SocketIOPacket.m in Sources */,
 				B5A093EE17A8DAAB0040DBDC /* RadioCell.m in Sources */,
 				B54BD44A17AA2C980077F1DA /* RadioGroupViewController.m in Sources */,
+				B5D145A917AE2120004706D2 /* ASUILabel.m in Sources */,
 				B5FD24CE1767CF2800B9870D /* SocketIOTransportWebsocket.m in Sources */,
 				B5FD24D01767CF2800B9870D /* SocketIOTransportXHR.m in Sources */,
 				B5FD24DA1767CF3D00B9870D /* base64.c in Sources */,
@@ -848,6 +854,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LLVM_VECTORIZE_LOOPS = YES;
@@ -870,6 +877,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Protobowl/Protobowl-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Protobowl/Protobowl-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LLVM_VECTORIZE_LOOPS = YES;

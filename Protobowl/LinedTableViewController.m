@@ -98,7 +98,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellID forIndexPath:indexPath];
     if([cell isKindOfClass:[BuzzLogCell class]])
     {
-        [(BuzzLogCell *)cell setBuzzLineText:self.lines[indexPath.row]];
+        [(BuzzLogCell *)cell setBuzzLineText:self.lines[self.lines.count - indexPath.row - 1]];
     }
     else
     {

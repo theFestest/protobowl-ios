@@ -351,7 +351,7 @@ NSLog(@"%@", string); \
             NSString *guessText = attempt[@"text"];
             BOOL done = [attempt[@"done"] boolValue];
             NSString *name = self.userData[userID][@"name"];
-            NSString *text = [NSString stringWithFormat:@"[Buzz] %@: %@", name, guessText];
+            NSString *text = [NSString stringWithFormat:@"[BUZZ]<b>%@</b> %@", name, guessText];
             
             if(done)
             {
@@ -359,7 +359,7 @@ NSLog(@"%@", string); \
                 
                 if(isPrompt)
                 {
-                    text = [NSString stringWithFormat:@"%@ [%@]", text, @"Prompt"];
+                    text = [NSString stringWithFormat:@"%@[PROMPT]", text];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                     self.buzzLines[currentLineNumber] = text;
                     
@@ -371,7 +371,7 @@ NSLog(@"%@", string); \
                 }
                 else
                 {
-                    text = [NSString stringWithFormat:@"%@ [%@]", text, correct ? @"Correct" : @"Wrong"];
+                    text = [NSString stringWithFormat:@"%@[%@]", text, correct ? @"CORRECT" : @"WRONG"];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                     self.buzzLines[currentLineNumber] = text;
                     
