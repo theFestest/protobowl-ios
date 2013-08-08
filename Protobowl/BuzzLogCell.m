@@ -8,6 +8,12 @@
 
 #import "BuzzLogCell.h"
 
+@interface BuzzLogCell ()
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *leftImageWidthConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *rightImageWidthConstraint;
+
+@end
+
 @implementation BuzzLogCell
 
 - (void) hideLeftImage
@@ -88,8 +94,8 @@
     }
     
     
-    self.buzzTextLabel.boldFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
-//    self.buzzTextLabel.backgroundColor = [UIColor redColor];
+    self.buzzTextLabel.boldFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
+    self.buzzTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
     
     self.buzzTextLabel.text = text;
 
