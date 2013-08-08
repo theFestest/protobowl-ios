@@ -27,6 +27,7 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) ProtobowlQuestion *currentQuestion;
 @property (nonatomic, strong) NSString *questionDisplayText;
 @property (nonatomic) BOOL isQuestionNew;
+@property (nonatomic) BOOL isCurrentAttemptPrompt;
 
 
 @property (nonatomic) float startQuestionTime;
@@ -350,10 +351,11 @@ NSLog(@"%@", string); \
             }
 
             
+            NSLog(@"Attempt: %@\n", attempt);
             NSString *guessText = attempt[@"text"];
             BOOL done = [attempt[@"done"] boolValue];
             NSString *name = self.userData[userID][@"name"];
-            NSString *text = [NSString stringWithFormat:@"%@<b>%@</b> %@", isInterrupt ? kBuzzInterruptTag : kBuzzTag, name, guessText];
+            NSString *text = [NSString stringWithFormat:@"%@<b>%@</b> %@", ((isPrompt && !done) || (done && self.isCurrentAttemptPrompt)) ? kBuzzPromptTag : (isInterrupt ? kBuzzInterruptTag : kBuzzTag), name, guessText];
             
             if(done)
             {
@@ -413,6 +415,8 @@ NSLog(@"%@", string); \
                 {
                     [self pauseQuestion];
                 }
+                
+                self.isCurrentAttemptPrompt = isPrompt;
             }
             
             [self.roomDelegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
