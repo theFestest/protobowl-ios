@@ -58,10 +58,8 @@
     }
     
     
-    self.buzzTextLabel.highlightedTextFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
+    self.buzzTextLabel.boldFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
 //    self.buzzTextLabel.backgroundColor = [UIColor redColor];
-    self.buzzTextLabel.textColor = [UIColor blackColor];
-    self.buzzTextLabel.highlightedTextColor = [UIColor blackColor];
     
     self.buzzTextLabel.text = text;
 

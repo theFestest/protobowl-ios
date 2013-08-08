@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360EA48917B42F7400759EFF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360EA48817B42F7400759EFF /* AudioToolbox.framework */; };
 		364D5954178F8729000B5F7A /* PulloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364D5953178F8729000B5F7A /* PulloutView.m */; };
 		B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B50652FD176A886300DA299D /* ProtobowlQuestion.m */; };
 		B506B79617AB91F7009CD717 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B506B79517AB91F7009CD717 /* down_arrow.png */; };
@@ -34,7 +35,6 @@
 		B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD1176EBC9E00D1369E /* buzz_pressed.png */; };
 		B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */; };
 		B5814E2D17A5A13E009639B6 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5814E2C17A5A13E009639B6 /* ding.wav */; };
-		B5814E2F17A5A223009639B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5814E2E17A5A223009639B6 /* AudioToolbox.framework */; };
 		B583DA2217A6415F00D0FEDA /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */; };
 		B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B592957C176BC5E8008E0EB3 /* GuessViewController.m */; };
 		B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
@@ -46,7 +46,6 @@
 		B5AD88F317A2270300AAC11C /* LeaderboardDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD88F217A2270300AAC11C /* LeaderboardDetailCell.m */; };
 		B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFB3E7178D351100AD8447 /* UIView+Donald.m */; };
 		B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */; };
-		B5C004C2179F0C1500284199 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B592957E176BDCC7008E0EB3 /* Reveal.framework */; };
 		B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C4179F0E4700284199 /* CapsuleLabel.m */; };
 		B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */; };
 		B5D1459517ADDE92004706D2 /* buzz_early_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458B17ADDE92004706D2 /* buzz_early_tag.png */; };
@@ -61,7 +60,7 @@
 		B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1459417ADDE92004706D2 /* wrong_tag@2x.png */; };
 		B5D145A317ADDF79004706D2 /* BuzzLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A217ADDF79004706D2 /* BuzzLogCell.m */; };
 		B5D145A617ADE8C9004706D2 /* LinedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */; };
-		B5D145A917AE2120004706D2 /* ASUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A817AE2120004706D2 /* ASUILabel.m */; };
+		B5D145A917AE2120004706D2 /* DPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D145A817AE2120004706D2 /* DPLabel.m */; };
 		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
@@ -118,6 +117,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		360EA48817B42F7400759EFF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		364D5952178F8729000B5F7A /* PulloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulloutView.h; sourceTree = "<group>"; };
 		364D5953178F8729000B5F7A /* PulloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulloutView.m; sourceTree = "<group>"; };
 		B50652FC176A886300DA299D /* ProtobowlQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlQuestion.h; sourceTree = "<group>"; };
@@ -187,8 +187,8 @@
 		B5D145A217ADDF79004706D2 /* BuzzLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzLogCell.m; sourceTree = "<group>"; };
 		B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinedTableViewController.h; sourceTree = "<group>"; };
 		B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinedTableViewController.m; sourceTree = "<group>"; };
-		B5D145A717AE2120004706D2 /* ASUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUILabel.h; sourceTree = "<group>"; };
-		B5D145A817AE2120004706D2 /* ASUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASUILabel.m; sourceTree = "<group>"; };
+		B5D145A717AE2120004706D2 /* DPLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLabel.h; sourceTree = "<group>"; };
+		B5D145A817AE2120004706D2 /* DPLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLabel.m; sourceTree = "<group>"; };
 		B5D6A6DC179CB10B009EB18B /* LeaderboardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LeaderboardCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardCell.m; sourceTree = "<group>"; };
 		B5D6A6DF179CB331009EB18B /* ProtobowlUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlUser.h; sourceTree = "<group>"; };
@@ -254,8 +254,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5814E2F17A5A223009639B6 /* AudioToolbox.framework in Frameworks */,
-				B5C004C2179F0C1500284199 /* Reveal.framework in Frameworks */,
+				360EA48917B42F7400759EFF /* AudioToolbox.framework in Frameworks */,
 				B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */,
 				B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */,
 				B5FD24EF1767CFA000B9870D /* libicucore.dylib in Frameworks */,
@@ -357,8 +356,8 @@
 				B5A093F617A8E5110040DBDC /* NSArray+MutableDeepCopy.m */,
 				B59E919E17AA1ED8003CE35C /* UIViewController+FormSheet.h */,
 				B59E919F17AA1ED8003CE35C /* UIViewController+FormSheet.m */,
-				B5D145A717AE2120004706D2 /* ASUILabel.h */,
-				B5D145A817AE2120004706D2 /* ASUILabel.m */,
+				B5D145A717AE2120004706D2 /* DPLabel.h */,
+				B5D145A817AE2120004706D2 /* DPLabel.m */,
 			);
 			name = "Categories and Helper Classes";
 			sourceTree = "<group>";
@@ -427,6 +426,7 @@
 		B5FD24681767CE9900B9870D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				360EA48817B42F7400759EFF /* AudioToolbox.framework */,
 				B5814E2E17A5A223009639B6 /* AudioToolbox.framework */,
 				B592957E176BDCC7008E0EB3 /* Reveal.framework */,
 				B5929579176B98F5008E0EB3 /* QuartzCore.framework */,
@@ -586,6 +586,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Donald Pinckney";
+				TargetAttributes = {
+					B5FD24651767CE9900B9870D = {
+						DevelopmentTeam = 9YAPJKX6TE;
+					};
+				};
 			};
 			buildConfigurationList = B5FD24611767CE9900B9870D /* Build configuration list for PBXProject "Protobowl" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -681,7 +686,7 @@
 				B5FD24CC1767CF2800B9870D /* SocketIOPacket.m in Sources */,
 				B5A093EE17A8DAAB0040DBDC /* RadioCell.m in Sources */,
 				B54BD44A17AA2C980077F1DA /* RadioGroupViewController.m in Sources */,
-				B5D145A917AE2120004706D2 /* ASUILabel.m in Sources */,
+				B5D145A917AE2120004706D2 /* DPLabel.m in Sources */,
 				B5FD24CE1767CF2800B9870D /* SocketIOTransportWebsocket.m in Sources */,
 				B5FD24D01767CF2800B9870D /* SocketIOTransportXHR.m in Sources */,
 				B5FD24DA1767CF3D00B9870D /* base64.c in Sources */,
@@ -846,6 +851,8 @@
 		B5FD24A21767CE9900B9870D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Xiaoguang Liu (6QB54CEJ9G)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -860,6 +867,7 @@
 				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -868,8 +876,8 @@
 		B5FD24A31767CE9900B9870D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Donald Pinckney (X8ZD6953GU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Donald Pinckney (X8ZD6953GU)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -883,6 +891,7 @@
 				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
