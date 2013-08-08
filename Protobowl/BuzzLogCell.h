@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "DPLabel.h"
 
+#define kBuzzTag @"[BUZZ]"
+#define kBuzzInterruptTag @"[BUZZ_INTERRUPT]"
+#define kBuzzCorrectTag @"[CORRECT]"
+#define kBuzzWrongTag @"[WRONG]"
+#define kBuzzPromptTag @"[PROMPT]"
+
+
 @interface BuzzLogCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *leftImageView;

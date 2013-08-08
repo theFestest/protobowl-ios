@@ -2,6 +2,7 @@
 #import "ProtobowlConnectionManager.h"
 #import "ProtobowlQuestion.h"
 #import "ProtobowlScoring.h"
+#import "BuzzLogCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 /*#define LOG(s, ...) do { \
@@ -300,6 +301,7 @@ NSLog(@"%@", string); \
             NSDictionary *attempt = packetData[@"attempt"];
             NSString *userID = attempt[@"user"];
             BOOL isPrompt = [attempt[@"correct"] isKindOfClass:[NSString class]] && [attempt[@"correct"] isEqualToString:@"prompt"];
+            BOOL isInterrupt = [attempt[@"interrupt"] boolValue];
             
             
             if(self.hasPendingBuzz)
@@ -351,7 +353,7 @@ NSLog(@"%@", string); \
             NSString *guessText = attempt[@"text"];
             BOOL done = [attempt[@"done"] boolValue];
             NSString *name = self.userData[userID][@"name"];
-            NSString *text = [NSString stringWithFormat:@"[BUZZ]<b>%@</b> %@", name, guessText];
+            NSString *text = [NSString stringWithFormat:@"%@<b>%@</b> %@", isInterrupt ? kBuzzInterruptTag : kBuzzTag, name, guessText];
             
             if(done)
             {
@@ -359,7 +361,7 @@ NSLog(@"%@", string); \
                 
                 if(isPrompt)
                 {
-                    text = [NSString stringWithFormat:@"%@[PROMPT]", text];
+                    text = [NSString stringWithFormat:@"%@%@", text, kBuzzPromptTag];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                     self.buzzLines[currentLineNumber] = text;
                     
@@ -371,7 +373,7 @@ NSLog(@"%@", string); \
                 }
                 else
                 {
-                    text = [NSString stringWithFormat:@"%@[%@]", text, correct ? @"CORRECT" : @"WRONG"];
+                    text = [NSString stringWithFormat:@"%@%@", text, correct ? kBuzzCorrectTag : kBuzzWrongTag];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                     self.buzzLines[currentLineNumber] = text;
                     

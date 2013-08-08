@@ -46,16 +46,12 @@
 {
     NSString *filteredString = [text stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
     filteredString = [filteredString stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
-    filteredString = [filteredString stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
-    filteredString = [filteredString stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
     
     NSMutableAttributedString *richText = [[NSMutableAttributedString alloc] initWithString:filteredString];
     
     BOOL isBoldOpen = NO;
-//    BOOL isItalicsOpen = NO;
     NSRange searchPos = NSMakeRange(NSNotFound, text.length);
     NSRange openBoldStartPos;
-//    NSRange openItalicsStartPos;
     int offset = -3;
     while(true)
     {

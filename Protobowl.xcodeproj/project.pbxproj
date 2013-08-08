@@ -48,8 +48,8 @@
 		B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */; };
 		B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C4179F0E4700284199 /* CapsuleLabel.m */; };
 		B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */; };
-		B5D1459517ADDE92004706D2 /* buzz_early_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458B17ADDE92004706D2 /* buzz_early_tag.png */; };
-		B5D1459617ADDE92004706D2 /* buzz_early_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458C17ADDE92004706D2 /* buzz_early_tag@2x.png */; };
+		B5D1459517ADDE92004706D2 /* buzz_interrupt_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458B17ADDE92004706D2 /* buzz_interrupt_tag.png */; };
+		B5D1459617ADDE92004706D2 /* buzz_interrupt_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458C17ADDE92004706D2 /* buzz_interrupt_tag@2x.png */; };
 		B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458D17ADDE92004706D2 /* buzz_tag.png */; };
 		B5D1459817ADDE92004706D2 /* buzz_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458E17ADDE92004706D2 /* buzz_tag@2x.png */; };
 		B5D1459917ADDE92004706D2 /* correct_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458F17ADDE92004706D2 /* correct_tag.png */; };
@@ -173,8 +173,8 @@
 		B5C004C4179F0E4700284199 /* CapsuleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapsuleLabel.m; sourceTree = "<group>"; };
 		B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS7ProgressView.h; sourceTree = "<group>"; };
 		B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS7ProgressView.m; sourceTree = "<group>"; };
-		B5D1458B17ADDE92004706D2 /* buzz_early_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_early_tag.png; sourceTree = "<group>"; };
-		B5D1458C17ADDE92004706D2 /* buzz_early_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_early_tag@2x.png"; sourceTree = "<group>"; };
+		B5D1458B17ADDE92004706D2 /* buzz_interrupt_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_interrupt_tag.png; sourceTree = "<group>"; };
+		B5D1458C17ADDE92004706D2 /* buzz_interrupt_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_interrupt_tag@2x.png"; sourceTree = "<group>"; };
 		B5D1458D17ADDE92004706D2 /* buzz_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_tag.png; sourceTree = "<group>"; };
 		B5D1458E17ADDE92004706D2 /* buzz_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_tag@2x.png"; sourceTree = "<group>"; };
 		B5D1458F17ADDE92004706D2 /* correct_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = correct_tag.png; sourceTree = "<group>"; };
@@ -378,8 +378,8 @@
 		B5D1458A17ADDE85004706D2 /* Tags */ = {
 			isa = PBXGroup;
 			children = (
-				B5D1458B17ADDE92004706D2 /* buzz_early_tag.png */,
-				B5D1458C17ADDE92004706D2 /* buzz_early_tag@2x.png */,
+				B5D1458B17ADDE92004706D2 /* buzz_interrupt_tag.png */,
+				B5D1458C17ADDE92004706D2 /* buzz_interrupt_tag@2x.png */,
 				B5D1458D17ADDE92004706D2 /* buzz_tag.png */,
 				B5D1458E17ADDE92004706D2 /* buzz_tag@2x.png */,
 				B5D1458F17ADDE92004706D2 /* correct_tag.png */,
@@ -622,7 +622,7 @@
 				B506B79617AB91F7009CD717 /* down_arrow.png in Resources */,
 				B5D1459D17ADDE92004706D2 /* wrong_tag.png in Resources */,
 				B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */,
-				B5D1459517ADDE92004706D2 /* buzz_early_tag.png in Resources */,
+				B5D1459517ADDE92004706D2 /* buzz_interrupt_tag.png in Resources */,
 				B5FD24801767CE9900B9870D /* Default-568h@2x.png in Resources */,
 				B5D1459A17ADDE92004706D2 /* correct_tag@2x.png in Resources */,
 				B5FD24831767CE9900B9870D /* MainStoryboard_iPhone.storyboard in Resources */,
@@ -638,7 +638,7 @@
 				B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */,
 				B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */,
 				B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */,
-				B5D1459617ADDE92004706D2 /* buzz_early_tag@2x.png in Resources */,
+				B5D1459617ADDE92004706D2 /* buzz_interrupt_tag@2x.png in Resources */,
 				B5D1459817ADDE92004706D2 /* buzz_tag@2x.png in Resources */,
 				B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */,
 			);

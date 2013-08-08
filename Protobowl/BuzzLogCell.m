@@ -25,21 +25,27 @@
     BOOL hasLeftImage = NO;
     BOOL hasRightImage = NO;
     NSRange foundRange;
-    if((foundRange = [text rangeOfString:@"[BUZZ]"]).location == 0)
+    if((foundRange = [text rangeOfString:kBuzzTag]).location == 0)
     {
         text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
         self.leftImageView.image = [UIImage imageNamed:@"buzz_tag"];
         hasLeftImage = YES;
     }
+    else if((foundRange = [text rangeOfString:kBuzzInterruptTag]).location == 0)
+    {
+        text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
+        self.leftImageView.image = [UIImage imageNamed:@"buzz_interrupt_tag"];
+        hasLeftImage = YES;
+    }
     
-    if((foundRange = [text rangeOfString:@"[CORRECT]"]).location != NSNotFound)
+    if((foundRange = [text rangeOfString:kBuzzCorrectTag]).location != NSNotFound)
     {
         text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
         self.rightImageView.image = [UIImage imageNamed:@"correct_tag"];
         hasRightImage = YES;
     }
     
-    if((foundRange = [text rangeOfString:@"[WRONG]"]).location != NSNotFound)
+    if((foundRange = [text rangeOfString:kBuzzWrongTag]).location != NSNotFound)
     {
         text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
         self.rightImageView.image = [UIImage imageNamed:@"wrong_tag"];
