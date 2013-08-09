@@ -108,6 +108,11 @@
     return cell;
 }
 
+- (float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 30;
+}
+
 
 
 @end

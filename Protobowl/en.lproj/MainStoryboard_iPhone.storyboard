@@ -98,7 +98,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" type="user" id="5RG-hw-ucD"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BuzzLogCell" rowHeight="30" id="Bl9-cu-P9U" customClass="BuzzLogCell">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BuzzLogCell" rowHeight="30" id="Bl9-cu-P9U" customClass="BuzzLogCell">
                                                 <rect key="frame" x="0.0" y="22" width="320" height="30"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
