@@ -73,6 +73,7 @@
 
 - (void) submitGuess:(NSString *) guess
 {
+    guess = [guess stringByReplacingOccurrencesOfString:@"Prompt: " withString:@""];
     self.submitGuessCallback(guess);
 }
 

@@ -809,7 +809,7 @@ NSLog(@"%@", string); \
     _currentCategory = currentCategory;
     if([currentCategory isEqualToString:@"Everything"])
     {
-        currentCategory = @"potpourri";
+        currentCategory = @"";
     }
     [self.socket sendEvent:@"set_category" withData:currentCategory];
 }

@@ -161,7 +161,13 @@ NSString *SettingsCellTypeAction = @"SettingsCellTypeAction";
         {
             value = [row[@"value"] intValue];
         }
-        NSString *selectionString = options[value];
+        
+        NSString *selectionString = nil;
+        if(value != NSNotFound)
+        {
+            selectionString = options[value];
+        }
+        
         cell = [tableView dequeueReusableCellWithIdentifier:@"RadioCell" forIndexPath:indexPath];
         ((RadioCell *)cell).titleLabel.text = rowKey;
         ((RadioCell *)cell).selection = value;
