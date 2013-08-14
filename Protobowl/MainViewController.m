@@ -66,8 +66,8 @@
     
     self.manager = [[ProtobowlConnectionManager alloc] init];
     self.manager.roomDelegate = self;
+    [self.manager connectToRoom:@"minibitapp"];
     
-    [self.manager connect];
     
     // Setup and stylize question text view
     self.questionContainerView.frame = CGRectMake(0, 0, self.questionContainerView.frame.size.width, 200);
@@ -148,15 +148,15 @@
 }
 
 #pragma mark - Connection Manager Delegate Methods
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didConnectWithSuccess:(BOOL)success
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didJoinLobby:(NSString *)lobby withSuccess:(BOOL)success
 {
     if(success)
     {
-//        LOG(@"Connected to server");
+        NSLog(@"Connected to server");
     }
     else
     {
-//        LOG(@"Failed to connect to server");
+        NSLog(@"Failed to connect to server");
     }
 }
 

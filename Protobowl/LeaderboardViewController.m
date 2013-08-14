@@ -19,7 +19,7 @@
 #define kLeaderboardDetailCellHeight 180
 
 @interface LeaderboardViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *leaderboardTitle;
+@property (weak, nonatomic) IBOutlet UITextField *leaderboardNameField;
 @property (weak, nonatomic) IBOutlet UITableView *leaderboard;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderboardHeight;
 @property (nonatomic, strong) NSArray *users;
@@ -289,10 +289,19 @@
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     NSLog(@"Return");
-    self.activeField = nil;
     
-    [self.mainViewController.manager changeMyName:textField.text];
+    if(textField == self.leaderboardNameField)
+    {
+        [self.mainViewController.manager connectToRoom:textField.text];
+    }
+    else
+    {
+        [self.mainViewController.manager changeMyName:textField.text];
+    }
+    
     [textField endEditing:YES];
+    self.activeField = nil;
+
     return YES;
 }
 
@@ -304,8 +313,8 @@
 
 #pragma mark - Protobowl Leaderboard Delegate Methods
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users inRoom:(NSString *)roomName
-{    
-    self.leaderboardTitle.text = [NSString stringWithFormat:@"Leaderboard - %@ (%d)", roomName, [self countActiveUsers:users]];
+{
+    self.leaderboardNameField.text = roomName;
     self.users = users;
     
     [self reloadLeaderboard];

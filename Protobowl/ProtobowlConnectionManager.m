@@ -44,6 +44,7 @@ NSLog(@"%@", string); \
 
 @property (nonatomic, strong) ProtobowlScoring *scoring;
 
+@property (nonatomic, strong) NSString *roomToConnectTo;
 @property (nonatomic, strong) NSString *roomName;
 
 @end
@@ -108,14 +109,53 @@ NSLog(@"%@", string); \
 }
 
 
-- (void) connect
+- (void) connectToRoom:(NSString *)room
 {
-    self.socket = [[SocketIO alloc] initWithDelegate:self];
-    self.socket.useSecure = YES;
-//    [self.socket connectToHost:@"108.213.77.143" onPort:25565];
-    [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
-//    [self.socket connectToHost:@"cab.antimatter15.com" onPort:443];
-//    [self.socket connectToHost:@"dino.xvm.mit.edu" onPort:5566];
+    if(self.socket == nil)
+    {
+        self.socket = [[SocketIO alloc] initWithDelegate:self];
+        self.socket.useSecure = YES;
+    }
+    
+    
+    // Set room to connect to, which connection callback will read from later
+    self.roomToConnectTo = room;
+    
+    if(self.socket.isConnected)
+    {
+        [self.socket disconnect];
+    }
+    else
+    {
+        [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
+    }
+}
+
+
+- (void) joinLobby:(NSString *)lobby
+{
+    if(self.socket.isConnected)
+    {
+        // Reset stuff
+        [self.userData removeAllObjects];
+        self.myself = nil;
+        
+        // Use spoofed auth and cookie tokens for now
+        NSString *auth = @"fpn7am41vytgaujydhfnrvxpafejo4elakqo";
+        NSString *cookie = @"fpn7am41vytgaujydhfnrvxpafejo4elakqo";
+        
+        // TODO: Use "link" event???
+        // Send join request
+        [self.socket sendEvent:@"join" withData:@{@"cookie": cookie,
+                                                  @"auth" : auth,
+                                                  @"question_type" : @"qb",
+                                                  @"room_name" : lobby,
+                                                  @"muwave" : @NO,
+                                                  @"custom_id" : @"Donald iOS",
+                                                  @"version" : @8}];
+        
+        [self.roomDelegate connectionManager:self didJoinLobby:lobby withSuccess:YES];
+    }
 }
 
 
@@ -123,6 +163,10 @@ NSLog(@"%@", string); \
 - (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {
     NSLog(@"Disconnect with error: %@", error);
+    if(self.roomToConnectTo)
+    {
+        [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
+    }
 }
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error
 {
@@ -131,21 +175,8 @@ NSLog(@"%@", string); \
 
 - (void) socketIODidConnect:(SocketIO *)socket
 {    
-    // Use spoofed auth and cookie tokens for now
-    NSString *auth = @"fpn7am41vytgaujydhfnrvxpafejo4elakqo";
-    NSString *cookie = @"fpn7am41vytgaujydhfnrvxpafejo4elakqo";
-    
-    // TODO: Use "link" event???
-    // Send join request
-    [self.socket sendEvent:@"join" withData:@{@"cookie": cookie,
-     @"auth" : auth,
-     @"question_type" : @"qb",
-     @"room_name" : @"minibitapp",
-     @"muwave" : @NO,
-     @"custom_id" : @"Donald iOS",
-     @"version" : @8}];
-    
-    [self.roomDelegate connectionManager:self didConnectWithSuccess:YES];
+    [self joinLobby:self.roomToConnectTo];
+    self.roomToConnectTo = nil;
 }
 
 

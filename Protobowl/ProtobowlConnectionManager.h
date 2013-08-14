@@ -8,7 +8,7 @@
 @protocol ProtobowlRoomDelegate <NSObject>
 
 // Called when the connection manager has connected, and whether it succeeded or not
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didConnectWithSuccess:(BOOL)success;
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didJoinLobby:(NSString *)lobby withSuccess:(BOOL)success;
 
 // Called when the text of the chat lines has been updated
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines;
@@ -65,7 +65,8 @@
 
 @interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
 
-- (void) connect;
+- (void) connectToRoom:(NSString *)room; // pass nil for room to join most recent room
+
 - (void) expireQuestionTime:(NSTimer *)timer;
 - (BOOL) buzz; // Returns if the user successfully buzzed
 - (void) updateGuess:(NSString *)guess;
