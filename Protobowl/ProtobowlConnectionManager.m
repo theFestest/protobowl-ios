@@ -2,6 +2,7 @@
 #import "ProtobowlConnectionManager.h"
 #import "ProtobowlQuestion.h"
 #import "ProtobowlScoring.h"
+#import "BuzzLogCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 /*#define LOG(s, ...) do { \
@@ -26,6 +27,7 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) ProtobowlQuestion *currentQuestion;
 @property (nonatomic, strong) NSString *questionDisplayText;
 @property (nonatomic) BOOL isQuestionNew;
+@property (nonatomic) BOOL isCurrentAttemptPrompt;
 
 
 @property (nonatomic) float startQuestionTime;
@@ -331,6 +333,7 @@ NSLog(@"%@", string); \
             NSDictionary *attempt = packetData[@"attempt"];
             NSString *userID = attempt[@"user"];
             BOOL isPrompt = [attempt[@"correct"] isKindOfClass:[NSString class]] && [attempt[@"correct"] isEqualToString:@"prompt"];
+            BOOL isInterrupt = [attempt[@"interrupt"] boolValue];
             
             
             if(self.hasPendingBuzz)
@@ -379,10 +382,11 @@ NSLog(@"%@", string); \
             }
 
             
+            NSLog(@"Attempt: %@\n", attempt);
             NSString *guessText = attempt[@"text"];
             BOOL done = [attempt[@"done"] boolValue];
             NSString *name = self.userData[userID][@"name"];
-            NSString *text = [NSString stringWithFormat:@"[BUZZ]<b>%@</b> %@", name, guessText];
+            NSString *text = [NSString stringWithFormat:@"%@<b>%@</b> %@", ((isPrompt && !done) || (done && self.isCurrentAttemptPrompt)) ? kBuzzPromptTag : (isInterrupt ? kBuzzInterruptTag : kBuzzTag), name, guessText];
             
             if(done)
             {
@@ -390,7 +394,7 @@ NSLog(@"%@", string); \
                 
                 if(isPrompt)
                 {
-                    text = [NSString stringWithFormat:@"%@[PROMPT]", text];
+                    text = [NSString stringWithFormat:@"%@%@", text, kBuzzPromptTag];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                     self.buzzLines[currentLineNumber] = text;
                     
@@ -402,7 +406,7 @@ NSLog(@"%@", string); \
                 }
                 else
                 {
-                    text = [NSString stringWithFormat:@"%@[%@]", text, correct ? @"CORRECT" : @"WRONG"];
+                    text = [NSString stringWithFormat:@"%@%@", text, correct ? kBuzzCorrectTag : kBuzzWrongTag];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                     self.buzzLines[currentLineNumber] = text;
                     
@@ -442,6 +446,8 @@ NSLog(@"%@", string); \
                 {
                     [self pauseQuestion];
                 }
+                
+                self.isCurrentAttemptPrompt = isPrompt;
             }
             
             [self.roomDelegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
@@ -834,7 +840,7 @@ NSLog(@"%@", string); \
     _currentCategory = currentCategory;
     if([currentCategory isEqualToString:@"Everything"])
     {
-        currentCategory = @"potpourri";
+        currentCategory = @"";
     }
     [self.socket sendEvent:@"set_category" withData:currentCategory];
 }

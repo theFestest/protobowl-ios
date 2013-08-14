@@ -129,6 +129,7 @@
     
     self.buzzLogController = [[LinedTableViewController alloc] initWithCellIdentifier:@"BuzzLogCell" inTableView:self.buzzLogTableView];
     self.buzzLogTableView.dataSource = self.buzzLogController;
+    self.buzzLogTableView.delegate = self.buzzLogController;
 }
 
 - (void) viewDidAppear:(BOOL)animated

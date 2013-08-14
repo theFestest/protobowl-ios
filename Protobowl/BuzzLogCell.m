@@ -8,6 +8,12 @@
 
 #import "BuzzLogCell.h"
 
+@interface BuzzLogCell ()
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *leftImageWidthConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *rightImageWidthConstraint;
+
+@end
+
 @implementation BuzzLogCell
 
 - (void) hideLeftImage
@@ -24,22 +30,52 @@
 {
     BOOL hasLeftImage = NO;
     BOOL hasRightImage = NO;
+    BOOL hasPromptTagInRight = NO;
     NSRange foundRange;
-    if((foundRange = [text rangeOfString:@"[BUZZ]"]).location == 0)
+    
+    if((foundRange = [text rangeOfString:kBuzzPromptTag]).location != NSNotFound && foundRange.location != 0)
+    {
+        text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
+        self.rightImageView.image = [UIImage imageNamed:@"prompt_tag"];
+        hasRightImage = YES;
+        hasPromptTagInRight = YES;
+    }
+    
+    if((foundRange = [text rangeOfString:kBuzzTag]).location == 0)
+    {
+        text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
+        self.leftImageView.image = [UIImage imageNamed:@"buzz_tag"];
+        hasLeftImage = YES;
+    }
+    else if((foundRange = [text rangeOfString:kBuzzInterruptTag]).location == 0)
+    {
+        text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
+        self.leftImageView.image = [UIImage imageNamed:@"buzz_interrupt_tag"];
+        hasLeftImage = YES;
+    }
+    else if((foundRange = [text rangeOfString:kBuzzPromptTag]).location == 0)
+    {
+        text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
+        self.leftImageView.image = [UIImage imageNamed:@"prompt_tag"];
+        hasLeftImage = YES;
+    }
+    else
     {
         text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
         self.leftImageView.image = [UIImage imageNamed:@"buzz_tag"];
         hasLeftImage = YES;
     }
     
-    if((foundRange = [text rangeOfString:@"[CORRECT]"]).location != NSNotFound)
+    
+    
+    if((foundRange = [text rangeOfString:kBuzzCorrectTag]).location != NSNotFound)
     {
         text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
         self.rightImageView.image = [UIImage imageNamed:@"correct_tag"];
         hasRightImage = YES;
     }
     
-    if((foundRange = [text rangeOfString:@"[WRONG]"]).location != NSNotFound)
+    if((foundRange = [text rangeOfString:kBuzzWrongTag]).location != NSNotFound)
     {
         text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
         self.rightImageView.image = [UIImage imageNamed:@"wrong_tag"];
@@ -58,10 +94,8 @@
     }
     
     
-    self.buzzTextLabel.highlightedTextFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
-//    self.buzzTextLabel.backgroundColor = [UIColor redColor];
-    self.buzzTextLabel.textColor = [UIColor blackColor];
-    self.buzzTextLabel.highlightedTextColor = [UIColor blackColor];
+    self.buzzTextLabel.boldFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
+    self.buzzTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
     
     self.buzzTextLabel.text = text;
 

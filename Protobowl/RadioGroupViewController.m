@@ -18,7 +18,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.lastSelected = [NSIndexPath indexPathForRow:self.selection inSection:0];
+    if(self.selection == NSNotFound)
+    {
+        self.lastSelected = nil;
+    }
+    else
+    {
+        self.lastSelected = [NSIndexPath indexPathForRow:self.selection inSection:0];
+    }
     self.navigationBar.topItem.title = self.title;
 }
 
