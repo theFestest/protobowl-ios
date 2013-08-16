@@ -845,9 +845,8 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p00-O0-HnG" userLabel="Buzz Button">
-                                        <rect key="frame" x="20" y="640" width="278" height="44"/>
+                                        <rect key="frame" x="20" y="640" width="663" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="278" type="user" id="Wxl-HW-uKz"/>
                                             <constraint firstAttribute="height" constant="44" type="user" id="Z0q-hs-cus"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
@@ -937,15 +936,16 @@
                                     <constraint firstAttribute="trailing" secondItem="DzZ-Nh-Buk" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="4RT-3f-ho4"/>
                                     <constraint firstItem="JBJ-Ye-tZe" firstAttribute="top" secondItem="5iO-nW-JcB" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="6vO-Vh-oxs"/>
                                     <constraint firstItem="p00-O0-HnG" firstAttribute="top" secondItem="JBJ-Ye-tZe" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="B5N-4w-vgK"/>
-                                    <constraint firstItem="JBJ-Ye-tZe" firstAttribute="centerX" secondItem="5iO-nW-JcB" secondAttribute="centerX" type="default" id="DuF-Sn-0Zk"/>
-                                    <constraint firstItem="p00-O0-HnG" firstAttribute="leading" secondItem="DzZ-Nh-Buk" secondAttribute="leading" type="default" id="EHY-f6-mQP"/>
+                                    <constraint firstItem="p00-O0-HnG" firstAttribute="centerX" secondItem="JBJ-Ye-tZe" secondAttribute="centerX" type="default" id="CNl-RP-fcx"/>
                                     <constraint firstItem="JBJ-Ye-tZe" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" type="default" id="Ewv-Zq-2TQ"/>
                                     <constraint firstItem="5iO-nW-JcB" firstAttribute="top" secondItem="DzZ-Nh-Buk" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="Gr2-es-E0z"/>
+                                    <constraint firstItem="p00-O0-HnG" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="20" type="user" id="HdJ-bm-ZUi"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="top" secondItem="3CZ-OZ-Q7l" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="Ng7-VM-NnS"/>
                                     <constraint firstAttribute="trailing" secondItem="5iO-nW-JcB" secondAttribute="trailing" constant="8" type="user" id="Tdr-VO-ASN"/>
                                     <constraint firstItem="5iO-nW-JcB" firstAttribute="top" secondItem="KXE-zu-aWx" secondAttribute="top" constant="57" type="user" id="agf-7z-0uI"/>
                                     <constraint firstAttribute="trailing" secondItem="3CZ-OZ-Q7l" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="cj3-Gm-tRH"/>
                                     <constraint firstItem="3CZ-OZ-Q7l" firstAttribute="leading" secondItem="mHT-b7-6pd" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="ghP-DJ-tDe"/>
+                                    <constraint firstAttribute="trailing" secondItem="p00-O0-HnG" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="i3A-N7-AzR"/>
                                     <constraint firstItem="mHT-b7-6pd" firstAttribute="top" secondItem="KXE-zu-aWx" secondAttribute="top" constant="20" type="user" id="lAI-cQ-oRF"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="top" secondItem="mHT-b7-6pd" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="nib-cX-mFb"/>
                                     <constraint firstAttribute="bottom" secondItem="p00-O0-HnG" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="wka-6h-S6N"/>

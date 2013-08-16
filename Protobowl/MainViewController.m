@@ -89,6 +89,7 @@
     
     [self.buzzButton setAttributedTitle:attributedBuzzText forState:UIControlStateNormal];
     
+    
     // Setup timer bar
     self.timeBar.progressColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
     self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
