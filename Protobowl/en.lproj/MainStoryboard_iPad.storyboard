@@ -296,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwY-t5-DAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-325" y="-2284"/>
+            <point key="canvasLocation" x="-1401" y="-2225"/>
         </scene>
         <!--Guess View Controller-->
         <scene sceneID="0ir-T2-6Dt">
@@ -367,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1Y-Vb-O4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-521" y="-1048"/>
+            <point key="canvasLocation" x="-1033" y="-948"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="eGx-t6-iwe">
@@ -458,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mbh-3i-7dZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1234" y="-2284"/>
+            <point key="canvasLocation" x="-1828" y="-1926"/>
         </scene>
         <!--Radio Group View Controller-->
         <scene sceneID="fDi-XT-Oq0">
@@ -533,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGG-JK-VGN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="-1697"/>
+            <point key="canvasLocation" x="-1028" y="-1658"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="mHp-2K-jIs">
@@ -740,7 +740,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPU-xM-xyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-325" y="-1697"/>
+            <point key="canvasLocation" x="-1401" y="-1638"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iSs-aS-TZ6">
@@ -755,7 +755,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exd-fi-mgJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2080" y="-1926"/>
+            <point key="canvasLocation" x="-2894" y="-1926"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="hpZ-qC-k8E">
@@ -771,7 +771,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="McU-0L-Nbr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3215" y="-1926"/>
+            <point key="canvasLocation" x="-3995" y="-1926"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gYc-Nl-vNn">
@@ -786,7 +786,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4c-pf-Mwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2894" y="-1048"/>
+            <point key="canvasLocation" x="-2894" y="-948"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="jZF-Me-kTe">
@@ -953,38 +953,10 @@
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="zF5-UF-tkP"/>
                                 </constraints>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFN-M7-5HF" userLabel="Score Slide View" customClass="PulloutView">
-                                <rect key="frame" x="-180" y="4" width="220" height="35"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Donald: #2,  35" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XP3-Kw-Uno" userLabel="Label - Donald: #2,">
-                                        <rect key="frame" x="9" y="4" width="166" height="23"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
-                                        <color key="textColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="35" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIE-12-CFg" userLabel="score label">
-                                        <rect key="frame" x="171" y="4" width="41" height="23"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
-                                        <color key="textColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="XP3-Kw-Uno" firstAttribute="leading" secondItem="CFN-M7-5HF" secondAttribute="leading" constant="9" type="user" id="C3u-wV-MlO"/>
-                                    <constraint firstItem="fIE-12-CFg" firstAttribute="trailing" secondItem="CFN-M7-5HF" secondAttribute="trailing" constant="-8" type="user" id="J4s-Hn-Soz"/>
-                                    <constraint firstAttribute="width" constant="220" type="user" id="NLl-bl-ugi"/>
-                                    <constraint firstAttribute="height" constant="35" type="user" id="Njp-6R-ed5"/>
-                                    <constraint firstAttribute="trailing" secondItem="XP3-Kw-Uno" secondAttribute="trailing" constant="45" type="user" id="THf-Yv-gpI"/>
-                                    <constraint firstItem="fIE-12-CFg" firstAttribute="leading" secondItem="XP3-Kw-Uno" secondAttribute="trailing" constant="-4" type="user" id="VVi-ng-Nar"/>
-                                    <constraint firstItem="XP3-Kw-Uno" firstAttribute="top" secondItem="CFN-M7-5HF" secondAttribute="top" constant="4" type="user" id="iCB-HZ-X0f"/>
-                                    <constraint firstItem="fIE-12-CFg" firstAttribute="top" secondItem="CFN-M7-5HF" secondAttribute="top" constant="4" type="user" id="u5c-ru-viE"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KXE-zu-aWx" firstAttribute="trailing" secondItem="Rzw-da-XEc" secondAttribute="trailing" type="user" id="5eY-xE-4jW"/>
-                            <constraint firstItem="CFN-M7-5HF" firstAttribute="top" secondItem="Rzw-da-XEc" secondAttribute="top" constant="4" id="LVs-Ab-SBB"/>
                             <constraint firstItem="KXE-zu-aWx" firstAttribute="top" secondItem="Rzw-da-XEc" secondAttribute="top" type="user" id="Rop-Cf-NeC"/>
                             <constraint firstItem="KXE-zu-aWx" firstAttribute="leading" secondItem="Rzw-da-XEc" secondAttribute="leading" type="user" id="SVq-8w-1Dh"/>
                             <constraint firstItem="KXE-zu-aWx" firstAttribute="leading" secondItem="Rzw-da-XEc" secondAttribute="leading" type="user" id="UGU-Ze-J1K"/>
@@ -993,7 +965,6 @@
                             <constraint firstItem="YbN-cz-UhX" firstAttribute="top" secondItem="Rzw-da-XEc" secondAttribute="top" constant="30" type="user" id="lQZ-tt-i7x"/>
                             <constraint firstItem="KXE-zu-aWx" firstAttribute="bottom" secondItem="Rzw-da-XEc" secondAttribute="bottom" type="user" id="p2Y-73-CJa"/>
                             <constraint firstItem="YbN-cz-UhX" firstAttribute="centerX" secondItem="KXE-zu-aWx" secondAttribute="centerX" type="user" id="v6l-ON-ha9"/>
-                            <constraint firstItem="CFN-M7-5HF" firstAttribute="leading" secondItem="Rzw-da-XEc" secondAttribute="leading" constant="-180" type="user" id="wCJ-Bj-gM9"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -1006,21 +977,17 @@
                         <outlet property="buzzButton" destination="p00-O0-HnG" id="din-Vz-zQd"/>
                         <outlet property="buzzLogTableView" destination="JBJ-Ye-tZe" id="rNU-n8-wJV"/>
                         <outlet property="contentView" destination="KXE-zu-aWx" id="ZIT-5t-a2w"/>
-                        <outlet property="myInfoLabel" destination="XP3-Kw-Uno" id="zhU-ja-0f8"/>
-                        <outlet property="myScoreLabel" destination="fIE-12-CFg" id="m9M-tl-mHW"/>
-                        <outlet property="pulloutPositionConstraint" destination="wCJ-Bj-gM9" id="484-fY-Rdm"/>
                         <outlet property="questionContainerHeightConstraint" destination="YGE-oS-dXM" id="fND-jv-GLm"/>
                         <outlet property="questionContainerView" destination="5iO-nW-JcB" id="ej7-U3-qsl"/>
                         <outlet property="questionTextHeightConstraint" destination="5IZ-Qp-Dsw" id="zWb-Nq-COU"/>
                         <outlet property="questionTextView" destination="0RJ-6G-Bri" id="2rR-Xv-Jn5"/>
-                        <outlet property="scorePulloutView" destination="CFN-M7-5HF" id="fix-X9-xoB"/>
                         <outlet property="timeBar" destination="DzZ-Nh-Buk" id="FEE-i4-MOR"/>
                         <outlet property="timeLabel" destination="3CZ-OZ-Q7l" id="E43-ah-eOG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5E-CZ-FV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1576" y="-1048"/>
+            <point key="canvasLocation" x="-1828" y="-948"/>
         </scene>
     </scenes>
     <resources>

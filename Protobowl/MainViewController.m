@@ -99,33 +99,37 @@
     swipe.delegate = self;
     [self.view addGestureRecognizer:swipe];
     
-    // Setup pullout pan and tap gesture
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.scorePulloutView addGestureRecognizer:pan];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-    [self.scorePulloutView addGestureRecognizer:tap];
     
-    
-    // Setup side menu view and view controller offscreen
-    self.sideMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"SideMenuViewController"];
-    self.sideMenu.mainViewController = self;
-    [self addChildViewController:self.sideMenu];
-    
-    
-    UIView *sideMenuView = self.sideMenu.view;
-    sideMenuView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:sideMenuView];
-    
-    NSNumber *width = @([[UIScreen mainScreen] bounds].size.width);
-    PulloutView *pulloutMenu = self.scorePulloutView;
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[sideMenuView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(sideMenuView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sideMenuView(width)][pulloutMenu]" options:0 metrics:NSDictionaryOfVariableBindings(width) views:NSDictionaryOfVariableBindings(sideMenuView, pulloutMenu)]];
-    
-    [self.view layoutIfNeeded];
-    
-    self.sideMenuStartX = sideMenuView.frame.origin.x;
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        // Setup pullout pan and tap gesture
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        [self.scorePulloutView addGestureRecognizer:pan];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        [self.scorePulloutView addGestureRecognizer:tap];
         
-    self.isSideMenuOnScreen = NO;
+        
+        // Setup side menu view and view controller offscreen
+        self.sideMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"SideMenuViewController"];
+        self.sideMenu.mainViewController = self;
+        [self addChildViewController:self.sideMenu];
+        
+        
+        UIView *sideMenuView = self.sideMenu.view;
+        sideMenuView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.view addSubview:sideMenuView];
+        
+        NSNumber *width = @([[UIScreen mainScreen] bounds].size.width);
+        PulloutView *pulloutMenu = self.scorePulloutView;
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[sideMenuView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(sideMenuView)]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sideMenuView(width)][pulloutMenu]" options:0 metrics:NSDictionaryOfVariableBindings(width) views:NSDictionaryOfVariableBindings(sideMenuView, pulloutMenu)]];
+        
+        [self.view layoutIfNeeded];
+        
+        self.sideMenuStartX = sideMenuView.frame.origin.x;
+            
+        self.isSideMenuOnScreen = NO;
+    }
     
     self.isUserScrolling = NO;
     
@@ -336,7 +340,14 @@
 
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         CGRect animatedFrame = weakSelf.contentView.frame;
-        animatedFrame.origin.y = -600;
+        if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        {
+            animatedFrame.origin.y = -1200;
+        }
+        else
+        {
+            animatedFrame.origin.y = -600;
+        }
         weakSelf.contentView.frame = animatedFrame;
     } completion:^(BOOL finished) {
         weakSelf.questionTextView.text = @"";
