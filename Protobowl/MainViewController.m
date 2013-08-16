@@ -131,6 +131,11 @@
             
         self.isSideMenuOnScreen = NO;
     }
+    else
+    {
+        self.sideMenu = (SideMenuViewController *)(((UINavigationController *)self.splitViewController.viewControllers[0]).topViewController);
+        self.sideMenu.mainViewController = self;
+    }
     
     self.isUserScrolling = NO;
     
@@ -502,7 +507,7 @@
 #pragma mark - Split View Controller Delegate Method Implementations
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = @"Room Info";
+    barButtonItem.title = @"Menu";
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
