@@ -14,10 +14,19 @@
 {
     [super setSelected:selected animated:animated];
     
+    NSArray *symbols = [NSThread callStackSymbols];
+    
     if(selected)
     {
-        self.callback(self);
-        [self setSelected:NO animated:YES];
+        if(symbols.count >= 2)
+        {
+            NSString *caller = symbols[1]; // Very sketch solution to the multiple calls of this method...
+            if([caller rangeOfString:@"_selectAllSelectedRows"].location == NSNotFound)
+            {
+                self.callback(self);
+                [self setSelected:NO animated:animated];
+            }
+        }
     }
 }
 
