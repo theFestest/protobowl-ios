@@ -14,10 +14,9 @@
 {
     [super setSelected:selected animated:animated];
     
-    NSArray *symbols = [NSThread callStackSymbols];
-    
     if(selected)
     {
+        NSArray *symbols = [NSThread callStackSymbols];
         if(symbols.count >= 2)
         {
             NSString *caller = symbols[1]; // Very sketch solution to the multiple calls of this method...

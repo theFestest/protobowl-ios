@@ -18,18 +18,26 @@
     
     if(selected)
     {
-        RadioGroupViewController *form = [self.referenceViewController.storyboard instantiateViewControllerWithIdentifier:@"RadioGroupViewController"];
-        form.options = self.options;
-        form.selection = self.selection;
-        form.radioChangedCallback = self.radioChangedCallback;
-        __weak RadioGroupViewController *weakForm = form;
-        form.radioDoneCallback = ^{
-            [self.referenceViewController dismissFormViewController:weakForm animated:YES completion:nil];
-        };
-        form.title = self.titleLabel.text;
-        [self.referenceViewController presentFormViewController:form animated:YES completion:nil];
-        
-        [self setSelected:NO animated:YES];
+        NSArray *symbols = [NSThread callStackSymbols];
+        if(symbols.count >= 2)
+        {
+            NSString *caller = symbols[1]; // Very sketch solution to the multiple calls of this method...
+            if([caller rangeOfString:@"_selectAllSelectedRows"].location == NSNotFound)
+            {
+                RadioGroupViewController *form = [self.referenceViewController.storyboard instantiateViewControllerWithIdentifier:@"RadioGroupViewController"];
+                form.options = self.options;
+                form.selection = self.selection;
+                form.radioChangedCallback = self.radioChangedCallback;
+                __weak RadioGroupViewController *weakForm = form;
+                form.radioDoneCallback = ^{
+                    [self.referenceViewController dismissFormViewController:weakForm animated:YES completion:nil];
+                };
+                form.title = self.titleLabel.text;
+                [self.referenceViewController presentFormViewController:form animated:YES completion:nil];
+                
+                [self setSelected:NO animated:animated];
+            }
+        }
     }
 }
 

@@ -17,18 +17,21 @@
 #define kOverlayViewKey @"OverlayViewKey"
 - (void) presentFormViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion
 {
-    CGRect frame = self.view.window.frame;
+    CGRect frame = self.view.frame;
     frame.size.width -= kWidthInset * 2;
     frame.origin.x += kWidthInset;
     frame.size.height -= kHeightInset * 2;
     frame.origin.y += 80;
+    
+    frame.size.height = MIN(frame.size.height, 400);
+    frame.origin.y = (self.view.frame.size.height - frame.size.height) / 2.0;
     
     self.view.clipsToBounds = NO;
     
     frame = [self.view convertRect:frame fromView:self.view.window];
     
     CGRect offscreen = frame;
-    offscreen.origin.y = 600;
+    offscreen.origin.y = self.view.frame.size.height + 100;
     
     CGRect fullscreen = self.view.window.frame;
     fullscreen = [self.view convertRect:fullscreen fromView:self.view.window];
@@ -41,6 +44,7 @@
     
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
+
     
     vc.view.frame = offscreen;
     
@@ -50,6 +54,7 @@
     vc.view.clipsToBounds = YES;
     
     objc_setAssociatedObject(self, kOverlayViewKey, formOverlayView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
     
     [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         vc.view.frame = frame;
@@ -65,11 +70,14 @@
 
 - (void) dismissFormViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion
 {
-    CGRect frame = self.view.window.frame;
+    CGRect frame = self.view.frame;
     frame.size.width -= kWidthInset * 2;
     frame.origin.x += kWidthInset;
     frame.size.height -= kHeightInset * 2;
     frame.origin.y += 80;
+    
+    frame.size.height = MIN(frame.size.height, 400);
+    frame.origin.y = (self.view.frame.size.height - frame.size.height) / 2.0;
     
     self.view.clipsToBounds = NO;
     vc.view.clipsToBounds = NO;
@@ -78,7 +86,7 @@
     frame = [self.view convertRect:frame fromView:self.view.window];
     
     CGRect offscreen = frame;
-    offscreen.origin.y = 600;
+    offscreen.origin.y = self.view.frame.size.height + 100;
     
     CGRect fullscreen = self.view.window.frame;
     fullscreen = [self.view convertRect:fullscreen fromView:self.view.window];

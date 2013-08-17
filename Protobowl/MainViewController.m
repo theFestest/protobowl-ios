@@ -496,7 +496,7 @@
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    if(gestureRecognizer.view == self.questionContainerView || otherGestureRecognizer.view == self.questionContainerView)
+    if(gestureRecognizer.view == self.questionContainerView || otherGestureRecognizer.view == self.questionContainerView || gestureRecognizer.view == self.buzzLogTableView || otherGestureRecognizer.view == self.buzzLogTableView)
     {
         return YES;
     }
