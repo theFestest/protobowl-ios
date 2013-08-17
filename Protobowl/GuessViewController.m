@@ -104,9 +104,10 @@
     [self.timeBar setProgress:progress animated:NO];
 }
 
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didJudgeGuess:(BOOL)correct
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didJudgeGuess:(BOOL)correct withReceivedScoreValue:(int)scoreValue
 {
     NSLog(@"%@", correct ? @"Correct" : @"Wrong");
+    self.guessJudgedCallback(correct, scoreValue);
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -120,11 +121,6 @@
 {
     self.submitGuessCallback(self.guessTextField.text);
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void) dealloc
-{
-    
 }
 
 @end

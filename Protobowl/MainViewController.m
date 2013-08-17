@@ -318,6 +318,9 @@
     guessVC.submitGuessCallback = ^(NSString *guess) {
         [weakSelf.manager submitGuess:guess];
     };
+    guessVC.guessJudgedCallback = ^(BOOL correct, int scoreValue) {
+        [weakSelf animateReceivedPoints:scoreValue];
+    };
     guessVC.invalidBuzzCallback = ^{
         [weakSelf.manager unpauseQuestion];
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -332,6 +335,54 @@
 {
     NSLog(@"Dismissing");
     [super dismissViewControllerAnimated:flag completion:completion];
+}
+
+
+- (void) animateReceivedPoints:(int)points
+{
+    UIColor *textColor = points > 0 ? [UIColor greenColor] : [UIColor redColor];
+    NSString *text = points > 0 ? [NSString stringWithFormat:@"+%d", points] : (points == 0 ? [NSString stringWithFormat:@"-%d", points] : [NSString stringWithFormat:@"%d", points]);
+    
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:60.0];
+    CGSize maxSize = [text sizeWithFont:font];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, maxSize.width, maxSize.height)];
+    label.font = font;
+    label.center = self.questionContainerView.center;
+    label.textColor = textColor;
+    label.backgroundColor = [UIColor clearColor];
+    label.opaque = NO;
+    label.text = text;
+    
+    UIImage *render = [label imageSnapshot];
+    UIImageView *animImage = [[UIImageView alloc] initWithImage:render];
+    
+    CGRect afterGrowthFrame = label.frame;
+    
+    CGRect startGrowthFrame = afterGrowthFrame;
+    startGrowthFrame.origin.x += afterGrowthFrame.size.width / 2.0;
+    startGrowthFrame.origin.y += afterGrowthFrame.size.height / 2.0;
+    startGrowthFrame.size = CGSizeMake(0, 0);
+    
+    CGRect afterMoveFrame = afterGrowthFrame;
+    afterMoveFrame.size = CGSizeMake(afterMoveFrame.size.width * 0.2, afterMoveFrame.size.height * 0.2);
+    afterMoveFrame.origin = CGPointMake(self.navigationController.navigationBar.frame.size.width/2.0 - afterMoveFrame.size.width/2.0, -(self.navigationController.navigationBar.frame.size.height/2.0 - afterMoveFrame.size.height/2.0));
+    
+    animImage.frame = startGrowthFrame;
+    
+    [self.view addSubview:animImage];
+    
+    
+    [UIView animateWithDuration:0.2 delay:0.25 options:0 animations:^{
+        animImage.frame = afterGrowthFrame;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
+            animImage.frame = afterMoveFrame;
+        } completion:^(BOOL finished) {
+            [animImage removeFromSuperview];
+        }];
+    }];
+    
 }
 
 #define kScrollTransitionInteractionThreshold 50

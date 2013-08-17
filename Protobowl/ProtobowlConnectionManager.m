@@ -417,7 +417,31 @@ NSLog(@"%@", string); \
                     
                     if([userID isEqualToString:self.myself.userID])
                     {
-                        [self.guessDelegate connectionManager:self didJudgeGuess:correct];
+                        BOOL isEarly = [attempt[@"early"] boolValue];
+                        NSString *type = nil;
+                        if(isEarly)
+                        {
+                            type = @"early";
+                        }
+                        else if(isInterrupt)
+                        {
+                            type = @"interrupt";
+                        }
+                        else
+                        {
+                            type = @"normal";
+                        }
+                        
+                        int score = 0;
+                        if(correct)
+                        {
+                            score = [self.scoring positiveScoreValueOfType:type];
+                        }
+                        else
+                        {
+                            score = [self.scoring negativeScoreValueOfType:type];
+                        }
+                        [self.guessDelegate connectionManager:self didJudgeGuess:correct withReceivedScoreValue:score];
                     }
                     
                     [self unpauseQuestion];

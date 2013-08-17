@@ -42,7 +42,7 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress;
 
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didJudgeGuess:(BOOL)correct;
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didJudgeGuess:(BOOL)correct withReceivedScoreValue:(int)scoreValue;
 - (void) connectionManagerDidReceivePrompt:(ProtobowlConnectionManager *)manager;
 
 - (void) connectionManagerDidEndBuzzTime:(ProtobowlConnectionManager *)manager;
