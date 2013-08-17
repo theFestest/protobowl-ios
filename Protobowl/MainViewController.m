@@ -54,6 +54,8 @@
 @property (nonatomic, strong) LinedTableViewController *buzzLogController;
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+
+@property (strong, nonatomic) NSString *fullQuestionText;
 @end
 
 @implementation MainViewController
@@ -189,13 +191,36 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestion:(ProtobowlQuestion *)question
 {
+    self.fullQuestionText = question.questionText;
+    
+    [self layoutQuestionLabelForText:question.questionText];
+    
+    self.isNextAnimationEnabled = NO;
+    self.isAnimating = NO;
+
+    // Set the category
+    self.answerLabel.text = question.category;
+}
+
+ - (void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    if(self.fullQuestionText)
+    {
+        [self layoutQuestionLabelForText:self.fullQuestionText];
+    }
+}
+
+- (void) layoutQuestionLabelForText:(NSString *)text
+{
     // Calculate best font size
     float maxHeight = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 280 : 400;
     int size = 80;
     int minSize = 14;
     float newHeight = 0;
     UIFont *newFont = nil;
-    while((newHeight = [question.questionText sizeWithFont:(newFont = [UIFont fontWithName:@"HelveticaNeue" size:size--]) constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)].height + 30) >= maxHeight && (size > (minSize - 1)));
+    while((newHeight = [text sizeWithFont:(newFont = [UIFont fontWithName:@"HelveticaNeue" size:size--]) constrainedToSize:CGSizeMake(self.questionTextView.frame.size.width - 8, 10000)].height + 30) >= maxHeight && (size > (minSize - 1)));
     
     newHeight = MIN(newHeight, maxHeight);
     
@@ -209,12 +234,7 @@
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [self.contentView layoutIfNeeded];
     } completion:nil];
-    self.isNextAnimationEnabled = NO;
-    self.isAnimating = NO;
 
-    
-    // Set the category
-    self.answerLabel.text = question.category;
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestionDisplayText:(NSString *)text

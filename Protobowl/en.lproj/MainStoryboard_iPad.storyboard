@@ -805,11 +805,10 @@
                                     <scrollView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iO-nW-JcB" userLabel="Question Container">
                                         <rect key="frame" x="8" y="57" width="687" height="280"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="744" translatesAutoresizingMaskIntoConstraints="NO" id="0RJ-6G-Bri">
-                                                <rect key="frame" x="4" y="0.0" width="744" height="280"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="679" translatesAutoresizingMaskIntoConstraints="NO" id="0RJ-6G-Bri">
+                                                <rect key="frame" x="4" y="0.0" width="679" height="280"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="280" type="user" id="5IZ-Qp-Dsw"/>
-                                                    <constraint firstAttribute="width" constant="744" type="user" id="q6u-ja-VAs"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -818,10 +817,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.94106409670000002" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="0RJ-6G-Bri" secondAttribute="trailing" constant="4" id="8sq-jL-LoI"/>
+                                            <constraint firstItem="0RJ-6G-Bri" firstAttribute="centerX" secondItem="5iO-nW-JcB" secondAttribute="centerX" type="default" id="58B-Gp-icf"/>
                                             <constraint firstItem="0RJ-6G-Bri" firstAttribute="leading" secondItem="5iO-nW-JcB" secondAttribute="leading" constant="4" type="user" id="G7O-3e-WCq"/>
                                             <constraint firstAttribute="bottom" secondItem="0RJ-6G-Bri" secondAttribute="bottom" type="default" id="LUi-am-JCL"/>
                                             <constraint firstItem="0RJ-6G-Bri" firstAttribute="top" secondItem="5iO-nW-JcB" secondAttribute="top" type="default" id="M1x-DI-Sxh"/>
+                                            <constraint firstAttribute="trailing" secondItem="0RJ-6G-Bri" secondAttribute="trailing" constant="4" id="PTs-Zp-DfD"/>
                                             <constraint firstAttribute="height" constant="280" type="user" id="YGE-oS-dXM"/>
                                         </constraints>
                                         <connections>
