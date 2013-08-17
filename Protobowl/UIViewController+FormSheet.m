@@ -17,6 +17,13 @@
 #define kOverlayViewKey @"OverlayViewKey"
 - (void) presentFormViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion
 {
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        vc.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:vc animated:animated completion:completion];
+        return;
+    }
+    
     CGRect frame = self.view.frame;
     frame.size.width -= kWidthInset * 2;
     frame.origin.x += kWidthInset;
@@ -70,6 +77,12 @@
 
 - (void) dismissFormViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion
 {
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        [vc dismissViewControllerAnimated:animated completion:completion];
+        return;
+    }
+    
     CGRect frame = self.view.frame;
     frame.size.width -= kWidthInset * 2;
     frame.origin.x += kWidthInset;
