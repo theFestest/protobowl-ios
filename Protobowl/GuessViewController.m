@@ -2,8 +2,11 @@
 #import "GuessViewController.h"
 #import "iOS7ProgressView.h"
 
-#define kInitialTextViewWidth 304
-#define kInitialTextViewHeight 198
+#define kInitialTextViewWidthPhone 304
+#define kInitialTextViewHeightPhone 198
+
+#define kInitialTextViewWidthPad 524
+#define kInitialTextViewHeightPad 496
 
 @interface GuessViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *questionTextView;
@@ -31,28 +34,44 @@
 
 - (void) resizeFont
 {
-    float width = self.questionTextView.frame.size.width - 16;
+    float width = 0;
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        width = self.questionTextView.frame.size.width - 16;
+    }
+    else
+    {
+        width = self.questionTextView.frame.size.width - 300;
+    }
+    
     float height = self.questionTextView.frame.size.height;
     if(width <= 0 || height <= 0)
     {
-        width = kInitialTextViewWidth;
-        height = kInitialTextViewHeight;
-    }
-    
-    for(int i = 24; i >= 4; i--)
-    {
-        UIFont *font = [UIFont systemFontOfSize:i];
-        CGSize textSize = [self.questionDisplayText sizeWithFont:font constrainedToSize:CGSizeMake(width, 10000)];
-        if(textSize.height <= height - 30)
+        if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
         {
-            self.questionTextView.font = font;
-            break;
+            width = kInitialTextViewWidthPhone;
+            height = kInitialTextViewHeightPhone;
+        }
+        else
+        {
+            width = kInitialTextViewWidthPad;
+            height = kInitialTextViewHeightPad;
         }
     }
     
     CGSize constraintSize = CGSizeMake(width, 10000);
-    CGSize targetSize = [self.questionTextView.text sizeWithFont:self.questionTextView.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    self.questionHeightConstraint.constant = targetSize.height;
+    for(int i = 36; i >= 4; i--)
+    {
+        UIFont *font = [UIFont systemFontOfSize:i];
+        CGSize textSize = [self.questionDisplayText sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+        if(textSize.height <= height - 30)
+        {
+            self.questionTextView.font = font;
+            self.questionHeightConstraint.constant = textSize.height;
+            break;
+        }
+    }
+    
     [self.view setNeedsLayout];
 }
 

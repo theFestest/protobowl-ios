@@ -59,12 +59,6 @@
         self.leftImageView.image = [UIImage imageNamed:@"prompt_tag"];
         hasLeftImage = YES;
     }
-    else
-    {
-        text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
-        self.leftImageView.image = [UIImage imageNamed:@"buzz_tag"];
-        hasLeftImage = YES;
-    }
     
     
     

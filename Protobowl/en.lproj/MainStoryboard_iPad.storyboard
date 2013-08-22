@@ -301,7 +301,7 @@
         <!--Guess View Controller-->
         <scene sceneID="0ir-T2-6Dt">
             <objects>
-                <viewController storyboardIdentifier="GuessViewController" id="q62-Tr-bb1" customClass="GuessViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GuessViewController" modalPresentationStyle="formSheet" id="q62-Tr-bb1" customClass="GuessViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R0b-6w-cFo">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -318,19 +318,20 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QnQ-p7-kwS" userLabel="Question Container">
-                                <rect key="frame" x="0.0" y="46" width="768" height="742"/>
+                                <rect key="frame" x="0.0" y="46" width="768" height="958"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="752" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-iR-ljb">
-                                        <rect key="frame" x="8" y="0.0" width="752" height="198"/>
+                                        <rect key="frame" x="8" y="0.0" width="752" height="496"/>
+                                        <color key="backgroundColor" red="0.27450980390000002" green="0.53333333329999999" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="198" type="user" id="28F-8g-Oby"/>
+                                            <constraint firstAttribute="height" constant="496" type="user" id="28F-8g-Oby"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.94106409670000002" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="fBY-iR-ljb" firstAttribute="top" secondItem="QnQ-p7-kwS" secondAttribute="top" type="user" id="TXw-eH-zqt"/>
                                     <constraint firstItem="fBY-iR-ljb" firstAttribute="leading" secondItem="QnQ-p7-kwS" secondAttribute="leading" constant="8" type="user" id="Yru-fW-5Of"/>
@@ -346,21 +347,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QnQ-p7-kwS" firstAttribute="centerX" secondItem="uo5-XF-vOp" secondAttribute="centerX" type="default" id="8QQ-wl-bwv"/>
                             <constraint firstAttribute="trailing" secondItem="3dn-4h-y3S" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="DXC-2B-xUg"/>
                             <constraint firstItem="uo5-XF-vOp" firstAttribute="leading" secondItem="R0b-6w-cFo" secondAttribute="leading" constant="26" type="user" id="Dfp-XG-eLI"/>
                             <constraint firstItem="3dn-4h-y3S" firstAttribute="top" secondItem="R0b-6w-cFo" secondAttribute="top" constant="8" type="user" id="HLm-ZE-oAV"/>
                             <constraint firstItem="QnQ-p7-kwS" firstAttribute="leading" secondItem="R0b-6w-cFo" secondAttribute="leading" type="user" id="ONY-4V-qAg"/>
-                            <constraint firstItem="QnQ-p7-kwS" firstAttribute="trailing" secondItem="R0b-6w-cFo" secondAttribute="trailing" type="default" id="OdI-Wj-PRZ"/>
                             <constraint firstItem="uo5-XF-vOp" firstAttribute="top" secondItem="R0b-6w-cFo" secondAttribute="top" constant="41" id="b9a-HK-B0P"/>
-                            <constraint firstItem="3dn-4h-y3S" firstAttribute="leading" secondItem="R0b-6w-cFo" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="hCy-Cq-T9J"/>
                             <constraint firstAttribute="trailing" secondItem="uo5-XF-vOp" secondAttribute="trailing" constant="26" type="user" id="hvJ-ZT-Dqv"/>
-                            <constraint firstAttribute="bottom" secondItem="QnQ-p7-kwS" secondAttribute="bottom" constant="216" type="user" id="ind-sg-DwD"/>
+                            <constraint firstAttribute="bottom" secondItem="QnQ-p7-kwS" secondAttribute="bottom" type="user" id="ind-sg-DwD"/>
                             <constraint firstItem="QnQ-p7-kwS" firstAttribute="top" secondItem="3dn-4h-y3S" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="q0h-tp-TVp"/>
+                            <constraint firstItem="QnQ-p7-kwS" firstAttribute="centerX" secondItem="3dn-4h-y3S" secondAttribute="centerX" type="default" id="y2o-bX-Sx4"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="guessTextField" destination="3dn-4h-y3S" id="tUX-CS-xJm"/>
-                        <outlet property="questionHeightConstraint" destination="28F-8g-Oby" id="7wg-cd-maU"/>
+                        <outlet property="guessTextField" destination="3dn-4h-y3S" id="tvT-Gk-4Ux"/>
+                        <outlet property="questionHeightConstraint" destination="28F-8g-Oby" id="Rio-i1-M5d"/>
                         <outlet property="questionTextView" destination="fBY-iR-ljb" id="kD9-P7-m8z"/>
                         <outlet property="timeBar" destination="uo5-XF-vOp" id="O34-l6-r53"/>
                     </connections>
@@ -829,10 +830,10 @@
                                         </connections>
                                     </scrollView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2.4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CZ-OZ-Q7l" userLabel="Timer Label">
-                                        <rect key="frame" x="647" y="20" width="36" height="30"/>
+                                        <rect key="frame" x="643" y="20" width="40" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" type="user" id="UP9-HS-eLu"/>
-                                            <constraint firstAttribute="width" constant="36" type="user" id="VvO-cQ-lzi"/>
+                                            <constraint firstAttribute="width" constant="40" type="user" id="VvO-cQ-lzi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -862,7 +863,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Answer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHT-b7-6pd">
-                                        <rect key="frame" x="99" y="20" width="536" height="30"/>
+                                        <rect key="frame" x="99" y="20" width="532" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" type="user" id="Puu-0Y-a3h"/>
                                         </constraints>
