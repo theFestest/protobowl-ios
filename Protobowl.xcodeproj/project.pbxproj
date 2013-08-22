@@ -68,6 +68,23 @@
 		B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */; };
 		B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */; };
 		B5F6C036179B46EA0040CB37 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */; };
+		B5FAA6DC17C480EF0024B47C /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D217C480EF0024B47C /* AppIcon29x29.png */; };
+		B5FAA6DD17C480EF0024B47C /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D317C480EF0024B47C /* AppIcon29x29@2x.png */; };
+		B5FAA6DE17C480EF0024B47C /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D417C480EF0024B47C /* AppIcon40x40.png */; };
+		B5FAA6DF17C480EF0024B47C /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D517C480EF0024B47C /* AppIcon40x40@2x.png */; };
+		B5FAA6E017C480EF0024B47C /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D617C480EF0024B47C /* AppIcon60x60.png */; };
+		B5FAA6E117C480EF0024B47C /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D717C480EF0024B47C /* AppIcon60x60@2x.png */; };
+		B5FAA6E217C480EF0024B47C /* AppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D817C480EF0024B47C /* AppIcon76x76.png */; };
+		B5FAA6E317C480EF0024B47C /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6D917C480EF0024B47C /* AppIcon76x76@2x.png */; };
+		B5FAA6E417C480EF0024B47C /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6DA17C480EF0024B47C /* iTunesArtwork.png */; };
+		B5FAA6E517C480EF0024B47C /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6DB17C480EF0024B47C /* iTunesArtwork@2x.png */; };
+		B5FAA6E817C482830024B47C /* AppIcon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6E617C482830024B47C /* AppIcon72x72.png */; };
+		B5FAA6E917C482830024B47C /* AppIcon72x72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6E717C482830024B47C /* AppIcon72x72@2x.png */; };
+		B5FAA6EC17C482D10024B47C /* AppIcon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6EA17C482D10024B47C /* AppIcon57x57.png */; };
+		B5FAA6F117C4836D0024B47C /* AppIcon57x57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6F017C4836D0024B47C /* AppIcon57x57@2x.png */; };
+		B5FAA6F517C483CE0024B47C /* AppIcon50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6F217C483CE0024B47C /* AppIcon50x50.png */; };
+		B5FAA6F617C483CE0024B47C /* AppIcon80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6F317C483CE0024B47C /* AppIcon80x80.png */; };
+		B5FAA6F717C483CE0024B47C /* AppIcon100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FAA6F417C483CE0024B47C /* AppIcon100x100.png */; };
 		B5FD246A1767CE9900B9870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24691767CE9900B9870D /* UIKit.framework */; };
 		B5FD246C1767CE9900B9870D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246B1767CE9900B9870D /* Foundation.framework */; };
 		B5FD246E1767CE9900B9870D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD246D1767CE9900B9870D /* CoreGraphics.framework */; };
@@ -203,6 +220,23 @@
 		B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
 		B5F6C034179B46EA0040CB37 /* LeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LeaderboardViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LeaderboardViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5FAA6D217C480EF0024B47C /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
+		B5FAA6D317C480EF0024B47C /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
+		B5FAA6D417C480EF0024B47C /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
+		B5FAA6D517C480EF0024B47C /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
+		B5FAA6D617C480EF0024B47C /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
+		B5FAA6D717C480EF0024B47C /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
+		B5FAA6D817C480EF0024B47C /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon76x76.png; sourceTree = "<group>"; };
+		B5FAA6D917C480EF0024B47C /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
+		B5FAA6DA17C480EF0024B47C /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		B5FAA6DB17C480EF0024B47C /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		B5FAA6E617C482830024B47C /* AppIcon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon72x72.png; sourceTree = "<group>"; };
+		B5FAA6E717C482830024B47C /* AppIcon72x72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon72x72@2x.png"; sourceTree = "<group>"; };
+		B5FAA6EA17C482D10024B47C /* AppIcon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon57x57.png; sourceTree = "<group>"; };
+		B5FAA6F017C4836D0024B47C /* AppIcon57x57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon57x57@2x.png"; sourceTree = "<group>"; };
+		B5FAA6F217C483CE0024B47C /* AppIcon50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon50x50.png; sourceTree = "<group>"; };
+		B5FAA6F317C483CE0024B47C /* AppIcon80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon80x80.png; sourceTree = "<group>"; };
+		B5FAA6F417C483CE0024B47C /* AppIcon100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon100x100.png; sourceTree = "<group>"; };
 		B5FD24661767CE9900B9870D /* Protobowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Protobowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5FD24691767CE9900B9870D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5FD246B1767CE9900B9870D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -404,6 +438,30 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		B5FAA6D117C480E40024B47C /* App Icons */ = {
+			isa = PBXGroup;
+			children = (
+				B5FAA6F217C483CE0024B47C /* AppIcon50x50.png */,
+				B5FAA6F317C483CE0024B47C /* AppIcon80x80.png */,
+				B5FAA6F417C483CE0024B47C /* AppIcon100x100.png */,
+				B5FAA6EA17C482D10024B47C /* AppIcon57x57.png */,
+				B5FAA6F017C4836D0024B47C /* AppIcon57x57@2x.png */,
+				B5FAA6E617C482830024B47C /* AppIcon72x72.png */,
+				B5FAA6E717C482830024B47C /* AppIcon72x72@2x.png */,
+				B5FAA6D217C480EF0024B47C /* AppIcon29x29.png */,
+				B5FAA6D317C480EF0024B47C /* AppIcon29x29@2x.png */,
+				B5FAA6D417C480EF0024B47C /* AppIcon40x40.png */,
+				B5FAA6D517C480EF0024B47C /* AppIcon40x40@2x.png */,
+				B5FAA6D617C480EF0024B47C /* AppIcon60x60.png */,
+				B5FAA6D717C480EF0024B47C /* AppIcon60x60@2x.png */,
+				B5FAA6D817C480EF0024B47C /* AppIcon76x76.png */,
+				B5FAA6D917C480EF0024B47C /* AppIcon76x76@2x.png */,
+				B5FAA6DA17C480EF0024B47C /* iTunesArtwork.png */,
+				B5FAA6DB17C480EF0024B47C /* iTunesArtwork@2x.png */,
+			);
+			name = "App Icons";
+			sourceTree = "<group>";
+		};
 		B5FD245D1767CE9900B9870D = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +527,7 @@
 		B5FD24701767CE9900B9870D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5FAA6D117C480E40024B47C /* App Icons */,
 				B5D1458717ADDE20004706D2 /* Images */,
 				B5D1458817ADDE36004706D2 /* Categories and Helper Classes */,
 				B5FD24711767CE9900B9870D /* Protobowl-Info.plist */,
@@ -617,29 +676,46 @@
 			files = (
 				B5FD24741767CE9900B9870D /* InfoPlist.strings in Resources */,
 				B5D1459917ADDE92004706D2 /* correct_tag.png in Resources */,
+				B5FAA6E917C482830024B47C /* AppIcon72x72@2x.png in Resources */,
 				B5FD247C1767CE9900B9870D /* Default.png in Resources */,
+				B5FAA6E417C480EF0024B47C /* iTunesArtwork.png in Resources */,
 				B5FD247E1767CE9900B9870D /* Default@2x.png in Resources */,
 				B506B79617AB91F7009CD717 /* down_arrow.png in Resources */,
 				B5D1459D17ADDE92004706D2 /* wrong_tag.png in Resources */,
+				B5FAA6DF17C480EF0024B47C /* AppIcon40x40@2x.png in Resources */,
 				B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */,
+				B5FAA6E817C482830024B47C /* AppIcon72x72.png in Resources */,
 				B5D1459517ADDE92004706D2 /* buzz_interrupt_tag.png in Resources */,
 				B5FD24801767CE9900B9870D /* Default-568h@2x.png in Resources */,
 				B5D1459A17ADDE92004706D2 /* correct_tag@2x.png in Resources */,
 				B5FD24831767CE9900B9870D /* MainStoryboard_iPhone.storyboard in Resources */,
 				B5FD24861767CE9900B9870D /* MainStoryboard_iPad.storyboard in Resources */,
 				B5D1459C17ADDE92004706D2 /* prompt_tag@2x.png in Resources */,
+				B5FAA6E017C480EF0024B47C /* AppIcon60x60.png in Resources */,
 				B50BFB91176D542B0052700D /* FontAwesome.ttf in Resources */,
+				B5FAA6EC17C482D10024B47C /* AppIcon57x57.png in Resources */,
 				B5D1459B17ADDE92004706D2 /* prompt_tag.png in Resources */,
 				B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */,
+				B5FAA6F517C483CE0024B47C /* AppIcon50x50.png in Resources */,
 				B5814E2D17A5A13E009639B6 /* ding.wav in Resources */,
 				B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */,
 				B5811AD5176EBC9E00D1369E /* buzz_enabled.png in Resources */,
 				B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */,
+				B5FAA6F117C4836D0024B47C /* AppIcon57x57@2x.png in Resources */,
+				B5FAA6DC17C480EF0024B47C /* AppIcon29x29.png in Resources */,
+				B5FAA6DE17C480EF0024B47C /* AppIcon40x40.png in Resources */,
 				B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */,
 				B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */,
 				B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */,
+				B5FAA6F717C483CE0024B47C /* AppIcon100x100.png in Resources */,
+				B5FAA6E217C480EF0024B47C /* AppIcon76x76.png in Resources */,
+				B5FAA6DD17C480EF0024B47C /* AppIcon29x29@2x.png in Resources */,
+				B5FAA6F617C483CE0024B47C /* AppIcon80x80.png in Resources */,
 				B5D1459617ADDE92004706D2 /* buzz_interrupt_tag@2x.png in Resources */,
+				B5FAA6E517C480EF0024B47C /* iTunesArtwork@2x.png in Resources */,
 				B5D1459817ADDE92004706D2 /* buzz_tag@2x.png in Resources */,
+				B5FAA6E117C480EF0024B47C /* AppIcon60x60@2x.png in Resources */,
+				B5FAA6E317C480EF0024B47C /* AppIcon76x76@2x.png in Resources */,
 				B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

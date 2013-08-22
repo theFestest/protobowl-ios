@@ -297,8 +297,16 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users
 {
     // Don't care about other people's scores, but use this opportunity to update our own score
-    self.myInfoLabel.text = [NSString stringWithFormat:@"%@: #%d", self.manager.myself.name, self.manager.myself.rank];
-    self.myScoreLabel.text = [NSString stringWithFormat:@"%d", self.manager.myself.score];
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        self.myInfoLabel.text = [NSString stringWithFormat:@"%@: #%d", self.manager.myself.name, self.manager.myself.rank];
+        self.myScoreLabel.text = [NSString stringWithFormat:@"%d", self.manager.myself.score];
+    }
+    else
+    {
+        self.myInfoLabel.text = [NSString stringWithFormat:@"#%d: %@", self.manager.myself.rank, self.manager.myself.name];
+        self.myScoreLabel.text = [NSString stringWithFormat:@"%d points", self.manager.myself.score];
+    }
     
     [self.scorePulloutView layoutIfNeeded];
 }
