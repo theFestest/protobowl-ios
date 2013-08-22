@@ -446,7 +446,7 @@
             weakSelf.buzzButton.userInteractionEnabled = NO;
             weakSelf.timeBar.progress = 0;
             weakSelf.backgroundImageView.frame = CGRectMake(kScrollTransitionBackgroundImageInset, kScrollTransitionBackgroundImageInset, weakSelf.view.frame.size.width - kScrollTransitionBackgroundImageInset*2, weakSelf.view.frame.size.height - kScrollTransitionBackgroundImageInset*2);
-            [weakSelf.view setNeedsLayout];
+            [weakSelf.view layoutIfNeeded];
             
             // Trigger next question
             [weakSelf.manager next];
