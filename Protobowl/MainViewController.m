@@ -258,6 +258,24 @@
     NSString *timeText = [NSString stringWithFormat:@"%.1f", remainingTime];
     self.timeLabel.text = timeText;
     
+    self.timeBar.progressColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
+    self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
+    
+//    printf("question timer\n");
+
+    [self.timeBar setProgress:progress animated:NO];
+}
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress
+{
+    NSString *timeText = [NSString stringWithFormat:@"%.1f", remainingTime];
+    self.timeLabel.text = timeText;
+    
+    self.timeBar.progressColor = [UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
+    
+//    printf("guess timer\n");
+    
     [self.timeBar setProgress:progress animated:NO];
 }
 

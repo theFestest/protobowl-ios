@@ -40,6 +40,7 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) NSString *buzzSessionId;
 @property (nonatomic) BOOL hasPendingBuzz;
 @property (nonatomic) BOOL hasPendingPrompt;
+@property (nonatomic) BOOL didStartOtherPlayerBuzzTimer;
 @property (nonatomic, strong) NSTimer *buzzTimer;
 @property (nonatomic) float startBuzzTime;
 @property (nonatomic) float buzzDuration;
@@ -347,7 +348,7 @@ NSLog(@"%@", string); \
                     self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
                     
                     [self.buzzTimer invalidate];
-                    self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer) userInfo:nil repeats:YES];
+                    self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer:) userInfo:nil repeats:YES];
                     [[NSRunLoop mainRunLoop] addTimer:self.buzzTimer forMode:NSRunLoopCommonModes];
                     self.startBuzzTime = CACurrentMediaTime();
                 }
@@ -370,7 +371,7 @@ NSLog(@"%@", string); \
                     self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
                     
                     [self.buzzTimer invalidate];
-                    self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer) userInfo:nil repeats:YES];
+                    self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer:) userInfo:nil repeats:YES];
                     [[NSRunLoop mainRunLoop] addTimer:self.buzzTimer forMode:NSRunLoopCommonModes];
                     self.startBuzzTime = CACurrentMediaTime();
                 }
@@ -379,6 +380,18 @@ NSLog(@"%@", string); \
                     self.hasPendingPrompt = NO;
                     self.buzzSessionId = nil;
                 }
+            }
+            else if(!self.didStartOtherPlayerBuzzTimer && !self.buzzSessionId)
+            {
+                [self pauseQuestion];
+                self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
+                
+                [self.buzzTimer invalidate];
+                self.buzzTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateBuzzTimer:) userInfo:nil repeats:YES];
+                [[NSRunLoop mainRunLoop] addTimer:self.buzzTimer forMode:NSRunLoopCommonModes];
+                self.startBuzzTime = CACurrentMediaTime();
+                
+                self.didStartOtherPlayerBuzzTimer = YES;
             }
 
             
@@ -391,6 +404,8 @@ NSLog(@"%@", string); \
             if(done)
             {
                 BOOL correct = [attempt[@"correct"] boolValue];
+                self.didStartOtherPlayerBuzzTimer = NO;
+                [self expireBuzzTime:nil];
                 
                 if(isPrompt)
                 {
@@ -564,26 +579,30 @@ NSLog(@"%@", string); \
 
 - (void) pauseQuestion
 {
-    NSLog(@"Pausing question");
-    
-    self.startPauseTime = CACurrentMediaTime();
-    
-    self.isQuestionPaused = YES;
-    [self.questionTimer invalidate];
-    self.questionTimer = nil;
-    
-    [self.roomDelegate connectionManager:self didSetBuzzEnabled:NO];
+    if(!self.isQuestionPaused)
+    {
+        NSLog(@"Pausing question");
+        
+        self.startPauseTime = CACurrentMediaTime();
+        
+        self.isQuestionPaused = YES;
+        [self.questionTimer invalidate];
+        self.questionTimer = nil;
+        
+        [self.roomDelegate connectionManager:self didSetBuzzEnabled:NO];
+    }
 }
 
 - (void) unpauseQuestion
 {
-    NSLog(@"Unpause question");
     
     float now = CACurrentMediaTime();
     float pauseLength = now - self.startPauseTime;
     self.startQuestionTime += pauseLength;
     self.startPauseTime = now;
     
+    NSLog(@"Unpause question: %f", pauseLength);
+
     self.isQuestionPaused = NO;
     [self.questionTimer invalidate];
     self.questionTimer = [NSTimer timerWithTimeInterval:kTimerInterval target:self selector:@selector(updateQuestionTimer:) userInfo:nil repeats:YES];
@@ -612,7 +631,7 @@ NSLog(@"%@", string); \
     [self.roomDelegate connectionManager:self didUpdateTime:remaining progress:progress];
 }
 
-- (void) updateBuzzTimer
+- (void) updateBuzzTimer:(NSTimer *)timer
 {
     float elapsedBuzzTime = CACurrentMediaTime() - self.startBuzzTime;
     
@@ -622,10 +641,11 @@ NSLog(@"%@", string); \
     if(progress >= 1.0)
     {
         // Done with the buzz session
-        [self expireBuzzTime];
+        [self expireBuzzTime:timer];
     }
     
     [self.guessDelegate connectionManager:self didUpdateGuessTime:remaining progress:progress];
+    [self.roomDelegate connectionManager:self didUpdateGuessTime:remaining progress:progress];
 
 }
 
@@ -649,18 +669,27 @@ NSLog(@"%@", string); \
     [self.roomDelegate connectionManager:self didEndQuestion:self.currentQuestion];
 }
 
-- (void) expireBuzzTime
+- (void) expireBuzzTime:(NSTimer *)timer
 {
-    if(self.buzzSessionId)
+//    if(self.buzzSessionId || self.didStartOtherPlayerBuzzTimer)
+//    {
+    if(timer)
+    {
+        [timer invalidate];
+        timer = nil;
+    }
+    else
     {
         [self.buzzTimer invalidate];
         self.buzzTimer = nil;
-        self.hasPendingBuzz = NO;
-        self.buzzSessionId = nil;
-        [self.guessDelegate connectionManagerDidEndBuzzTime:self];
+    }
+
+    self.hasPendingBuzz = NO;
+    self.buzzSessionId = nil;
+    [self.guessDelegate connectionManagerDidEndBuzzTime:self];
         
         //[self unpauseQuestion];
-    }
+//    }
 }
 
 - (BOOL) buzz
@@ -700,7 +729,7 @@ NSLog(@"%@", string); \
         
         self.buzzSessionId = nil;
         
-        [self expireBuzzTime];
+        [self expireBuzzTime:nil];
         
         // TODO: don't call the callback until we receive a sync message with correct or not in it
         
