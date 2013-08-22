@@ -111,7 +111,7 @@ NSLog(@"%@", string); \
     [self.socket sendEvent:@"set_name" withData:name];
 }
 
-
+#define kCookieKey @"cookie_key"
 - (void) connectToRoom:(NSString *)room
 {
     if(self.socket == nil)
@@ -134,6 +134,16 @@ NSLog(@"%@", string); \
     }
 }
 
+void gen_random(char *s, const int len) {
+    static const char alphanum[] = "0123456789abcdefghijklmnopqrstuvwxyz";
+    
+    for (int i = 0; i < len; ++i) {
+        s[i] = alphanum[arc4random() % (sizeof(alphanum) - 1)];
+    }
+    
+    s[len] = 0;
+}
+
 
 - (void) joinLobby:(NSString *)lobby
 {
@@ -144,8 +154,26 @@ NSLog(@"%@", string); \
         self.myself = nil;
         
         // Use spoofed auth and cookie tokens for now
-        NSString *auth = @"fpn7am41vytgaujydhfnrvxpafejo4elakqo";
-        NSString *cookie = @"fpn7am41vytgaujydhfnrvxpafejo4elakqo";
+        NSString *auth = @"apn7am41vytgaujydhfnrvxpafejo4elakqo";
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *cookie;
+        if([defaults stringForKey:kCookieKey])
+        {
+            cookie = [defaults stringForKey:kCookieKey];
+        }
+        else
+        {
+            // Gen random cookie
+            srand(time(NULL));
+            char *newCookie = malloc(sizeof(char) * 37);
+            gen_random(newCookie, 36);
+            cookie = [NSString stringWithUTF8String:newCookie];
+            [defaults setObject:cookie forKey:kCookieKey];
+            [defaults synchronize];
+        }
+        
+        NSLog(@"Joining with cookie: %@", cookie);
         
         // TODO: Use "link" event???
         // Send join request
@@ -154,7 +182,7 @@ NSLog(@"%@", string); \
                                                   @"question_type" : @"qb",
                                                   @"room_name" : lobby,
                                                   @"muwave" : @NO,
-                                                  @"custom_id" : @"Donald iOS",
+                                                  @"custom_id" : @"Not applicable",
                                                   @"version" : @8}];
         
         [self.roomDelegate connectionManager:self didJoinLobby:lobby withSuccess:YES];
