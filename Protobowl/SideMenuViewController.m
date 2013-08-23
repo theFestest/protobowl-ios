@@ -33,6 +33,8 @@
 
 @property (nonatomic, strong) UITextField *activeField;
 @property (weak, nonatomic) IBOutlet UILabel *menuTitleLabel;
+
+@property (nonatomic) BOOL isShareViewControllerPresented;
 @end
 
 @implementation SideMenuViewController
@@ -85,7 +87,11 @@
 {
     [super viewDidDisappear:animated];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(self.isShareViewControllerPresented)
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.isShareViewControllerPresented = NO;
+    }
 }
 
 
@@ -277,7 +283,11 @@
 {
     NSString *shareURL = [NSString stringWithFormat:@"http://protobowl.com/%@", self.mainViewController.manager.currentRoomName];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[shareURL] applicationActivities:nil];
+    activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+        self.isShareViewControllerPresented = NO;
+    };
     [self presentViewController:activityVC animated:YES completion:nil];
+    self.isShareViewControllerPresented = YES;
 }
 
 @end

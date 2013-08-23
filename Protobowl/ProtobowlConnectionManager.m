@@ -112,12 +112,15 @@ NSLog(@"%@", string); \
 }
 
 #define kCookieKey @"cookie_key"
+#define kProtobowlHost @"cab.antimatter15.com"
+#define kProtobowlSocket 443
+#define kProtobowlSecure NO
 - (void) connectToRoom:(NSString *)room
 {
     if(self.socket == nil)
     {
         self.socket = [[SocketIO alloc] initWithDelegate:self];
-        self.socket.useSecure = YES;
+        self.socket.useSecure = kProtobowlSecure;
     }
     
     
@@ -130,7 +133,7 @@ NSLog(@"%@", string); \
     }
     else
     {
-        [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
+        [self.socket connectToHost:kProtobowlHost onPort:kProtobowlSocket];
     }
 }
 
