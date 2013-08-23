@@ -139,7 +139,7 @@
 - (void) connectionManagerDidEndBuzzTime:(ProtobowlConnectionManager *)manager
 {
     self.submitGuessCallback(self.guessTextField.text);
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
