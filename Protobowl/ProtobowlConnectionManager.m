@@ -960,6 +960,11 @@ void gen_random(char *s, const int len) {
     }
 }
 
+- (NSString *)currentRoomName
+{
+    return _roomName;
+}
+
 
 
 @end

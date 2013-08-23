@@ -84,6 +84,7 @@
 // Room settings
 @property (nonatomic, strong) NSString *currentDifficulty;
 @property (nonatomic, strong) NSString *currentCategory;
+@property (nonatomic, readonly) NSString *currentRoomName;
 @property (nonatomic) BOOL showBonusQuestions;
 @property (nonatomic) BOOL allowSkip;
 @property (nonatomic) BOOL allowMultipleBuzzes;

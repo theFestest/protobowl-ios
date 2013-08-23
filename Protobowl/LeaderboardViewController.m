@@ -315,6 +315,7 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users inRoom:(NSString *)roomName
 {
     self.leaderboardNameField.text = roomName;
+    [self.sideMenuViewController setRoomName:roomName];
     self.users = users;
     
     [self reloadLeaderboard];

@@ -32,6 +32,7 @@
 @property (nonatomic, strong) id<CellViewController> selectedCellController;
 
 @property (nonatomic, strong) UITextField *activeField;
+@property (weak, nonatomic) IBOutlet UILabel *menuTitleLabel;
 @end
 
 @implementation SideMenuViewController
@@ -76,6 +77,7 @@
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
     
     self.selectedRow = -1;
+
     
 }
 
@@ -90,6 +92,7 @@
         
         [self reloadTableView];
         self.view.layer.shouldRasterize = NO;
+        
     }
     else
     {
@@ -255,6 +258,11 @@
         height += [self.tableView.delegate tableView:self.tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
     }
     return height;
+}
+
+- (void) setRoomName:(NSString *)room
+{
+    self.menuTitleLabel.text = [NSString stringWithFormat:@"Menu - %@", room];
 }
 
 

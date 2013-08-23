@@ -322,7 +322,7 @@
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="752" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-iR-ljb">
                                         <rect key="frame" x="8" y="0.0" width="752" height="496"/>
-                                        <color key="backgroundColor" red="0.27450980390000002" green="0.53333333329999999" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="496" type="user" id="28F-8g-Oby"/>
                                         </constraints>
@@ -452,6 +452,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hrw-fp-i1q"/>
                     <connections>
+                        <outlet property="menuTitleLabel" destination="ESP-BY-ugD" id="LvH-pu-esu"/>
                         <outlet property="scrollView" destination="UxW-Kw-ggx" id="bMP-aB-IGw"/>
                         <outlet property="tableView" destination="hOS-Xg-80v" id="WsX-wI-3bI"/>
                         <outlet property="tableViewHeight" destination="vpP-At-igG" id="uEg-Ww-3i1"/>

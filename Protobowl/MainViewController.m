@@ -8,9 +8,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+Donald.h"
 #import "PulloutView.h"
-#import "SideMenuViewController.h"
 #import "BuzzLogCell.h"
 #import "LinedTableViewController.h"
+#import "SideMenuViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 /*#define LOG(s, ...) do { \
@@ -43,9 +43,8 @@
 @property (nonatomic) float pulloutStartX;
 @property (nonatomic) float sideMenuStartX;
 
-@property (strong, nonatomic) SideMenuViewController *sideMenu;
-
 @property (nonatomic) BOOL isSideMenuOnScreen;
+@property (strong, nonatomic) SideMenuViewController *sideMenu;
 
 @property (weak, nonatomic) IBOutlet UILabel *myInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myScoreLabel;
@@ -168,6 +167,7 @@
     if(success)
     {
         NSLog(@"Connected to server");
+        [self.sideMenu setRoomName:lobby];
     }
     else
     {
@@ -386,7 +386,7 @@
 
 - (void) animateReceivedPoints:(int)points
 {
-    UIColor *textColor = points > 0 ? [UIColor greenColor] : [UIColor redColor];
+    UIColor *textColor = points > 0 ? [UIColor colorWithRed:0.0 green:0.6 blue:0.0 alpha:1.0] : [UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0];
     NSString *text = points > 0 ? [NSString stringWithFormat:@"+%d", points] : (points == 0 ? [NSString stringWithFormat:@"-%d", points] : [NSString stringWithFormat:@"%d", points]);
     
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:60.0];
@@ -412,7 +412,14 @@
     
     CGRect afterMoveFrame = afterGrowthFrame;
     afterMoveFrame.size = CGSizeMake(afterMoveFrame.size.width * 0.2, afterMoveFrame.size.height * 0.2);
-    afterMoveFrame.origin = CGPointMake(self.navigationController.navigationBar.frame.size.width/2.0 - afterMoveFrame.size.width/2.0, -(self.navigationController.navigationBar.frame.size.height/2.0 - afterMoveFrame.size.height/2.0));
+    
+    UIView *fromView = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) ? self.scorePulloutView : self.contentView;
+    afterMoveFrame.origin = [self.view convertPoint: self.myScoreLabel.frame.origin fromView:fromView];
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        afterMoveFrame.origin.x += self.myScoreLabel.frame.size.width / 2;
+        afterMoveFrame.origin.y += self.myScoreLabel.frame.size.height / 2;
+    }
     
     animImage.frame = startGrowthFrame;
     
@@ -421,9 +428,11 @@
     
     [UIView animateWithDuration:0.2 delay:0.25 options:0 animations:^{
         animImage.frame = afterGrowthFrame;
+        animImage.transform = CGAffineTransformMakeRotation(-M_PI / 8.0);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
             animImage.frame = afterMoveFrame;
+            animImage.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             [animImage removeFromSuperview];
         }];

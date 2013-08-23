@@ -17,12 +17,13 @@
 
 @end
 
-@interface SideMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
+@interface SideMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property (nonatomic, weak) MainViewController *mainViewController;
 
 - (void) setFullyOnscreen:(BOOL) onscreen;
 - (void) reloadTableView;
 - (void) reloadTableViewAtIndices:(NSArray *)indices numDetailRows:(int)n;
+- (void) setRoomName:(NSString *)room;
 
 @end

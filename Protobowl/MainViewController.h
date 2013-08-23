@@ -11,4 +11,5 @@
 
 @interface MainViewController : UIViewController <ProtobowlRoomDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISplitViewControllerDelegate>
 @property (nonatomic, strong) ProtobowlConnectionManager *manager;
+
 @end
