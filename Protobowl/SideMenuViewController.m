@@ -81,6 +81,13 @@
     
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void) setFullyOnscreen:(BOOL) onscreen
 {
@@ -265,5 +272,12 @@
     self.menuTitleLabel.text = [NSString stringWithFormat:@"Menu - %@", room];
 }
 
+
+- (IBAction)sharePressed:(id)sender
+{
+    NSString *shareURL = [NSString stringWithFormat:@"http://protobowl.com/%@", self.mainViewController.manager.currentRoomName];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[shareURL] applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
 
 @end

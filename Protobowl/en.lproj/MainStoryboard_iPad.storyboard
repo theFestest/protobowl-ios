@@ -387,6 +387,21 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sa-Z4-lTP">
+                                        <rect key="frame" x="256" y="11" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" type="user" id="cld-aY-6SJ"/>
+                                            <constraint firstAttribute="width" constant="44" type="user" id="tGs-Dz-Cfw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" image="share_button.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sharePressed:" destination="dA6-OS-Ld7" eventType="touchUpInside" id="V2e-Ax-kni"/>
+                                        </connections>
+                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hOS-Xg-80v">
                                         <rect key="frame" x="20" y="53" width="280" height="240"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -430,13 +445,15 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="0Sa-Z4-lTP" firstAttribute="top" secondItem="UxW-Kw-ggx" secondAttribute="top" constant="11" id="5Qb-P1-onS"/>
                                     <constraint firstItem="ESP-BY-ugD" firstAttribute="trailing" secondItem="hOS-Xg-80v" secondAttribute="trailing" type="default" id="7mf-rt-KT9"/>
                                     <constraint firstItem="ESP-BY-ugD" firstAttribute="leading" secondItem="UxW-Kw-ggx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9cy-Z9-MWd"/>
                                     <constraint firstItem="hOS-Xg-80v" firstAttribute="top" secondItem="ESP-BY-ugD" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="N9B-66-TQV"/>
-                                    <constraint firstItem="ESP-BY-ugD" firstAttribute="centerX" secondItem="UxW-Kw-ggx" secondAttribute="centerX" type="default" id="OOs-mm-ZV9"/>
                                     <constraint firstItem="ESP-BY-ugD" firstAttribute="top" secondItem="UxW-Kw-ggx" secondAttribute="top" constant="20" symbolic="YES" type="default" id="UbV-E7-nyK"/>
                                     <constraint firstAttribute="trailing" secondItem="ESP-BY-ugD" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cGN-D9-uOS"/>
-                                    <constraint firstAttribute="bottom" secondItem="hOS-Xg-80v" secondAttribute="bottom" constant="167" id="dbX-bV-QXk"/>
+                                    <constraint firstItem="0Sa-Z4-lTP" firstAttribute="trailing" secondItem="ESP-BY-ugD" secondAttribute="trailing" type="default" id="fez-is-26B"/>
+                                    <constraint firstAttribute="bottom" secondItem="hOS-Xg-80v" secondAttribute="bottom" constant="411" id="k3X-9z-aCg"/>
+                                    <constraint firstItem="hOS-Xg-80v" firstAttribute="centerX" secondItem="UxW-Kw-ggx" secondAttribute="centerX" type="default" id="s0K-PN-hiN"/>
                                     <constraint firstItem="ESP-BY-ugD" firstAttribute="leading" secondItem="hOS-Xg-80v" secondAttribute="leading" type="default" id="v3A-T3-Oog"/>
                                 </constraints>
                             </scrollView>
@@ -1024,6 +1041,7 @@
         <image name="buzz_enabled.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="prompt_tag.png" width="50" height="18"/>
+        <image name="share_button.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -659,16 +659,33 @@
                                             <outlet property="delegate" destination="kEg-1a-Wjr" id="adJ-Ne-M1v"/>
                                         </connections>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VF9-rx-aBa">
+                                        <rect key="frame" x="256" y="11" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" type="user" id="VvC-tm-SVR"/>
+                                            <constraint firstAttribute="height" constant="44" type="user" id="WgL-dP-qSm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" image="share_button.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sharePressed:" destination="kEg-1a-Wjr" eventType="touchUpInside" id="nZu-vR-1S5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="top" secondItem="goI-8M-2ft" secondAttribute="top" constant="20" symbolic="YES" type="default" id="1ue-sR-mb2"/>
+                                    <constraint firstAttribute="trailing" secondItem="VF9-rx-aBa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5Ik-Cm-wEF"/>
+                                    <constraint firstItem="VF9-rx-aBa" firstAttribute="trailing" secondItem="1Zw-Kh-njk" secondAttribute="trailing" type="default" id="Dc3-WK-7ie"/>
+                                    <constraint firstAttribute="bottom" secondItem="VF9-rx-aBa" secondAttribute="bottom" constant="501" id="Jmo-uv-4Cq"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="centerX" secondItem="goI-8M-2ft" secondAttribute="centerX" type="default" id="K0l-qx-HER"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="leading" secondItem="MuR-hk-TPw" secondAttribute="leading" type="default" id="R1p-Zm-N4D"/>
                                     <constraint firstItem="MuR-hk-TPw" firstAttribute="top" secondItem="1Zw-Kh-njk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RG0-7l-ZEP"/>
-                                    <constraint firstAttribute="bottom" secondItem="MuR-hk-TPw" secondAttribute="bottom" constant="167" id="RPk-Ox-q94"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Zw-Kh-njk" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="XcQ-hb-UZO"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="leading" secondItem="goI-8M-2ft" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aQe-KA-6Sn"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="trailing" secondItem="MuR-hk-TPw" secondAttribute="trailing" type="default" id="svG-ZE-EkK"/>
+                                    <constraint firstItem="VF9-rx-aBa" firstAttribute="centerY" secondItem="1Zw-Kh-njk" secondAttribute="centerY" type="default" id="uFn-lL-fHV"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -969,6 +986,7 @@
         <image name="buzz_enabled.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="prompt_tag.png" width="50" height="18"/>
+        <image name="share_button.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

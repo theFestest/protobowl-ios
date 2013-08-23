@@ -22,6 +22,8 @@
 		B510D037177B98EB008364F0 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EE1767CFA000B9870D /* libicucore.dylib */; };
 		B510D038177B98F0008364F0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EA1767CF9300B9870D /* CFNetwork.framework */; };
 		B510D039177B98FD008364F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
+		B511B3B417C723EA008A7160 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B511B3B217C723EA008A7160 /* share_button.png */; };
+		B511B3B517C723EA008A7160 /* share_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B511B3B317C723EA008A7160 /* share_button@2x.png */; };
 		B54BD44A17AA2C980077F1DA /* RadioGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */; };
 		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
@@ -147,6 +149,8 @@
 		B50BFB96176D548C0052700D /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		B50BFB97176D548C0052700D /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
 		B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		B511B3B217C723EA008A7160 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
+		B511B3B317C723EA008A7160 /* share_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_button@2x.png"; sourceTree = "<group>"; };
 		B54BD44817AA2C980077F1DA /* RadioGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioGroupViewController.h; sourceTree = "<group>"; };
 		B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioGroupViewController.m; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -510,6 +514,8 @@
 				B5FD24E31767CF7200B9870D /* MainViewController.m */,
 				B5F6C034179B46EA0040CB37 /* LeaderboardViewController.h */,
 				B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */,
+				B511B3B217C723EA008A7160 /* share_button.png */,
+				B511B3B317C723EA008A7160 /* share_button@2x.png */,
 				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 				B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */,
@@ -683,6 +689,7 @@
 				B506B79617AB91F7009CD717 /* down_arrow.png in Resources */,
 				B5D1459D17ADDE92004706D2 /* wrong_tag.png in Resources */,
 				B5FAA6DF17C480EF0024B47C /* AppIcon40x40@2x.png in Resources */,
+				B511B3B417C723EA008A7160 /* share_button.png in Resources */,
 				B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */,
 				B5FAA6E817C482830024B47C /* AppIcon72x72.png in Resources */,
 				B5D1459517ADDE92004706D2 /* buzz_interrupt_tag.png in Resources */,
@@ -712,6 +719,7 @@
 				B5FAA6DD17C480EF0024B47C /* AppIcon29x29@2x.png in Resources */,
 				B5FAA6F617C483CE0024B47C /* AppIcon80x80.png in Resources */,
 				B5D1459617ADDE92004706D2 /* buzz_interrupt_tag@2x.png in Resources */,
+				B511B3B517C723EA008A7160 /* share_button@2x.png in Resources */,
 				B5FAA6E517C480EF0024B47C /* iTunesArtwork@2x.png in Resources */,
 				B5D1459817ADDE92004706D2 /* buzz_tag@2x.png in Resources */,
 				B5FAA6E117C480EF0024B47C /* AppIcon60x60@2x.png in Resources */,
