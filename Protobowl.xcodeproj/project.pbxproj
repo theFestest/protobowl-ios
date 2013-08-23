@@ -403,6 +403,8 @@
 		B5D1458917ADDE5D004706D2 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				B511B3B217C723EA008A7160 /* share_button.png */,
+				B511B3B317C723EA008A7160 /* share_button@2x.png */,
 				B5811ACD176EBC9E00D1369E /* buzz_disabled.png */,
 				B5811ACE176EBC9E00D1369E /* buzz_disabled@2x.png */,
 				B5811ACF176EBC9E00D1369E /* buzz_enabled.png */,
@@ -514,8 +516,6 @@
 				B5FD24E31767CF7200B9870D /* MainViewController.m */,
 				B5F6C034179B46EA0040CB37 /* LeaderboardViewController.h */,
 				B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */,
-				B511B3B217C723EA008A7160 /* share_button.png */,
-				B511B3B317C723EA008A7160 /* share_button@2x.png */,
 				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
 				B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */,
