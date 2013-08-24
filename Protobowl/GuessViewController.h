@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ProtobowlConnectionManager.h"
 
-@interface GuessViewController : UIViewController <ProtobowlGuessDelegate>
-
 typedef void (^UpdateGuessTextCallback)(NSString *guess);
 typedef void (^SubmitGuessCallback)(NSString *guess);
 typedef void (^GuessJudgedCallback)(BOOL correct, int value);
 typedef void (^InvalidBuzzCallback)();
 
+@interface GuessViewController : UIViewController <ProtobowlGuessDelegate>
 
 @property (nonatomic, strong) NSString *questionDisplayText;
 @property (nonatomic, strong) UpdateGuessTextCallback updateGuessTextCallback;

@@ -24,6 +24,10 @@
 		B510D039177B98FD008364F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
 		B511B3B417C723EA008A7160 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B511B3B217C723EA008A7160 /* share_button.png */; };
 		B511B3B517C723EA008A7160 /* share_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B511B3B317C723EA008A7160 /* share_button@2x.png */; };
+		B540CD6717C8609D004B6621 /* chat_enabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6317C8609D004B6621 /* chat_enabled.png */; };
+		B540CD6817C8609D004B6621 /* chat_enabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6417C8609D004B6621 /* chat_enabled@2x.png */; };
+		B540CD6917C8609D004B6621 /* chat_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6517C8609D004B6621 /* chat_pressed.png */; };
+		B540CD6A17C8609D004B6621 /* chat_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6617C8609D004B6621 /* chat_pressed@2x.png */; };
 		B54BD44A17AA2C980077F1DA /* RadioGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */; };
 		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
@@ -66,6 +70,7 @@
 		B5D6A6DE179CB10B009EB18B /* LeaderboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6DD179CB10B009EB18B /* LeaderboardCell.m */; };
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
+		B5D8232E17C8668E003BEE41 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8232D17C8668E003BEE41 /* ChatViewController.m */; };
 		B5E019E417A76CE900B76F46 /* SideMenuExpandedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */; };
 		B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */; };
 		B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */; };
@@ -151,6 +156,10 @@
 		B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		B511B3B217C723EA008A7160 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
 		B511B3B317C723EA008A7160 /* share_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_button@2x.png"; sourceTree = "<group>"; };
+		B540CD6317C8609D004B6621 /* chat_enabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_enabled.png; sourceTree = "<group>"; };
+		B540CD6417C8609D004B6621 /* chat_enabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_enabled@2x.png"; sourceTree = "<group>"; };
+		B540CD6517C8609D004B6621 /* chat_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_pressed.png; sourceTree = "<group>"; };
+		B540CD6617C8609D004B6621 /* chat_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_pressed@2x.png"; sourceTree = "<group>"; };
 		B54BD44817AA2C980077F1DA /* RadioGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioGroupViewController.h; sourceTree = "<group>"; };
 		B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioGroupViewController.m; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -216,6 +225,8 @@
 		B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlUser.m; sourceTree = "<group>"; };
 		B5D6A6E2179CBDB8009EB18B /* ProtobowlScoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlScoring.h; sourceTree = "<group>"; };
 		B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlScoring.m; sourceTree = "<group>"; };
+		B5D8232C17C8668E003BEE41 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		B5D8232D17C8668E003BEE41 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		B5E019E217A76CE900B76F46 /* SideMenuExpandedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuExpandedCell.h; sourceTree = "<group>"; };
 		B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuExpandedCell.m; sourceTree = "<group>"; };
 		B5E9CF1117A4D4C000B67AEE /* NSDate+FuzzyTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FuzzyTime.h"; sourceTree = "<group>"; };
@@ -364,6 +375,10 @@
 		B5D1458717ADDE20004706D2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B540CD6317C8609D004B6621 /* chat_enabled.png */,
+				B540CD6417C8609D004B6621 /* chat_enabled@2x.png */,
+				B540CD6517C8609D004B6621 /* chat_pressed.png */,
+				B540CD6617C8609D004B6621 /* chat_pressed@2x.png */,
 				B5D1458A17ADDE85004706D2 /* Tags */,
 				B5D1458917ADDE5D004706D2 /* Buttons */,
 				B506B79517AB91F7009CD717 /* down_arrow.png */,
@@ -518,6 +533,8 @@
 				B5F6C035179B46EA0040CB37 /* LeaderboardViewController.m */,
 				B592957B176BC5E8008E0EB3 /* GuessViewController.h */,
 				B592957C176BC5E8008E0EB3 /* GuessViewController.m */,
+				B5D8232C17C8668E003BEE41 /* ChatViewController.h */,
+				B5D8232D17C8668E003BEE41 /* ChatViewController.m */,
 				B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */,
 				B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */,
 				B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */,
@@ -682,6 +699,7 @@
 			files = (
 				B5FD24741767CE9900B9870D /* InfoPlist.strings in Resources */,
 				B5D1459917ADDE92004706D2 /* correct_tag.png in Resources */,
+				B540CD6A17C8609D004B6621 /* chat_pressed@2x.png in Resources */,
 				B5FAA6E917C482830024B47C /* AppIcon72x72@2x.png in Resources */,
 				B5FD247C1767CE9900B9870D /* Default.png in Resources */,
 				B5FAA6E417C480EF0024B47C /* iTunesArtwork.png in Resources */,
@@ -704,13 +722,16 @@
 				B5D1459B17ADDE92004706D2 /* prompt_tag.png in Resources */,
 				B5811AD3176EBC9E00D1369E /* buzz_disabled.png in Resources */,
 				B5FAA6F517C483CE0024B47C /* AppIcon50x50.png in Resources */,
+				B540CD6917C8609D004B6621 /* chat_pressed.png in Resources */,
 				B5814E2D17A5A13E009639B6 /* ding.wav in Resources */,
 				B5811AD4176EBC9E00D1369E /* buzz_disabled@2x.png in Resources */,
 				B5811AD5176EBC9E00D1369E /* buzz_enabled.png in Resources */,
 				B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */,
 				B5FAA6F117C4836D0024B47C /* AppIcon57x57@2x.png in Resources */,
+				B540CD6817C8609D004B6621 /* chat_enabled@2x.png in Resources */,
 				B5FAA6DC17C480EF0024B47C /* AppIcon29x29.png in Resources */,
 				B5FAA6DE17C480EF0024B47C /* AppIcon40x40.png in Resources */,
+				B540CD6717C8609D004B6621 /* chat_enabled.png in Resources */,
 				B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */,
 				B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */,
 				B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */,
@@ -785,6 +806,7 @@
 				B50652FE176A886300DA299D /* ProtobowlQuestion.m in Sources */,
 				B592957D176BC5E8008E0EB3 /* GuessViewController.m in Sources */,
 				B50BFB99176D548C0052700D /* FAImageView.m in Sources */,
+				B5D8232E17C8668E003BEE41 /* ChatViewController.m in Sources */,
 				B5D145A617ADE8C9004706D2 /* LinedTableViewController.m in Sources */,
 				B577625617A8C80C00F5CED5 /* SwitchCell.m in Sources */,
 				B50BFB9B176D548C0052700D /* NSString+FontAwesome.m in Sources */,

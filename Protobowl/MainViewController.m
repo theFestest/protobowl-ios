@@ -11,6 +11,7 @@
 #import "BuzzLogCell.h"
 #import "LinedTableViewController.h"
 #import "SideMenuViewController.h"
+#import "ChatViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 /*#define LOG(s, ...) do { \
@@ -351,6 +352,19 @@
     [self.manager buzz];
 }
 
+- (IBAction)chatPressed:(id)sender
+{    
+    ChatViewController *chatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+    chatVC.updateChatTextCallback = ^(NSString *chat) {
+        
+    };
+    chatVC.submitChatTextCallback = ^(NSString *chat) {
+        
+    };
+    [self presentViewController:chatVC animated:YES completion:nil];
+}
+
+
 - (void) presentGuessViewController
 {
     self.modalPresentationStyle = UIModalPresentationCurrentContext; // This line seems to prevent a crash bug when playing in the main lobby.  No idea why it was happening and why this fixes it  WTF!?!?!?
@@ -373,7 +387,6 @@
     };
     self.manager.guessDelegate = guessVC;
     
-    NSLog(@"Presenting");
     [self presentViewController:guessVC animated:YES completion:nil];
 }
 
