@@ -56,6 +56,8 @@
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @property (strong, nonatomic) NSString *fullQuestionText;
+
+@property (nonatomic) BOOL isModalVCOnscreen;
 @end
 
 @implementation MainViewController
@@ -245,7 +247,11 @@
     CGSize constraintSize = CGSizeMake(self.questionTextView.frame.size.width, 10000);
     CGSize targetSize = [text sizeWithFont:self.questionTextView.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     self.questionTextHeightConstraint.constant = targetSize.height;
-    self.questionContainerView.contentSize = CGSizeMake(self.questionContainerView.frame.size.width, targetSize.height);
+    
+    if(!self.isModalVCOnscreen)
+    {
+        self.questionContainerView.contentSize = CGSizeMake(self.questionContainerView.frame.size.width, targetSize.height);
+    }
     
     if(targetSize.height > self.questionContainerView.frame.size.height && !self.questionContainerView.dragging)
     {
@@ -353,13 +359,17 @@
 }
 
 - (IBAction)chatPressed:(id)sender
-{    
+{
+    self.modalPresentationStyle = UIModalPresentationFullScreen; // This line seems to prevent a crash bug when playing in the main lobby.  No idea why it was happening and why this fixes it  WTF!?!?!?
+
     ChatViewController *chatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+    chatVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     chatVC.updateChatTextCallback = ^(NSString *chat) {
-        
+        [self.manager chat:chat isDone:NO];
     };
     chatVC.submitChatTextCallback = ^(NSString *chat) {
-        
+        [self.manager chat:chat isDone:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     };
     [self presentViewController:chatVC animated:YES completion:nil];
 }
@@ -367,7 +377,7 @@
 
 - (void) presentGuessViewController
 {
-    self.modalPresentationStyle = UIModalPresentationCurrentContext; // This line seems to prevent a crash bug when playing in the main lobby.  No idea why it was happening and why this fixes it  WTF!?!?!?
+    self.modalPresentationStyle = UIModalPresentationFullScreen; // This line seems to prevent a crash bug when playing in the main lobby.  No idea why it was happening and why this fixes it  WTF!?!?!?
     
     GuessViewController *guessVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GuessViewController"];
     guessVC.questionDisplayText = self.questionTextView.text;
@@ -390,10 +400,23 @@
     [self presentViewController:guessVC animated:YES completion:nil];
 }
 
+- (void) presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion
+{
+    NSLog(@"Presenting");
+    self.isModalVCOnscreen = YES;
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
 - (void) dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
 {
     NSLog(@"Dismissing");
-    [super dismissViewControllerAnimated:flag completion:completion];
+    [super dismissViewControllerAnimated:flag completion:^{
+        if(completion)
+        {
+            completion();
+        }
+        self.isModalVCOnscreen = NO;
+    }];
 }
 
 

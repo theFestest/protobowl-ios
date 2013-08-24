@@ -50,6 +50,9 @@ NSLog(@"%@", string); \
 @property (nonatomic, strong) NSString *roomToConnectTo;
 @property (nonatomic, strong) NSString *roomName;
 
+@property (nonatomic) BOOL isChatNew;
+@property (nonatomic, strong) NSString *chatSessionId;
+
 @end
 
 @implementation ProtobowlConnectionManager
@@ -112,9 +115,9 @@ NSLog(@"%@", string); \
 }
 
 #define kCookieKey @"cookie_key"
-#define kProtobowlHost @"cab.antimatter15.com"
+#define kProtobowlHost @"protobowl.nodejitsu.com"
 #define kProtobowlSocket 443
-#define kProtobowlSecure NO
+#define kProtobowlSecure YES
 - (void) connectToRoom:(NSString *)room
 {
     if(self.socket == nil)
@@ -147,6 +150,13 @@ void gen_random(char *s, const int len) {
     s[len] = 0;
 }
 
+- (NSString *) randomNSStringWithLength:(int)len
+{
+    char *randomChars = malloc(sizeof(char) * (len + 1));
+    gen_random(randomChars, len);
+    return [NSString stringWithUTF8String:randomChars];
+}
+
 
 - (void) joinLobby:(NSString *)lobby
 {
@@ -155,6 +165,7 @@ void gen_random(char *s, const int len) {
         // Reset stuff
         [self.userData removeAllObjects];
         self.myself = nil;
+        self.isChatNew = YES;
         
         // Use spoofed auth and cookie tokens for now
         NSString *auth = @"apn7am41vytgaujydhfnrvxpafejo4elakqo";
@@ -169,9 +180,7 @@ void gen_random(char *s, const int len) {
         {
             // Gen random cookie
             srand(time(NULL));
-            char *newCookie = malloc(sizeof(char) * 37);
-            gen_random(newCookie, 36);
-            cookie = [NSString stringWithUTF8String:newCookie];
+            cookie = [self randomNSStringWithLength:36];
             [defaults setObject:cookie forKey:kCookieKey];
             [defaults synchronize];
         }
@@ -372,7 +381,7 @@ void gen_random(char *s, const int len) {
             {
                 if([userID isEqualToString:self.myself.userID])
                 {
-                    self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
+                    self.buzzSessionId = [self randomNSStringWithLength:36];
                     self.hasPendingBuzz = NO;
                     [self.roomDelegate connectionManager:self didClaimBuzz:YES];
                     [self pauseQuestion];
@@ -397,7 +406,7 @@ void gen_random(char *s, const int len) {
                 {
                     [self.guessDelegate connectionManagerDidReceivePrompt:self];
                     
-                    self.buzzSessionId = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
+                    self.buzzSessionId = [self randomNSStringWithLength:36];
                     self.hasPendingPrompt = NO;
                     self.buzzDuration = [attempt[@"duration"] floatValue] / 1000.0;
                     
@@ -917,6 +926,29 @@ void gen_random(char *s, const int len) {
 - (void) resetScore
 {
     [self.socket sendEvent:@"reset_score" withData:@YES];
+}
+
+- (void) chat:(NSString *)chatText isDone:(BOOL)done
+{
+    if(self.isChatNew)
+    {
+        self.chatSessionId = [self randomNSStringWithLength:36];
+        self.isChatNew = NO;
+    }
+    
+    NSLog(@"%@", self.chatSessionId);
+
+    NSDictionary *chatDict = @{@"user": self.myself.userID,
+                               @"text": chatText,
+                               @"session": self.chatSessionId,
+                               @"done": @(done),
+                               @"first": @NO};
+    [self.socket sendEvent:@"chat" withData:chatDict];
+    
+    if(done)
+    {
+        self.isChatNew = YES;
+    }
 }
 
 - (void) setCurrentCategory:(NSString *)currentCategory

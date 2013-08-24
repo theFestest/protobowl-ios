@@ -11,7 +11,7 @@
 typedef void (^UpdateChatTextCallback)(NSString *chat);
 typedef void (^SubmitChatCallback)(NSString *chat);
 
-@interface ChatViewController : UIViewController
+@interface ChatViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) UpdateChatTextCallback updateChatTextCallback;
 @property (nonatomic, strong) SubmitChatCallback submitChatTextCallback;

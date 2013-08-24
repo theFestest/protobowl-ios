@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 
 @interface ChatViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *chatField;
 
 @end
 
@@ -17,6 +18,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.chatField becomeFirstResponder];
+    self.chatField.delegate = self;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    self.submitChatTextCallback(textField.text);
+    return YES;
+}
+
+- (IBAction)chatChanged:(id)sender
+{
+    self.updateChatTextCallback([sender text]);
 }
 
 @end

@@ -71,7 +71,9 @@
 - (void) expireQuestionTime:(NSTimer *)timer;
 - (BOOL) buzz; // Returns if the user successfully buzzed
 - (void) updateGuess:(NSString *)guess;
-- (void) submitGuess:(NSString *)guess;;
+- (void) submitGuess:(NSString *)guess;
+
+- (void) chat:(NSString *)chatText isDone:(BOOL) done;
 
 - (void) pauseQuestion;
 - (void) unpauseQuestion;
@@ -81,23 +83,24 @@
 - (void) changeMyName:(NSString *)name;
 - (void) resetScore;
 
-// Room settings
+- (void) outputUsersToLeaderboardDelegate;
+
+// Room settings and info
 @property (nonatomic, strong) NSString *currentDifficulty;
 @property (nonatomic, strong) NSString *currentCategory;
 @property (nonatomic, readonly) NSString *currentRoomName;
 @property (nonatomic) BOOL showBonusQuestions;
 @property (nonatomic) BOOL allowSkip;
 @property (nonatomic) BOOL allowMultipleBuzzes;
+@property (nonatomic, strong) ProtobowlUser *myself;
 
 
-- (void) outputUsersToLeaderboardDelegate;
-
+// Delegates
 @property (nonatomic, weak) id<ProtobowlRoomDelegate> roomDelegate;
 @property (nonatomic, weak) id<ProtobowlLeaderboardDelegate> leaderboardDelegate;
 @property (nonatomic, weak) id<ProtobowlGuessDelegate> guessDelegate;
 @property (nonatomic, weak) id<ProtobowlSettingsDelegate> settingsDelegate;
 
 
-@property (nonatomic, strong) ProtobowlUser *myself;
 
 @end

@@ -1013,6 +1013,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="chatChanged:" destination="6ty-Yh-fr1" eventType="editingChanged" id="JkL-xH-hb3"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1022,6 +1025,9 @@
                             <constraint firstAttribute="trailing" secondItem="rzL-11-B7O" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="Zed-0p-Gmm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chatField" destination="rzL-11-B7O" id="qju-eY-R20"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkf-ku-0Ad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
