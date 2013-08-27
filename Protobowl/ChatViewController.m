@@ -10,8 +10,7 @@
 #import "LinedTableViewController.h"
 
 @interface ChatViewController ()
-
-@property (nonatomic, strong) LinedTableViewController *chatController;
+@property (nonatomic, strong) NSArray *chatLines;
 @end
 
 
@@ -47,6 +46,8 @@ BOOL completedMessage = NO;
     self.submitChatTextCallback(text);
     madeFinalCorrection = NO;
     completedMessage = YES;
+    self.chatLines = [self.chatLines arrayByAddingObject:text];
+    [self.tableView reloadData];
 }
 
 - (void) textViewDidChange:(UITextView *)textView
@@ -104,7 +105,7 @@ BOOL completedMessage = NO;
 #pragma mark - JSMessagesViewDataSource Implementation
 - (NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"TEXT";
+    return self.chatLines[indexPath.row];
 }
 
 - (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,14 +125,15 @@ BOOL completedMessage = NO;
 
 - (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.chatLines.count;
 }
 
 
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines
 {
-    [self.chatController setLineArray:lines];
+    self.chatLines = [lines copy];
+    [self.tableView reloadData];
 }
 
 - (void) donePressed:(id)sender
