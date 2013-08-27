@@ -7,12 +7,17 @@
 //
 
 #import "ChatViewController.h"
+#import "LinedTableViewController.h"
 
 @interface ChatViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *chatField;
+@property (weak, nonatomic) IBOutlet UITableView *chatTableView;
 
+@property (nonatomic, strong) LinedTableViewController *chatController;
 @end
 
+
+#define kChatCellIdentifier @"ChatCell"
 @implementation ChatViewController
 
 - (void)viewDidLoad
@@ -21,6 +26,10 @@
     
     [self.chatField becomeFirstResponder];
     self.chatField.delegate = self;
+    
+    self.chatController = [[LinedTableViewController alloc] initWithCellIdentifier:kChatCellIdentifier inTableView:self.chatTableView];
+    self.chatTableView.dataSource = self.chatController;
+    self.chatTableView.delegate = self.chatController;
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -32,6 +41,11 @@
 - (IBAction)chatChanged:(id)sender
 {
     self.updateChatTextCallback([sender text]);
+}
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines
+{
+    [self.chatController setLineArray:lines];
 }
 
 @end

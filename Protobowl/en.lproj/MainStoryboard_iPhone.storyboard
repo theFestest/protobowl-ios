@@ -67,8 +67,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" type="user" id="DUs-U3-JAP"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
-                                        <state key="normal" backgroundImage="buzz_enabled.png">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Buzz" backgroundImage="buzz_enabled.png">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1017,16 +1017,45 @@
                                     <action selector="chatChanged:" destination="6ty-Yh-fr1" eventType="editingChanged" id="JkL-xH-hb3"/>
                                 </connections>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WJ3-xJ-1tI">
+                                <rect key="frame" x="20" y="46" width="280" height="282"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatCell" textLabel="qZH-Cg-DID" style="IBUITableViewCellStyleDefault" id="NkX-7v-Hyp">
+                                        <rect key="frame" x="0.0" y="22" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NkX-7v-Hyp">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qZH-Cg-DID">
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WJ3-xJ-1tI" firstAttribute="leading" secondItem="rzL-11-B7O" secondAttribute="leading" type="default" id="0hs-xZ-dvh"/>
                             <constraint firstItem="rzL-11-B7O" firstAttribute="top" secondItem="8NL-vx-pbn" secondAttribute="top" constant="8" type="user" id="Daf-i7-Wi7"/>
                             <constraint firstItem="rzL-11-B7O" firstAttribute="leading" secondItem="8NL-vx-pbn" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="YZL-OX-qdH"/>
                             <constraint firstAttribute="trailing" secondItem="rzL-11-B7O" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="Zed-0p-Gmm"/>
+                            <constraint firstAttribute="bottom" secondItem="WJ3-xJ-1tI" secondAttribute="bottom" constant="220" type="user" id="ZqR-uq-6T3"/>
+                            <constraint firstItem="WJ3-xJ-1tI" firstAttribute="top" secondItem="rzL-11-B7O" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="gVV-Ae-RCR"/>
+                            <constraint firstItem="WJ3-xJ-1tI" firstAttribute="trailing" secondItem="rzL-11-B7O" secondAttribute="trailing" type="default" id="qKY-ZK-3Hf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="chatField" destination="rzL-11-B7O" id="qju-eY-R20"/>
+                        <outlet property="chatTableView" destination="WJ3-xJ-1tI" id="8Sp-PD-0m5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkf-ku-0Ad" userLabel="First Responder" sceneMemberID="firstResponder"/>

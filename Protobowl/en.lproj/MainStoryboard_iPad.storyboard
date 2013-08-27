@@ -868,8 +868,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" type="user" id="Z0q-hs-cus"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
-                                        <state key="normal" backgroundImage="buzz_enabled.png">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Buzz" backgroundImage="buzz_enabled.png">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>

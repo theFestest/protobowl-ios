@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProtobowlConnectionManager.h"
+#import "JSMessagesViewController.h"
 
 typedef void (^UpdateChatTextCallback)(NSString *chat);
 typedef void (^SubmitChatCallback)(NSString *chat);
 
-@interface ChatViewController : UIViewController <UITextFieldDelegate>
+@interface ChatViewController : UIViewController <UITextFieldDelegate, ProtobowlChatDelegate>
 
 @property (nonatomic, strong) UpdateChatTextCallback updateChatTextCallback;
 @property (nonatomic, strong) SubmitChatCallback submitChatTextCallback;

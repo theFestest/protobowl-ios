@@ -79,20 +79,6 @@
     self.questionContainerView.frame = CGRectMake(0, 0, self.questionContainerView.frame.size.width, 200);
     [self.questionContainerView applySinkStyleWithInnerColor:nil borderColor:[UIColor colorWithWhite:227/255.0 alpha:1.0] borderWidth:1.0 andCornerRadius:10.0];
     
-    // Setup attributed string with bell glyph on buzz button
-    NSString *bell = [NSString fontAwesomeIconStringForEnum:FAIconBell];
-    NSString *buzzText = [NSString stringWithFormat:@"   %@ Buzz", bell];
-    NSMutableAttributedString *attributedBuzzText = [[NSMutableAttributedString alloc] initWithString:buzzText];
-    
-    UIFont *buzzFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-    
-    [attributedBuzzText setAttributes:@{NSFontAttributeName : buzzFont,
-                                        NSForegroundColorAttributeName : [UIColor whiteColor]} range:NSMakeRange(0, buzzText.length)];
-    [attributedBuzzText setAttributes:@{NSFontAttributeName: [UIFont iconicFontOfSize:20],
-                                        NSForegroundColorAttributeName : [UIColor whiteColor]} range:[buzzText rangeOfString:bell]];
-    
-    [self.buzzButton setAttributedTitle:attributedBuzzText forState:UIControlStateNormal];
-    
     
     // Setup timer bar
     self.timeBar.progressColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
@@ -371,6 +357,7 @@
         [self.manager chat:chat isDone:YES];
         [self dismissViewControllerAnimated:YES completion:nil];
     };
+    self.manager.chatDelegate = chatVC;
     [self presentViewController:chatVC animated:YES completion:nil];
 }
 

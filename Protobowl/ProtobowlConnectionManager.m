@@ -565,7 +565,7 @@ void gen_random(char *s, const int len) {
             self.chatLines[index] = text;
         }
         
-        [self.roomDelegate connectionManager:self didUpdateChatLines:[self.chatLines copy]];
+        [self.chatDelegate connectionManager:self didUpdateChatLines:[self.chatLines copy]];
         
         
     }

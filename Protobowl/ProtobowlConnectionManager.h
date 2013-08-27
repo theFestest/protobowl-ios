@@ -64,6 +64,14 @@
 @end
 
 
+@protocol ProtobowlChatDelegate <NSObject>
+
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines;
+
+@end
+
+
+
 @interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
 
 - (void) connectToRoom:(NSString *)room; // pass nil for room to join most recent room
@@ -100,6 +108,8 @@
 @property (nonatomic, weak) id<ProtobowlLeaderboardDelegate> leaderboardDelegate;
 @property (nonatomic, weak) id<ProtobowlGuessDelegate> guessDelegate;
 @property (nonatomic, weak) id<ProtobowlSettingsDelegate> settingsDelegate;
+@property (nonatomic, weak) id<ProtobowlChatDelegate> chatDelegate;
+
 
 
 
