@@ -26,7 +26,6 @@
     [self.guessTextField becomeFirstResponder];
     self.guessTextField.delegate = self;
     
-    
     self.timeBar.progressColor = [UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
     self.timeBar.trackColor = [UIColor colorWithRed:184/255.0 green:184/255.0 blue:184/255.0 alpha:1.0];
 }

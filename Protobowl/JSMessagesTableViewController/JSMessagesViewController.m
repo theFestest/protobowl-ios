@@ -159,8 +159,11 @@
 #pragma mark - Actions
 - (void)sendPressed:(UIButton *)sender
 {
-    [self.delegate sendPressed:sender
-                      withText:[self.inputToolBarView.textView.text trimWhitespace]];
+    [self.inputToolBarView.textView resignFirstResponder];
+    [self.delegate sendPressed:sender withText:self.inputToolBarView.textView.text];
+    
+    /*[self.delegate sendPressed:sender
+                      withText:[self.inputToolBarView.textView.text trimWhitespace]];*/
 }
 
 #pragma mark - Table view data source

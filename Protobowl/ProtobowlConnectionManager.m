@@ -944,6 +944,7 @@ void gen_random(char *s, const int len) {
                                @"done": @(done),
                                @"first": @NO};
     [self.socket sendEvent:@"chat" withData:chatDict];
+    NSLog(@"Sending chat");
     
     if(done)
     {

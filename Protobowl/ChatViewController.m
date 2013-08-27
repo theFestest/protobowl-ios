@@ -10,8 +10,6 @@
 #import "LinedTableViewController.h"
 
 @interface ChatViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *chatField;
-@property (weak, nonatomic) IBOutlet UITableView *chatTableView;
 
 @property (nonatomic, strong) LinedTableViewController *chatController;
 @end
@@ -24,28 +22,123 @@
 {
     [super viewDidLoad];
     
-    [self.chatField becomeFirstResponder];
-    self.chatField.delegate = self;
+    self.delegate = self;
+    self.dataSource = self;
+    self.title = @"Chat";
     
-    self.chatController = [[LinedTableViewController alloc] initWithCellIdentifier:kChatCellIdentifier inTableView:self.chatTableView];
-    self.chatTableView.dataSource = self.chatController;
-    self.chatTableView.delegate = self.chatController;
+    self.inputToolBarView.textView.returnKeyType = UIReturnKeySend;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed:)];
 }
 
-- (BOOL) textFieldShouldReturn:(UITextField *)textField
+#pragma mark - JSMessagesViewDelegate Implementation
+BOOL madeFinalCorrection = NO;
+NSString *correctText;
+BOOL completedMessage = NO;
+- (void) sendPressed:(UIButton *)sender withText:(NSString *)text
 {
-    self.submitChatTextCallback(textField.text);
+    madeFinalCorrection = NO;
+    [self finishSend];
+    
+    if(madeFinalCorrection)
+    {
+        text = correctText;
+    }
+    self.submitChatTextCallback(text);
+    madeFinalCorrection = NO;
+    completedMessage = YES;
+}
+
+- (void) textViewDidChange:(UITextView *)textView
+{
+    [super textViewDidChange:textView];
+    
+    if(textView.text.length > 0)
+    {
+        madeFinalCorrection = YES;
+        correctText = textView.text;
+        self.updateChatTextCallback(textView.text);
+        completedMessage = NO;
+    }
+}
+
+- (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        [self sendPressed:nil withText:textView.text];
+        return NO;
+    }
+    
     return YES;
 }
 
-- (IBAction)chatChanged:(id)sender
+- (JSBubbleMessageType) messageTypeForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.updateChatTextCallback([sender text]);
+    return JSBubbleMessageTypeIncoming; // Configure incoming / outgoing from received data from manager
 }
+
+- (JSBubbleMessageStyle) messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return JSBubbleMessageStyleSquare;
+}
+
+- (JSMessagesViewTimestampPolicy) timestampPolicy
+{
+    return JSMessagesViewTimestampPolicyEveryThree;
+}
+
+- (JSMessagesViewAvatarPolicy) avatarPolicy
+{
+    return JSMessagesViewAvatarPolicyNone;
+}
+
+- (JSAvatarStyle) avatarStyle
+{
+    return JSAvatarStyleNone;
+}
+
+
+
+#pragma mark - JSMessagesViewDataSource Implementation
+- (NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"TEXT";
+}
+
+- (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [NSDate date];
+}
+
+- (UIImage *) avatarImageForIncomingMessage
+{
+    return nil;
+}
+
+- (UIImage *) avatarImageForOutgoingMessage
+{
+    return nil;
+}
+
+- (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines
 {
     [self.chatController setLineArray:lines];
+}
+
+- (void) donePressed:(id)sender
+{
+    [self.inputToolBarView.textView resignFirstResponder];
+    [self sendPressed:nil withText:self.inputToolBarView.textView.text];
+    self.doneChatCallback();
 }
 
 @end

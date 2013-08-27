@@ -348,17 +348,21 @@
 {
     self.modalPresentationStyle = UIModalPresentationFullScreen; // This line seems to prevent a crash bug when playing in the main lobby.  No idea why it was happening and why this fixes it  WTF!?!?!?
 
-    ChatViewController *chatVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChatViewController"];
+    ChatViewController *chatVC = [[ChatViewController alloc] init];
     chatVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     chatVC.updateChatTextCallback = ^(NSString *chat) {
         [self.manager chat:chat isDone:NO];
     };
     chatVC.submitChatTextCallback = ^(NSString *chat) {
         [self.manager chat:chat isDone:YES];
+    };
+    chatVC.doneChatCallback = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     };
     self.manager.chatDelegate = chatVC;
-    [self presentViewController:chatVC animated:YES completion:nil];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:chatVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 
