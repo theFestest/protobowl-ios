@@ -864,7 +864,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p00-O0-HnG" userLabel="Buzz Button">
-                                        <rect key="frame" x="20" y="640" width="663" height="44"/>
+                                        <rect key="frame" x="20" y="640" width="565" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" type="user" id="Z0q-hs-cus"/>
                                         </constraints>
@@ -878,6 +878,22 @@
                                         <state key="highlighted" backgroundImage="buzz_pressed.png"/>
                                         <connections>
                                             <action selector="buzzPressed:" destination="lt0-Fl-1dz" eventType="touchUpInside" id="ReZ-nX-TrJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUG-cn-b2H">
+                                        <rect key="frame" x="593" y="640" width="90" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" type="user" id="jd1-Cg-Drs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Chat" backgroundImage="chat_enabled.png">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" title="Chat" backgroundImage="chat_pressed.png"/>
+                                        <connections>
+                                            <action selector="chatPressed:" destination="lt0-Fl-1dz" eventType="touchUpInside" id="7au-nT-xGo"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Answer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHT-b7-6pd">
@@ -973,18 +989,19 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="3CZ-OZ-Q7l" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="5Gw-Mb-qwv"/>
+                                    <constraint firstItem="aUG-cn-b2H" firstAttribute="leading" secondItem="p00-O0-HnG" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="6an-HW-3iz"/>
                                     <constraint firstItem="JBJ-Ye-tZe" firstAttribute="top" secondItem="5iO-nW-JcB" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="6vO-Vh-oxs"/>
                                     <constraint firstItem="5zX-Qe-Om6" firstAttribute="leading" secondItem="DzZ-Nh-Buk" secondAttribute="leading" type="user" id="B51-RG-NEC"/>
                                     <constraint firstItem="p00-O0-HnG" firstAttribute="top" secondItem="JBJ-Ye-tZe" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="B5N-4w-vgK"/>
-                                    <constraint firstItem="p00-O0-HnG" firstAttribute="centerX" secondItem="JBJ-Ye-tZe" secondAttribute="centerX" type="default" id="CNl-RP-fcx"/>
                                     <constraint firstItem="JBJ-Ye-tZe" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" type="default" id="Ewv-Zq-2TQ"/>
-                                    <constraint firstItem="DzZ-Nh-Buk" firstAttribute="trailing" secondItem="3CZ-OZ-Q7l" secondAttribute="trailing" type="default" id="F3W-Cc-2xC"/>
+                                    <constraint firstItem="DzZ-Nh-Buk" firstAttribute="trailing" secondItem="3CZ-OZ-Q7l" secondAttribute="trailing" type="user" id="F3W-Cc-2xC"/>
                                     <constraint firstItem="5iO-nW-JcB" firstAttribute="top" secondItem="DzZ-Nh-Buk" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="Gr2-es-E0z"/>
                                     <constraint firstItem="p00-O0-HnG" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="20" type="user" id="HdJ-bm-ZUi"/>
+                                    <constraint firstItem="aUG-cn-b2H" firstAttribute="baseline" secondItem="p00-O0-HnG" secondAttribute="baseline" type="default" id="OzH-sI-5H9"/>
                                     <constraint firstItem="mHT-b7-6pd" firstAttribute="leading" secondItem="mwP-FY-wZz" secondAttribute="trailing" constant="12" type="user" id="Ruy-F5-4wB"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="top" secondItem="5zX-Qe-Om6" secondAttribute="bottom" constant="6" type="user" id="XeK-Yl-KPa"/>
                                     <constraint firstItem="mwP-FY-wZz" firstAttribute="leading" secondItem="DzZ-Nh-Buk" secondAttribute="leading" type="user" id="XsK-Rh-RFY"/>
-                                    <constraint firstItem="p00-O0-HnG" firstAttribute="trailing" secondItem="DzZ-Nh-Buk" secondAttribute="trailing" type="default" id="ggE-gY-Vp0"/>
+                                    <constraint firstAttribute="centerX" secondItem="JBJ-Ye-tZe" secondAttribute="centerX" type="user" id="awL-40-v3l"/>
                                     <constraint firstItem="3CZ-OZ-Q7l" firstAttribute="leading" secondItem="mHT-b7-6pd" secondAttribute="trailing" constant="12" type="user" id="ghP-DJ-tDe"/>
                                     <constraint firstItem="mHT-b7-6pd" firstAttribute="top" secondItem="KXE-zu-aWx" secondAttribute="top" constant="20" type="user" id="lAI-cQ-oRF"/>
                                     <constraint firstItem="5zX-Qe-Om6" firstAttribute="trailing" secondItem="mwP-FY-wZz" secondAttribute="trailing" type="user" id="mR0-rL-JCp"/>
@@ -994,6 +1011,7 @@
                                     <constraint firstAttribute="bottom" secondItem="p00-O0-HnG" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="wka-6h-S6N"/>
                                     <constraint firstItem="mHT-b7-6pd" firstAttribute="baseline" secondItem="3CZ-OZ-Q7l" secondAttribute="baseline" type="default" id="wpF-Eu-gf8"/>
                                     <constraint firstItem="5iO-nW-JcB" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="8" type="user" id="yOY-DX-wrY"/>
+                                    <constraint firstAttribute="trailing" secondItem="aUG-cn-b2H" secondAttribute="trailing" constant="20" type="user" id="ygK-4b-B6m"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="zF5-UF-tkP"/>
                                 </constraints>
                             </view>
@@ -1041,6 +1059,8 @@
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
+        <image name="chat_enabled.png" width="90" height="44"/>
+        <image name="chat_pressed.png" width="90" height="44"/>
         <image name="prompt_tag.png" width="50" height="18"/>
         <image name="share_button.png" width="44" height="44"/>
     </resources>

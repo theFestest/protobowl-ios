@@ -362,6 +362,10 @@
     self.manager.chatDelegate = chatVC;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:chatVC];
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        nav.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
     [self presentViewController:nav animated:YES completion:nil];
 }
 
