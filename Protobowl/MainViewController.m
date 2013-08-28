@@ -351,10 +351,10 @@
     ChatViewController *chatVC = [[ChatViewController alloc] init];
     chatVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     chatVC.updateChatTextCallback = ^(NSString *chat, BOOL first) {
-        [self.manager chat:chat isFirst:first isDone:NO];
+        [self.manager chat:chat isDone:NO];
     };
     chatVC.submitChatTextCallback = ^(NSString *chat) {
-        [self.manager chat:chat isFirst:NO isDone:YES];
+        [self.manager chat:chat isDone:YES];
     };
     chatVC.doneChatCallback = ^{
         [self dismissViewControllerAnimated:YES completion:nil];

@@ -561,8 +561,17 @@ void gen_random(char *s, const int len) {
         {
             int index = [user[@"lineNumber"] intValue];
             if(index == -1) return;
-            [self.chatLines[index] setChatText:message];
+            
+            if([message isEqualToString:@""])
+            {
+                [self.chatLines removeObjectAtIndex:index];
+            }
+            else
+            {
+                [self.chatLines[index] setChatText:message];
+            }
             user[@"lineNumber"] = @(-1);
+
         }
         else
         {
@@ -571,7 +580,7 @@ void gen_random(char *s, const int len) {
             [self.chatLines[index] setChatText:message];
         }
         
-        [self.chatDelegate connectionManager:self didUpdateChatLines:[self.chatLines copy]];
+        [self.chatDelegate connectionManager:self didUpdateChatLines:[self.chatLines copy] inRoom:self.roomName];
         
         
     }
@@ -934,12 +943,13 @@ void gen_random(char *s, const int len) {
     [self.socket sendEvent:@"reset_score" withData:@YES];
 }
 
-- (void) chat:(NSString *)chatText isFirst:(BOOL)first isDone:(BOOL)done
+- (void) chat:(NSString *)chatText isDone:(BOOL)done
 {
+    if(!self.socket.isConnected || !self.myself.userID) return;
+    
     if(self.isChatNew)
     {
         self.chatSessionId = [self randomNSStringWithLength:36];
-        self.isChatNew = NO;
     }
     
     NSLog(@"%@", self.chatSessionId);
@@ -948,9 +958,14 @@ void gen_random(char *s, const int len) {
                                @"text": chatText,
                                @"session": self.chatSessionId,
                                @"done": @(done),
-                               @"first": @(first)};
+                               @"first": @(self.isChatNew)};
     [self.socket sendEvent:@"chat" withData:chatDict];
     NSLog(@"Sending chat");
+    
+    if(self.isChatNew)
+    {
+        self.isChatNew = NO;
+    }
     
     if(done)
     {
@@ -961,7 +976,7 @@ void gen_random(char *s, const int len) {
 - (void) setChatDelegate:(id<ProtobowlChatDelegate>)chatDelegate
 {
     _chatDelegate = chatDelegate;
-    [_chatDelegate connectionManager:self didUpdateChatLines:self.chatLines];
+    [_chatDelegate connectionManager:self didUpdateChatLines:self.chatLines inRoom:self.roomName];
 }
 - (void) setCurrentCategory:(NSString *)currentCategory
 {

@@ -25,10 +25,14 @@
     self.delegate = self;
     self.dataSource = self;
     self.title = @"Chat";
+    self.navigationController.navigationBar.tintColor = [UIColor lightGrayColor];
     
     self.inputToolBarView.textView.returnKeyType = UIReturnKeySend;
+    self.inputToolBarView.textView.enablesReturnKeyAutomatically = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed:)];
+    
+    [self.inputToolBarView.textView becomeFirstResponder];
 }
 
 #pragma mark - JSMessagesViewDelegate Implementation
@@ -62,13 +66,6 @@ BOOL completedMessage = NO;
         self.updateChatTextCallback(textView.text, NO);
         completedMessage = NO;
     }
-}
-
-- (void) textViewDidBeginEditing:(UITextView *)textView
-{
-    [super textViewDidBeginEditing:textView];
-    
-    self.updateChatTextCallback(textView.text, YES);
 }
 
 - (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -153,8 +150,16 @@ BOOL completedMessage = NO;
 
 
 
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines inRoom:(NSString *)roomName
 {
+    if(roomName)
+    {
+        self.title = [@"Chat - " stringByAppendingString:roomName];
+    }
+    else
+    {
+        self.title = @"Chat";
+    }
     self.chatLines = [lines copy];
     [self.tableView reloadData];
 }
@@ -164,6 +169,7 @@ BOOL completedMessage = NO;
     [self.inputToolBarView.textView resignFirstResponder];
     [self sendPressed:nil withText:self.inputToolBarView.textView.text];
     self.doneChatCallback();
+
 }
 
 @end
