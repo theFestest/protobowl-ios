@@ -23,7 +23,7 @@ NSLog(@"%@", string); \
 
 @property (nonatomic, strong) NSMutableDictionary *userData;
 @property (nonatomic, strong) NSMutableArray *chatLines;
-@property (nonatomic, strong) NSMutableArray *buzzLines;
+@property (nonatomic, strong) NSMutableArray *logLines;
 
 @property (nonatomic, strong) ProtobowlQuestion *currentQuestion;
 @property (nonatomic, strong) NSString *questionDisplayText;
@@ -75,13 +75,13 @@ NSLog(@"%@", string); \
     }
     return _chatLines;
 }
-- (NSMutableArray *) buzzLines
+- (NSMutableArray *) logLines
 {
-    if (!_buzzLines)
+    if (!_logLines)
     {
-        _buzzLines = [NSMutableArray array];
+        _logLines = [NSMutableArray array];
     }
-    return _buzzLines;
+    return _logLines;
 }
 - (ProtobowlQuestion *) currentQuestion
 {
@@ -452,7 +452,7 @@ void gen_random(char *s, const int len) {
                 {
                     text = [NSString stringWithFormat:@"%@%@", text, kBuzzPromptTag];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
-                    self.buzzLines[currentLineNumber] = text;
+                    self.logLines[currentLineNumber] = text;
                     
                     self.userData[userID][kUserDataBuzzLineNumberKey] = @(-1);
                     self.userData[userID][kUserDataIsBuzzingKey] = @YES;
@@ -464,7 +464,7 @@ void gen_random(char *s, const int len) {
                 {
                     text = [NSString stringWithFormat:@"%@%@", text, correct ? kBuzzCorrectTag : kBuzzWrongTag];
                     int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
-                    self.buzzLines[currentLineNumber] = text;
+                    self.logLines[currentLineNumber] = text;
                     
                     self.userData[userID][kUserDataBuzzLineNumberKey] = @(-1);
                     self.userData[userID][kUserDataIsBuzzingKey] = @NO;
@@ -515,11 +515,11 @@ void gen_random(char *s, const int len) {
                 int currentLineNumber = [self.userData[userID][kUserDataBuzzLineNumberKey] intValue];
                 if(currentLineNumber == -1)
                 {
-                    currentLineNumber = self.buzzLines.count;
-                    [self.buzzLines addObject:text];
+                    currentLineNumber = self.logLines.count;
+                    [self.logLines addObject:text];
                     self.userData[userID][kUserDataBuzzLineNumberKey] = @(currentLineNumber);
                 }
-                self.buzzLines[currentLineNumber] = text;
+                self.logLines[currentLineNumber] = text;
                 
                 
                 if(!self.isQuestionPaused)
@@ -530,7 +530,7 @@ void gen_random(char *s, const int len) {
                 self.isCurrentAttemptPrompt = isPrompt;
             }
             
-            [self.roomDelegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
+            [self.roomDelegate connectionManager:self didUpdateLogLines:[self.logLines copy]];
             
             
         }
@@ -547,7 +547,8 @@ void gen_random(char *s, const int len) {
         
         if(isFirst)
         {
-            user[@"lineNumber"] = @(self.chatLines.count);
+            user[@"chatLineNumber"] = @(self.chatLines.count);
+            user[@"lineNumber"] = @(self.logLines.count);
             
             ProtobowlChatDescriptor *chatDesc = [[ProtobowlChatDescriptor alloc] init];
             chatDesc.chatText = message;
@@ -556,30 +557,54 @@ void gen_random(char *s, const int len) {
             chatDesc.isMe = [self.myself.userID isEqualToString:userID];
             
             [self.chatLines addObject:chatDesc];
+            [self.logLines addObject:[NSString stringWithFormat:@"<b>%@</b> %@", name, message]];
         }
         else if(isDone)
         {
-            int index = [user[@"lineNumber"] intValue];
-            if(index == -1) return;
-            
-            if([message isEqualToString:@""])
-            {
-                [self.chatLines removeObjectAtIndex:index];
-            }
-            else
-            {
-                [self.chatLines[index] setChatText:message];
-            }
-            user[@"lineNumber"] = @(-1);
+            int chatIndex = [user[@"chatLineNumber"] intValue];
+            int logIndex = [user[@"lineNumber"] intValue];
 
+            if(chatIndex != -1 && chatIndex < self.chatLines.count)
+            {
+                if([message isEqualToString:@""])
+                {
+                    [self.chatLines removeObjectAtIndex:chatIndex];
+                }
+                else
+                {
+                    [self.chatLines[chatIndex] setChatText:message];
+                }
+                user[@"chatLineNumber"] = @(-1);
+            }
+            if(logIndex != -1 && logIndex < self.logLines.count)
+            {
+                if([message isEqualToString:@""])
+                {
+                    [self.logLines removeObjectAtIndex:logIndex];
+                }
+                else
+                {
+                    
+                    self.logLines[logIndex] = [NSString stringWithFormat:@"<b>%@</b> %@", name, message];
+                }
+                user[@"lineNumber"] = @(-1);
+            }
         }
         else
         {
-            int index = [user[@"lineNumber"] intValue];
-            if(index == -1) return;
-            [self.chatLines[index] setChatText:message];
+            int chatIndex = [user[@"chatLineNumber"] intValue];
+            int logIndex = [user[@"lineNumber"] intValue];
+            if(chatIndex != -1 && chatIndex < self.chatLines.count)
+            {
+                [self.chatLines[chatIndex] setChatText:message];
+            }
+            if(logIndex != -1 && logIndex < self.logLines.count)
+            {
+                self.logLines[logIndex] = [NSString stringWithFormat:@"<b>%@</b> %@", name, message];
+            }
         }
         
+        [self.roomDelegate connectionManager:self didUpdateLogLines:[self.logLines copy]];
         [self.chatDelegate connectionManager:self didUpdateChatLines:[self.chatLines copy] inRoom:self.roomName];
         
         
@@ -593,8 +618,8 @@ void gen_random(char *s, const int len) {
             NSString *userID = packetData[@"user"];
             NSString *name = self.userData[userID][@"name"];
             NSString *text = [NSString stringWithFormat:@"%@ %@", name, verb];
-            [self.buzzLines addObject:text];
-            [self.roomDelegate connectionManager:self didUpdateBuzzLines:self.buzzLines];
+            [self.logLines addObject:text];
+            [self.roomDelegate connectionManager:self didUpdateLogLines:self.logLines];
             
             if([userID isEqualToString:self.myself.userID] && self.hasPendingBuzz)
             {
@@ -796,8 +821,8 @@ void gen_random(char *s, const int len) {
     if(self.currentQuestion.isExpired)
     {
         [self.socket sendEvent:@"next" withData:nil];
-        [self.buzzLines removeAllObjects];
-        [self.roomDelegate connectionManager:self didUpdateBuzzLines:[self.buzzLines copy]];
+        [self.logLines removeAllObjects];
+        [self.roomDelegate connectionManager:self didUpdateLogLines:[self.logLines copy]];
         return YES;
     }
     return NO;

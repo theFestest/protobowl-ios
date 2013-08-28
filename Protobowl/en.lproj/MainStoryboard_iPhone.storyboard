@@ -104,11 +104,11 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="prompt_tag.png" translatesAutoresizingMaskIntoConstraints="NO" id="YE9-75-Pac">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="prompt_tag.png" translatesAutoresizingMaskIntoConstraints="NO" id="YE9-75-Pac">
                                                             <rect key="frame" x="20" y="5" width="50" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" type="user" placeholder="YES" id="RJ6-ho-dSp"/>
+                                                                <constraint firstAttribute="width" constant="50" type="user" placeholder="YES" id="RJ6-ho-dSp" userLabel="DEBUG_CONSTRAINT"/>
                                                                 <constraint firstAttribute="height" constant="20" type="user" placeholder="YES" id="W4l-q3-yLn"/>
                                                             </constraints>
                                                         </imageView>
@@ -123,7 +123,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" placeholder="YES" id="5Ed-0I-eLw"/>
-                                                                <constraint firstAttribute="width" constant="50" placeholder="YES" id="vVr-gU-KcE"/>
+                                                                <constraint firstAttribute="width" constant="50" type="user" placeholder="YES" id="vVr-gU-KcE" userLabel="DEBUG_CONSTRAINT_OTHER"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -136,7 +136,7 @@
                                                     <constraint firstItem="pKl-xc-RSY" firstAttribute="centerY" secondItem="gHi-2p-RoK" secondAttribute="centerY" type="default" id="Edo-Jn-mcE"/>
                                                     <constraint firstAttribute="centerY" secondItem="YE9-75-Pac" secondAttribute="centerY" type="user" id="LYk-XE-gbs"/>
                                                     <constraint firstItem="gHi-2p-RoK" firstAttribute="leading" secondItem="YE9-75-Pac" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Mrb-Ap-eq2"/>
-                                                    <constraint firstItem="pKl-xc-RSY" firstAttribute="leading" secondItem="gHi-2p-RoK" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="PYj-sV-q02"/>
+                                                    <constraint firstItem="pKl-xc-RSY" firstAttribute="leading" secondItem="gHi-2p-RoK" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="PYj-sV-q02" userLabel="DEBUG_BROKEN_LABEL"/>
                                                     <constraint firstItem="YE9-75-Pac" firstAttribute="leading" secondItem="Bl9-cu-P9U" secondAttribute="leading" constant="20" type="default" id="WYo-01-nzg"/>
                                                     <constraint firstItem="YE9-75-Pac" firstAttribute="centerY" secondItem="gHi-2p-RoK" secondAttribute="centerY" type="default" id="b19-NO-9dy"/>
                                                 </constraints>
@@ -931,7 +931,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unimplemented Content" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0I-C6-naA">
-                                                    <rect key="frame" x="20" y="11" width="240" height="21"/>
+                                                    <rect key="frame" x="20" y="10" width="240" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

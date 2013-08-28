@@ -14,7 +14,7 @@
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateChatLines:(NSArray *)lines;
 
 // Called when the text of the buzz lines has been updated
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateBuzzLines:(NSArray *)lines;
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateLogLines:(NSArray *)lines;
 
 // Called when the timed display text of the question (not the actual question text) has been updated
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestionDisplayText:(NSString *)text;

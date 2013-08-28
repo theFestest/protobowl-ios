@@ -172,7 +172,7 @@
     self.textViewLogHeightConstraint.constant = textViewLogSize.height + 30;*/
 }
 
-- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateBuzzLines:(NSArray *)lines
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateLogLines:(NSArray *)lines
 {
 //    [self.textViewLog setLineArray:lines];
     [self.buzzLogController setLineArray:lines];

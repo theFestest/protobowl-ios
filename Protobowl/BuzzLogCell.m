@@ -18,12 +18,12 @@
 
 - (void) hideLeftImage
 {
-    self.leftImageView.image = nil;
+    self.leftImageView.image = [UIImage imageNamed:@"nothing_image"];
 }
 
 - (void) hideRightImage
 {
-    self.rightImageView.image = nil;
+    self.rightImageView.image = [UIImage imageNamed:@"nothing_image"];
 }
 
 - (void) setBuzzLineText:(NSString *)text
@@ -87,12 +87,10 @@
         [self hideRightImage];
     }
     
-    
     self.buzzTextLabel.boldFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
     self.buzzTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
     
     self.buzzTextLabel.text = text;
-
 }
 
 @end
