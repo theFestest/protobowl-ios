@@ -39,11 +39,6 @@
     self.inputToolBarView.textView.enablesReturnKeyAutomatically = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed:)];
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
     
     [self.inputToolBarView.textView becomeFirstResponder];
 }
