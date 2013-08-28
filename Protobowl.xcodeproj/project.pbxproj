@@ -28,6 +28,7 @@
 		B540CD6817C8609D004B6621 /* chat_enabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6417C8609D004B6621 /* chat_enabled@2x.png */; };
 		B540CD6917C8609D004B6621 /* chat_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6517C8609D004B6621 /* chat_pressed.png */; };
 		B540CD6A17C8609D004B6621 /* chat_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6617C8609D004B6621 /* chat_pressed@2x.png */; };
+		B542530817CD775A007BC108 /* ProtobowlChatDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B542530717CD775A007BC108 /* ProtobowlChatDescriptor.m */; };
 		B54BD44A17AA2C980077F1DA /* RadioGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */; };
 		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
 		B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B569AF9B176A740B00487C4F /* ProtobowlConnectionManager.m */; };
@@ -205,6 +206,8 @@
 		B540CD6417C8609D004B6621 /* chat_enabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_enabled@2x.png"; sourceTree = "<group>"; };
 		B540CD6517C8609D004B6621 /* chat_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_pressed.png; sourceTree = "<group>"; };
 		B540CD6617C8609D004B6621 /* chat_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_pressed@2x.png"; sourceTree = "<group>"; };
+		B542530617CD775A007BC108 /* ProtobowlChatDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlChatDescriptor.h; sourceTree = "<group>"; };
+		B542530717CD775A007BC108 /* ProtobowlChatDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlChatDescriptor.m; sourceTree = "<group>"; };
 		B54BD44817AA2C980077F1DA /* RadioGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioGroupViewController.h; sourceTree = "<group>"; };
 		B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioGroupViewController.m; sourceTree = "<group>"; };
 		B569AF9A176A740B00487C4F /* ProtobowlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ProtobowlConnectionManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -469,6 +472,8 @@
 				B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */,
 				B5D6A6E2179CBDB8009EB18B /* ProtobowlScoring.h */,
 				B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */,
+				B542530617CD775A007BC108 /* ProtobowlChatDescriptor.h */,
+				B542530717CD775A007BC108 /* ProtobowlChatDescriptor.m */,
 			);
 			name = "Protobowl Connection Logic";
 			sourceTree = "<group>";
@@ -1017,6 +1022,7 @@
 				B5FD24DA1767CF3D00B9870D /* base64.c in Sources */,
 				B5FD24DC1767CF3D00B9870D /* NSData+SRB64Additions.m in Sources */,
 				B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */,
+				B542530817CD775A007BC108 /* ProtobowlChatDescriptor.m in Sources */,
 				B5A093F117A8DB7B0040DBDC /* ActionCell.m in Sources */,
 				B5FD24DE1767CF3D00B9870D /* SRWebSocket.m in Sources */,
 				B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "ChatViewController.h"
 #import "LinedTableViewController.h"
+#import "ProtobowlChatDescriptor.h"
 
 @interface ChatViewController ()
 @property (nonatomic, strong) NSArray *chatLines;
@@ -46,7 +47,7 @@ BOOL completedMessage = NO;
     self.submitChatTextCallback(text);
     madeFinalCorrection = NO;
     completedMessage = YES;
-    self.chatLines = [self.chatLines arrayByAddingObject:text];
+//    self.chatLines = self.chatLines ? [self.chatLines arrayByAddingObject:text] : [NSArray arrayWithObject:text];
     [self.tableView reloadData];
 }
 
@@ -58,9 +59,16 @@ BOOL completedMessage = NO;
     {
         madeFinalCorrection = YES;
         correctText = textView.text;
-        self.updateChatTextCallback(textView.text);
+        self.updateChatTextCallback(textView.text, NO);
         completedMessage = NO;
     }
+}
+
+- (void) textViewDidBeginEditing:(UITextView *)textView
+{
+    [super textViewDidBeginEditing:textView];
+    
+    self.updateChatTextCallback(textView.text, YES);
 }
 
 - (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -77,7 +85,7 @@ BOOL completedMessage = NO;
 
 - (JSBubbleMessageType) messageTypeForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return JSBubbleMessageTypeIncoming; // Configure incoming / outgoing from received data from manager
+    return [self.chatLines[indexPath.row] isMe] ? JSBubbleMessageTypeOutgoing : JSBubbleMessageTypeIncoming;
 }
 
 - (JSBubbleMessageStyle) messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,12 +113,27 @@ BOOL completedMessage = NO;
 #pragma mark - JSMessagesViewDataSource Implementation
 - (NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.chatLines[indexPath.row];
+    ProtobowlChatDescriptor *chat = self.chatLines[indexPath.row];
+    if(chat.isMe)
+    {
+        if([chat.chatText isEqualToString:@""])
+        {
+            return @" ";
+        }
+        else
+        {
+            return chat.chatText;
+        }
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"%@: %@", chat.playerName, chat.chatText];
+    }
 }
 
 - (NSDate *)timestampForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [NSDate date];
+    return [self.chatLines[indexPath.row] chatDate];
 }
 
 - (UIImage *) avatarImageForIncomingMessage

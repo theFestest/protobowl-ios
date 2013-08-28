@@ -81,7 +81,7 @@
 - (void) updateGuess:(NSString *)guess;
 - (void) submitGuess:(NSString *)guess;
 
-- (void) chat:(NSString *)chatText isDone:(BOOL) done;
+- (void) chat:(NSString *)chatText isFirst:(BOOL)first isDone:(BOOL)done;
 
 - (void) pauseQuestion;
 - (void) unpauseQuestion;

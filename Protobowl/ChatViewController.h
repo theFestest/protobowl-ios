@@ -10,7 +10,7 @@
 #import "ProtobowlConnectionManager.h"
 #import "JSMessagesViewController.h"
 
-typedef void (^UpdateChatTextCallback)(NSString *chat);
+typedef void (^UpdateChatTextCallback)(NSString *chat, BOOL first);
 typedef void (^SubmitChatCallback)(NSString *chat);
 typedef void (^DoneChatCallback)();
 

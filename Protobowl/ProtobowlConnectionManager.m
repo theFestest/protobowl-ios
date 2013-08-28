@@ -4,6 +4,7 @@
 #import "ProtobowlScoring.h"
 #import "BuzzLogCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ProtobowlChatDescriptor.h"
 
 /*#define LOG(s, ...) do { \
 NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -544,25 +545,30 @@ void gen_random(char *s, const int len) {
         BOOL isFirst = [packetData[@"first"] boolValue];
         BOOL isDone = [packetData[@"done"] boolValue];
         
-        NSString *text = [NSString stringWithFormat:@"%@: %@", name, message];
-        
         if(isFirst)
         {
             user[@"lineNumber"] = @(self.chatLines.count);
-            [self.chatLines addObject:text];
+            
+            ProtobowlChatDescriptor *chatDesc = [[ProtobowlChatDescriptor alloc] init];
+            chatDesc.chatText = message;
+            chatDesc.playerName = name;
+            chatDesc.chatDate = [NSDate date];
+            chatDesc.isMe = [self.myself.userID isEqualToString:userID];
+            
+            [self.chatLines addObject:chatDesc];
         }
         else if(isDone)
         {
             int index = [user[@"lineNumber"] intValue];
             if(index == -1) return;
-            self.chatLines[index] = text;
+            [self.chatLines[index] setChatText:message];
             user[@"lineNumber"] = @(-1);
         }
         else
         {
             int index = [user[@"lineNumber"] intValue];
             if(index == -1) return;
-            self.chatLines[index] = text;
+            [self.chatLines[index] setChatText:message];
         }
         
         [self.chatDelegate connectionManager:self didUpdateChatLines:[self.chatLines copy]];
@@ -928,7 +934,7 @@ void gen_random(char *s, const int len) {
     [self.socket sendEvent:@"reset_score" withData:@YES];
 }
 
-- (void) chat:(NSString *)chatText isDone:(BOOL)done
+- (void) chat:(NSString *)chatText isFirst:(BOOL)first isDone:(BOOL)done
 {
     if(self.isChatNew)
     {
@@ -942,7 +948,7 @@ void gen_random(char *s, const int len) {
                                @"text": chatText,
                                @"session": self.chatSessionId,
                                @"done": @(done),
-                               @"first": @NO};
+                               @"first": @(first)};
     [self.socket sendEvent:@"chat" withData:chatDict];
     NSLog(@"Sending chat");
     
@@ -952,6 +958,11 @@ void gen_random(char *s, const int len) {
     }
 }
 
+- (void) setChatDelegate:(id<ProtobowlChatDelegate>)chatDelegate
+{
+    _chatDelegate = chatDelegate;
+    [_chatDelegate connectionManager:self didUpdateChatLines:self.chatLines];
+}
 - (void) setCurrentCategory:(NSString *)currentCategory
 {
     _currentCategory = currentCategory;
