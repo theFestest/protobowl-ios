@@ -24,13 +24,26 @@
     
     self.delegate = self;
     self.dataSource = self;
-    self.title = @"Chat";
+    if(self.title && ![self.title isEqualToString:@""]) // Workaround for setting title when view controller is not loaded yet
+    {
+        self.title = self.title;
+    }
+    else
+    {
+        self.title = @"Chat";
+    }
     self.navigationController.navigationBar.tintColor = [UIColor lightGrayColor];
+    [self setBackgroundColor:[UIColor whiteColor]];
     
     self.inputToolBarView.textView.returnKeyType = UIReturnKeySend;
     self.inputToolBarView.textView.enablesReturnKeyAutomatically = YES;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed:)];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     [self.inputToolBarView.textView becomeFirstResponder];
 }
@@ -51,7 +64,6 @@ BOOL completedMessage = NO;
     self.submitChatTextCallback(text);
     madeFinalCorrection = NO;
     completedMessage = YES;
-//    self.chatLines = self.chatLines ? [self.chatLines arrayByAddingObject:text] : [NSArray arrayWithObject:text];
     [self.tableView reloadData];
 }
 
@@ -167,7 +179,10 @@ BOOL completedMessage = NO;
 - (void) donePressed:(id)sender
 {
     [self.inputToolBarView.textView resignFirstResponder];
-    [self sendPressed:nil withText:self.inputToolBarView.textView.text];
+    if(self.inputToolBarView.textView.text.length > 0)
+    {
+        [self sendPressed:nil withText:self.inputToolBarView.textView.text];
+    }
     self.doneChatCallback();
 
 }
