@@ -191,7 +191,6 @@ void gen_random(char *s, const int len) {
         // TODO: Use "link" event???
         // Send join request
         [self.socket sendEvent:@"join" withData:@{@"cookie": cookie,
-                                                  @"auth" : auth,
                                                   @"question_type" : @"qb",
                                                   @"room_name" : lobby,
                                                   @"muwave" : @NO,
@@ -612,21 +611,28 @@ void gen_random(char *s, const int len) {
     else if([packet.name isEqualToString:@"log"])
     {
         NSString *verb = packetData[@"verb"];
+        NSRange leftParenRange;
+        if((leftParenRange = [verb rangeOfString:@"("]).location != NSNotFound)
+        {
+            leftParenRange.length = verb.length - leftParenRange.location;
+            verb = [verb stringByReplacingCharactersInRange:leftParenRange withString:@""];
+        }
+        
+        NSString *userID = packetData[@"user"];
+        NSString *name = self.userData[userID][@"name"];
+        if(!name) return;
+
+        NSString *text = [NSString stringWithFormat:@"<b>%@</b> %@", name, verb];
         if([verb isEqualToString:@"attempted an invalid buzz"])
         {
-            // Log invalid buzz
-            NSString *userID = packetData[@"user"];
-            NSString *name = self.userData[userID][@"name"];
-            NSString *text = [NSString stringWithFormat:@"%@ %@", name, verb];
-            [self.logLines addObject:text];
-            [self.roomDelegate connectionManager:self didUpdateLogLines:self.logLines];
-            
             if([userID isEqualToString:self.myself.userID] && self.hasPendingBuzz)
             {
                 self.hasPendingBuzz = NO;
                 [self.roomDelegate connectionManager:self didClaimBuzz:NO];
             }
         }
+        [self.logLines addObject:text];
+        [self.roomDelegate connectionManager:self didUpdateLogLines:self.logLines];
     }
     else
     {
