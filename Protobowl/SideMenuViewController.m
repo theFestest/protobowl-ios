@@ -54,7 +54,7 @@
     float targetHeight = [self calculateTableHeight];
     self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, targetHeight);
     [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationNone];
-    [self resizeTableView];
+    [self resizeTableView];    
 }
 
 

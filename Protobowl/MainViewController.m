@@ -12,6 +12,7 @@
 #import "LinedTableViewController.h"
 #import "SideMenuViewController.h"
 #import "ChatViewController.h"
+#import "MBProgressHUD.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 /*#define LOG(s, ...) do { \
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet iOS7ProgressView *timeBar;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buzzButton;
+@property (weak, nonatomic) IBOutlet UIButton *chatButton;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -58,6 +60,8 @@
 @property (strong, nonatomic) NSString *fullQuestionText;
 
 @property (nonatomic) BOOL isModalVCOnscreen;
+
+@property (nonatomic, strong) UIViewController *tutorialVC;
 @end
 
 @implementation MainViewController
@@ -72,7 +76,7 @@
     
     self.manager = [[ProtobowlConnectionManager alloc] init];
     self.manager.roomDelegate = self;
-    [self.manager connectToRoom:@"minibitapp"];
+    [self.manager connectToRoom:@"msquizbowl"];
     
     
     // Setup and stylize question text view
@@ -88,7 +92,7 @@
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(animateToNextQuestion)];
     swipe.direction = UISwipeGestureRecognizerDirectionUp;
     swipe.delegate = self;
-    [self.view addGestureRecognizer:swipe];
+    [self.contentView addGestureRecognizer:swipe];
     
     
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
@@ -132,6 +136,10 @@
     self.buzzLogController = [[LinedTableViewController alloc] initWithCellIdentifier:@"BuzzLogCell" inTableView:self.buzzLogTableView];
     self.buzzLogTableView.dataSource = self.buzzLogController;
     self.buzzLogTableView.delegate = self.buzzLogController;
+    
+    MBProgressHUD *progress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    progress.labelText = @"Connecting";
+    [self disableUI];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -150,17 +158,91 @@
     self.pulloutStartX = self.scorePulloutView.frame.origin.x;
 }
 
+
+- (void) enableUI
+{
+    self.buzzButton.enabled = YES;
+    self.chatButton.enabled = YES;
+}
+
+
+- (void) disableUI
+{
+    self.buzzButton.enabled = NO;
+    self.chatButton.enabled = NO;
+}
+
 #pragma mark - Connection Manager Delegate Methods
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didJoinLobby:(NSString *)lobby withSuccess:(BOOL)success
 {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     if(success)
     {
         NSLog(@"Connected to server");
         [self.sideMenu setRoomName:lobby];
+        
+        // Present tutorial
+        if(!self.manager.hasViewedTutorial)
+        {
+            self.tutorialVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialVC0"];
+            [self addChildViewController:self.tutorialVC];
+            [self.view addSubview:self.tutorialVC.view];
+            self.tutorialVC.view.frame = CGRectMake(0, 0, self.tutorialVC.view.frame.size.width, self.tutorialVC.view.frame.size.height);
+            self.tutorialVC.view.alpha = 0.0;
+            [UIView animateWithDuration:0.5 animations:^{
+                self.tutorialVC.view.alpha = 1.0;
+            }];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tutorialTapped:)];
+            [self.tutorialVC.view addGestureRecognizer:tap];
+            self.contentView.userInteractionEnabled = NO;
+            
+        }
+        else
+        {
+            [self enableUI];
+        }
     }
     else
     {
         NSLog(@"Failed to connect to server");
+        [self disableUI];
+        self.questionTextView.text = @"Failed to connect!\nDo you have an internet connection?";
+    }
+}
+
+- (void) tutorialTapped:(UIGestureRecognizer *)tap
+{
+    int lastTutorialIndex = [[self.tutorialVC.restorationIdentifier substringFromIndex:self.tutorialVC.restorationIdentifier.length-1] intValue];
+    lastTutorialIndex++;
+
+    
+    @try {
+        UIViewController *nextTutorial = [self.storyboard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"TutorialVC%d", lastTutorialIndex]];
+        
+        [self.tutorialVC.view removeGestureRecognizer:tap];
+        [self.tutorialVC.view removeFromSuperview];
+        [self.tutorialVC removeFromParentViewController];
+        
+        self.tutorialVC = nextTutorial;
+        
+        [self addChildViewController:self.tutorialVC];
+        [self.view addSubview:self.tutorialVC.view];
+        self.tutorialVC.view.frame = CGRectMake(0, 0, self.tutorialVC.view.frame.size.width, self.tutorialVC.view.frame.size.height);
+        self.tutorialVC.view.alpha = 1.0;
+        
+        [self.tutorialVC.view addGestureRecognizer:tap];
+    }
+    @catch (NSException *exception) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tutorialVC.view.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [self.tutorialVC.view removeGestureRecognizer:tap];
+            [self.tutorialVC.view removeFromSuperview];
+            [self.tutorialVC removeFromParentViewController];
+            self.tutorialVC = nil;
+        }];
+        self.manager.hasViewedTutorial = YES;
+        [self enableUI];
     }
 }
 
@@ -633,8 +715,13 @@
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    if(gestureRecognizer.view == self.questionContainerView || otherGestureRecognizer.view == self.questionContainerView || gestureRecognizer.view == self.buzzLogTableView || otherGestureRecognizer.view == self.buzzLogTableView)
+    if((gestureRecognizer.view == self.questionContainerView || otherGestureRecognizer.view == self.questionContainerView || gestureRecognizer.view == self.buzzLogTableView || otherGestureRecognizer.view == self.buzzLogTableView) && (gestureRecognizer.view != self.buzzLogTableView && otherGestureRecognizer.view != self.buzzLogTableView))
     {
+        if(gestureRecognizer.view == self.tutorialVC.view || otherGestureRecognizer.view == self.tutorialVC.view)
+        {
+            return NO;
+        }
+        
         return YES;
     }
     return NO;

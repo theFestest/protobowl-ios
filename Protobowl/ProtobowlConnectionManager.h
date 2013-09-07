@@ -93,6 +93,10 @@
 
 - (void) outputUsersToLeaderboardDelegate;
 
+- (void) saveReconnectData;
+- (void) reconnectIfNeeded;
+
+
 // Room settings and info
 @property (nonatomic, strong) NSString *currentDifficulty;
 @property (nonatomic, strong) NSString *currentCategory;
@@ -101,6 +105,8 @@
 @property (nonatomic) BOOL allowSkip;
 @property (nonatomic) BOOL allowMultipleBuzzes;
 @property (nonatomic, strong) ProtobowlUser *myself;
+
+@property (nonatomic) BOOL hasViewedTutorial;
 
 
 // Delegates

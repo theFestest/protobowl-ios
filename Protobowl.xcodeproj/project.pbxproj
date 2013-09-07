@@ -100,6 +100,15 @@
 		B5C004C1179F088F00284199 /* UIColor+MoreConstructors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C0179F088F00284199 /* UIColor+MoreConstructors.m */; };
 		B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C004C4179F0E4700284199 /* CapsuleLabel.m */; };
 		B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */; };
+		B5CCA32717DAD6B600274D4A /* swipe_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA32517DAD6B600274D4A /* swipe_arrow.png */; };
+		B5CCA32817DAD6B600274D4A /* swipe_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA32617DAD6B600274D4A /* swipe_arrow@2x.png */; };
+		B5CCA32B17DAD9C600274D4A /* tab_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA32917DAD9C600274D4A /* tab_arrow.png */; };
+		B5CCA32C17DAD9C600274D4A /* tab_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA32A17DAD9C600274D4A /* tab_arrow@2x.png */; };
+		B5CCA32F17DADFC800274D4A /* tab_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA32D17DADFC800274D4A /* tab_circle.png */; };
+		B5CCA33017DADFC800274D4A /* tab_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA32E17DADFC800274D4A /* tab_circle@2x.png */; };
+		B5CCA33317DAE61600274D4A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CCA33217DAE61600274D4A /* MBProgressHUD.m */; };
+		B5CCA33617DAEB5500274D4A /* ipad_menu_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA33417DAEB5500274D4A /* ipad_menu_arrow.png */; };
+		B5CCA33717DAEB5500274D4A /* ipad_menu_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CCA33517DAEB5500274D4A /* ipad_menu_arrow@2x.png */; };
 		B5D1459517ADDE92004706D2 /* buzz_interrupt_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458B17ADDE92004706D2 /* buzz_interrupt_tag.png */; };
 		B5D1459617ADDE92004706D2 /* buzz_interrupt_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458C17ADDE92004706D2 /* buzz_interrupt_tag@2x.png */; };
 		B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D1458D17ADDE92004706D2 /* buzz_tag.png */; };
@@ -307,6 +316,16 @@
 		B5C004C4179F0E4700284199 /* CapsuleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapsuleLabel.m; sourceTree = "<group>"; };
 		B5C046D9176F9E2F00A8EC89 /* iOS7ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS7ProgressView.h; sourceTree = "<group>"; };
 		B5C046DA176F9E2F00A8EC89 /* iOS7ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS7ProgressView.m; sourceTree = "<group>"; };
+		B5CCA32517DAD6B600274D4A /* swipe_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipe_arrow.png; sourceTree = "<group>"; };
+		B5CCA32617DAD6B600274D4A /* swipe_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swipe_arrow@2x.png"; sourceTree = "<group>"; };
+		B5CCA32917DAD9C600274D4A /* tab_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_arrow.png; sourceTree = "<group>"; };
+		B5CCA32A17DAD9C600274D4A /* tab_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_arrow@2x.png"; sourceTree = "<group>"; };
+		B5CCA32D17DADFC800274D4A /* tab_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_circle.png; sourceTree = "<group>"; };
+		B5CCA32E17DADFC800274D4A /* tab_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_circle@2x.png"; sourceTree = "<group>"; };
+		B5CCA33117DAE61600274D4A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		B5CCA33217DAE61600274D4A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B5CCA33417DAEB5500274D4A /* ipad_menu_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_menu_arrow.png; sourceTree = "<group>"; };
+		B5CCA33517DAEB5500274D4A /* ipad_menu_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_menu_arrow@2x.png"; sourceTree = "<group>"; };
 		B5D1458B17ADDE92004706D2 /* buzz_interrupt_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_interrupt_tag.png; sourceTree = "<group>"; };
 		B5D1458C17ADDE92004706D2 /* buzz_interrupt_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_interrupt_tag@2x.png"; sourceTree = "<group>"; };
 		B5D1458D17ADDE92004706D2 /* buzz_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_tag.png; sourceTree = "<group>"; };
@@ -509,7 +528,8 @@
 				B5B91A3517CC5B35001F661E /* UIView+AnimationOptionsForCurve.h */,
 				B5B91A3617CC5B35001F661E /* UIView+AnimationOptionsForCurve.m */,
 			);
-			path = JSMessagesTableViewController;
+			name = JSMessagesTableViewController;
+			path = Protobowl/JSMessagesTableViewController;
 			sourceTree = "<group>";
 		};
 		B5B91A0C17CC5B35001F661E /* Resources */ = {
@@ -572,6 +592,14 @@
 		B5D1458717ADDE20004706D2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B5CCA33417DAEB5500274D4A /* ipad_menu_arrow.png */,
+				B5CCA33517DAEB5500274D4A /* ipad_menu_arrow@2x.png */,
+				B5CCA32917DAD9C600274D4A /* tab_arrow.png */,
+				B5CCA32D17DADFC800274D4A /* tab_circle.png */,
+				B5CCA32E17DADFC800274D4A /* tab_circle@2x.png */,
+				B5CCA32A17DAD9C600274D4A /* tab_arrow@2x.png */,
+				B5CCA32517DAD6B600274D4A /* swipe_arrow.png */,
+				B5CCA32617DAD6B600274D4A /* swipe_arrow@2x.png */,
 				B540CD6317C8609D004B6621 /* chat_enabled.png */,
 				B540CD6417C8609D004B6621 /* chat_enabled@2x.png */,
 				B540CD6517C8609D004B6621 /* chat_pressed.png */,
@@ -586,6 +614,8 @@
 		B5D1458817ADDE36004706D2 /* Categories and Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B5CCA33117DAE61600274D4A /* MBProgressHUD.h */,
+				B5CCA33217DAE61600274D4A /* MBProgressHUD.m */,
 				B5AFB3E6178D351100AD8447 /* UIView+Donald.h */,
 				B5AFB3E7178D351100AD8447 /* UIView+Donald.m */,
 				B50BFB93176D548C0052700D /* FAImageView.h */,
@@ -702,6 +732,7 @@
 		B5FD24681767CE9900B9870D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5B919FD17CC5B35001F661E /* JSMessagesTableViewController */,
 				360EA48817B42F7400759EFF /* AudioToolbox.framework */,
 				B5814E2E17A5A223009639B6 /* AudioToolbox.framework */,
 				B592957E176BDCC7008E0EB3 /* Reveal.framework */,
@@ -738,7 +769,6 @@
 				B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
 				B5D145A017ADDF3D004706D2 /* Settings */,
-				B5B919FD17CC5B35001F661E /* JSMessagesTableViewController */,
 				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
 				B5FD24701767CE9900B9870D /* Supporting Files */,
 			);
@@ -910,7 +940,9 @@
 				B5FAA6DF17C480EF0024B47C /* AppIcon40x40@2x.png in Resources */,
 				B5B91A4417CC5B35001F661E /* bubble-default-outgoing-green.png in Resources */,
 				B511B3B417C723EA008A7160 /* share_button.png in Resources */,
+				B5CCA32817DAD6B600274D4A /* swipe_arrow@2x.png in Resources */,
 				B577625817A8CA8D00F5CED5 /* Settings.plist in Resources */,
+				B5CCA32F17DADFC800274D4A /* tab_circle.png in Resources */,
 				B5FAA6E817C482830024B47C /* AppIcon72x72.png in Resources */,
 				B5D1459517ADDE92004706D2 /* buzz_interrupt_tag.png in Resources */,
 				B5FD24801767CE9900B9870D /* Default-568h@2x.png in Resources */,
@@ -941,12 +973,16 @@
 				B5811AD5176EBC9E00D1369E /* buzz_enabled.png in Resources */,
 				B5811AD6176EBC9E00D1369E /* buzz_enabled@2x.png in Resources */,
 				B5B91A5917CC5B35001F661E /* send-highlighted@2x.png in Resources */,
+				B5CCA32B17DAD9C600274D4A /* tab_arrow.png in Resources */,
 				B5B91A5117CC5B35001F661E /* bubble-square-outgoing@2x.png in Resources */,
+				B5CCA33017DADFC800274D4A /* tab_circle@2x.png in Resources */,
 				B5B91A4F17CC5B35001F661E /* bubble-square-outgoing-selected@2x.png in Resources */,
 				B5FAA6F117C4836D0024B47C /* AppIcon57x57@2x.png in Resources */,
 				B540CD6817C8609D004B6621 /* chat_enabled@2x.png in Resources */,
 				B5FAA6DC17C480EF0024B47C /* AppIcon29x29.png in Resources */,
 				B5FAA6DE17C480EF0024B47C /* AppIcon40x40.png in Resources */,
+				B5CCA33617DAEB5500274D4A /* ipad_menu_arrow.png in Resources */,
+				B5CCA32717DAD6B600274D4A /* swipe_arrow.png in Resources */,
 				B5D2544417CDC27300A428EA /* nothing_image.png in Resources */,
 				B5B91A3F17CC5B35001F661E /* bubble-default-incoming-green@2x.png in Resources */,
 				B5B91A4E17CC5B35001F661E /* bubble-square-outgoing-selected.png in Resources */,
@@ -955,6 +991,7 @@
 				B5811AD7176EBC9E00D1369E /* buzz_pressed.png in Resources */,
 				B5D1459E17ADDE92004706D2 /* wrong_tag@2x.png in Resources */,
 				B5D1459717ADDE92004706D2 /* buzz_tag.png in Resources */,
+				B5CCA32C17DAD9C600274D4A /* tab_arrow@2x.png in Resources */,
 				B5B91A4017CC5B35001F661E /* bubble-default-incoming-selected.png in Resources */,
 				B5FAA6F717C483CE0024B47C /* AppIcon100x100.png in Resources */,
 				B5FAA6E217C480EF0024B47C /* AppIcon76x76.png in Resources */,
@@ -975,6 +1012,7 @@
 				B5FAA6E117C480EF0024B47C /* AppIcon60x60@2x.png in Resources */,
 				B5FAA6E317C480EF0024B47C /* AppIcon76x76@2x.png in Resources */,
 				B5B91A4917CC5B35001F661E /* bubble-default-outgoing@2x.png in Resources */,
+				B5CCA33717DAEB5500274D4A /* ipad_menu_arrow@2x.png in Resources */,
 				B5B91A5617CC5B35001F661E /* input-field.png in Resources */,
 				B5B91A5217CC5B35001F661E /* bubble-typing.png in Resources */,
 				B5811AD8176EBC9E00D1369E /* buzz_pressed@2x.png in Resources */,
@@ -1068,6 +1106,7 @@
 				B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */,
 				B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */,
 				B5B91A5F17CC5B35001F661E /* UIColor+JSMessagesView.m in Sources */,
+				B5CCA33317DAE61600274D4A /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

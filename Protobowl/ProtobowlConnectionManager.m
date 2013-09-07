@@ -208,18 +208,32 @@ void gen_random(char *s, const int len) {
     NSLog(@"Disconnect with error: %@", error);
     if(self.roomToConnectTo)
     {
-        [self.socket connectToHost:@"protobowl.nodejitsu.com" onPort:443];
+        [self.socket connectToHost:kProtobowlHost onPort:kProtobowlSocket];
     }
 }
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error
 {
     NSLog(@"Error: %@", error);
+    [self.roomDelegate connectionManager:self didJoinLobby:self.roomToConnectTo withSuccess:NO];
 }
 
 - (void) socketIODidConnect:(SocketIO *)socket
 {    
     [self joinLobby:self.roomToConnectTo];
     self.roomToConnectTo = nil;
+}
+
+- (void) saveReconnectData
+{
+    self.roomToConnectTo = self.roomName;
+}
+
+- (void) reconnectIfNeeded
+{
+    if(!self.socket.isConnected && self.roomToConnectTo)
+    {
+        [self.socket connectToHost:kProtobowlHost onPort:kProtobowlSocket];
+    }
 }
 
 
@@ -245,6 +259,8 @@ void gen_random(char *s, const int len) {
     }
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
+        self.roomToConnectTo = nil;
+        
         // Room settings sync
         BOOL settingChanged = NO;
         if(packetData[@"category"] && ![packetData[@"category"] isKindOfClass:[NSNull class]])
@@ -1056,6 +1072,20 @@ void gen_random(char *s, const int len) {
 - (NSString *)currentRoomName
 {
     return _roomName;
+}
+
+
+#define kHasViewedTutorialKey @"HAS_VIEWED_TUTORIAL"
+- (BOOL) hasViewedTutorial
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kHasViewedTutorialKey];
+}
+
+- (void) setHasViewedTutorial:(BOOL)viewed
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:viewed forKey:kHasViewedTutorialKey];
+    [defaults synchronize];
 }
 
 
