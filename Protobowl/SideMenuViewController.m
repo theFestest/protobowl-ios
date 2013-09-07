@@ -46,6 +46,8 @@
     self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, targetHeight);
     [self.tableView reloadData];
     [self resizeTableView];
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, targetHeight + 60);
 }
 
 - (void) reloadTableViewAtIndices:(NSArray *)indices numDetailRows:(int)n
@@ -54,7 +56,9 @@
     float targetHeight = [self calculateTableHeight];
     self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, targetHeight);
     [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationNone];
-    [self resizeTableView];    
+    [self resizeTableView];
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, targetHeight + 60);
 }
 
 
@@ -131,7 +135,7 @@
 #pragma mark - Table View Delegate Methods
 - (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

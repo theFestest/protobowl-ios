@@ -823,11 +823,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MuR-hk-TPw">
-                                        <rect key="frame" x="20" y="53" width="280" height="240"/>
+                                        <rect key="frame" x="20" y="53" width="280" height="132"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="240" type="user" id="C7S-e2-e0M"/>
+                                            <constraint firstAttribute="height" constant="132" type="user" id="C7S-e2-e0M"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SideMenuCollapsedCell" textLabel="WZi-ea-T9F" style="IBUITableViewCellStyleDefault" id="LDm-Cm-DtU">
@@ -881,15 +881,15 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="top" secondItem="goI-8M-2ft" secondAttribute="top" constant="20" symbolic="YES" type="default" id="1ue-sR-mb2"/>
-                                    <constraint firstAttribute="trailing" secondItem="VF9-rx-aBa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5Ik-Cm-wEF"/>
                                     <constraint firstItem="VF9-rx-aBa" firstAttribute="trailing" secondItem="1Zw-Kh-njk" secondAttribute="trailing" type="default" id="Dc3-WK-7ie"/>
-                                    <constraint firstAttribute="bottom" secondItem="VF9-rx-aBa" secondAttribute="bottom" constant="501" id="Jmo-uv-4Cq"/>
-                                    <constraint firstItem="1Zw-Kh-njk" firstAttribute="centerX" secondItem="goI-8M-2ft" secondAttribute="centerX" type="default" id="K0l-qx-HER"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="leading" secondItem="MuR-hk-TPw" secondAttribute="leading" type="default" id="R1p-Zm-N4D"/>
                                     <constraint firstItem="MuR-hk-TPw" firstAttribute="top" secondItem="1Zw-Kh-njk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RG0-7l-ZEP"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="leading" secondItem="goI-8M-2ft" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aQe-KA-6Sn"/>
+                                    <constraint firstAttribute="bottom" secondItem="MuR-hk-TPw" secondAttribute="bottom" constant="275" placeholder="YES" id="cRG-6E-cvE"/>
+                                    <constraint firstItem="MuR-hk-TPw" firstAttribute="centerX" secondItem="goI-8M-2ft" secondAttribute="centerX" type="default" id="ikK-Jz-kLV"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="trailing" secondItem="MuR-hk-TPw" secondAttribute="trailing" type="default" id="svG-ZE-EkK"/>
                                     <constraint firstItem="VF9-rx-aBa" firstAttribute="centerY" secondItem="1Zw-Kh-njk" secondAttribute="centerY" type="default" id="uFn-lL-fHV"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Zw-Kh-njk" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="uda-aF-f1n"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
