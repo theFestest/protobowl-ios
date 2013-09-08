@@ -29,7 +29,7 @@
     if(borderColor) self.layer.borderColor = [borderColor CGColor];
     
     self.layer.borderWidth = width;
-    self.layer.cornerRadius = 10.0;
+    self.layer.cornerRadius = radius;
 }
 
 - (void) applyStandardSinkStyle

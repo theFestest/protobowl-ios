@@ -31,8 +31,7 @@
 @property (nonatomic, strong) SideMenuExpandedCell *selectedCell;
 @property (nonatomic, strong) id<CellViewController> selectedCellController;
 
-@property (nonatomic, strong) UITextField *activeField;
-@property (weak, nonatomic) IBOutlet UILabel *menuTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *leaderboardField;
 
 @property (nonatomic) BOOL isShareViewControllerPresented;
 @end
@@ -279,7 +278,7 @@
 
 - (void) setRoomName:(NSString *)room
 {
-    self.menuTitleLabel.text = [NSString stringWithFormat:@"Menu - %@", room];
+    self.leaderboardField.text = room;
 }
 
 
@@ -293,5 +292,32 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     self.isShareViewControllerPresented = YES;
 }
+
+
+
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
+    NSLog(@"Start");
+    
+    return YES;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"Return");
+    
+    [self.mainViewController.manager connectToRoom:textField.text];
+    
+    [textField endEditing:YES];
+    
+    return YES;
+}
+
+- (BOOL) textFieldShouldEndEditing:(UITextField *)textField
+{
+    NSLog(@"End");
+    return YES;
+}
+
 
 @end

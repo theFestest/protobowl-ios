@@ -60,7 +60,6 @@ NSLog(@"%@", string); \
 @property (nonatomic) int serverRetryCount;
 
 @property (nonatomic) BOOL isDefinitelyConnected;
-
 @end
 
 @implementation ProtobowlConnectionManager
@@ -154,16 +153,16 @@ NSLog(@"%@", string); \
     // Set room to connect to, which connection callback will read from later
     self.roomToConnectTo = room;
     
+    self.serverIndex = 0;
+    self.serverPortIndex = 0;
+    self.serverRetryCount = 0;
+    
     if(self.socket.isConnected)
     {
         [self.socket disconnect];
     }
     else
     {
-        self.serverIndex = 0;
-        self.serverPortIndex = 0;
-        self.serverRetryCount = 0;
-        
         [self connectToServerUsingCurrentServerIndicesWithIncrement:NO];
     }
 }
@@ -230,11 +229,7 @@ NSLog(@"%@", string); \
         
         NSLog(@"Connecting to: %@ on port %d", host, port);
         
-        double delayInSeconds = 10.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self cancelConnectionIfUnconnected];
-        });
+        [self performSelector:@selector(cancelConnectionIfUnconnected) withObject:nil afterDelay:20.0];
     }
     else
     {
@@ -305,6 +300,11 @@ void gen_random(char *s, const int len) {
         
         NSLog(@"Joining with cookie: %@", cookie);
         
+        if(!lobby)
+        {
+            lobby = @"msquizbowl";
+        }
+        
         // TODO: Use "link" event???
         // Send join request
         [self.socket sendEvent:@"join" withData:@{@"cookie": cookie,
@@ -328,14 +328,20 @@ void gen_random(char *s, const int len) {
     self.isDefinitelyConnected = NO;
     if(self.roomToConnectTo)
     {
-        [self connectToServerUsingCurrentServerIndicesWithIncrement:YES];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(cancelConnectionIfUnconnected) object:nil];
+        [self connectToServerUsingCurrentServerIndicesWithIncrement:NO];
     }
 }
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error
 {
     NSLog(@"Error, connecting to different server: %@", error);
     self.isDefinitelyConnected = NO;
-    [self.roomDelegate connectionManager:self didJoinLobby:self.roomToConnectTo withSuccess:NO];
+//    [self.roomDelegate connectionManager:self didJoinLobby:self.roomToConnectTo withSuccess:NO];
+    if(self.roomToConnectTo)
+    {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(cancelConnectionIfUnconnected) object:nil];
+        [self connectToServerUsingCurrentServerIndicesWithIncrement:YES];
+    }
 }
 
 - (void) socketIODidConnect:(SocketIO *)socket

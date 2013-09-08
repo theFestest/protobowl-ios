@@ -81,7 +81,7 @@
     
     // Setup and stylize question text view
     self.questionContainerView.frame = CGRectMake(0, 0, self.questionContainerView.frame.size.width, 200);
-    [self.questionContainerView applySinkStyleWithInnerColor:nil borderColor:[UIColor colorWithWhite:227/255.0 alpha:1.0] borderWidth:1.0 andCornerRadius:10.0];
+    [self.questionContainerView applySinkStyleWithInnerColor:[UIColor whiteColor] borderColor:[UIColor colorWithWhite:255/255.0 alpha:1.0] borderWidth:1.0 andCornerRadius:2.0];
     
     
     // Setup timer bar
