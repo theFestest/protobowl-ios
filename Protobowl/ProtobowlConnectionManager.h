@@ -96,6 +96,8 @@
 - (void) saveReconnectData;
 - (void) reconnectIfNeeded;
 
++ (void) saveServerListToDisk;
+
 
 // Room settings and info
 @property (nonatomic, strong) NSString *currentDifficulty;

@@ -5,6 +5,7 @@
 #import "BuzzLogCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ProtobowlChatDescriptor.h"
+#import "Reachability.h"
 
 /*#define LOG(s, ...) do { \
 NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -53,6 +54,12 @@ NSLog(@"%@", string); \
 
 @property (nonatomic) BOOL isChatNew;
 @property (nonatomic, strong) NSString *chatSessionId;
+
+@property (nonatomic) int serverIndex;
+@property (nonatomic) int serverPortIndex;
+@property (nonatomic) int serverRetryCount;
+
+@property (nonatomic) BOOL isDefinitelyConnected;
 
 @end
 
@@ -110,6 +117,21 @@ NSLog(@"%@", string); \
 }
 
 
+#define kServerListJSONKey @"SERVER_LIST_KEY"
++ (void) saveServerListToDisk
+{
+    NSError *error;
+    NSString *serverJSON = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://protobowl.com/config.json"] encoding:NSUTF8StringEncoding error:&error];
+    if(error || serverJSON == nil)
+    {
+        return;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:serverJSON forKey:kServerListJSONKey];
+    [defaults synchronize];
+}
+
 - (void) changeMyName:(NSString *)name
 {
     [self.socket sendEvent:@"set_name" withData:name];
@@ -121,6 +143,7 @@ NSLog(@"%@", string); \
 #define kProtobowlSecure YES
 - (void) connectToRoom:(NSString *)room
 {
+    self.isDefinitelyConnected = NO;
     if(self.socket == nil)
     {
         self.socket = [[SocketIO alloc] initWithDelegate:self];
@@ -137,7 +160,101 @@ NSLog(@"%@", string); \
     }
     else
     {
+        self.serverIndex = 0;
+        self.serverPortIndex = 0;
+        self.serverRetryCount = 0;
+        
+        [self connectToServerUsingCurrentServerIndicesWithIncrement:NO];
+    }
+}
+
+- (void) connectToServerUsingCurrentServerIndicesWithIncrement:(BOOL)increment
+{
+    NSString *configJSON = [[NSUserDefaults standardUserDefaults] objectForKey:kServerListJSONKey];
+    NSDictionary *config = [NSJSONSerialization JSONObjectWithData:[configJSON dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+    NSArray *servers = config[@"sockets"];
+    if(increment)
+    {
+        if(self.serverIndex >= servers.count)
+        {
+            return;
+        }
+        
+        NSArray *currentServer = servers[self.serverIndex];
+        self.serverPortIndex++;
+        if(self.serverPortIndex >= currentServer.count)
+        {
+            self.serverPortIndex = 0;
+            self.serverIndex++;
+        }
+        
+        if(self.serverIndex >= servers.count)
+        {
+            [self.roomDelegate connectionManager:self didJoinLobby:self.roomToConnectTo withSuccess:NO];
+            return;
+        }
+    }
+    
+    if(configJSON)
+    {
+        
+        NSArray *currentServer = servers[self.serverIndex];
+        NSString *currentServerSocket = currentServer[self.serverPortIndex];
+        NSRange leftColon = [currentServerSocket rangeOfString:@"://"];
+        NSRange rightColon = [currentServerSocket rangeOfString:@":" options:0 range:NSMakeRange(leftColon.location+leftColon.length, currentServerSocket.length-(leftColon.location+leftColon.length))];
+        
+        NSString *host = [currentServerSocket substringWithRange:NSMakeRange(leftColon.location+leftColon.length, rightColon.location - (leftColon.location + leftColon.length))];
+        NSString *portString = [currentServerSocket substringFromIndex:rightColon.location+rightColon.length];
+        portString = [portString stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        int port = [portString intValue];
+        BOOL isSecure = [currentServerSocket rangeOfString:@"https"].location != NSNotFound;
+        
+        Reachability *reachability = [Reachability reachabilityForInternetConnection];
+        [reachability startNotifier];
+        
+        NetworkStatus status = [reachability currentReachabilityStatus];
+        
+
+        if (status != ReachableViaWiFi)
+        {
+            if(port == 80 && isSecure == NO)
+            {
+                [self connectToServerUsingCurrentServerIndicesWithIncrement:YES];
+                return;
+            }
+        }
+        
+        self.socket.useSecure = isSecure;
+        
+        [self.socket connectToHost:host onPort:port];
+        
+        NSLog(@"Connecting to: %@ on port %d", host, port);
+        
+        double delayInSeconds = 10.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self cancelConnectionIfUnconnected];
+        });
+    }
+    else
+    {
+        if(self.serverRetryCount > 2)
+        {
+            [self.roomDelegate connectionManager:self didJoinLobby:self.roomToConnectTo withSuccess:NO];
+            return;
+        }
+        
         [self.socket connectToHost:kProtobowlHost onPort:kProtobowlSocket];
+        self.serverRetryCount++;
+    }
+}
+
+- (void) cancelConnectionIfUnconnected
+{
+    if(!self.isDefinitelyConnected)
+    {
+        [self.socket disconnect];
+        [self connectToServerUsingCurrentServerIndicesWithIncrement:YES];
     }
 }
 
@@ -198,6 +315,8 @@ void gen_random(char *s, const int len) {
                                                   @"version" : @8}];
         
         [self.roomDelegate connectionManager:self didJoinLobby:lobby withSuccess:YES];
+        self.serverRetryCount = 0;
+
     }
 }
 
@@ -206,14 +325,16 @@ void gen_random(char *s, const int len) {
 - (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {
     NSLog(@"Disconnect with error: %@", error);
+    self.isDefinitelyConnected = NO;
     if(self.roomToConnectTo)
     {
-        [self.socket connectToHost:kProtobowlHost onPort:kProtobowlSocket];
+        [self connectToServerUsingCurrentServerIndicesWithIncrement:YES];
     }
 }
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error
 {
-    NSLog(@"Error: %@", error);
+    NSLog(@"Error, connecting to different server: %@", error);
+    self.isDefinitelyConnected = NO;
     [self.roomDelegate connectionManager:self didJoinLobby:self.roomToConnectTo withSuccess:NO];
 }
 
@@ -232,13 +353,15 @@ void gen_random(char *s, const int len) {
 {
     if(!self.socket.isConnected && self.roomToConnectTo)
     {
-        [self.socket connectToHost:kProtobowlHost onPort:kProtobowlSocket];
+        [self connectToServerUsingCurrentServerIndicesWithIncrement:NO];
     }
 }
 
 
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
+    self.isDefinitelyConnected = YES;
+    
     if([packet.name isEqualToString:@"finish_question"])
     {
         // Handle logic to finish the question?

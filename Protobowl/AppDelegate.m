@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
+@interface AppDelegate ()
+@property (nonatomic) BOOL justLaunched;
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,6 +22,11 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+    
+    [ProtobowlConnectionManager saveServerListToDisk];
+    
+    self.justLaunched = YES;
+    
     return YES;
 }
 							
@@ -53,18 +62,22 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if(!self.justLaunched)
     {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        MainViewController *mainVC = (MainViewController *)navigationController.topViewController;
-        [mainVC.manager reconnectIfNeeded];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        {
+            UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+            UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+            MainViewController *mainVC = (MainViewController *)navigationController.topViewController;
+            [mainVC.manager reconnectIfNeeded];
+        }
+        else
+        {
+            MainViewController *mainVC = (MainViewController *)self.window.rootViewController;
+            [mainVC.manager reconnectIfNeeded];
+        }
     }
-    else
-    {
-        MainViewController *mainVC = (MainViewController *)self.window.rootViewController;
-        [mainVC.manager reconnectIfNeeded];
-    }
+    self.justLaunched = NO;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

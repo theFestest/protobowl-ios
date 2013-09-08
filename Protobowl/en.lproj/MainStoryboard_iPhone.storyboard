@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.84999999999999987" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooa-ct-7MV">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooa-ct-7MV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -98,7 +98,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.84999999999999987" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7y-GM-Eg1">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7y-GM-Eg1">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -823,11 +823,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MuR-hk-TPw">
-                                        <rect key="frame" x="20" y="53" width="280" height="132"/>
+                                        <rect key="frame" x="20" y="53" width="280" height="88"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="132" type="user" id="C7S-e2-e0M"/>
+                                            <constraint firstAttribute="height" constant="88" type="user" id="C7S-e2-e0M"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SideMenuCollapsedCell" textLabel="WZi-ea-T9F" style="IBUITableViewCellStyleDefault" id="LDm-Cm-DtU">
@@ -885,7 +885,7 @@
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="leading" secondItem="MuR-hk-TPw" secondAttribute="leading" type="default" id="R1p-Zm-N4D"/>
                                     <constraint firstItem="MuR-hk-TPw" firstAttribute="top" secondItem="1Zw-Kh-njk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RG0-7l-ZEP"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="leading" secondItem="goI-8M-2ft" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aQe-KA-6Sn"/>
-                                    <constraint firstAttribute="bottom" secondItem="MuR-hk-TPw" secondAttribute="bottom" constant="275" placeholder="YES" id="cRG-6E-cvE"/>
+                                    <constraint firstAttribute="bottom" secondItem="MuR-hk-TPw" secondAttribute="bottom" constant="319" placeholder="YES" id="dpO-OT-0N5"/>
                                     <constraint firstItem="MuR-hk-TPw" firstAttribute="centerX" secondItem="goI-8M-2ft" secondAttribute="centerX" type="default" id="ikK-Jz-kLV"/>
                                     <constraint firstItem="1Zw-Kh-njk" firstAttribute="trailing" secondItem="MuR-hk-TPw" secondAttribute="trailing" type="default" id="svG-ZE-EkK"/>
                                     <constraint firstItem="VF9-rx-aBa" firstAttribute="centerY" secondItem="1Zw-Kh-njk" secondAttribute="centerY" type="default" id="uFn-lL-fHV"/>
@@ -1117,7 +1117,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unimplemented Content" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0I-C6-naA">
-                                                    <rect key="frame" x="20" y="10" width="240" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="240" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1192,7 +1192,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.85000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5L-JE-kds">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5L-JE-kds">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>

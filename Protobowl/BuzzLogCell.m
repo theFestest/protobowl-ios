@@ -30,7 +30,6 @@
 {
     BOOL hasLeftImage = NO;
     BOOL hasRightImage = NO;
-    BOOL hasPromptTagInRight = NO;
     NSRange foundRange;
     
     if((foundRange = [text rangeOfString:kBuzzPromptTag]).location != NSNotFound && foundRange.location != 0)
@@ -38,7 +37,6 @@
         text = [text stringByReplacingCharactersInRange:foundRange withString:@""];
         self.rightImageView.image = [UIImage imageNamed:@"prompt_tag"];
         hasRightImage = YES;
-        hasPromptTagInRight = YES;
     }
     
     if((foundRange = [text rangeOfString:kBuzzTag]).location == 0)

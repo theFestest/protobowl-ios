@@ -93,9 +93,6 @@
     CGRect offscreen = frame;
     offscreen.origin.y = self.view.frame.size.height + 100;
     
-    CGRect fullscreen = self.view.window.frame;
-    fullscreen = [self.view convertRect:fullscreen fromView:self.view.window];
-    
     UIView *formOverlayView = objc_getAssociatedObject(self, kOverlayViewKey);
     
     [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
