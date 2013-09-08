@@ -163,6 +163,7 @@
 {
     self.buzzButton.enabled = YES;
     self.chatButton.enabled = YES;
+    self.contentView.userInteractionEnabled = YES;
 }
 
 
