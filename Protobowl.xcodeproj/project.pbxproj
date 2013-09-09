@@ -131,6 +131,8 @@
 		B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E0179CB331009EB18B /* ProtobowlUser.m */; };
 		B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */; };
 		B5D8232E17C8668E003BEE41 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8232D17C8668E003BEE41 /* ChatViewController.m */; };
+		B5DAD77C17DD8AD000429674 /* PublicRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAD77B17DD8AD000429674 /* PublicRoomsViewController.m */; };
+		B5DAD77F17DD8BA900429674 /* ProtobowlRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAD77E17DD8BA900429674 /* ProtobowlRoom.m */; };
 		B5E019E417A76CE900B76F46 /* SideMenuExpandedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */; };
 		B5E9CF1317A4D4C000B67AEE /* NSDate+FuzzyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1217A4D4C000B67AEE /* NSDate+FuzzyTime.m */; };
 		B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */; };
@@ -359,6 +361,10 @@
 		B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlScoring.m; sourceTree = "<group>"; };
 		B5D8232C17C8668E003BEE41 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		B5D8232D17C8668E003BEE41 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		B5DAD77A17DD8AD000429674 /* PublicRoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicRoomsViewController.h; sourceTree = "<group>"; };
+		B5DAD77B17DD8AD000429674 /* PublicRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicRoomsViewController.m; sourceTree = "<group>"; };
+		B5DAD77D17DD8BA900429674 /* ProtobowlRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlRoom.h; sourceTree = "<group>"; };
+		B5DAD77E17DD8BA900429674 /* ProtobowlRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlRoom.m; sourceTree = "<group>"; };
 		B5E019E217A76CE900B76F46 /* SideMenuExpandedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuExpandedCell.h; sourceTree = "<group>"; };
 		B5E019E317A76CE900B76F46 /* SideMenuExpandedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuExpandedCell.m; sourceTree = "<group>"; };
 		B5E9CF1117A4D4C000B67AEE /* NSDate+FuzzyTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FuzzyTime.h"; sourceTree = "<group>"; };
@@ -506,6 +512,8 @@
 				B5D6A6E3179CBDB8009EB18B /* ProtobowlScoring.m */,
 				B542530617CD775A007BC108 /* ProtobowlChatDescriptor.h */,
 				B542530717CD775A007BC108 /* ProtobowlChatDescriptor.m */,
+				B5DAD77D17DD8BA900429674 /* ProtobowlRoom.h */,
+				B5DAD77E17DD8BA900429674 /* ProtobowlRoom.m */,
 			);
 			name = "Protobowl Connection Logic";
 			sourceTree = "<group>";
@@ -780,6 +788,8 @@
 				B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */,
 				B5D145A417ADE8C9004706D2 /* LinedTableViewController.h */,
 				B5D145A517ADE8C9004706D2 /* LinedTableViewController.m */,
+				B5DAD77A17DD8AD000429674 /* PublicRoomsViewController.h */,
+				B5DAD77B17DD8AD000429674 /* PublicRoomsViewController.m */,
 				B57B6DA3179B8F8F005107F6 /* Custom Views */,
 				B5D145A017ADDF3D004706D2 /* Settings */,
 				B57B6DA4179B8FDE005107F6 /* Protobowl Connection Logic */,
@@ -1088,6 +1098,7 @@
 				B5FD24E61767CF7200B9870D /* MainViewController.m in Sources */,
 				B59E91A017AA1ED8003CE35C /* UIViewController+FormSheet.m in Sources */,
 				B569AF9C176A740B00487C4F /* ProtobowlConnectionManager.m in Sources */,
+				B5DAD77F17DD8BA900429674 /* ProtobowlRoom.m in Sources */,
 				B5A093F417A8E4E50040DBDC /* NSDictionary+MutableDeepCopy.m in Sources */,
 				B5B91A3717CC5B35001F661E /* JSBubbleMessageCell.m in Sources */,
 				B5B91A6117CC5B35001F661E /* UIView+AnimationOptionsForCurve.m in Sources */,
@@ -1106,6 +1117,7 @@
 				B5C046DB176F9E2F00A8EC89 /* iOS7ProgressView.m in Sources */,
 				B5AFB3E8178D351100AD8447 /* UIView+Donald.m in Sources */,
 				B5C004C5179F0E4700284199 /* CapsuleLabel.m in Sources */,
+				B5DAD77C17DD8AD000429674 /* PublicRoomsViewController.m in Sources */,
 				364D5954178F8729000B5F7A /* PulloutView.m in Sources */,
 				B5A093F717A8E5110040DBDC /* NSArray+MutableDeepCopy.m in Sources */,
 				B5F6C036179B46EA0040CB37 /* LeaderboardViewController.m in Sources */,

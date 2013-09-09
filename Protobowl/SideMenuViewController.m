@@ -17,6 +17,7 @@
 #import "SideMenuExpandedCell.h"
 #import "LeaderboardViewController.h"
 #import "SettingsViewController.h"
+#import "PublicRoomsViewController.h"
 
 #define kLeaderboardCellHeight 44
 #define kLeaderboardDetailCellHeight 180
@@ -134,7 +135,7 @@
 #pragma mark - Table View Delegate Methods
 - (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,7 +164,8 @@
             }
             else if(indexPath.row == 2)
             {
-                vc = nil;
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PublicRoomsViewController"];
+                ((PublicRoomsViewController *)vc).mainViewController = self.mainViewController;
             }
             else if(indexPath.row == 3)
             {
@@ -201,7 +203,7 @@
                 cell.textLabel.text = @"Settings";
                 break;
             case 2:
-                cell.textLabel.text = @"Rooms";
+                cell.textLabel.text = @"Public Rooms";
                 break;
             case 3:
                 cell.textLabel.text = @"Question History";

@@ -7,6 +7,8 @@
 @class ProtobowlConnectionManager;
 @protocol ProtobowlRoomDelegate <NSObject>
 
+- (void) connectionManagerDidStartConnection:(ProtobowlConnectionManager *)manager;
+
 // Called when the connection manager has connected, and whether it succeeded or not
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didJoinLobby:(NSString *)lobby withSuccess:(BOOL)success;
 
@@ -95,6 +97,8 @@
 
 - (void) saveReconnectData;
 - (void) reconnectIfNeeded;
+
+- (void) fetchPublicRoomDataWithCallback:(void (^)(NSArray *rooms))callback;
 
 + (void) saveServerListToDisk;
 

@@ -6,6 +6,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ProtobowlChatDescriptor.h"
 #import "Reachability.h"
+#import "ProtobowlRoom.h"
 
 /*#define LOG(s, ...) do { \
 NSString *string = [NSString stringWithFormat:s, ## __VA_ARGS__]; \
@@ -60,6 +61,7 @@ NSLog(@"%@", string); \
 @property (nonatomic) int serverRetryCount;
 
 @property (nonatomic) BOOL isDefinitelyConnected;
+
 @end
 
 @implementation ProtobowlConnectionManager
@@ -142,6 +144,8 @@ NSLog(@"%@", string); \
 #define kProtobowlSecure YES
 - (void) connectToRoom:(NSString *)room
 {
+    [self.roomDelegate connectionManagerDidStartConnection:self];
+    
     self.isDefinitelyConnected = NO;
     if(self.socket == nil)
     {
@@ -1215,6 +1219,80 @@ void gen_random(char *s, const int len) {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:viewed forKey:kHasViewedTutorialKey];
     [defaults synchronize];
+
+}
+
+
+- (void) fetchPublicRoomDataWithCallback:(void (^)(NSArray *rooms))callback
+{
+    if(self.isDefinitelyConnected && self.socket.isConnected)
+    {
+        NSString *host = self.socket.host;
+        int port = self.socket.port;
+        BOOL secure = self.socket.useSecure;
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%d/check-public", secure ? @"https" : @"http", host, port]];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSError *error;
+            NSString *roomJSON = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+            if(error || !roomJSON)
+            {
+                callback(nil);
+                return;
+            }
+            
+            NSDictionary *roomDict = [NSJSONSerialization JSONObjectWithData:[roomJSON dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+            NSArray *sortedRoomKeys = [roomDict keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                double d1 = [obj1 doubleValue];
+                double d2 = [obj2 doubleValue];
+                int numOnline1 = fmod(d1, 1.0) * 1000;
+                int numOnline2 = fmod(d2, 1.0) * 1000;
+                
+                if(numOnline2 > numOnline1)
+                {
+                    return NSOrderedDescending;
+                }
+                else if(numOnline1 > numOnline2)
+                {
+                    return NSOrderedAscending;
+                }
+                else
+                {
+                    return NSOrderedSame;
+                }
+            }];
+            if(sortedRoomKeys.count <= 1)
+            {
+                callback(nil);
+                return;
+            }
+            
+            NSMutableArray *rooms = [NSMutableArray arrayWithCapacity:sortedRoomKeys.count-1];
+            for(int i = 0; i < sortedRoomKeys.count; i++)
+            {
+                NSString *roomKey = sortedRoomKeys[i];
+                if([roomKey isEqualToString:@"*"])
+                {
+                    continue;
+                }
+                
+                ProtobowlRoom *room = [[ProtobowlRoom alloc] init];
+                room.name = roomKey;
+                double d = [roomDict[roomKey] doubleValue];
+                room.numberActive = fmod(d, 1.0) * 1000;
+                [rooms addObject:room];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                callback([rooms copy]);
+            });
+        });
+        
+    }
+    else
+    {
+        callback(nil);
+    }
 }
 
 

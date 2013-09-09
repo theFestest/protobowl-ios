@@ -136,10 +136,6 @@
     self.buzzLogController = [[LinedTableViewController alloc] initWithCellIdentifier:@"BuzzLogCell" inTableView:self.buzzLogTableView];
     self.buzzLogTableView.dataSource = self.buzzLogController;
     self.buzzLogTableView.delegate = self.buzzLogController;
-    
-    MBProgressHUD *progress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    progress.labelText = @"Connecting";
-    [self disableUI];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -174,9 +170,16 @@
 }
 
 #pragma mark - Connection Manager Delegate Methods
+- (void) connectionManagerDidStartConnection:(ProtobowlConnectionManager *)manager
+{
+    MBProgressHUD *progress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    progress.labelText = @"Connecting";
+    [self disableUI];
+}
+
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didJoinLobby:(NSString *)lobby withSuccess:(BOOL)success
 {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     if(success)
     {
         NSLog(@"Connected to server");
