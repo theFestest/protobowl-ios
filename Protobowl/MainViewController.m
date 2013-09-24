@@ -496,7 +496,10 @@
         {
             completion();
         }
-        self.isModalVCOnscreen = NO;
+        if(self)
+        {
+            self.isModalVCOnscreen = NO;
+        }
     }];
 }
 

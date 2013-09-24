@@ -125,7 +125,13 @@ NSLog(@"%@", string); \
     NSString *serverJSON = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://protobowl.com/config.json"] encoding:NSUTF8StringEncoding error:&error];
     if(error || serverJSON == nil)
     {
-        return;
+        serverJSON = @"{\"auth\": false,\"static\": \"//neotenic.github.io/\",\"sockets\": [[\"http://protobowl.nodejitsu.com:80/\", \"https://protobowl.nodejitsu.com:443/\"], [\"http://cab.antimatter15.com:443/\"], [\"http://dino.xvm.mit.edu:5566/\"]],\"samples\": [\"//protobowl.googlecode.com/git/qb-{0-30}.js\"]}";
+    }
+
+    id parsed = [NSJSONSerialization JSONObjectWithData:[serverJSON dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+    if(error || parsed == nil)
+    {
+        serverJSON = @"{\"auth\": false,\"static\": \"//neotenic.github.io/\",\"sockets\": [[\"http://protobowl.nodejitsu.com:80/\", \"https://protobowl.nodejitsu.com:443/\"], [\"http://cab.antimatter15.com:443/\"], [\"http://dino.xvm.mit.edu:5566/\"]],\"samples\": [\"//protobowl.googlecode.com/git/qb-{0-30}.js\"]}";
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
