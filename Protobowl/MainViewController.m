@@ -314,10 +314,13 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestionDisplayText:(NSString *)text
 {
+//    text = @"In one scene of this play, the protagonist visits Pope Adrian VI";
     self.questionTextView.text = text;
+
     
     CGSize constraintSize = CGSizeMake(self.questionTextView.frame.size.width, 10000);
-    CGSize targetSize = [text sizeWithFont:self.questionTextView.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize targetSize = [text sizeWithFont:self.questionTextView.font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByTruncatingTail];
+    targetSize.height += 18;
     self.questionTextHeightConstraint.constant = targetSize.height;
     
     if(!self.isModalVCOnscreen)
@@ -585,9 +588,9 @@
         weakSelf.questionTextView.text = @"";
         weakSelf.answerLabel.text = @"";
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            weakSelf.backgroundImageView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+            weakSelf.backgroundImageView.frame = CGRectMake(0, weakSelf.topLayoutGuide.length, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height - weakSelf.topLayoutGuide.length);
         } completion:^(BOOL finished) {
-            weakSelf.contentView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+            weakSelf.contentView.frame = CGRectMake(0, weakSelf.topLayoutGuide.length, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
             weakSelf.questionContainerHeightConstraint.constant = 280; // 200
             weakSelf.buzzButton.enabled = YES;
             weakSelf.buzzButton.userInteractionEnabled = NO;
