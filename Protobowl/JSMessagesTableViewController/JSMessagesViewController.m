@@ -59,13 +59,15 @@
         ((UIScrollView *)self.view).scrollEnabled = NO;
     }
     
+    float topLayout = self.topLayoutGuide.length;
     CGSize size = self.view.frame.size;
 	
-    CGRect tableFrame = CGRectMake(0.0f, 0.0f, size.width, size.height - INPUT_HEIGHT);
+    CGRect tableFrame = CGRectMake(0.0f, topLayout, size.width, size.height - INPUT_HEIGHT - topLayout);
 	self.tableView = [[UITableView alloc] initWithFrame:tableFrame style:UITableViewStylePlain];
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
+    self.tableView.clipsToBounds = NO;
 	[self.view addSubview:self.tableView];
 	
     [self setBackgroundColor:[UIColor messagesBackgroundColor]];
@@ -101,7 +103,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    float topLayout = self.topLayoutGuide.length;
+    printf("%f\n", topLayout);
     [self scrollToBottomAnimated:NO];
+    
     
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleWillShowKeyboard:)
@@ -112,6 +118,16 @@
 											 selector:@selector(handleWillHideKeyboard:)
 												 name:UIKeyboardWillHideNotification
                                                object:nil];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    float topLayout = self.topLayoutGuide.length;
+    CGSize size = self.view.frame.size;
+    CGRect tableFrame = CGRectMake(0.0f, topLayout, size.width, size.height - INPUT_HEIGHT - topLayout);
+    self.tableView.frame = tableFrame;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -309,9 +325,16 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     CGFloat maxHeight = [JSMessageInputView maxHeight];
-    CGFloat textViewContentHeight = textView.contentSize.height;
+    CGSize constrainingSize =CGSizeMake(textView.frame.size.width - 10, 10000);
+    CGFloat textViewContentHeight = [textView.text sizeWithFont:textView.font constrainedToSize:constrainingSize lineBreakMode:NSLineBreakByCharWrapping].height + 8;
+    textViewContentHeight = MAX(textViewContentHeight, 23.088001);
     BOOL isShrinking = textViewContentHeight < self.previousTextViewContentHeight;
     CGFloat changeInHeight = textViewContentHeight - self.previousTextViewContentHeight;
+    /*if(changeInHeight == 8 && textView.contentSize.width-10 < textView.frame.size.width)
+    {
+        self.inputToolBarView.sendButton.enabled = ([textView.text trimWhitespace].length > 0);
+        return;
+    }*/
     
     if(!isShrinking && self.previousTextViewContentHeight == maxHeight) {
         changeInHeight = 0;

@@ -24,9 +24,8 @@
 		B510D039177B98FD008364F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD24EC1767CF9700B9870D /* Security.framework */; };
 		B511B3B417C723EA008A7160 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B511B3B217C723EA008A7160 /* share_button.png */; };
 		B511B3B517C723EA008A7160 /* share_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B511B3B317C723EA008A7160 /* share_button@2x.png */; };
+		B51CB76317F28E8600E7478B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51CB76217F28E8600E7478B /* SystemConfiguration.framework */; };
 		B52B5B2817DB053200AB6882 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B5B2717DB053200AB6882 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B52B5B2A17DB05B000AB6882 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52B5B2917DB05B000AB6882 /* CFNetwork.framework */; };
-		B52B5B2C17DB05D200AB6882 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52B5B2B17DB05D200AB6882 /* SystemConfiguration.framework */; };
 		B540CD6717C8609D004B6621 /* chat_enabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6317C8609D004B6621 /* chat_enabled.png */; };
 		B540CD6817C8609D004B6621 /* chat_enabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6417C8609D004B6621 /* chat_enabled@2x.png */; };
 		B540CD6917C8609D004B6621 /* chat_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B540CD6517C8609D004B6621 /* chat_pressed.png */; };
@@ -218,10 +217,9 @@
 		B50BFB98176D548C0052700D /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		B511B3B217C723EA008A7160 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
 		B511B3B317C723EA008A7160 /* share_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_button@2x.png"; sourceTree = "<group>"; };
+		B51CB76217F28E8600E7478B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B52B5B2617DB053200AB6882 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		B52B5B2717DB053200AB6882 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		B52B5B2917DB05B000AB6882 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		B52B5B2B17DB05D200AB6882 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		B540CD6317C8609D004B6621 /* chat_enabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_enabled.png; sourceTree = "<group>"; };
 		B540CD6417C8609D004B6621 /* chat_enabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_enabled@2x.png"; sourceTree = "<group>"; };
 		B540CD6517C8609D004B6621 /* chat_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_pressed.png; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 		B5811AD1176EBC9E00D1369E /* buzz_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_pressed.png; sourceTree = "<group>"; };
 		B5811AD2176EBC9E00D1369E /* buzz_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_pressed@2x.png"; sourceTree = "<group>"; };
 		B5814E2C17A5A13E009639B6 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
-		B5814E2E17A5A223009639B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		B583DA2017A6415F00D0FEDA /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		B583DA2117A6415F00D0FEDA /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		B5929579176B98F5008E0EB3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -441,8 +438,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B52B5B2C17DB05D200AB6882 /* SystemConfiguration.framework in Frameworks */,
-				B52B5B2A17DB05B000AB6882 /* CFNetwork.framework in Frameworks */,
+				B51CB76317F28E8600E7478B /* SystemConfiguration.framework in Frameworks */,
 				360EA48917B42F7400759EFF /* AudioToolbox.framework in Frameworks */,
 				B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */,
 				B5929581176BDD7E008E0EB3 /* CFNetwork.framework in Frameworks */,
@@ -751,11 +747,9 @@
 		B5FD24681767CE9900B9870D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B52B5B2B17DB05D200AB6882 /* SystemConfiguration.framework */,
-				B52B5B2917DB05B000AB6882 /* CFNetwork.framework */,
+				B51CB76217F28E8600E7478B /* SystemConfiguration.framework */,
 				B5B919FD17CC5B35001F661E /* JSMessagesTableViewController */,
 				360EA48817B42F7400759EFF /* AudioToolbox.framework */,
-				B5814E2E17A5A223009639B6 /* AudioToolbox.framework */,
 				B592957E176BDCC7008E0EB3 /* Reveal.framework */,
 				B5929579176B98F5008E0EB3 /* QuartzCore.framework */,
 				B5FD24E11767CF4600B9870D /* SocketRocket */,

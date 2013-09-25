@@ -76,7 +76,7 @@
     
     self.manager = [[ProtobowlConnectionManager alloc] init];
     self.manager.roomDelegate = self;
-    [self.manager connectToRoom:@"msquizbowl"];
+    [self.manager connectToRoom:@"minibitapp"];
     
     
     // Setup and stylize question text view
