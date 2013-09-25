@@ -743,7 +743,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QxX-8M-f5R">
-                                <rect key="frame" x="20" y="8" width="280" height="30"/>
+                                <rect key="frame" x="20" y="28" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="n3t-69-WYG"/>
                                 </constraints>
@@ -754,7 +754,7 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSZ-ME-s5h" userLabel="Question Container">
-                                <rect key="frame" x="0.0" y="46" width="320" height="218"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="198"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="304" translatesAutoresizingMaskIntoConstraints="NO" id="OsO-E3-iPs">
                                         <rect key="frame" x="8" y="0.0" width="304" height="198"/>
@@ -774,7 +774,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Zy-bwg" userLabel="Timer Progress" customClass="iOS7ProgressView">
-                                <rect key="frame" x="26" y="41" width="268" height="2"/>
+                                <rect key="frame" x="26" y="61" width="268" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="Dma-xZ-P8e"/>
                                 </constraints>
@@ -782,14 +782,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cWt-Zy-bwg" firstAttribute="top" secondItem="thg-Fr-vAo" secondAttribute="top" constant="41" id="7sS-cg-pYm"/>
+                            <constraint firstItem="cWt-Zy-bwg" firstAttribute="top" secondItem="U0e-Wp-wZB" secondAttribute="bottom" constant="41" id="6Ge-Ng-v5J"/>
                             <constraint firstAttribute="bottom" secondItem="TSZ-ME-s5h" secondAttribute="bottom" constant="216" id="Fxg-xi-azs"/>
                             <constraint firstItem="TSZ-ME-s5h" firstAttribute="trailing" secondItem="thg-Fr-vAo" secondAttribute="trailing" id="LMb-SX-Kwv"/>
                             <constraint firstItem="QxX-8M-f5R" firstAttribute="leading" secondItem="thg-Fr-vAo" secondAttribute="leading" constant="20" symbolic="YES" id="MZd-Is-T77"/>
                             <constraint firstAttribute="trailing" secondItem="QxX-8M-f5R" secondAttribute="trailing" constant="20" symbolic="YES" id="QQS-ct-IQu"/>
                             <constraint firstItem="TSZ-ME-s5h" firstAttribute="top" secondItem="QxX-8M-f5R" secondAttribute="bottom" constant="8" symbolic="YES" id="UyC-Fk-76P"/>
-                            <constraint firstItem="QxX-8M-f5R" firstAttribute="top" secondItem="thg-Fr-vAo" secondAttribute="top" constant="8" id="aai-j3-gYo"/>
                             <constraint firstItem="TSZ-ME-s5h" firstAttribute="leading" secondItem="thg-Fr-vAo" secondAttribute="leading" id="cl4-rE-eaw"/>
+                            <constraint firstItem="QxX-8M-f5R" firstAttribute="top" secondItem="U0e-Wp-wZB" secondAttribute="bottom" constant="8" id="gMh-g4-9w7"/>
                             <constraint firstItem="cWt-Zy-bwg" firstAttribute="leading" secondItem="thg-Fr-vAo" secondAttribute="leading" constant="26" id="ne4-Vo-Ifu"/>
                             <constraint firstAttribute="trailing" secondItem="cWt-Zy-bwg" secondAttribute="trailing" constant="26" id="xcC-Da-582"/>
                         </constraints>
@@ -1388,9 +1388,12 @@
     <resources>
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
+        <image name="buzz_enabled.png" width="280" height="44"/>
+        <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="chat_enabled.png" width="90" height="44"/>
         <image name="chat_pressed.png" width="90" height="44"/>
+        <image name="prompt_tag.png" width="50" height="18"/>
         <image name="prompt_tag.png" width="50" height="18"/>
         <image name="share_button.png" width="44" height="44"/>
         <image name="swipe_arrow.png" width="81" height="203"/>
