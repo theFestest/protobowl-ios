@@ -184,6 +184,10 @@
     {
         NSLog(@"Connected to server");
         [self.sideMenu setRoomName:lobby];
+        if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        {
+            self.title = lobby;
+        }
         
         // Present tutorial
         if(!self.manager.hasViewedTutorial)

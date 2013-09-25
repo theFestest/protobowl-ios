@@ -83,8 +83,6 @@
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
     
     self.selectedRow = -1;
-
-    
 }
 
 - (void) viewDidDisappear:(BOOL)animated

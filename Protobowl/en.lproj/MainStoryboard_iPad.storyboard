@@ -376,7 +376,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sa-Z4-lTP">
-                                        <rect key="frame" x="256" y="11" width="44" height="44"/>
+                                        <rect key="frame" x="256" y="4" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="cld-aY-6SJ"/>
@@ -430,7 +430,7 @@
                                         </connections>
                                     </tableView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="msquizbowl" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s4G-9j-ENW">
-                                        <rect key="frame" x="24" y="18" width="232" height="30"/>
+                                        <rect key="frame" x="24" y="11" width="232" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
@@ -440,7 +440,7 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="0Sa-Z4-lTP" firstAttribute="top" secondItem="UxW-Kw-ggx" secondAttribute="top" constant="11" id="5Qb-P1-onS"/>
+                                    <constraint firstItem="0Sa-Z4-lTP" firstAttribute="top" secondItem="UxW-Kw-ggx" secondAttribute="top" constant="4" id="5Qb-P1-onS"/>
                                     <constraint firstItem="s4G-9j-ENW" firstAttribute="leading" secondItem="UxW-Kw-ggx" secondAttribute="leading" constant="24" id="Hey-ab-Zzg"/>
                                     <constraint firstItem="s4G-9j-ENW" firstAttribute="centerY" secondItem="0Sa-Z4-lTP" secondAttribute="centerY" id="Ij5-oc-ty5"/>
                                     <constraint firstItem="0Sa-Z4-lTP" firstAttribute="leading" secondItem="s4G-9j-ENW" secondAttribute="trailing" id="NJ9-UH-K6d"/>
@@ -759,7 +759,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iSs-aS-TZ6">
             <objects>
-                <navigationController id="sOi-64-7Z2" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="sOi-64-7Z2" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3PO-id-5zn">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1432,10 +1432,13 @@
     <resources>
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
+        <image name="buzz_enabled.png" width="280" height="44"/>
+        <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="chat_enabled.png" width="90" height="44"/>
         <image name="chat_pressed.png" width="90" height="44"/>
         <image name="ipad_menu_arrow.png" width="108" height="63"/>
+        <image name="prompt_tag.png" width="50" height="18"/>
         <image name="prompt_tag.png" width="50" height="18"/>
         <image name="share_button.png" width="44" height="44"/>
         <image name="swipe_arrow.png" width="81" height="203"/>
