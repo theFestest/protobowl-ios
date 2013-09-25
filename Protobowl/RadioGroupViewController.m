@@ -27,6 +27,14 @@
         self.lastSelected = [NSIndexPath indexPathForRow:self.selection inSection:0];
     }
     self.navigationBar.topItem.title = self.title;
+    
+//    [self.navigationBar.tintColor]
+    if(!self.navigationBar.tintColor)
+    {
+        self.navigationBar.tintColor = [UIColor lightGrayColor];
+        self.navigationBar.topItem.rightBarButtonItem.tintColor = [UIColor grayColor];
+    }
+
 }
 
 - (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

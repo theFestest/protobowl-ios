@@ -104,8 +104,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    float topLayout = self.topLayoutGuide.length;
-    printf("%f\n", topLayout);
     [self scrollToBottomAnimated:NO];
     
     
@@ -325,16 +323,19 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     CGFloat maxHeight = [JSMessageInputView maxHeight];
-    CGSize constrainingSize =CGSizeMake(textView.frame.size.width - 10, 10000);
-    CGFloat textViewContentHeight = [textView.text sizeWithFont:textView.font constrainedToSize:constrainingSize lineBreakMode:NSLineBreakByCharWrapping].height + 8;
-    textViewContentHeight = MAX(textViewContentHeight, 23.088001);
+    CGFloat textViewContentHeight = 0;
+    if(self.topLayoutGuide)
+    {
+        CGSize constrainingSize =CGSizeMake(textView.frame.size.width - 10, 10000);
+        textViewContentHeight = [textView.text sizeWithFont:textView.font constrainedToSize:constrainingSize lineBreakMode:NSLineBreakByCharWrapping].height + 8;
+        textViewContentHeight = MAX(textViewContentHeight, 23.088001);
+    }
+    else
+    {
+        textViewContentHeight = textView.contentSize.height;
+    }
     BOOL isShrinking = textViewContentHeight < self.previousTextViewContentHeight;
     CGFloat changeInHeight = textViewContentHeight - self.previousTextViewContentHeight;
-    /*if(changeInHeight == 8 && textView.contentSize.width-10 < textView.frame.size.width)
-    {
-        self.inputToolBarView.sendButton.enabled = ([textView.text trimWhitespace].length > 0);
-        return;
-    }*/
     
     if(!isShrinking && self.previousTextViewContentHeight == maxHeight) {
         changeInHeight = 0;
@@ -445,6 +446,17 @@
     CGPoint keyboardOrigin = [self.view convertPoint:pt fromView:nil];
     inputViewFrame.origin.y = keyboardOrigin.y - inputViewFrame.size.height;
     self.inputToolBarView.frame = inputViewFrame;
+}
+
+- (id<UILayoutSupport>) topLayoutGuide
+{
+    @try {
+        return [super topLayoutGuide];
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+
 }
 
 @end

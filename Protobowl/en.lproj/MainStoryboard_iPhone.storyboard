@@ -960,13 +960,12 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnR-w7-vep">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.66000000000000003" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="barTintColor" white="0.66000000000000003" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem title="Radio Group" id="E0C-em-jM9">
-                                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="WN7-9j-byv">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="1c0-ng-jSf">
+                                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
                                             <connections>
-                                                <action selector="doneButtonPressed" destination="yRv-Km-9bi" id="kBv-to-MBE"/>
+                                                <action selector="doneButtonPressed" destination="yRv-Km-9bi" id="TAv-Qu-KT5"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

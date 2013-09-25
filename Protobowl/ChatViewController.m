@@ -32,7 +32,10 @@
     {
         self.title = @"Chat";
     }
-    self.navigationController.navigationBar.tintColor = [UIColor lightGrayColor];
+    if(!self.topLayoutGuide)
+    {
+        self.navigationController.navigationBar.tintColor = [UIColor lightGrayColor];
+    }
     [self setBackgroundColor:[UIColor whiteColor]];
     
     self.inputToolBarView.textView.returnKeyType = UIReturnKeySend;
