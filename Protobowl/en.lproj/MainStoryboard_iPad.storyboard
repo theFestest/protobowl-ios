@@ -464,7 +464,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hrw-fp-i1q"/>
                     <connections>
-                        <outlet property="leaderboardField" destination="s4G-9j-ENW" id="42U-bQ-tMG"/>
+                        <outlet property="roomNameField" destination="s4G-9j-ENW" id="FAU-ZK-UOr"/>
                         <outlet property="scrollView" destination="UxW-Kw-ggx" id="bMP-aB-IGw"/>
                         <outlet property="tableView" destination="hOS-Xg-80v" id="WsX-wI-3bI"/>
                         <outlet property="tableViewHeight" destination="vpP-At-igG" id="uEg-Ww-3i1"/>

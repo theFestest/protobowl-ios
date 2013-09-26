@@ -32,9 +32,10 @@
 @property (nonatomic, strong) SideMenuExpandedCell *selectedCell;
 @property (nonatomic, strong) id<CellViewController> selectedCellController;
 
-@property (weak, nonatomic) IBOutlet UITextField *leaderboardField;
+@property (weak, nonatomic) IBOutlet UITextField *roomNameField;
 
 @property (nonatomic) BOOL isShareViewControllerPresented;
+
 @end
 
 @implementation SideMenuViewController
@@ -278,7 +279,7 @@
 
 - (void) setRoomName:(NSString *)room
 {
-    self.leaderboardField.text = room;
+    self.roomNameField.text = [NSString stringWithFormat:@"Room Name - %@", room];
 }
 
 
@@ -298,6 +299,8 @@
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 {
     NSLog(@"Start");
+    
+    textField.text = self.mainViewController.manager.currentRoomName;
     
     return YES;
 }

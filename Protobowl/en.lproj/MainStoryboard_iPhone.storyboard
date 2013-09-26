@@ -907,7 +907,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="leaderboardField" destination="baD-ui-xKV" id="NZw-Ur-Upr"/>
+                        <outlet property="roomNameField" destination="baD-ui-xKV" id="MM8-ae-llP"/>
                         <outlet property="scrollView" destination="goI-8M-2ft" id="GTh-et-SPz"/>
                         <outlet property="tableView" destination="MuR-hk-TPw" id="OTK-bZ-Nio"/>
                         <outlet property="tableViewHeight" destination="C7S-e2-e0M" id="NII-1F-3UJ"/>

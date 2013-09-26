@@ -150,9 +150,20 @@ NSLog(@"%@", string); \
 #define kProtobowlHost @"protobowl.nodejitsu.com"
 #define kProtobowlSocket 443
 #define kProtobowlSecure YES
+#define kRecentRoomKey @"RECENT_ROOM_KEY"
 - (void) connectToRoom:(NSString *)room
 {
-    [self.roomDelegate connectionManagerDidStartConnection:self];
+    if(!room)
+    {
+        room = [[NSUserDefaults standardUserDefaults] objectForKey:kRecentRoomKey];
+        if(!room)
+        {
+            srand(time(NULL));
+            room = [self randomNSStringWithLength:8];
+        }
+    }
+    
+    [self.roomDelegate connectionManager:self didStartConnectionToRoom:room];
     
     self.isDefinitelyConnected = NO;
     if(self.socket == nil)
@@ -282,7 +293,6 @@ void gen_random(char *s, const int len) {
     return [NSString stringWithUTF8String:randomChars];
 }
 
-
 - (void) joinLobby:(NSString *)lobby
 {
     if(self.socket.isConnected)
@@ -294,7 +304,7 @@ void gen_random(char *s, const int len) {
         self.isChatNew = YES;
         
         // Use spoofed auth and cookie tokens for now
-        NSString *auth = @"apn7am41vytgaujydhfnrvxpafejo4elakqo";
+//        NSString *auth = @"apn7am41vytgaujydhfnrvxpafejo4elakqo";
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *cookie;
@@ -329,7 +339,9 @@ void gen_random(char *s, const int len) {
         
         [self.roomDelegate connectionManager:self didJoinLobby:lobby withSuccess:YES];
         self.serverRetryCount = 0;
-
+        
+        [defaults setObject:lobby forKey:kRecentRoomKey];
+        [defaults synchronize];
     }
 }
 

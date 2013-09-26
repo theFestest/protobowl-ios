@@ -76,7 +76,7 @@
     
     self.manager = [[ProtobowlConnectionManager alloc] init];
     self.manager.roomDelegate = self;
-    [self.manager connectToRoom:@"minibitapp"];
+    [self.manager connectToRoom:nil];
     
     
     // Setup and stylize question text view
@@ -170,7 +170,7 @@
 }
 
 #pragma mark - Connection Manager Delegate Methods
-- (void) connectionManagerDidStartConnection:(ProtobowlConnectionManager *)manager
+- (void) connectionManager:(ProtobowlConnectionManager *)manager didStartConnectionToRoom:(NSString *)room
 {
     MBProgressHUD *progress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     progress.labelText = @"Connecting";
