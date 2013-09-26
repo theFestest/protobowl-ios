@@ -62,6 +62,8 @@ NSLog(@"%@", string); \
 
 @property (nonatomic) BOOL isDefinitelyConnected;
 
+@property (nonatomic, strong) NSString *nameToSend;
+
 @end
 
 @implementation ProtobowlConnectionManager
@@ -287,6 +289,7 @@ void gen_random(char *s, const int len) {
     {
         // Reset stuff
         [self.userData removeAllObjects];
+        self.nameToSend = self.myself.name;
         self.myself = nil;
         self.isChatNew = YES;
         
@@ -399,6 +402,11 @@ void gen_random(char *s, const int len) {
     else if([packet.name isEqualToString:@"sync"]) // Handle the routine sync packet
     {
         self.roomToConnectTo = nil;
+        if(self.nameToSend)
+        {
+            [self changeMyName:self.nameToSend];
+            self.nameToSend = nil;
+        }
         
         // Room settings sync
         BOOL settingChanged = NO;
@@ -1238,6 +1246,7 @@ void gen_random(char *s, const int len) {
         BOOL secure = self.socket.useSecure;
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%d/check-public", secure ? @"https" : @"http", host, port]];
+        NSLog(@"%@", url);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSError *error;
             NSString *roomJSON = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
