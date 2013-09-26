@@ -74,7 +74,7 @@
 
 
 
-@interface ProtobowlConnectionManager : NSObject <SocketIODelegate>
+@interface ProtobowlConnectionManager : NSObject <SocketIODelegate, UIAlertViewDelegate>
 
 - (void) connectToRoom:(NSString *)room; // pass nil for room to join most recent room
 

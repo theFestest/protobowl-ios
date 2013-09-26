@@ -999,11 +999,10 @@ void gen_random(char *s, const int len) {
 
 - (BOOL) next
 {
-    if(self.currentQuestion.isExpired)
+    if(self.currentQuestion.isExpired || !self.currentQuestion.questionText)
     {
         [self.socket sendEvent:@"next" withData:nil];
         [self.logLines removeAllObjects];
-        [self.roomDelegate connectionManager:self didUpdateLogLines:[self.logLines copy]];
         return YES;
     }
     return NO;

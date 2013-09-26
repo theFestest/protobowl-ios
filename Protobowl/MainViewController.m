@@ -62,6 +62,8 @@
 @property (nonatomic) BOOL isModalVCOnscreen;
 
 @property (nonatomic, strong) UIViewController *tutorialVC;
+
+@property (nonatomic) BOOL recentlyConnectedToRoom;
 @end
 
 @implementation MainViewController
@@ -162,11 +164,22 @@
     self.contentView.userInteractionEnabled = YES;
 }
 
+- (void) resetUI
+{
+    self.questionTextView.text = @"";
+    self.answerLabel.text = @"";
+    self.timeBar.progress = 0;
+    self.myInfoLabel.text = @"";
+    self.myScoreLabel.text = @"";
+    [self.buzzLogController clearLines];
+}
 
 - (void) disableUI
 {
     self.buzzButton.enabled = NO;
     self.chatButton.enabled = NO;
+    
+    [self resetUI];
 }
 
 #pragma mark - Connection Manager Delegate Methods
@@ -187,8 +200,9 @@
         [self animateSideMenuOutWithDuration:0.6];
         if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         {
-            self.title = lobby;
+            self.title = [NSString stringWithFormat:@"Room - %@", lobby];
         }
+        
         
         // Present tutorial
         if(!self.manager.hasViewedTutorial)
@@ -208,6 +222,16 @@
         }
         else
         {
+            double delayInSeconds = 3.0;
+            self.recentlyConnectedToRoom = YES;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                if(self.recentlyConnectedToRoom)
+                {
+                    [self.manager next];
+                }
+            });
+            
             [self enableUI];
         }
     }
@@ -249,6 +273,12 @@
             [self.tutorialVC.view removeFromSuperview];
             [self.tutorialVC removeFromParentViewController];
             self.tutorialVC = nil;
+            
+            double delayInSeconds = 2.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self.manager next];
+            });
         }];
         self.manager.hasViewedTutorial = YES;
         [self enableUI];
@@ -271,6 +301,8 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateQuestion:(ProtobowlQuestion *)question
 {
+    self.recentlyConnectedToRoom = NO;
+    
     self.fullQuestionText = question.questionText;
     
     [self layoutQuestionLabelForText:question.questionText];
