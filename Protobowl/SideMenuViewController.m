@@ -47,7 +47,7 @@
     [self.tableView reloadData];
     [self resizeTableView];
     
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, targetHeight + 60);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, targetHeight + 200);
 }
 
 - (void) reloadTableViewAtIndices:(NSArray *)indices numDetailRows:(int)n
@@ -58,7 +58,7 @@
     [self.tableView reloadRowsAtIndexPaths:indices withRowAnimation:UITableViewRowAnimationNone];
     [self resizeTableView];
     
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, targetHeight + 60);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, targetHeight + 200);
 }
 
 

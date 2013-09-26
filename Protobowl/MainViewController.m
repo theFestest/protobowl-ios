@@ -184,6 +184,7 @@
     {
         NSLog(@"Connected to server");
         [self.sideMenu setRoomName:lobby];
+        [self animateSideMenuOutWithDuration:0.6];
         if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         {
             self.title = lobby;
@@ -662,15 +663,18 @@
         {
             float dx = [pan translationInView:self.sideMenu.view].x;
             
-            // Update pullout frame
-            CGRect frame = self.scorePulloutView.frame;
-            frame.origin.x += dx * 1.5;
-            self.scorePulloutView.frame = frame;
-            
-            // Update side menu frame
-            frame = self.sideMenu.view.frame;
+            CGRect frame = self.sideMenu.view.frame;
             frame.origin.x += dx;
-            self.sideMenu.view.frame = frame;
+            if(frame.origin.x < 0)
+            {
+                // Update side menu frame
+                self.sideMenu.view.frame = frame;
+                
+                // Update pullout frame
+                frame = self.scorePulloutView.frame;
+                frame.origin.x += dx * 1.5;
+                self.scorePulloutView.frame = frame;
+            }
         }
         
         [pan setTranslation:CGPointZero inView:self.sideMenu.view];
