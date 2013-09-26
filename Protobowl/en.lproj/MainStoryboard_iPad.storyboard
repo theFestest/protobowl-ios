@@ -1079,7 +1079,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="Xb7-tO-wdJ">
-                                        <rect key="frame" x="20" y="664" width="728" height="60"/>
+                                        <rect key="frame" x="20" y="624" width="728" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="j3R-xl-Epl"/>
@@ -1121,7 +1121,7 @@
                                     <constraint firstItem="qV7-Hj-kjv" firstAttribute="leading" secondItem="ofA-eM-HAX" secondAttribute="leading" id="Ge0-46-7P8"/>
                                     <constraint firstItem="ofA-eM-HAX" firstAttribute="leading" secondItem="DJ3-po-ler" secondAttribute="leading" constant="20" symbolic="YES" id="Jra-Su-DeV"/>
                                     <constraint firstItem="qV7-Hj-kjv" firstAttribute="trailing" secondItem="ofA-eM-HAX" secondAttribute="trailing" id="Mhn-Vy-Qqk"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xb7-tO-wdJ" secondAttribute="bottom" constant="300" id="dVi-cl-Npz"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xb7-tO-wdJ" secondAttribute="bottom" constant="340" id="dVi-cl-Npz"/>
                                     <constraint firstItem="ofA-eM-HAX" firstAttribute="top" secondItem="DJ3-po-ler" secondAttribute="top" constant="121" id="gtn-PB-bsx"/>
                                     <constraint firstItem="Xb7-tO-wdJ" firstAttribute="trailing" secondItem="ofA-eM-HAX" secondAttribute="trailing" id="syB-G5-Iof"/>
                                 </constraints>
@@ -1175,7 +1175,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="Q7N-de-jOX">
-                                        <rect key="frame" x="20" y="664" width="728" height="60"/>
+                                        <rect key="frame" x="20" y="624" width="728" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="JsA-qe-svT"/>
@@ -1219,7 +1219,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Q7N-de-jOX" secondAttribute="bottom" constant="300" id="48v-ci-T5h"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q7N-de-jOX" secondAttribute="bottom" constant="340" id="48v-ci-T5h"/>
                                     <constraint firstAttribute="trailing" secondItem="whd-d7-P8D" secondAttribute="trailing" constant="20" symbolic="YES" id="9Hi-6C-sL9"/>
                                     <constraint firstItem="AH0-di-YXc" firstAttribute="centerX" secondItem="whd-d7-P8D" secondAttribute="centerX" id="AtR-5E-lH7"/>
                                     <constraint firstItem="Q7N-de-jOX" firstAttribute="trailing" secondItem="whd-d7-P8D" secondAttribute="trailing" id="WbG-F3-Hnp"/>
@@ -1272,7 +1272,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to play" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="cxI-PJ-Te5">
-                                        <rect key="frame" x="20" y="664" width="728" height="60"/>
+                                        <rect key="frame" x="20" y="624" width="728" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="wSu-ND-Ej8"/>
@@ -1330,7 +1330,7 @@
                                     <constraint firstItem="3TL-St-jxR" firstAttribute="leading" secondItem="JtG-yE-q07" secondAttribute="leading" constant="10" id="Oje-D7-bg4"/>
                                     <constraint firstItem="gBF-sm-Evc" firstAttribute="leading" secondItem="JtG-yE-q07" secondAttribute="leading" constant="20" id="QK2-nh-9U3"/>
                                     <constraint firstItem="Rcg-9K-qfZ" firstAttribute="centerX" secondItem="gBF-sm-Evc" secondAttribute="centerX" id="Qxs-XD-fS7"/>
-                                    <constraint firstAttribute="bottom" secondItem="cxI-PJ-Te5" secondAttribute="bottom" constant="300" id="SdG-EM-rlk"/>
+                                    <constraint firstAttribute="bottom" secondItem="cxI-PJ-Te5" secondAttribute="bottom" constant="340" id="SdG-EM-rlk"/>
                                     <constraint firstAttribute="trailing" secondItem="gBF-sm-Evc" secondAttribute="trailing" constant="100" id="aYm-rN-Xzu"/>
                                     <constraint firstItem="cxI-PJ-Te5" firstAttribute="leading" secondItem="gBF-sm-Evc" secondAttribute="leading" id="vQZ-ok-bG3"/>
                                     <constraint firstAttribute="trailing" secondItem="cxI-PJ-Te5" secondAttribute="trailing" constant="20" symbolic="YES" id="y5A-7a-Egv"/>

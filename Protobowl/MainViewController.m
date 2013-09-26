@@ -144,16 +144,19 @@
 {
     [super viewDidAppear:animated];
     
-    // Setup pullout view layers
-    [self.scorePulloutView setupLayers];
-    
-    // Take screenshot of main UI for use in animation
-    if(self.questionTextView.text.length == 0 && self.answerLabel.text.length == 0 && self.timeLabel.text.length == 0)
+    if(self.scorePulloutView.frame.origin.x < -50)
     {
-        self.backgroundImageView.image = [self.contentView imageSnapshot];
+        // Setup pullout view layers
+        [self.scorePulloutView setupLayers];
+        
+        // Take screenshot of main UI for use in animation
+        if(self.questionTextView.text.length == 0 && self.answerLabel.text.length == 0 && self.timeLabel.text.length == 0)
+        {
+            self.backgroundImageView.image = [self.contentView imageSnapshot];
+        }
+        
+        self.pulloutStartX = self.scorePulloutView.frame.origin.x;
     }
-    
-    self.pulloutStartX = self.scorePulloutView.frame.origin.x;
 }
 
 
@@ -463,6 +466,12 @@
         
         [self presentGuessViewController];
     }
+}
+
+- (void) connectionManagerUserSeemsLonely:(ProtobowlConnectionManager *)manager
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feeling Lonely?" message:@"Open the left menu to change to a different room, join a public room, or invite friends!" delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (IBAction)buzzPressed:(id)sender

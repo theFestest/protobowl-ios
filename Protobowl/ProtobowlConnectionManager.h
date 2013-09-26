@@ -37,6 +37,7 @@
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didClaimBuzz:(BOOL)isClaimed; // Called when the server tells us that the client successfully buzzed, or that he / she was beat to the buzzer
 
+- (void) connectionManagerUserSeemsLonely:(ProtobowlConnectionManager *)manager;
 
 @end
 

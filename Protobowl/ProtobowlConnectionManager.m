@@ -64,6 +64,9 @@ NSLog(@"%@", string); \
 
 @property (nonatomic, strong) NSString *nameToSend;
 
+@property (nonatomic) int lonelyQuestionCount;
+@property (nonatomic) BOOL justMadeRoomForN00b;
+
 @end
 
 @implementation ProtobowlConnectionManager
@@ -153,13 +156,16 @@ NSLog(@"%@", string); \
 #define kRecentRoomKey @"RECENT_ROOM_KEY"
 - (void) connectToRoom:(NSString *)room
 {
+    self.justMadeRoomForN00b = NO;
     if(!room)
     {
         room = [[NSUserDefaults standardUserDefaults] objectForKey:kRecentRoomKey];
         if(!room)
         {
             srand(time(NULL));
-            room = [self randomNSStringWithLength:8];
+            room = [self randomNSStringWithLengthOnlyLetters:8];
+            self.justMadeRoomForN00b = YES;
+            
         }
     }
     
@@ -285,11 +291,27 @@ void gen_random(char *s, const int len) {
     
     s[len] = 0;
 }
+void gen_random_only_letters(char *s, const int len) {
+    static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
+    
+    for (int i = 0; i < len; ++i) {
+        s[i] = alphanum[arc4random() % (sizeof(alphanum) - 1)];
+    }
+    
+    s[len] = 0;
+}
 
 - (NSString *) randomNSStringWithLength:(int)len
 {
     char *randomChars = malloc(sizeof(char) * (len + 1));
     gen_random(randomChars, len);
+    return [NSString stringWithUTF8String:randomChars];
+}
+
+- (NSString *) randomNSStringWithLengthOnlyLetters:(int)len
+{
+    char *randomChars = malloc(sizeof(char) * (len + 1));
+    gen_random_only_letters(randomChars, len);
     return [NSString stringWithUTF8String:randomChars];
 }
 
@@ -392,6 +414,14 @@ void gen_random(char *s, const int len) {
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
     self.isDefinitelyConnected = YES;
+    
+    if(self.justMadeRoomForN00b)
+    {
+        NSLog(@"Configuring room for n00b");
+        self.justMadeRoomForN00b = NO;
+        self.currentDifficulty = @"MS";
+        self.currentCategory = @"";
+    }
     
     if([packet.name isEqualToString:@"finish_question"])
     {
@@ -910,6 +940,13 @@ void gen_random(char *s, const int len) {
 
 }
 
+- (BOOL) isInPublicRoom
+{
+    return !([@"hsquizbowl,msquizbowl,lobby,college,literature,scibowl/lobby,art,trash,philosophy,science,history" rangeOfString:self.roomName].location == NSNotFound);
+}
+
+#define kLonelyDisplayedKey @"PROTOBOWL_LONELY_KEY"
+
 - (void) expireQuestionTime:(NSTimer *)timer
 {
     NSLog(@"Expiring question");
@@ -928,6 +965,27 @@ void gen_random(char *s, const int len) {
     self.currentQuestion.isExpired = YES;
     [self.roomDelegate connectionManager:self didSetBuzzEnabled:NO];
     [self.roomDelegate connectionManager:self didEndQuestion:self.currentQuestion];
+    
+    // Prompt user if lonely
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(![defaults boolForKey:kLonelyDisplayedKey])
+    {
+        if(self.userData.count <= 1 && ![self isInPublicRoom])
+        {
+            self.lonelyQuestionCount++;
+            if(self.lonelyQuestionCount > 5)
+            {
+                self.lonelyQuestionCount = 0;
+                [self.roomDelegate connectionManagerUserSeemsLonely:self];
+                [defaults setBool:YES forKey:kLonelyDisplayedKey];
+                [defaults synchronize];
+            }
+        }
+        else
+        {
+            self.lonelyQuestionCount = 0;
+        }
+    }
 }
 
 - (void) expireBuzzTime:(NSTimer *)timer
