@@ -174,6 +174,7 @@
     self.timeBar.progress = 0;
     self.myInfoLabel.text = @"";
     self.myScoreLabel.text = @"";
+    self.title = @"";
     [self.buzzLogController clearLines];
 }
 
