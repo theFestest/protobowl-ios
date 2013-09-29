@@ -2,8 +2,6 @@
 #import "MainViewController.h"
 #import "SocketIOJSONSerialization.h"
 #import "GuessViewController.h"
-#import "UIFont+FontAwesome.h"
-#import "NSString+FontAwesome.h"
 #import "iOS7ProgressView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+Donald.h"
