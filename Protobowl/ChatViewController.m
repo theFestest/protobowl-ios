@@ -185,4 +185,15 @@ BOOL completedMessage = NO;
 
 }
 
+- (id<UILayoutSupport>) topLayoutGuide
+{
+    @try {
+        return [super topLayoutGuide];
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+    
+}
+
 @end

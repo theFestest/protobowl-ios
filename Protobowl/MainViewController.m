@@ -142,7 +142,7 @@
 {
     [super viewDidAppear:animated];
     
-    if(self.scorePulloutView.frame.origin.x < -50)
+    if(self.scorePulloutView.frame.origin.x < -50 || [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
         // Setup pullout view layers
         [self.scorePulloutView setupLayers];
@@ -799,6 +799,18 @@
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+
+- (id<UILayoutSupport>) topLayoutGuide
+{
+    @try {
+        return [super topLayoutGuide];
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+    
 }
 
 @end

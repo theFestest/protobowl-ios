@@ -1387,12 +1387,9 @@
     <resources>
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
-        <image name="buzz_enabled.png" width="280" height="44"/>
-        <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="chat_enabled.png" width="90" height="44"/>
         <image name="chat_pressed.png" width="90" height="44"/>
-        <image name="prompt_tag.png" width="50" height="18"/>
         <image name="prompt_tag.png" width="50" height="18"/>
         <image name="share_button.png" width="44" height="44"/>
         <image name="swipe_arrow.png" width="81" height="203"/>
