@@ -78,6 +78,7 @@
 		B52D232E17F8DA0C009A7ECB /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = B52D231017F8DA0C009A7ECB /* send.png */; };
 		B52D232F17F8DA0C009A7ECB /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52D231117F8DA0C009A7ECB /* send@2x.png */; };
 		B52D233117F8DA42009A7ECB /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B52D233017F8DA42009A7ECB /* down_arrow.png */; };
+		B53A7B7D180CA29600F55AAC /* SDScreenshotCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B53A7B6F180CA29600F55AAC /* SDScreenshotCapture.m */; };
 		B542530817CD775A007BC108 /* ProtobowlChatDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B542530717CD775A007BC108 /* ProtobowlChatDescriptor.m */; };
 		B54BD44A17AA2C980077F1DA /* RadioGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54BD44917AA2C980077F1DA /* RadioGroupViewController.m */; };
 		B562AE2D177415770063D104 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5929579176B98F5008E0EB3 /* QuartzCore.framework */; };
@@ -253,6 +254,8 @@
 		B52D231017F8DA0C009A7ECB /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
 		B52D231117F8DA0C009A7ECB /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		B52D233017F8DA42009A7ECB /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = "<group>"; };
+		B53A7B6E180CA29600F55AAC /* SDScreenshotCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDScreenshotCapture.h; sourceTree = "<group>"; };
+		B53A7B6F180CA29600F55AAC /* SDScreenshotCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDScreenshotCapture.m; sourceTree = "<group>"; };
 		B542530617CD775A007BC108 /* ProtobowlChatDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtobowlChatDescriptor.h; sourceTree = "<group>"; };
 		B542530717CD775A007BC108 /* ProtobowlChatDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtobowlChatDescriptor.m; sourceTree = "<group>"; };
 		B54BD44817AA2C980077F1DA /* RadioGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioGroupViewController.h; sourceTree = "<group>"; };
@@ -492,6 +495,23 @@
 				B52D231117F8DA0C009A7ECB /* send@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		B53A7B60180CA29600F55AAC /* SDScreenshotCapture-master */ = {
+			isa = PBXGroup;
+			children = (
+				B53A7B6D180CA29600F55AAC /* SDScreenshotCapture */,
+			);
+			path = "SDScreenshotCapture-master";
+			sourceTree = "<group>";
+		};
+		B53A7B6D180CA29600F55AAC /* SDScreenshotCapture */ = {
+			isa = PBXGroup;
+			children = (
+				B53A7B6E180CA29600F55AAC /* SDScreenshotCapture.h */,
+				B53A7B6F180CA29600F55AAC /* SDScreenshotCapture.m */,
+			);
+			path = SDScreenshotCapture;
 			sourceTree = "<group>";
 		};
 		B57B6DA3179B8F8F005107F6 /* Custom Views */ = {
@@ -741,6 +761,7 @@
 		B5FD24681767CE9900B9870D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B53A7B60180CA29600F55AAC /* SDScreenshotCapture-master */,
 				B5EC948517F4D5B800374BCD /* appirater */,
 				B5B919FD17CC5B35001F661E /* JSMessagesTableViewController */,
 				B5FD24D21767CF2D00B9870D /* SocketIO */,
@@ -1136,6 +1157,7 @@
 				B577625317A8B97D00F5CED5 /* SettingsViewController.m in Sources */,
 				B5D6A6E1179CB331009EB18B /* ProtobowlUser.m in Sources */,
 				B5D6A6E4179CBDB8009EB18B /* ProtobowlScoring.m in Sources */,
+				B53A7B7D180CA29600F55AAC /* SDScreenshotCapture.m in Sources */,
 				B5B91A5F17CC5B35001F661E /* UIColor+JSMessagesView.m in Sources */,
 				B5CCA33317DAE61600274D4A /* MBProgressHUD.m in Sources */,
 			);
