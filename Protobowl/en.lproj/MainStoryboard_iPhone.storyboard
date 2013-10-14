@@ -258,23 +258,6 @@
                                             <constraint firstAttribute="height" constant="2" id="Yfv-fJ-m9r"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-HB-04s" userLabel="Buzz Button">
-                                        <rect key="frame" x="8" y="396" width="206" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="DUs-U3-JAP"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                        <state key="normal" title="Buzz" backgroundImage="buzz_enabled.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="disabled" backgroundImage="buzz_disabled.png"/>
-                                        <state key="selected" backgroundImage="buzz_pressed.png"/>
-                                        <state key="highlighted" backgroundImage="buzz_pressed.png"/>
-                                        <connections>
-                                            <action selector="buzzPressed:" destination="P0k-61-TXZ" eventType="touchUpInside" id="XYK-Bg-Q9M"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Answer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUI-Yf-biU">
                                         <rect key="frame" x="20" y="20" width="240" height="19"/>
                                         <constraints>
@@ -344,7 +327,7 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGz-9D-ye3">
-                                        <rect key="frame" x="222" y="396" width="90" height="44"/>
+                                        <rect key="frame" x="8" y="396" width="90" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="98N-Xh-GlP"/>
@@ -359,29 +342,46 @@
                                             <action selector="chatPressed:" destination="P0k-61-TXZ" eventType="touchUpInside" id="5UO-WZ-VwM"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-HB-04s" userLabel="Buzz Button">
+                                        <rect key="frame" x="106" y="396" width="206" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="DUs-U3-JAP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Buzz" backgroundImage="buzz_enabled.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" backgroundImage="buzz_disabled.png"/>
+                                        <state key="selected" backgroundImage="buzz_pressed.png"/>
+                                        <state key="highlighted" backgroundImage="buzz_pressed.png"/>
+                                        <connections>
+                                            <action selector="buzzPressed:" destination="P0k-61-TXZ" eventType="touchUpInside" id="XYK-Bg-Q9M"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="lGz-9D-ye3" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="8" id="0tF-f0-wwN"/>
                                     <constraint firstItem="dLl-Fn-gKL" firstAttribute="centerX" secondItem="3tO-t3-g9P" secondAttribute="centerX" id="3PB-lG-F8E"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="top" secondItem="UUI-Yf-biU" secondAttribute="bottom" constant="8" symbolic="YES" id="3zZ-SK-fuq"/>
-                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="baseline" secondItem="lGz-9D-ye3" secondAttribute="baseline" id="6Ys-Sy-tlZ"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="trailing" secondItem="fzc-jo-jdl" secondAttribute="trailing" id="Cz6-cm-zCp"/>
-                                    <constraint firstAttribute="trailing" secondItem="lGz-9D-ye3" secondAttribute="trailing" constant="8" id="KZ5-NN-959"/>
+                                    <constraint firstItem="lGz-9D-ye3" firstAttribute="top" secondItem="dLl-Fn-gKL" secondAttribute="bottom" constant="8" id="ITs-xh-fzC"/>
                                     <constraint firstItem="UUI-Yf-biU" firstAttribute="leading" secondItem="XSg-WS-VJS" secondAttribute="leading" id="Orc-V4-8QM"/>
+                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="centerY" secondItem="lGz-9D-ye3" secondAttribute="centerY" id="Wbm-kf-4vr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mzp-HB-04s" secondAttribute="trailing" constant="8" id="bDf-0j-Is1"/>
                                     <constraint firstItem="dLl-Fn-gKL" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" id="bKG-Ct-Zb9"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="20" symbolic="YES" id="e1V-XL-yZ7"/>
                                     <constraint firstItem="3tO-t3-g9P" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="8" id="jWq-eN-yiB"/>
                                     <constraint firstAttribute="bottom" secondItem="Mzp-HB-04s" secondAttribute="bottom" constant="20" symbolic="YES" id="jhr-qz-WVj"/>
                                     <constraint firstItem="dLl-Fn-gKL" firstAttribute="top" secondItem="3tO-t3-g9P" secondAttribute="bottom" constant="8" symbolic="YES" id="koJ-s7-5qZ"/>
+                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="leading" secondItem="lGz-9D-ye3" secondAttribute="trailing" constant="8" id="ncR-Ti-eRS"/>
                                     <constraint firstAttribute="trailing" secondItem="3tO-t3-g9P" secondAttribute="trailing" constant="8" id="oiM-EG-WIc"/>
                                     <constraint firstItem="3tO-t3-g9P" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="57" id="pP9-t9-zC3"/>
                                     <constraint firstItem="3tO-t3-g9P" firstAttribute="top" secondItem="XSg-WS-VJS" secondAttribute="bottom" constant="8" symbolic="YES" id="qay-iZ-hLN"/>
                                     <constraint firstItem="fzc-jo-jdl" firstAttribute="leading" secondItem="UUI-Yf-biU" secondAttribute="trailing" constant="8" symbolic="YES" id="sBn-re-uhZ"/>
                                     <constraint firstItem="XSg-WS-VJS" firstAttribute="top" secondItem="fzc-jo-jdl" secondAttribute="bottom" constant="8" symbolic="YES" id="u5O-YX-FjC"/>
-                                    <constraint firstItem="lGz-9D-ye3" firstAttribute="leading" secondItem="Mzp-HB-04s" secondAttribute="trailing" constant="8" symbolic="YES" id="uY1-Ud-hUD"/>
-                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="top" secondItem="dLl-Fn-gKL" secondAttribute="bottom" constant="8" symbolic="YES" id="yLO-G4-0z1"/>
                                     <constraint firstItem="UUI-Yf-biU" firstAttribute="top" secondItem="aJi-li-2ut" secondAttribute="top" constant="20" id="ylS-YZ-T4q"/>
-                                    <constraint firstItem="Mzp-HB-04s" firstAttribute="leading" secondItem="aJi-li-2ut" secondAttribute="leading" constant="8" id="ymB-g8-6SL"/>
                                 </constraints>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLm-8A-ETd" userLabel="Score Slide View" customClass="PulloutView">
@@ -1387,12 +1387,9 @@
     <resources>
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
-        <image name="buzz_enabled.png" width="280" height="44"/>
-        <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="chat_enabled.png" width="90" height="44"/>
         <image name="chat_pressed.png" width="90" height="44"/>
-        <image name="prompt_tag.png" width="50" height="18"/>
         <image name="prompt_tag.png" width="50" height="18"/>
         <image name="share_button.png" width="44" height="44"/>
         <image name="swipe_arrow.png" width="81" height="203"/>

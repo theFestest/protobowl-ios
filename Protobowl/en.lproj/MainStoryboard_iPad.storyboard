@@ -863,7 +863,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p00-O0-HnG" userLabel="Buzz Button">
-                                        <rect key="frame" x="20" y="640" width="565" height="44"/>
+                                        <rect key="frame" x="148" y="640" width="535" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Z0q-hs-cus"/>
                                         </constraints>
@@ -880,10 +880,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUG-cn-b2H">
-                                        <rect key="frame" x="593" y="640" width="90" height="44"/>
+                                        <rect key="frame" x="20" y="640" width="120" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="jd1-Cg-Drs"/>
+                                            <constraint firstAttribute="width" constant="120" id="jd1-Cg-Drs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         <state key="normal" title="Chat" backgroundImage="chat_enabled.png">
@@ -986,14 +986,13 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="3CZ-OZ-Q7l" secondAttribute="trailing" constant="20" symbolic="YES" id="5Gw-Mb-qwv"/>
-                                    <constraint firstItem="aUG-cn-b2H" firstAttribute="leading" secondItem="p00-O0-HnG" secondAttribute="trailing" constant="8" symbolic="YES" id="6an-HW-3iz"/>
                                     <constraint firstItem="JBJ-Ye-tZe" firstAttribute="top" secondItem="5iO-nW-JcB" secondAttribute="bottom" constant="8" symbolic="YES" id="6vO-Vh-oxs"/>
                                     <constraint firstItem="5zX-Qe-Om6" firstAttribute="leading" secondItem="DzZ-Nh-Buk" secondAttribute="leading" id="B51-RG-NEC"/>
                                     <constraint firstItem="p00-O0-HnG" firstAttribute="top" secondItem="JBJ-Ye-tZe" secondAttribute="bottom" constant="8" symbolic="YES" id="B5N-4w-vgK"/>
+                                    <constraint firstItem="aUG-cn-b2H" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="20" id="DDS-uv-IQA"/>
                                     <constraint firstItem="JBJ-Ye-tZe" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" id="Ewv-Zq-2TQ"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="trailing" secondItem="3CZ-OZ-Q7l" secondAttribute="trailing" id="F3W-Cc-2xC"/>
                                     <constraint firstItem="5iO-nW-JcB" firstAttribute="top" secondItem="DzZ-Nh-Buk" secondAttribute="bottom" constant="8" symbolic="YES" id="Gr2-es-E0z"/>
-                                    <constraint firstItem="p00-O0-HnG" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="20" id="HdJ-bm-ZUi"/>
                                     <constraint firstItem="aUG-cn-b2H" firstAttribute="baseline" secondItem="p00-O0-HnG" secondAttribute="baseline" id="OzH-sI-5H9"/>
                                     <constraint firstItem="mHT-b7-6pd" firstAttribute="leading" secondItem="mwP-FY-wZz" secondAttribute="trailing" constant="12" id="Ruy-F5-4wB"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="top" secondItem="5zX-Qe-Om6" secondAttribute="bottom" constant="6" id="XeK-Yl-KPa"/>
@@ -1004,11 +1003,12 @@
                                     <constraint firstItem="5zX-Qe-Om6" firstAttribute="trailing" secondItem="mwP-FY-wZz" secondAttribute="trailing" id="mR0-rL-JCp"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="top" secondItem="mHT-b7-6pd" secondAttribute="bottom" constant="8" symbolic="YES" id="nib-cX-mFb"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="centerX" secondItem="5iO-nW-JcB" secondAttribute="centerX" id="nyg-zu-Uj2"/>
+                                    <constraint firstAttribute="trailing" secondItem="p00-O0-HnG" secondAttribute="trailing" constant="20" id="pNA-ia-sav"/>
                                     <constraint firstItem="5zX-Qe-Om6" firstAttribute="top" secondItem="mwP-FY-wZz" secondAttribute="bottom" id="qi5-W1-SCZ"/>
                                     <constraint firstAttribute="bottom" secondItem="p00-O0-HnG" secondAttribute="bottom" constant="20" symbolic="YES" id="wka-6h-S6N"/>
                                     <constraint firstItem="mHT-b7-6pd" firstAttribute="baseline" secondItem="3CZ-OZ-Q7l" secondAttribute="baseline" id="wpF-Eu-gf8"/>
+                                    <constraint firstItem="p00-O0-HnG" firstAttribute="leading" secondItem="aUG-cn-b2H" secondAttribute="trailing" constant="8" id="xMU-HG-OyF"/>
                                     <constraint firstItem="5iO-nW-JcB" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="8" id="yOY-DX-wrY"/>
-                                    <constraint firstAttribute="trailing" secondItem="aUG-cn-b2H" secondAttribute="trailing" constant="20" id="ygK-4b-B6m"/>
                                     <constraint firstItem="DzZ-Nh-Buk" firstAttribute="leading" secondItem="KXE-zu-aWx" secondAttribute="leading" constant="20" symbolic="YES" id="zF5-UF-tkP"/>
                                 </constraints>
                             </view>
@@ -1432,10 +1432,13 @@
     <resources>
         <image name="buzz_disabled.png" width="280" height="44"/>
         <image name="buzz_enabled.png" width="280" height="44"/>
+        <image name="buzz_enabled.png" width="280" height="44"/>
+        <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="buzz_pressed.png" width="280" height="44"/>
         <image name="chat_enabled.png" width="90" height="44"/>
         <image name="chat_pressed.png" width="90" height="44"/>
         <image name="ipad_menu_arrow.png" width="108" height="63"/>
+        <image name="prompt_tag.png" width="50" height="18"/>
         <image name="prompt_tag.png" width="50" height="18"/>
         <image name="share_button.png" width="44" height="44"/>
         <image name="swipe_arrow.png" width="81" height="203"/>
