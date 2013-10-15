@@ -5,14 +5,14 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "ios7iphone-retina-small.png",
+      "filename" : "IMG_0006.png",
       "scale" : "2x"
     },
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "filename" : "ios7iphone-retina-big.png",
+      "filename" : "IMG_0009.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -22,7 +22,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "ios7ipad-nonretina-portrait.png",
+      "filename" : "IMG_0001.png",
       "scale" : "1x"
     },
     {
@@ -30,7 +30,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "ios7ipad-nonretina-landscape.png",
+      "filename" : "IMG_0002.png",
       "scale" : "1x"
     },
     {
@@ -38,7 +38,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "ios7ipad-retina-portrait.png",
+      "filename" : "IMG_0004.png",
       "scale" : "2x"
     },
     {
@@ -46,28 +46,28 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "ios7ipad-retina-landscape.png",
+      "filename" : "IMG_0005.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "Default.png",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.47.40 PM.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "Default~iphone.png",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.50.47 PM.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "Default-568h@2x.png",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.51.28 PM.png",
       "subtype" : "retina4",
       "scale" : "2x"
     },
@@ -75,28 +75,56 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "Default~ipad.png",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.52.18 PM-1.png",
+      "scale" : "1x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "ipad",
+      "extent" : "full-screen",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.52.18 PM.png",
       "scale" : "1x"
     },
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "Default-Landscape~ipad.png",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.52.36 PM-1.png",
+      "scale" : "1x"
+    },
+    {
+      "orientation" : "landscape",
+      "idiom" : "ipad",
+      "extent" : "full-screen",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.52.36 PM.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "Default-Portrait@2x~ipad.png",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.55.21 PM-1.png",
+      "scale" : "2x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "ipad",
+      "extent" : "full-screen",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.55.21 PM.png",
       "scale" : "2x"
     },
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "Default-Landscape@2x~ipad.png",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.55.25 PM-1.png",
+      "scale" : "2x"
+    },
+    {
+      "orientation" : "landscape",
+      "idiom" : "ipad",
+      "extent" : "full-screen",
+      "filename" : "iOS Simulator Screen shot Oct 14, 2013 6.55.25 PM.png",
       "scale" : "2x"
     }
   ],
