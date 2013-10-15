@@ -11,7 +11,6 @@
 #import "SideMenuViewController.h"
 #import "ChatViewController.h"
 #import "MBProgressHUD.h"
-#import "SDScreenshotCapture.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 /*#define LOG(s, ...) do { \
@@ -170,11 +169,9 @@
 {
     self.questionTextView.text = @"";
     self.answerLabel.text = @"";
-    self.timeBar.progress = 0;
     self.timeLabel.text = @"";
     self.myInfoLabel.text = @"";
     self.myScoreLabel.text = @"";
-    self.title = @"";
     [self.buzzLogController clearLines];
     [self.sideMenu setRoomName:@"lobby"];
 }
@@ -246,8 +243,6 @@
         [self disableUI];
         self.questionTextView.text = @"Failed to connect!\nDo you have an internet connection?";
     }
-    
-    [self resetUI];
 }
 
 - (void) tutorialTapped:(UIGestureRecognizer *)tap
@@ -319,8 +314,6 @@
 
     // Set the category
     self.answerLabel.text = question.category;
-    
-    [self resetUI];
 }
 
  - (void) viewDidLayoutSubviews
@@ -379,8 +372,6 @@
         self.questionContainerView.contentOffset = CGPointMake(0, targetSize.height - self.questionContainerView.frame.size.height);
     }
     [self.questionContainerView setNeedsLayout];
-    
-    [self resetUI];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateTime:(float)remainingTime progress:(float)progress
@@ -394,8 +385,6 @@
 //    printf("question timer\n");
 
     [self.timeBar setProgress:progress animated:NO];
-    
-    [self resetUI];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateGuessTime:(float)remainingTime progress:(float)progress
@@ -442,8 +431,6 @@
 
 
     self.answerLabel.text = answerWithRemovedComments;
-    
-    [self resetUI];
 }
 
 - (void) connectionManager:(ProtobowlConnectionManager *)manager didUpdateUsers:(NSArray *)users
@@ -488,9 +475,7 @@
 
 - (IBAction)buzzPressed:(id)sender
 {
-    [SDScreenshotCapture takeScreenshotToCameraRoll];
-
-    //[self.manager buzz];
+    [self.manager buzz];
 }
 
 - (IBAction)chatPressed:(id)sender
