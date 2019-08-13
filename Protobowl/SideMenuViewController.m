@@ -285,7 +285,7 @@
 
 - (IBAction)sharePressed:(id)sender
 {
-    NSString *shareURL = [NSString stringWithFormat:@"http://protobowl.com/%@", self.mainViewController.manager.currentRoomName];
+    NSString *shareURL = [NSString stringWithFormat:@"https://protobowl.com/%@", self.mainViewController.manager.currentRoomName];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[shareURL] applicationActivities:nil];
     activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
         self.isShareViewControllerPresented = NO;
