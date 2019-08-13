@@ -114,7 +114,7 @@
 		B5E9CF1617A4D64600B67AEE /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9CF1517A4D64600B67AEE /* NSDate-Utilities.m */; };
 		B5EC94A817F4D5B800374BCD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B5EC948617F4D5B800374BCD /* .gitignore */; };
 		B5EC94A917F4D5B800374BCD /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = B5EC948817F4D5B800374BCD /* Appirater.m */; };
-		B5EC94AA17F4D5B800374BCD /* Appirater.podspec.json in Resources */ = {isa = PBXBuildFile; fileRef = B5EC948917F4D5B800374BCD /* Appirater.podspec.json */; };
+		B5EC94AA17F4D5B800374BCD /* Appirater.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B5EC948917F4D5B800374BCD /* Appirater.podspec */; };
 		B5EC94AB17F4D5B800374BCD /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5EC948B17F4D5B800374BCD /* AppiraterLocalizable.strings */; };
 		B5EC94AC17F4D5B800374BCD /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = B5EC948D17F4D5B800374BCD /* CHANGELOG.md */; };
 		B5EC94AD17F4D5B800374BCD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5EC94A017F4D5B800374BCD /* README.md */; };
@@ -311,7 +311,7 @@
 		B5EC948617F4D5B800374BCD /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B5EC948717F4D5B800374BCD /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		B5EC948817F4D5B800374BCD /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
-		B5EC948917F4D5B800374BCD /* Appirater.podspec.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Appirater.podspec.json; sourceTree = "<group>"; };
+		B5EC948917F4D5B800374BCD /* Appirater.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Appirater.podspec; sourceTree = "<group>"; };
 		B5EC948A17F4D5B800374BCD /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		B5EC948C17F4D5B800374BCD /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		B5EC948D17F4D5B800374BCD /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -663,7 +663,7 @@
 				B5EC948617F4D5B800374BCD /* .gitignore */,
 				B5EC948717F4D5B800374BCD /* Appirater.h */,
 				B5EC948817F4D5B800374BCD /* Appirater.m */,
-				B5EC948917F4D5B800374BCD /* Appirater.podspec.json */,
+				B5EC948917F4D5B800374BCD /* Appirater.podspec */,
 				B5EC948A17F4D5B800374BCD /* AppiraterDelegate.h */,
 				B5EC948B17F4D5B800374BCD /* AppiraterLocalizable.strings */,
 				B5EC948D17F4D5B800374BCD /* CHANGELOG.md */,
